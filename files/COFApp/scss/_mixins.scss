@@ -1,0 +1,75 @@
+@mixin before-default {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: $primary;
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  transform-origin: left; 
+  transform: scaleX(0);
+  transition: 0.25s linear;
+}
+
+@mixin before-hover {
+  &:before {
+    transform: scaleX(1);
+  }
+}
+@mixin card-producto {
+        .card{
+          border: none;
+          a{
+            overflow: hidden;
+            -webkit-transition: .3s ease-in-out;
+            transition: .3s ease-in-out;
+            *{
+              -webkit-transition: .3s ease-in-out;
+              transition: .3s ease-in-out;
+
+            }
+            h5{
+              position: absolute;
+              bottom: 5px;
+              left: 15px;
+              color: #fff;
+              text-shadow: 0px 0px 7px rgba(#000, 0.75);
+              font-weight: bold;
+              z-index: 2;
+              &:before {
+                @include before-default;
+                transition: 0.45s linear;
+              }
+            }
+            .novedad{
+              position: absolute;
+              padding: 5px;
+              background: $primary;
+              color: #fff;
+              top: 0;
+              right: 0;
+              font-weight: 500;
+              box-shadow: -2px 1px 6px rgba(#000, 0.5);
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+            &:hover{
+              img.card-img{
+                width: 120%;
+                max-width: 120%;
+                margin-left: -10%;
+                margin-top: -10%;
+                filter: grayscale(100%) blur(5px);
+              }
+              h5{
+                font-size: 25px;
+                bottom: calc(10% + 30px);
+                &:before {
+                  transform: scaleX(1);
+                }
+              }
+            }
+          }       
+        }
+}
