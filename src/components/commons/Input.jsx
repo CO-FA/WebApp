@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ShowPasswordButton from "./ShowPasswordButton";
+import { Field } from "formik";
 
 export default function Input({
 	type,
@@ -9,19 +10,18 @@ export default function Input({
 	errors,
 	label,
 	values,
-	handleChange,
 }) {
 	const [showPassword, setShowPassword] = useState(false);
 	return (
 		<>
 			<label for={name}>{label}</label>
 			<div class="input-group" id={"inputGroup" + name}>
-				<input
-					id={name}
+				<Field
 					type={!showPassword ? type : "text"}
-					class={className}
+					className={className}
 					name={name}
-					onChange={handleChange}
+					id={name}
+					value="masculino"
 					value={(values && values[name]) || ""}
 				/>
 				{showPasswordButton && (

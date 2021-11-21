@@ -55,7 +55,6 @@ export default function OlvidePasswordStep2() {
 											name="clientePin"
 											errors={errors}
 											values={values}
-											handleChange={handleChange}
 											maxLength="1"
 										/>
 									</div>

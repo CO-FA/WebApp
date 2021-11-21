@@ -69,7 +69,6 @@ export default function OlvidePasswordStep2() {
 											maxlength="8"
 											errors={errors}
 											showPasswordButton
-											handleChange={handleChange}
 											values={values}
 										/>
 									</div>
@@ -83,7 +82,6 @@ export default function OlvidePasswordStep2() {
 											maxlength="8"
 											errors={errors}
 											showPasswordButton
-											handleChange={handleChange}
 											values={values}
 										/>
 									</div>

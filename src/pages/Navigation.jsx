@@ -4,6 +4,7 @@ import "../assets/css/main.css";
 import Home from "../pages/Home";
 import RegistroStep1 from "../pages/RegistroStep1";
 import RegistroStep2 from "../pages/RegistroStep2";
+import RegistroStep3 from "../pages/RegistroStep3";
 import Login from "../pages/Login";
 import OlvidePasswordStep1 from "../pages/OlvidePasswordStep1";
 import OlvidePasswordStep2 from "../pages/OlvidePasswordStep2";
@@ -34,6 +35,11 @@ export default function Navigation() {
 							<Route path="/terminos">
 								<AnimationItem>
 									<RegistroStep2 />
+								</AnimationItem>
+							</Route>
+							<Route path="/documento">
+								<AnimationItem>
+									<RegistroStep3 />
 								</AnimationItem>
 							</Route>
 

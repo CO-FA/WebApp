@@ -59,7 +59,6 @@ export default function Login() {
 											name="clienteUsuario"
 											errors={errors}
 											values={values}
-											handleChange={handleChange}
 										/>
 									</div>
 
@@ -72,7 +71,6 @@ export default function Login() {
 											showPasswordButton
 											errors={errors}
 											values={values}
-											handleChange={handleChange}
 										/>
 									</div>
 									<div class="col-12">

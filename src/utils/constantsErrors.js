@@ -8,4 +8,7 @@ export const formErrors = {
 	EMAIL_EMPTY: "El email no puede estar vacío",
 	PATTERN_EMAIL_ERROR: "Debe ingresar un email válido",
 	USER_EMPTY: "El usuario no puede estar vacío",
+	DOCUMENT_EMPTY: "El documento no puede estar vacío",
+	GENDER_EMPTY: "El género no puede estar vacío",
+	DOCUMENT_LENGTH: "El número de DNI debe ser de 8 caracteres",
 };

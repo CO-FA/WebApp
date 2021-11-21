@@ -6,28 +6,31 @@ import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 import Button from "../components/commons/Button";
 import { formErrors } from "../utils/constantsErrors";
+import RegistroSetps from "../components/registro/RegistroSteps";
+import SelectorGenero from "../components/registro/SelectorGenero";
 
-export default function OlvidePasswordStep1() {
+export default function RegistroStep3() {
 	const [errors, setErrors] = useState(false);
 	const history = useHistory();
 
 	const submitForm = (values, setSubmitting) => {
 		if (!errors) {
-			history.push("/emailCode");
+			history.push("/login");
 		}
 	};
 	const validateForm = values => {
-		const pattern =
-			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		const regex = new RegExp(pattern);
-
-		if (!values.clienteEmail) {
+		debugger;
+		if (!values.clienteDocNumero) {
 			setErrors({
-				clienteEmail: formErrors.EMAIL_EMPTY,
+				clienteDocNumero: formErrors.DOCUMENT_EMPTY,
 			});
-		} else if (!regex.test(values.clienteEmail)) {
+		} else if (String(values.clienteDocNumero).length !== 8) {
 			setErrors({
-				clienteEmail: formErrors.PATTERN_EMAIL_ERROR,
+				clienteDocNumero: formErrors.DOCUMENT_LENGTH,
+			});
+		} else if (!values.clienteGender) {
+			setErrors({
+				clienteGender: formErrors.GENDER_EMPTY,
 			});
 		} else {
 			setErrors(false);
@@ -36,9 +39,9 @@ export default function OlvidePasswordStep1() {
 
 	return (
 		<>
-			<Header />
+			<Header title={<RegistroSetps />} />
 			<Formik
-				initialValues={{ clienteEmail: "" }}
+				initialValues={{ clienteDocNumero: "", clienteGender: "" }}
 				onSubmit={(values, { setSubmitting }) =>
 					submitForm(values, setSubmitting)
 				}
@@ -46,31 +49,26 @@ export default function OlvidePasswordStep1() {
 			>
 				{({
 					values,
-					handleChange,
 					handleSubmit,
 					/* and other goodies */
 				}) => (
 					<>
 						<section>
 							<form class="pt-3">
-								<h3>Recuperar mi contraseña</h3>
 								<div class="row">
 									<div class="form-group col-12">
 										<Input
-											label="Ingresá tu Email"
-											type="email"
+											label="Nro DNI"
+											type="number"
 											className="form-control"
-											name="clienteEmail"
+											name="clienteDocNumero"
 											errors={errors}
 											values={values}
 										/>
 									</div>
-									<div class="col-12">
-										<p class="mt-3 text-center">
-											Te vamos a enviar un email con un código de activación de
-											4 dígitos
-										</p>
-									</div>
+								</div>
+								<div class="btn-group-toggle" data-toggle="buttons">
+									<SelectorGenero values={values} errors={errors} />
 								</div>
 							</form>
 						</section>
