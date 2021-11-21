@@ -5,26 +5,24 @@ export default function Input({
 	type,
 	className,
 	name,
-	id,
-	pattern,
 	showPasswordButton,
-	error,
+	errors,
 	label,
-	maxLength,
+	values,
+	handleChange,
 }) {
 	const [showPassword, setShowPassword] = useState(false);
-
 	return (
 		<>
-			<label for={id}>{label}</label>
-			<div class="input-group" id={"inputGroup" + id}>
+			<label for={name}>{label}</label>
+			<div class="input-group" id={"inputGroup" + name}>
 				<input
-					id={id}
+					id={name}
 					type={!showPassword ? type : "text"}
 					class={className}
 					name={name}
-					pattern={pattern || ""}
-					maxLength={maxLength || ""}
+					onChange={handleChange}
+					value={(values && values[name]) || ""}
 				/>
 				{showPasswordButton && (
 					<ShowPasswordButton
@@ -33,9 +31,9 @@ export default function Input({
 					/>
 				)}
 			</div>
-			{error && (
+			{errors[name] && (
 				<span id="clientePass-errorMsg" class="form-text text-danger small">
-					{`* ${error}`}
+					{`* ${errors[name]}`}
 				</span>
 			)}
 		</>
