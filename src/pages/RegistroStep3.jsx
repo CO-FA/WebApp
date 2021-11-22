@@ -8,6 +8,7 @@ import Button from "../components/commons/Button";
 import { formErrors } from "../utils/constantsErrors";
 import RegistroSetps from "../components/registro/RegistroSteps";
 import SelectorGenero from "../components/registro/SelectorGenero";
+import {STEPS} from "../components/registro/constantsSteps"
 
 export default function RegistroStep3() {
 	const [errors, setErrors] = useState(false);
@@ -15,11 +16,10 @@ export default function RegistroStep3() {
 
 	const submitForm = (values, setSubmitting) => {
 		if (!errors) {
-			history.push("/login");
+			history.push("/validatePhone");
 		}
 	};
 	const validateForm = values => {
-		debugger;
 		if (!values.clienteDocNumero) {
 			setErrors({
 				clienteDocNumero: formErrors.DOCUMENT_EMPTY,
@@ -39,7 +39,7 @@ export default function RegistroStep3() {
 
 	return (
 		<>
-			<Header title={<RegistroSetps />} />
+			<Header title={<RegistroSetps current={STEPS.STEP_1_DNI} />} />
 			<Formik
 				initialValues={{ clienteDocNumero: "", clienteGender: "" }}
 				onSubmit={(values, { setSubmitting }) =>
@@ -54,9 +54,9 @@ export default function RegistroStep3() {
 				}) => (
 					<>
 						<section>
-							<form class="pt-3">
-								<div class="row">
-									<div class="form-group col-12">
+							<form className="pt-3">
+								<div className="row">
+									<div className="form-group col-12">
 										<Input
 											label="Nro DNI"
 											type="number"
@@ -67,13 +67,13 @@ export default function RegistroStep3() {
 										/>
 									</div>
 								</div>
-								<div class="btn-group-toggle" data-toggle="buttons">
+								<div className="btn-group-toggle" data-toggle="buttons">
 									<SelectorGenero values={values} errors={errors} />
 								</div>
 							</form>
 						</section>
 						<Footer>
-							<div class="col-12">
+							<div className="col-12">
 								<Button
 									className="btn btn-primary cont"
 									disabled={false}

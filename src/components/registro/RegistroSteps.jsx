@@ -1,20 +1,23 @@
 import React from "react";
+import {STEPS} from "./constantsSteps"
 
-export default function RegistroSetps() {
+
+
+export default function RegistroSetps({current=1}) {
 	return (
-		<div class="row">
-			<div class="col-12">
+		<div className="row">
+			<div className="col-12">
 				<nav aria-label="breadcrumb">
-					<ol class="breadcrumb justify-content-between">
-						<li class="breadcrumb-item active">DNI</li>
-						<li class="breadcrumb-item">
+					<ol className="breadcrumb justify-content-between">
+						<li className={"breadcrumb-item " + (current === STEPS.STEP_1_DNI && "active")}>DNI</li>
+						<li className={"breadcrumb-item " + (current === STEPS.STEP_2_CELULAR && "active")}>
 							<p>Validar Celular</p>
 						</li>
-						<li class="breadcrumb-item">
+						<li className={"breadcrumb-item " + (current === STEPS.STEP_3_EMAIL && "active")}>
 							<p>Validar Email</p>
 						</li>
-						<li class="breadcrumb-item" aria-current="page">
-							<p>contraseña</p>
+						<li className={"breadcrumb-item " + (current === STEPS.STEP_4_CLAVE && "active")} aria-current="page">
+							<p>Contraseña</p>
 						</li>
 					</ol>
 				</nav>

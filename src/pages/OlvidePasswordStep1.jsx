@@ -52,10 +52,10 @@ export default function OlvidePasswordStep1() {
 				}) => (
 					<>
 						<section>
-							<form class="pt-3">
+							<form className="pt-3">
 								<h3>Recuperar mi contraseña</h3>
-								<div class="row">
-									<div class="form-group col-12">
+								<div className="row">
+									<div className="form-group col-12">
 										<Input
 											label="Ingresá tu Email"
 											type="email"
@@ -65,8 +65,8 @@ export default function OlvidePasswordStep1() {
 											values={values}
 										/>
 									</div>
-									<div class="col-12">
-										<p class="mt-3 text-center">
+									<div className="col-12">
+										<p className="mt-3 text-center">
 											Te vamos a enviar un email con un código de activación de
 											4 dígitos
 										</p>
@@ -75,7 +75,7 @@ export default function OlvidePasswordStep1() {
 							</form>
 						</section>
 						<Footer>
-							<div class="col-12">
+							<div className="col-12">
 								<Button
 									className="btn btn-primary cont"
 									disabled={false}

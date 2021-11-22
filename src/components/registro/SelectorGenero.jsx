@@ -7,13 +7,13 @@ export default function SelectorGenero({ values, errors }) {
 		<>
 			<label for="gender">Género</label>
 			{errors["clienteGender"] && (
-				<span id="clientePass-errorMsg" class="form-text text-danger small">
+				<span id="clientePass-errorMsg" className="form-text text-danger small">
 					{`* ${errors["clienteGender"]}`}
 				</span>
 			)}
-			<span id="clienteGender-errorMsg" class="form-text text-danger">
+			<span id="clienteGender-errorMsg" className="form-text text-danger">
 				<label
-					class={`btn border d-block text-left mt-3 mx-0 ${
+					className={`btn border d-block text-left mt-3 mx-0 ${
 						values.clienteGender !== "femenino" ? "active" : ""
 					}`}
 				>
@@ -56,7 +56,7 @@ export default function SelectorGenero({ values, errors }) {
 					Femenino
 				</label>
 				<label
-					class={`btn border d-block text-left mt-3 mx-0 ${
+					className={`btn border d-block text-left mt-3 mx-0 ${
 						values.clienteGender !== "masculino" ? "active" : ""
 					}`}
 				>

@@ -17,7 +17,10 @@ export default function OlvidePasswordStep2() {
 		}
 	};
 	const validateForm = values => {
-		var pattern = new RegExp("/^[a-z]{4}d{4}$/i");
+		debugger;
+		// Min 8, 1 letra mayus, 1 letra min, 1 num
+		let pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/g
+		
 
 		if (values.clientePass !== values.clientePassConfirm) {
 			setErrors({ clientePassConfirm: formErrors.PASSWORD_DOESNT_MATCH });
@@ -26,15 +29,15 @@ export default function OlvidePasswordStep2() {
 				clientePass: formErrors.PASSWORD_EMPTY,
 				clientePassConfirm: formErrors.PASSWORD_DOESNT_MATCH,
 			});
-		} else if (!pattern.test(values.clientePass)) {
+		} else if (!values.clientePass.match(pattern)) {
 			setErrors({
 				clientePass: formErrors.PATTERN_ERROR,
 			});
-		} else if (values.clientePass.length !== 8) {
+		/*} else if (values.clientePass.length !== 8) {
 			setErrors({
 				clientePass: formErrors.PASSWORD_LENGTH,
 			});
-		} else {
+		} */}else {
 			setErrors(false);
 		}
 	};
@@ -88,10 +91,10 @@ export default function OlvidePasswordStep2() {
 									<div class="col-12">
 										<ul>
 											<li class="mt-3">
-												Tu contraseña debe tener 8 caracteres que contengan 4
-												letras y 4 números.{" "}
+												Tu contraseña debe tener minimo 8 caracteres que contengan al menos
+												una minuscula, una mayuscula y un número.{" "}
 											</li>
-											<li class="mt-3">Ejemplo: mica2010</li>
+											<li class="mt-3">Ejemplo: Mica2010</li>
 										</ul>
 									</div>
 								</div>

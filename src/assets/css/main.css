@@ -10523,7 +10523,7 @@ body main form #show_hide_password .btn, body main form #show_hide_password2 .bt
   height: calc(1.5em + 0.75rem + 2px);
 }
 body main header {
-  height: 10%;
+  min-height: 10%;
 }
 body main header .breadcrumb {
   background-color: transparent;
@@ -10591,7 +10591,7 @@ body main section {
   height: 70%;
 }
 body main footer {
-  height: 10%;
+  min-height: 10%;
 }
 body main.f-xl header {
   height: 5%;
@@ -10647,7 +10647,7 @@ body main.prestamo footer {
 
 .fade-enter.fade-enter-active {
   opacity: 1;
-  transition: opacity 300ms ease-in;
+  /*transition: opacity 300ms ease-in;*/
 }
 .animation-item{
   position: relative;

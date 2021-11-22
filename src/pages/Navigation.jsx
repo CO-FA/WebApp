@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import RegistroStep1 from "../pages/RegistroStep1";
 import RegistroStep2 from "../pages/RegistroStep2";
 import RegistroStep3 from "../pages/RegistroStep3";
+import RegistroStep4 from "../pages/RegistroStep4";
 import Login from "../pages/Login";
 import OlvidePasswordStep1 from "../pages/OlvidePasswordStep1";
 import OlvidePasswordStep2 from "../pages/OlvidePasswordStep2";
@@ -42,7 +43,11 @@ export default function Navigation() {
 									<RegistroStep3 />
 								</AnimationItem>
 							</Route>
-
+							<Route path="/validatePhone">
+								<AnimationItem>
+									<RegistroStep4 />
+								</AnimationItem>
+							</Route>
 							<Route path="/login">
 								<AnimationItem>
 									<Login />
