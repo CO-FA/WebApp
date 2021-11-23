@@ -11,4 +11,9 @@ export const formErrors = {
 	DOCUMENT_EMPTY: "El documento no puede estar vacío",
 	GENDER_EMPTY: "El género no puede estar vacío",
 	DOCUMENT_LENGTH: "El número de DNI debe ser de 8 caracteres",
+	CODE_PHONE_EMPTY:"Por favor ingrese su código de área",
+	CODE_PHONE_ERROR:"El código de área ingresado es incorrecto",
+	PHONE_EMPTY:"Por favor ingrese su celular",
+	PHONE_ERROR:"El número ingresado es incorrecto",
+
 };

@@ -10,17 +10,19 @@ export default function Input({
 	errors,
 	label,
 	values,
+	placeholder
 }) {
 	const [showPassword, setShowPassword] = useState(false);
 	return (
 		<>
-			<label for={name}>{label}</label>
+			<label htmlFor={name}>{label}</label>
 			<div className="input-group" id={"inputGroup" + name}>
 				<Field
 					type={!showPassword ? type : "text"}
 					className={className}
 					name={name}
 					id={name}
+					placeholder={placeholder}
 					value={(values && values[name]) || ""}
 				/>
 				{showPasswordButton && (

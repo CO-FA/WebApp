@@ -1,5 +1,5 @@
 
-import {useState} from "react"
+import React,{useState} from "react"
 import Header from "../components/commons/Header";
 import Input from "../components/commons/Input";
 import Footer from "../components/commons/Footer";
@@ -10,23 +10,56 @@ import { formErrors } from "../utils/constantsErrors";
 
 import RegistroSetps from "../components/registro/RegistroSteps";
 import {STEPS} from "../components/registro/constantsSteps"
+import {LoaderContext} from "../components/loader/LoaderContext"
 
 export default function RegistroStep4(){
+	let { setShowLoader } = React.useContext(LoaderContext);
     const [errors, setErrors] = useState(false);
 	const history = useHistory();
 
 	const submitForm = (values, setSubmitting) => {
-		if (!errors) {
-			history.push("/validatePhone");
-		}
+		setShowLoader(true)
+		setTimeout(()=>{
+			if (!errors) {
+				setShowLoader(false)
+				history.push("/validatePhonePIN");
+			}
+			
+		},2000)
+		
 	};
 	const validateForm = values => {
-		
+        var errorsAUx={}
+		if (!values.clienteCelCodigo) {
+		    errorsAUx= {
+                	...errorsAUx, clienteCelCodigo: formErrors.CODE_EMPTY
+            }
+		} else if (String(values.clienteCelCodigo).length < 2) {
+			errorsAUx= {
+                ...errorsAUx,clienteCelCodigo: formErrors.CODE_PHONE_ERROR,
+			}
+		} else {
+			errorsAUx=false;
+		}
+        if (!values.clienteCelNumero) {
+			errorsAUx={
+                ...errorsAUx,
+				clienteCelNumero: formErrors.PHONE_EMPTY,
+			};
+		} else if (String(values.clienteCelNumero).length < 6) {
+			errorsAUx={
+                ...errorsAUx,
+				clienteCelNumero: formErrors.PHONE_ERROR,
+			};
+		} else {
+			errorsAUx = errorsAUx || false ;
+		}
+        setErrors(errorsAUx)
 	};
     return<>
         <Header title={<RegistroSetps current={STEPS.STEP_2_CELULAR} />} />
         <Formik
-				initialValues={{ clienteDocNumero: "", clienteGender: "" }}
+				initialValues={{ clienteCelCodigo: "", clienteCelNumero: "" }}
 				onSubmit={(values, { setSubmitting }) =>
 					submitForm(values, setSubmitting)
 				}
@@ -46,27 +79,29 @@ export default function RegistroStep4(){
                     <Input
 											label="Cód"
 											type="number"
+                                            placeholder="011"
 											className="form-control"
 											name="clienteCelCodigo"
-											errors={errors}
+											errors={[]}
 											values={values}
 										/>
                     </div>
                     <div className="form-group col-9">
                     <Input
 											label="Celular"
+                                            placeholder="38913312"
 											type="number"
 											className="form-control"
 											name="clienteCelNumero"
-											errors={errors}
+											errors={[]}
 											values={values}
 										/>
                    
                    
                     </div>
                     <div className="col-12">          
-                    <span id="clienteCelCodigo-errorMsg" className="form-text text-danger small"></span>
-                    <span id="clienteCelNumero-errorMsg" className="form-text text-danger small"></span>
+                    {errors['clienteCelCodigo'] && <span id="clienteCelCodigo-errorMsg" className="form-text text-danger small">*{errors['clienteCelCodigo']}</span>}
+                    {errors['clienteCelNumero'] && <span id="clienteCelCodigo-errorMsg" className="form-text text-danger small">*{errors['clienteCelNumero']}</span>}
                     </div>
                 </div>
                 </section>
