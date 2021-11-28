@@ -1,3 +1,4 @@
+import {useRef} from "react"
 import { Switch, Route, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "../assets/css/main.css";
@@ -11,73 +12,57 @@ import OlvidePasswordStep1 from "../pages/OlvidePasswordStep1";
 import OlvidePasswordStep2 from "../pages/OlvidePasswordStep2";
 import OlvidePasswordStep3 from "../pages/OlvidePasswordStep3";
 
-const AnimationItem = ({ children }) => {
-	return <div className="animation-item">{children}</div>;
-};
-
 export default function Navigation() {
-	let location = useLocation();
+  let location = useLocation();
+  const nodeRef = useRef(null);
+  return (
+    <div className="index">
+      <main role="main" className="container">
+        <TransitionGroup>
+          <CSSTransition
+            key={location.pathname}
+            classNames="page"
+            timeout={300}
+            nodeRef={nodeRef}
+			
+			unmountOnExit
+          >
+            {/*TODO: Arreglar animación de transicion entre pantallas*/}
+			<div className="animation-item" ref={nodeRef}>
+              <Switch>
+                <Route path="/registro">
+                  <RegistroStep1 />
+                </Route>
+                <Route path="/terminos">
+                  <RegistroStep2 />
+                </Route>
+                <Route path="/documento">
+                  <RegistroStep3 />
+                </Route>
+                <Route path="/validatePhone">
+                  <RegistroStep4 />
+                </Route>
+                <Route path="/login">
+                  <Login />
+                </Route>
+                <Route path="/forgotPassword">
+                  <OlvidePasswordStep1 />
+                </Route>
+                <Route path="/emailCode">
+                  <OlvidePasswordStep2 />
+                </Route>
+                <Route path="/newPassword">
+                  <OlvidePasswordStep3 />
+                </Route>
 
-	return (
-		<div className="index">
-			<main role="main" className="container">
-				<TransitionGroup>
-					<CSSTransition
-						key={location.pathname}
-						classNames="fade"
-						timeout={300}
-					>
-						<Switch>
-							<Route path="/registro">
-								<AnimationItem>
-									<RegistroStep1 />
-								</AnimationItem>
-							</Route>
-							<Route path="/terminos">
-								<AnimationItem>
-									<RegistroStep2 />
-								</AnimationItem>
-							</Route>
-							<Route path="/documento">
-								<AnimationItem>
-									<RegistroStep3 />
-								</AnimationItem>
-							</Route>
-							<Route path="/validatePhone">
-								<AnimationItem>
-									<RegistroStep4 />
-								</AnimationItem>
-							</Route>
-							<Route path="/login">
-								<AnimationItem>
-									<Login />
-								</AnimationItem>
-							</Route>
-							<Route path="/forgotPassword">
-								<AnimationItem>
-									<OlvidePasswordStep1 />
-								</AnimationItem>
-							</Route>
-							<Route path="/emailCode">
-								<AnimationItem>
-									<OlvidePasswordStep2 />
-								</AnimationItem>
-							</Route>
-							<Route path="/newPassword">
-								<AnimationItem>
-									<OlvidePasswordStep3 />
-								</AnimationItem>
-							</Route>
-
-							<Route path="/">
-								<AnimationItem>
-									<Home />
-								</AnimationItem>
-							</Route>
-						</Switch>
-					</CSSTransition>
-				</TransitionGroup>
-			</main>
-		</div>
-	);
+                <Route path="/">
+                  <Home />
+                </Route>
+              </Switch>
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+      </main>
+    </div>
+  );
 }
