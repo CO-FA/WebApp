@@ -71,7 +71,7 @@ export default function RegistroStep4(){
 					/* and other goodies */
 				}) => (
 					<>	
-                
+                <form>
                 <section>
                 <h3>Vamos a validar el celular</h3>
                 <div className="row">        
@@ -118,6 +118,7 @@ export default function RegistroStep4(){
                         </Button>
                     </div>
                 </Footer>
+				</form>
             </>
         )}
     </Formik>

@@ -2,16 +2,16 @@ import React from "react";
 
 export default function ShowPasswordButton({ setShowPassword, showPassword }) {
 	return (
-		<div class="input-group-append">
+		<div className="input-group-append">
 			<button
-				class="btn border border-left-0"
+				className="btn border border-left-0"
 				type="button"
 				onClick={setShowPassword}
 			>
 				{!showPassword && (
-					<span class="eye d-block">
+					<span className="eye d-block">
 						<svg
-							class="mt-0"
+							className="mt-0"
 							width="24"
 							height="14"
 							viewBox="0 0 24 14"
@@ -38,9 +38,9 @@ export default function ShowPasswordButton({ setShowPassword, showPassword }) {
 					</span>
 				)}
 				{showPassword && (
-					<span class="eye-splash">
+					<span className="eye-splash">
 						<svg
-							class="mt-0"
+							className="mt-0"
 							width="24"
 							height="19"
 							viewBox="0 0 24 21"

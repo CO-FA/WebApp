@@ -5,7 +5,7 @@ export default function SelectorGenero({ values, errors }) {
 	debugger;
 	return (
 		<>
-			<label for="gender">Género</label>
+			<label htmlFor="gender">Género</label>
 			{errors["clienteGender"] && (
 				<span id="clientePass-errorMsg" className="form-text text-danger small">
 					{`* ${errors["clienteGender"]}`}

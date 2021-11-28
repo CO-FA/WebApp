@@ -7,13 +7,13 @@ export default function NotificationCard({
   textLink,
 }) {
   return (
-    <div class={`card ${permanent ? "bg-light border-0" : "border-1"}  mt-4`}>
-      <div class="card-body">
-        <div class="row">
-          <div class="col px-0">
+    <div className={`card ${permanent ? "bg-light border-0" : "border-1"}  mt-4`}>
+      <div className="card-body">
+        <div className="row">
+          <div className="col px-0">
             <a
-              class="btn btn-link px-0 position-relative d-block notif"
-              htref="#"
+              className="btn btn-link px-0 position-relative d-block notif"
+              href="/"
             >
               <svg
                 width="21"
@@ -23,8 +23,8 @@ export default function NotificationCard({
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M12.272 2.2138C15.0235 3.01726 17.15 5.69374 17.15 9.54999C17.15 12.0434 17.6551 13.4473 18.5896 14.4681C18.7481 14.6413 19.1795 15.0392 19.4652 15.3027L19.4653 15.3028C19.597 15.4243 19.6976 15.5171 19.7264 15.5463L20 15.8238V19.0634H14.1804C13.9427 19.9989 13.3569 20.8183 12.4832 21.3515C11.2654 22.0946 9.73424 22.0946 8.51639 21.3515C7.52639 20.7473 6.97895 20.0723 6.78338 19.0634H1V15.8238L1.27357 15.5463C1.30532 15.5144 1.41032 15.4178 1.54586 15.2931L1.54593 15.293L1.54596 15.293C1.83252 15.0294 2.25553 14.6402 2.41166 14.4704C3.34553 13.4543 3.85 12.0522 3.85 9.54999C3.85 5.68276 5.97355 3.01217 8.72847 2.21214C8.82812 1.955 8.98536 1.71596 9.19892 1.51531C9.93019 0.82823 11.0697 0.82823 11.8009 1.51531C12.015 1.71639 12.1724 1.95602 12.272 2.2138ZM8.76949 19.0634H12.1497C11.9968 19.329 11.776 19.5572 11.4935 19.7296C10.8834 20.1019 10.1163 20.1019 9.50612 19.7296C9.13248 19.5016 8.90371 19.3131 8.76949 19.0634Z"
                   fill="#FBFBFC"
                 />
@@ -34,17 +34,17 @@ export default function NotificationCard({
                 />
               </svg>
 
-              <span class="badge badge-danger"></span>
+              <span className="badge badge-danger"></span>
             </a>
           </div>
-          <div class="col-10">
+          <div className="col-10">
             <p>{textRow1}</p>
             <p>
               {textRow2}
               {textLink && <a href="/home">click acá</a>}
             </p>
           </div>
-          <div class="col px-0">
+          <div className="col px-0">
             <svg
               width="6"
               height="11"
@@ -53,8 +53,8 @@ export default function NotificationCard({
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M0.21967 1.28033C-0.0732232 0.987437 -0.0732233 0.512563 0.21967 0.21967C0.512563 -0.0732234 0.987437 -0.0732234 1.28033 0.21967L5.78033 4.71967C6.07322 5.01256 6.07322 5.48744 5.78033 5.78033L1.28033 10.2803C0.987438 10.5732 0.512564 10.5732 0.219671 10.2803C-0.0732224 9.98744 -0.0732225 9.51256 0.219671 9.21967L4.18934 5.25L0.21967 1.28033Z"
                 fill="#2B2F34"
               ></path>

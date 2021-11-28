@@ -14,7 +14,7 @@ export default function Login() {
 
 	const submitForm = (values, setSubmitting) => {
 		if (!errors) {
-			history.push("/newPassword");
+			history.push("/perfil");
 		}
 	};
 	const validateForm = values => {
@@ -48,7 +48,7 @@ export default function Login() {
 				}) => (
 					<>
 						<section>
-							<form className="js-check-form pt-3" id="dni-form" novalidate>
+							<form className="js-check-form pt-3" id="dni-form" noValidate>
 								<h3>Ingresar</h3>
 								<div className="row">
 									<div className="form-group col-12">

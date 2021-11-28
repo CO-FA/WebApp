@@ -19,8 +19,8 @@ export default function Perfil() {
   return (
     <>
       <Header withoutBackButton title={<EncabezadoPerfil />} />
-      <div class="row">
-        <div class="col-12 mt-3">
+      <div className="row">
+        <div className="col-12 mt-3">
           <OfertaPrestamoPerfil
             textHeader="Tenés un Préstamo "
             text="Aprobado de"
@@ -29,18 +29,18 @@ export default function Perfil() {
             buttonLink="#"
           />
         </div>
-        <div class="col-12 mt-3">
+        <div className="col-12 mt-3">
           <AvisoPerfil text="Tu cuenta está incompleta" />
         </div>
-        <div class="col-12 mt-3">
+        <div className="col-12 mt-3">
           <SolicitarPrestamo text="Solicitar un préstamo" />
         </div>
-        <div class="col-12 mt-3">
+        <div className="col-12 mt-3">
           {optionsToShow.map((option) => {
             return menuOptions[option];
           })}
         </div>
-        <div class="col-12 mt-3 w-100">
+        <div className="col-12 mt-3 w-100">
           <Link to="/home">
             <Button
               className="btn btn-light button-rounded p-3 border"

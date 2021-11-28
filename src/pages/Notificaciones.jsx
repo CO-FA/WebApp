@@ -4,17 +4,17 @@ import NotificationCard from "../components/commons/NotificationCard";
 
 export default function Notificaciones() {
   const HeaderNavitationTitle = () => (
-    <div class="col-8">
-      <h4 class="text-center text-white mt-3">Ronaldo de Assis Moreira</h4>
-      <p class="small text-center text-white mt-2">MASC | 24.235.647 </p>
+    <div className="col-8">
+      <h4 className="text-center text-white mt-3">Ronaldo de Assis Moreira</h4>
+      <p className="small text-center text-white mt-2">MASC | 24.235.647 </p>
     </div>
   );
 
   return (
     <>
       <HeaderNavigation centerElement={<HeaderNavitationTitle />} />
-      <div class="row">
-        <div class="col-12 mb-3">
+      <div className="row">
+        <div className="col-12 mb-3">
           <NotificationCard
             permanent
             textRow1="Te recordamos que las cuotas vencen los días 7 de cada mes."

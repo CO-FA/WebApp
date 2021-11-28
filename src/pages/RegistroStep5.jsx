@@ -71,6 +71,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
       >
         {({ values, handleSubmit }) => (
           <>
+          <form>
             <section>
               <h3>Vamos a validar el celular</h3>
               <div className="row">
@@ -130,7 +131,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
 			  
             </div>
             <div className="col-12">
-              <p className="mt-5 text-center"><a href="#" className="text-underline">¿No te llegó? Reenviarme el SMS</a></p>
+              <p className="mt-5 text-center"><a href="/" className="text-underline">¿No te llegó? Reenviarme el SMS</a></p>
             </div>
               </div>
             </section>
@@ -147,6 +148,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                 </Button>
               </div>
             </Footer>
+            </form>
           </>
         )}
       </Formik>

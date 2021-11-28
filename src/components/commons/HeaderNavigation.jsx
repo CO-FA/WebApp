@@ -5,8 +5,8 @@ export default function HeaderNavigation({ centerElement }) {
   return (
     <>
       <header>
-        <div class="row bg-gradient align-items-center border-radius-top mt-0">
-          <div class="col-2 text-center">
+        <div className="row bg-gradient align-items-center border-radius-top mt-0">
+          <div className="col-2 text-center">
             <Button
               className="btn btn-link px-0"
               onClick={() => {
@@ -27,10 +27,10 @@ export default function HeaderNavigation({ centerElement }) {
             </Button>
           </div>
           {centerElement}
-          <div class="col-2">
+          <div className="col-2">
             <a
-              class="btn btn-link px-0 position-relative d-block notif"
-              htref="#"
+              className="btn btn-link px-0 position-relative d-block notif"
+              href="/"
             >
               <svg
                 width="19"
@@ -46,7 +46,7 @@ export default function HeaderNavigation({ centerElement }) {
                   fill="#FBFBFC"
                 />
               </svg>
-              <span class="badge badge-danger"></span>
+              <span className="badge badge-danger"></span>
             </a>
           </div>
         </div>

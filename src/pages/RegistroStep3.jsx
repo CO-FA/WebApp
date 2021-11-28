@@ -16,7 +16,7 @@ export default function RegistroStep3() {
 
 	const submitForm = (values, setSubmitting) => {
 		if (!errors) {
-			history.push("/validatePhone");
+			history.push("/documentoValido");
 		}
 	};
 	const validateForm = values => {

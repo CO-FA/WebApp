@@ -3,9 +3,9 @@ import userImage from "../../assets/images/user-img.png";
 
 export default function EncabezadoPerfil() {
   return (
-    <div class="row bg-gradient justify-content-between border-radius-top">
-      <div class="col-2 text-center mt-3 float-left">
-        <a class="btn btn-link px-0" href="http://www.wa.me/54911xxxxxx">
+    <div className="row bg-gradient justify-content-between border-radius-top">
+      <div className="col-2 text-center mt-3 float-left">
+        <a className="btn btn-link px-0" href="http://www.wa.me/54911xxxxxx">
           <svg
             width="21"
             height="21"
@@ -20,9 +20,9 @@ export default function EncabezadoPerfil() {
           </svg>
         </a>
       </div>
-      <div class="col-2 text-center mt-3 float-right">
+      <div className="col-2 text-center mt-3 float-right">
         <a
-          class="btn btn-link px-0 position-relative d-block notif"
+          className="btn btn-link px-0 position-relative d-block notif"
           href="/notificaciones"
         >
           <svg
@@ -39,11 +39,11 @@ export default function EncabezadoPerfil() {
               fill="#FBFBFC"
             />
           </svg>
-          <span class="badge badge-danger"></span>
+          <span className="badge badge-danger"></span>
         </a>
       </div>
-      <div class="col-6 offset-3 text-center">
-        <a href="#" class="photo mt-3 position-relative">
+      <div className="col-6 offset-3 text-center">
+        <a href="/" className="photo mt-3 position-relative">
           <img
             src={userImage}
             alt="Nombre de usuario"
@@ -81,9 +81,9 @@ export default function EncabezadoPerfil() {
           </span>
         </a>
       </div>
-      <div class="col-12">
-        <h4 class="text-center text-white mt-3">Ronaldo de Assis Moreira</h4>
-        <p class="small text-center text-white mt-2">MASC | 24.235.647 </p>
+      <div className="col-12">
+        <h4 className="text-center text-white mt-3">Ronaldo de Assis Moreira</h4>
+        <p className="small text-center text-white mt-2">MASC | 24.235.647 </p>
       </div>
     </div>
   );
