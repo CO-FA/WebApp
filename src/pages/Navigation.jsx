@@ -11,6 +11,8 @@ import Login from "../pages/Login";
 import OlvidePasswordStep1 from "../pages/OlvidePasswordStep1";
 import OlvidePasswordStep2 from "../pages/OlvidePasswordStep2";
 import OlvidePasswordStep3 from "../pages/OlvidePasswordStep3";
+import Perfil from "./Perfil";
+import Notificaciones from "./Notificaciones";
 
 export default function Navigation() {
   let location = useLocation();
@@ -54,7 +56,16 @@ export default function Navigation() {
                 <Route path="/newPassword">
                   <OlvidePasswordStep3 />
                 </Route>
-
+                <Route path="/perfil">
+                <AnimationItem>
+                  <Perfil />
+                </AnimationItem>
+              </Route>
+              <Route path="/notificaciones">
+                <AnimationItem>
+                  <Notificaciones />
+                </AnimationItem>
+              </Route>
                 <Route path="/">
                   <Home />
                 </Route>

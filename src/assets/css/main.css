@@ -6245,7 +6245,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #e9e9e9 !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,
@@ -10681,4 +10681,29 @@ body main.prestamo footer {
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
+}
+.text-center{
+  text-align: center;
+}
+.borderRadius-1{
+  border-radius: 1rem;
+}
+.greenBackground{
+  background-color: #53ba38;
+}
+.bold{
+  font-weight: bold;
+}
+
+.button-rounded{
+  width: 90%;
+  border-radius: 2rem;
+}
+.border-radius-top{
+  margin-top: -15px;
+  border-radius: 2rem 2rem 0 0;
+
+}
+.border-bold{
+  border: 2px solid grey
 }
