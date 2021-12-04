@@ -1,6 +1,6 @@
 
 import React,{useState} from "react"
-import Header from "../components/commons/Header";
+import Encabezado from "../components/commons/Encabezado";
 import Input from "../components/commons/Input";
 import Footer from "../components/commons/Footer";
 import { Formik } from "formik";
@@ -56,71 +56,85 @@ export default function RegistroStep4(){
 		}
         setErrors(errorsAUx)
 	};
-    return<>
-        <Header title={<RegistroSetps current={STEPS.STEP_2_CELULAR} />} />
+    return (
+      <>
+        <Encabezado title={<RegistroSetps current={STEPS.STEP_2_CELULAR} />} />
         <Formik
-				initialValues={{ clienteCelCodigo: "", clienteCelNumero: "" }}
-				onSubmit={(values, { setSubmitting }) =>
-					submitForm(values, setSubmitting)
-				}
-				validate={values => validateForm(values)}
-			>
-				{({
-					values,
-					handleSubmit,
-					/* and other goodies */
-				}) => (
-					<>	
-                <form>
+          initialValues={{ clienteCelCodigo: "", clienteCelNumero: "" }}
+          onSubmit={(values, { setSubmitting }) =>
+            submitForm(values, setSubmitting)
+          }
+          validate={(values) => validateForm(values)}
+        >
+          {({
+            values,
+            handleSubmit,
+            /* and other goodies */
+          }) => (
+            <>
+              <form>
                 <section>
-                <h3>Vamos a validar el celular</h3>
-                <div className="row">        
+                  <h3>Vamos a validar el celular</h3>
+                  <div className="row">
                     <div className="form-group col-3">
-                    <Input
-											label="Cód"
-											type="number"
-                                            placeholder="011"
-											className="form-control"
-											name="clienteCelCodigo"
-											errors={[]}
-											values={values}
-										/>
+                      <Input
+                        label="Cód"
+                        type="number"
+                        placeholder="011"
+                        className="form-control"
+                        name="clienteCelCodigo"
+                        errors={[]}
+                        values={values}
+                      />
                     </div>
                     <div className="form-group col-9">
-                    <Input
-											label="Celular"
-                                            placeholder="38913312"
-											type="number"
-											className="form-control"
-											name="clienteCelNumero"
-											errors={[]}
-											values={values}
-										/>
-                   
-                   
+                      <Input
+                        label="Celular"
+                        placeholder="38913312"
+                        type="number"
+                        className="form-control"
+                        name="clienteCelNumero"
+                        errors={[]}
+                        values={values}
+                      />
                     </div>
-                    <div className="col-12">          
-                    {errors['clienteCelCodigo'] && <span id="clienteCelCodigo-errorMsg" className="form-text text-danger small">*{errors['clienteCelCodigo']}</span>}
-                    {errors['clienteCelNumero'] && <span id="clienteCelCodigo-errorMsg" className="form-text text-danger small">*{errors['clienteCelNumero']}</span>}
+                    <div className="col-12">
+                      {errors["clienteCelCodigo"] && (
+                        <span
+                          id="clienteCelCodigo-errorMsg"
+                          className="form-text text-danger small"
+                        >
+                          *{errors["clienteCelCodigo"]}
+                        </span>
+                      )}
+                      {errors["clienteCelNumero"] && (
+                        <span
+                          id="clienteCelCodigo-errorMsg"
+                          className="form-text text-danger small"
+                        >
+                          *{errors["clienteCelNumero"]}
+                        </span>
+                      )}
                     </div>
-                </div>
+                  </div>
                 </section>
 
                 <Footer>
-                    <div className="col-12">
-                        <Button
-                            className="btn btn-primary cont"
-                            disabled={false}
-                            type="submit"
-                            onClick={handleSubmit}
-                        >
-                            Continuar
-                        </Button>
-                    </div>
+                  <div className="col-12">
+                    <Button
+                      className="btn btn-primary cont"
+                      disabled={false}
+                      type="submit"
+                      onClick={handleSubmit}
+                    >
+                      Continuar
+                    </Button>
+                  </div>
                 </Footer>
-				</form>
+              </form>
             </>
-        )}
-    </Formik>
-    </>
+          )}
+        </Formik>
+      </>
+    );
 }

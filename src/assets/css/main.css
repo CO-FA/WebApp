@@ -568,6 +568,12 @@ small,
   font-weight: 400;
 }
 
+extra-small,
+.extra-small {
+  font-size: 50%;
+  font-weight: 400;
+}
+
 mark,
 .mark {
   padding: 0.2em;
@@ -10701,9 +10707,15 @@ body main.prestamo footer {
 }
 .border-radius-top{
   margin-top: -15px;
-  border-radius: 2rem 2rem 0 0;
-
 }
 .border-bold{
   border: 2px solid grey
+}
+.profile-container{
+  overflow-y: auto;
+  max-height: 70%;
+}
+.center-header{
+  position: relative;
+   left: -13%;
 }

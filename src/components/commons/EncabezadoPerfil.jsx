@@ -82,8 +82,12 @@ export default function EncabezadoPerfil() {
         </a>
       </div>
       <div className="col-12">
-        <h4 className="text-center text-white mt-3">Ronaldo de Assis Moreira</h4>
-        <p className="small text-center text-white mt-2">MASC | 24.235.647 </p>
+        <h4 className="text-center text-white mt-3">
+          Ronaldo de Assis Moreira
+        </h4>
+        <p className="extra-small text-center text-white mt-2">
+          MASC | 24.235.647{" "}
+        </p>
       </div>
     </div>
   );

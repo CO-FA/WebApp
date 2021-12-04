@@ -1,6 +1,6 @@
 import React from "react";
 import EncabezadoPerfil from "../components/commons/EncabezadoPerfil";
-import Header from "../components/commons/Header";
+import Encabezado from "../components/commons/Encabezado";
 import AvisoPerfil from "../components/commons/AvisoPerfil";
 import SolicitarPrestamo from "../components/commons/SolicitarPrestamo";
 import Button from "../components/commons/Button";
@@ -13,13 +13,15 @@ export default function Perfil() {
     "estadoCuenta",
     "modificarDatos",
     "promociones",
+    "pagoRecarga",
     "soporte",
+    
   ];
 
   return (
     <>
-      <Header withoutBackButton title={<EncabezadoPerfil />} />
-      <div className="row">
+      <Encabezado withoutBackButton title={<EncabezadoPerfil />} />
+      <div className="row profile-container">
         <div className="col-12 mt-3">
           <OfertaPrestamoPerfil
             textHeader="Tenés un Préstamo "
@@ -40,7 +42,7 @@ export default function Perfil() {
             return menuOptions[option];
           })}
         </div>
-        <div className="col-12 mt-3 w-100">
+        <div className="col-12 mt-3 w-100 mb-4">
           <Link to="/home">
             <Button
               className="btn btn-light button-rounded p-3 border"

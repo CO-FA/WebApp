@@ -15,8 +15,9 @@ import OlvidePasswordStep3 from "../pages/OlvidePasswordStep3";
 import Perfil from "./Perfil";
 import Notificaciones from "./Notificaciones";
 import RegistroDniValido from "./RegistroDniValido";
-
-
+import PersonalInformation from "./PersonalInformation";
+import EstadoCuenta from "./EstadoCuenta";
+import Soporte from "./Soporte";
 
 export default function Navigation() {
   // let location = useLocation();
@@ -32,51 +33,61 @@ export default function Navigation() {
             nodeRef={nodeRef}
             unmountOnExit
           > */}
-            {/*TODO: Arreglar animación de transicion entre pantallas*/}
-            <div className="animation-item" ref={nodeRef}>
-              <Switch>
-                <Route path="/registro">
-                  <RegistroStep1 />
-                </Route>
-                <Route path="/terminos">
-                  <RegistroStep2 />
-                </Route>
-                <Route path="/documento">
-                  <RegistroStep3 />
-                </Route>
-                <Route path="/documentoValido">
-                  <RegistroDniValido />
-                </Route>
-                <Route path="/validatePhone">
-                  <RegistroStep4 />
-                </Route>
-                <Route path="/validatePhonePIN">
-                  <RegistroStep5 />
-                </Route>
-                <Route path="/login">
-                  <Login />
-                </Route>
-                <Route path="/forgotPassword">
-                  <OlvidePasswordStep1 />
-                </Route>
-                <Route path="/emailCode">
-                  <OlvidePasswordStep2 />
-                </Route>
-                <Route path="/newPassword">
-                  <OlvidePasswordStep3 />
-                </Route>
-                <Route path="/perfil">
-                  <Perfil />
-                </Route>
-                <Route path="/notificaciones">
-                  <Notificaciones />
-                </Route>
-                <Route path="/">
-                  <Home />
-                </Route>
-              </Switch>
-            </div>
-          {/* </CSSTransition>
+        {/*TODO: Arreglar animación de transicion entre pantallas*/}
+        <div className="animation-item" ref={nodeRef}>
+          <Switch>
+            <Route path="/registro">
+              <RegistroStep1 />
+            </Route>
+            <Route path="/terminos">
+              <RegistroStep2 />
+            </Route>
+            <Route path="/documento">
+              <RegistroStep3 />
+            </Route>
+            <Route path="/documentoValido">
+              <RegistroDniValido />
+            </Route>
+            <Route path="/validatePhone">
+              <RegistroStep4 />
+            </Route>
+            <Route path="/validatePhonePIN">
+              <RegistroStep5 />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/forgotPassword">
+              <OlvidePasswordStep1 />
+            </Route>
+            <Route path="/emailCode">
+              <OlvidePasswordStep2 />
+            </Route>
+            <Route path="/newPassword">
+              <OlvidePasswordStep3 />
+            </Route>
+            <Route path="/perfil">
+              <Perfil />
+            </Route>
+            <Route path="/notificaciones">
+              <Notificaciones />
+            </Route>
+            <Route path="/informacionPersonal">
+              <PersonalInformation />
+            </Route>
+            <Route path="/estadoCuenta">
+              <EstadoCuenta />
+            </Route>
+            <Route path="/soporte">
+              <Soporte />
+            </Route>
+            
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+        {/* </CSSTransition>
         </TransitionGroup> */}
       </main>
     </div>

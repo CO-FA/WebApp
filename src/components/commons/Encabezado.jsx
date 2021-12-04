@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-export default function Header({ title, withoutBackButton }) {
+export default function Encabezado({ title, withoutBackButton }) {
   return (
     <header>
       {!withoutBackButton && (

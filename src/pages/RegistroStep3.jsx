@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Input from "../components/commons/Input";
-import Header from "../components/commons/Header";
+import Encabezado from "../components/commons/Encabezado";
 import Footer from "../components/commons/Footer";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
@@ -38,55 +38,55 @@ export default function RegistroStep3() {
 	};
 
 	return (
-		<>
-			<Header title={<RegistroSetps current={STEPS.STEP_1_DNI} />} />
-			<Formik
-				initialValues={{ clienteDocNumero: "", clienteGender: "" }}
-				onSubmit={(values, { setSubmitting }) =>
-					submitForm(values, setSubmitting)
-				}
-				validate={values => validateForm(values)}
-			>
-				{({
-					values,
-					handleSubmit,
-					/* and other goodies */
-				}) => (
-					<>
-						<section>
-							<form className="pt-3">
-								<div className="row">
-									<div className="form-group col-12">
-										<Input
-											label="Nro DNI"
-											type="number"
-											className="form-control"
-											name="clienteDocNumero"
-											errors={errors}
-											values={values}
-										/>
-									</div>
-								</div>
-								<div className="btn-group-toggle" data-toggle="buttons">
-									<SelectorGenero values={values} errors={errors} />
-								</div>
-							</form>
-						</section>
-						<Footer>
-							<div className="col-12">
-								<Button
-									className="btn btn-primary cont"
-									disabled={false}
-									type="submit"
-									onClick={handleSubmit}
-								>
-									Continuar
-								</Button>
-							</div>
-						</Footer>
-					</>
-				)}
-			</Formik>
-		</>
-	);
+    <>
+      <Encabezado title={<RegistroSetps current={STEPS.STEP_1_DNI} />} />
+      <Formik
+        initialValues={{ clienteDocNumero: "", clienteGender: "" }}
+        onSubmit={(values, { setSubmitting }) =>
+          submitForm(values, setSubmitting)
+        }
+        validate={(values) => validateForm(values)}
+      >
+        {({
+          values,
+          handleSubmit,
+          /* and other goodies */
+        }) => (
+          <>
+            <section>
+              <form className="pt-3">
+                <div className="row">
+                  <div className="form-group col-12">
+                    <Input
+                      label="Nro DNI"
+                      type="number"
+                      className="form-control"
+                      name="clienteDocNumero"
+                      errors={errors}
+                      values={values}
+                    />
+                  </div>
+                </div>
+                <div className="btn-group-toggle" data-toggle="buttons">
+                  <SelectorGenero values={values} errors={errors} />
+                </div>
+              </form>
+            </section>
+            <Footer>
+              <div className="col-12">
+                <Button
+                  className="btn btn-primary cont"
+                  disabled={false}
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  Continuar
+                </Button>
+              </div>
+            </Footer>
+          </>
+        )}
+      </Formik>
+    </>
+  );
 }
