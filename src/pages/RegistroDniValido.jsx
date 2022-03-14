@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import Header from "../components/commons/Header";
+import Header from "../components/commons/Encabezado";
 import Footer from "../components/commons/Footer";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";

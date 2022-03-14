@@ -3,9 +3,9 @@ import userImage from "../../assets/images/user-img.png";
 
 export default function UserProfile() {
   return (
-    <div class="row mt-3">
-      <div class="col-6 offset-3 text-center">
-        <a href="#" class="photo mt-3 position-relative">
+    <div className="row mt-3">
+      <div className="col-6 offset-3 text-center">
+        <a href="#" className="photo mt-3 position-relative">
           <img
             src={userImage}
             alt="Nombre de usuario"
@@ -43,9 +43,9 @@ export default function UserProfile() {
           </span>
         </a>
       </div>
-      <div class="col-12">
-        <h4 class="text-center mt-3">Ronaldo de Assis Moreira</h4>
-        <p class="extra-small text-center mt-2">MASC | 24.235.647 </p>
+      <div className="col-12">
+        <h4 className="text-center mt-3">Ronaldo de Assis Moreira</h4>
+        <p className="extra-small text-center mt-2">MASC | 24.235.647 </p>
       </div>
     </div>
   );
