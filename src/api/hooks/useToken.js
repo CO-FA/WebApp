@@ -3,7 +3,7 @@ import { getToken } from "../token"
 
 export const useToken = ()=>{
     console.log("useToken")
-    const {data,error} = useSWR('tokens',getToken)
+    const {data,error} = useSWR('tokens',getToken,{refreshInterval: 60000,})
     return {
         token: data?.token,
         expires_in:data?.expires_in,

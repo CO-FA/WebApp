@@ -1,7 +1,7 @@
 export const getIpAddress= async () =>{
    
     try {
-       const response = await fetch("app/json?token=24cd5a65c71590",{ headers: {
+       const response = await fetch("ip/json?token=24cd5a65c71590",{ headers: {
         'Content-Type': 'application/json'
         
       },});
