@@ -3,12 +3,18 @@ import Button from "../components/commons/Button"
 import {Link} from "react-router-dom"
 import Encabezado from "../components/commons/Encabezado";
 import Terminos from "../components/registro/Terminos";
+import { useToken } from "api/hooks/useToken";
+import { useIpAddress } from "api/hooks/useIpAddress";
 
 export default function RegistroStep2(){
+    const {token} = useToken(); 
+    const {ip} = useIpAddress()
+    console.log("TOKEN",token,ip);
+
     return (
       <>
         <Encabezado title="Términos y condiciones" />
-        <section>
+        <section className="overflow-auto mh-75 d-inline-block">
           <Terminos />
         </section>
         <footer>

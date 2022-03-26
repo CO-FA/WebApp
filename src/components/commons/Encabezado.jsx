@@ -6,7 +6,7 @@ export default function Encabezado({ title, withoutBackButton }) {
     <header>
       {!withoutBackButton && (
         <Button
-          className="btn btn-link px-0"
+          className="btn btn-link px-0 py-4"
           onClick={() => {
             window.history.back();
           }}

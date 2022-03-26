@@ -8,7 +8,7 @@ export default function HeaderNavigation({ centerElement }) {
         <div className="row bg-gradient align-items-center border-radius-top mt-0">
           <div className="col-2 text-center">
             <Button
-              className="btn btn-link px-0"
+              className="btn btn-link px-0 py-4"
               onClick={() => {
                 window.history.back();
               }}

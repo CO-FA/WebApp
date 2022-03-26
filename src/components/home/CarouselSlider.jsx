@@ -15,7 +15,7 @@ export default function CarouselSlider(){
              showStatus={false}
              emulateTouch
              showArrows={false}
-             className="mt-5"
+             className="pt-5"
              >
                 <div>
                     <img src={ImgSlider1} alt="Imagen 1"/>

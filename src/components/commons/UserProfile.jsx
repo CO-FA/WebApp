@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import userImage from "../../assets/images/user-img.png";
 
 export default function UserProfile() {
   return (
     <div className="row mt-3">
       <div className="col-6 offset-3 text-center">
-        <a href="#" className="photo mt-3 position-relative">
+        <Link href="#" className="photo mt-3 position-relative">
           <img
             src={userImage}
             alt="Nombre de usuario"
@@ -41,7 +42,7 @@ export default function UserProfile() {
               />
             </svg>
           </span>
-        </a>
+        </Link>
       </div>
       <div className="col-12">
         <h4 className="text-center mt-3">Ronaldo de Assis Moreira</h4>

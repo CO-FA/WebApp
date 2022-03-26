@@ -15,7 +15,7 @@ export default function RegistroStep1(){
         <Encabezado />
         <section>
           <div className="row text-center h-100">
-            <div className="col-12 centered-info">
+            <div className="col-12 d-flex aligns-items-center justify-content-center flex-column ">
               <h1>¿Empezamos?</h1>
               <p>Creá tu cuenta en pocos pasos</p>
             </div>
@@ -35,15 +35,19 @@ export default function RegistroStep1(){
                     }}
                   />
                   <label className="custom-control-label" htmlFor="acepto">
-                    <span className="text-secondary d-inline-block">
+                    
+                <Link to="/terminos" className="text-secondary d-inline-block">
+                    <span >
                       Acepto los términos y condiciones
                     </span>
+                </Link>
+
                   </label>
                   <small className="ml-2 d-block">
                     Al aceptar declaro ser mayo de 18 años
                   </small>
                 </div>
-                <Link to="/terminos">
+                <Link to="/documento">
                   <Button
                     className="btn btn-primary mt-3"
                     disabled={!acepto}
@@ -51,7 +55,7 @@ export default function RegistroStep1(){
                   >
                     REGISTRARME
                   </Button>
-                </Link>
+                  </Link>
               </form>
             </div>
           </div>
