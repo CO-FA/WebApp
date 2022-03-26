@@ -1,7 +1,8 @@
-import { URL } from "api/API";
+
 
 export const getToken = async ()=>{
     try {
+        console.log("getToken asaaaa")
         const req = {
             "Username":"apiUser",
             "Password":"*ApiUser2021*"
@@ -11,7 +12,8 @@ export const getToken = async ()=>{
             body: JSON.stringify(req),
             redirect: 'follow'
           };
-          const resp = await fetch(URL +"login/authenticate", requestOptions)  
+          const resp = await fetch("API/v1/login/authenticate", requestOptions)  
+          console.log("getToken",resp)
           return resp.json()
     } catch (error) {
         console.log(error)    

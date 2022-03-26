@@ -1,2 +1,2 @@
 
-export const URL ="https://sandbox.sbsoftware.net/API/v1/";
+export const URL ="https://sandbox.sbsoftware.net/";
