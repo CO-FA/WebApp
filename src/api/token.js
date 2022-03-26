@@ -12,7 +12,7 @@ export const getToken = async ()=>{
             body: JSON.stringify(req),
             redirect: 'follow'
           };
-          const resp = await fetch("API/v1/login/authenticate", requestOptions)  
+          const resp = await fetch("app/API/v1/login/authenticate", requestOptions)  
           console.log("getToken",resp)
           return resp.json()
     } catch (error) {
