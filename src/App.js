@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
 } from "react-router-dom";
 import './assets/css/main.css'
 import Navigation from "./pages/Navigation";
@@ -13,7 +13,6 @@ function App() {
   return <LoaderProvider>
     <Router>
     <Navigation/>
-
     </Router> </LoaderProvider>
 
 
