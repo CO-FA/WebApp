@@ -2,16 +2,7 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["src"],
-   // Controls if the editor should automatically format the line after typing
-   "beautify.onSave": true,
-   "editor.formatOnSave": true,
-   // You can auto format any files based on the file extensions type.
-   "beautify.JSfiles": [
-       "js",
-       "jsx",
-       "json",
-       "jsbeautifyrc",
-       "jshintrc",
-   ]
+  "include": [
+    "src"
+  ]
 }

@@ -1,9 +1,9 @@
 import React from "react";
-import {STEPS} from "./constantsSteps"
+import { STEPS } from "./constantsSteps"
 
 
 
-export default function RegistroSetps({current=1}) {
+export default function RegistroSetps({ current = 1 }) {
 	return (
 		<div className="row">
 			<div className="col-12">

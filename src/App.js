@@ -8,17 +8,10 @@ import {
 } from "./components/loader/LoaderContext"
 
 function App() {
-
-
   return <LoaderProvider>
     <Router>
-    <Navigation/>
+      <Navigation />
     </Router> </LoaderProvider>
-
-
-
-
-
 }
 
 export default App;
