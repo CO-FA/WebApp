@@ -9,11 +9,11 @@ import { LoaderContext } from "../components/loader/LoaderContext";
 
 function RegistroStep6() {
   return (
-    <div>
-      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_EMAIL} />}/>
-    </div>
+    <>
+      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_EMAIL} />} />
+    </>
   )
 }
 
-export default RegistroStep6
+
 

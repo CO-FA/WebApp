@@ -8,6 +8,7 @@ import RegistroStep2 from "../pages/RegistroStep2";
 import RegistroStep3 from "../pages/RegistroStep3";
 import RegistroStep4 from "../pages/RegistroStep4";
 import RegistroStep5 from "../pages/RegistroStep5";
+import RegistroStep6 from "./RegistroStep6";
 import Login from "../pages/Login";
 import OlvidePasswordStep1 from "../pages/OlvidePasswordStep1";
 import OlvidePasswordStep2 from "../pages/OlvidePasswordStep2";
@@ -54,6 +55,9 @@ export default function Navigation() {
             <Route path="/validatePhonePIN">
               <RegistroStep5 />
             </Route>
+            <Route path="/validateEmail">
+              <RegistroStep6 />
+            </Route>
             <Route path="/login">
               <Login />
             </Route>
@@ -81,7 +85,7 @@ export default function Navigation() {
             <Route path="/soporte">
               <Soporte />
             </Route>
-            
+
             <Route path="/">
               <Home />
             </Route>
