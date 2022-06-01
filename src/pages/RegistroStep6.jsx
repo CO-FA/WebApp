@@ -1,19 +1,13 @@
 import React from 'react'
-import Encabezado from 'components/commons/Encabezado'
-
-
-import RegistroSetps from "../components/registro/RegistroSteps";
-import { STEPS } from "../components/registro/constantsSteps";
-import { LoaderContext } from "../components/loader/LoaderContext";
-
+import RegistroSetps from 'components/registro/RegistroSteps'
 
 function RegistroStep6() {
   return (
     <>
-      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_EMAIL} />} />
+      HOLA EQUIPO
     </>
   )
 }
 
-
+export default RegistroStep6
 
