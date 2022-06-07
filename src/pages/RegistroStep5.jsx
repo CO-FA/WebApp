@@ -20,7 +20,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
     setShowLoader(true);
     setTimeout(() => {
       if (!errors) {
-        setShowLoader(false);
+        setShowLoader(false)
         history.push("/validateEmail");
       }
     }, 2000);
