@@ -56,7 +56,7 @@ export default function Navigation() {
             <Route path="/validatePhonePIN">
               <RegistroStep5 />
             </Route>
-            <Route path="/Email">
+            <Route path="/validatEmail">
               <RegistroStep6 />
             </Route>
             <Route path="/emailCode">
