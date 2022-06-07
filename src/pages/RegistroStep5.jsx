@@ -21,7 +21,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
     setTimeout(() => {
       if (!errors) {
         setShowLoader(false);
-        history.push("/validatePhonePIN");
+        history.push("/Email");
       }
     }, 2000);
   };
