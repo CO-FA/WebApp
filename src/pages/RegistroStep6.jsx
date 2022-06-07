@@ -20,10 +20,10 @@ export default function RegistroStep6() {
     setShowLoader(true);
     setTimeout(() => {
       if (!errors) {
-        setShowLoader(false);
+        
         history.push("/emailCode");
       }
-    }, 2000);
+    });
   };
   const validateForm = (values) => {
     var errorsAUx = {};

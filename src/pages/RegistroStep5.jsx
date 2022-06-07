@@ -20,10 +20,10 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
     setShowLoader(true);
     setTimeout(() => {
       if (!errors) {
-        setShowLoader(false);
+
         history.push("/Email");
       }
-    }, 2000);
+    });
   };
   const validateForm = (values) => {
     var errorsAUx = {};
