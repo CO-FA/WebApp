@@ -12,11 +12,13 @@ import { STEPS } from "../components/registro/constantsSteps";
 import { LoaderContext } from "../components/loader/LoaderContext";
 
 export default function RegistroStep7() {
+  let { setShowLoader } = React.useContext(LoaderContext);
 	const [errors, setErrors] = useState(false);
 	const history = useHistory();
 
 	const submitForm = (values, setSubmitting) => {
 		if (!errors) {
+      setShowLoader(false)
 			history.push("/newPassword");
 		}
 	};

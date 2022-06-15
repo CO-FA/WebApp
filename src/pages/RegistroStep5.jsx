@@ -17,6 +17,9 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
   const history = useHistory();
 
   const submitForm = (values, setSubmitting) => {
+    if (errors) {
+      return
+    }
     setShowLoader(true);
     setTimeout(() => {
       if (!errors) {

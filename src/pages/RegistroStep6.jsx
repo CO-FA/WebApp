@@ -26,25 +26,27 @@ export default function RegistroStep6() {
     },2000);
   };
   const validateForm = (values) => {
-    var errorsAUx = {};
-    if (!values.clienteemailCode) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteemailCode: formErrors.CODE_EMPTY,
-      };
-    } else if (String(values.clienteemailCode).length) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteemailCode: formErrors.PATTERN_EMAIL_ERROR,
-      };
-    }
-    setErrors(errorsAUx);
+    const pattern =
+			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		const regex = new RegExp(pattern);
+
+		if (!values.clienteEmail) {
+			setErrors({
+				clienteEmail: formErrors.EMAIL_EMPTY,
+			});
+		} else if (!regex.test(values.clienteEmail)) {
+			setErrors({
+				clienteEmail: formErrors.PATTERN_EMAIL_ERROR,
+			});
+		} else {
+			setErrors(false);
+		}
   }
   return (
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_3_EMAIL} />} />
       <Formik
-        initialValues={{ clienteemailCode: "", }}
+        initialValues={{ clienteEmail: "", }}
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)
         }
@@ -65,20 +67,20 @@ export default function RegistroStep6() {
                     <Input
                       label="Ingresá tu Email"
                       placeholder="xxxx@gmail.com"
-                      type="letras+symbol"
+                      type="email"
                       className="form-control"
-                      name="clienteemailCode"
+                      name="clienteEmail"
                       errors={[]}
                       values={values}
                     />
                   </div>
                   <div className="col-12">
-                    {errors["clienteemailCode"] && (
+                    {errors["clienteEmail"] && (
                       <span
-                        id="clienteemailCode-errorMsg"
+                        id="clienteEmail-errorMsg"
                         className="form-text text-danger small"
                       >
-                        *{errors["clienteemailCode"]}
+                        *{errors["clienteEmail"]}
                       </span>
                     )}
                   
