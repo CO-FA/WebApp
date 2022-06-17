@@ -7,6 +7,7 @@ import Button from "../components/commons/Button";
 import { Link } from "react-router-dom";
 import OfertaPrestamoPerfil from "../components/commons/OfertaPrestamoPerfil";
 import { menuOptions } from "../utils/menuOptionsList";
+import Acordeon from  "../components/commons/Acordeon"
 
 export default function Perfil() {
   const optionsToShow = [
@@ -40,9 +41,9 @@ export default function Perfil() {
           <SolicitarPrestamo text="Solicitar un préstamo" />
         </div>
         <div className="col-12 mt-3">
-          {optionsToShow.map((option) => {
-            return menuOptions[option];
-          })}
+          
+       <Acordeon/>
+
         </div>
         <div className="col-12 mt-3 w-100 mb-4">
           <Link to="/home">
