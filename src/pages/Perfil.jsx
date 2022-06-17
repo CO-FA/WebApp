@@ -14,13 +14,15 @@ export default function Perfil() {
     "modificarDatos",
     "promociones",
     "pagoRecarga",
-    "soporte",
-    
+    "soporte",  
   ];
 
   return (
     <>
+    <div className="col-12 mt-3 border-radius-2.75px" >
       <Encabezado withoutBackButton title={<EncabezadoPerfil />} />
+      </div>
+
       <div className="row profile-container">
         <div className="col-12 mt-3">
           <OfertaPrestamoPerfil
