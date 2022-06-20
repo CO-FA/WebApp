@@ -3,9 +3,10 @@ import userImage from "../../assets/images/user-img.png";
 
 export default function EncabezadoPerfil() {
   return (
-    <div className="row bg-gradient justify-content-between border-radius-top">
+    <div className="row bg-gradient justify-content-between">
       <div className="col-2 text-center mt-3 float-left">
-        <a className="btn btn-link px-0" href="http://www.wa.me/54911xxxxxx">
+        <a className="btn btn-link px-0 position-relative d-block notif" 
+            href="http://www.wa.me/54911xxxxxx">
           <svg
             width="21"
             height="21"

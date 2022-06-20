@@ -8,11 +8,10 @@ import { menuOptions } from "utils/menuOptionsList";
 
 export default function SimpleAccordion() {
   const optionsToShow = [
-    "estadoCuenta",
-    "modificarDatos",
-    "promociones",
-    "pagoRecarga",
-    "soporte",
+    "Cambiar mis datos personales",
+    "Ver mi estado financiero",
+    "Ver mis seguros",
+    
   ];
 
   return (
