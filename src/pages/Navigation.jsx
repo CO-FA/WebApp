@@ -15,6 +15,7 @@ import OlvidePasswordStep1 from "../pages/OlvidePasswordStep1";
 import OlvidePasswordStep2 from "../pages/OlvidePasswordStep2";
 import OlvidePasswordStep3 from "../pages/OlvidePasswordStep3";
 import Perfil from "./Perfil";
+import PerfilModificarDatos from  "../pages/perfilModificarDatos"
 import Notificaciones from "./Notificaciones";
 import RegistroDniValido from "./RegistroDniValido";
 import PersonalInformation from "./PersonalInformation";
@@ -76,6 +77,9 @@ export default function Navigation() {
             </Route>
             <Route path="/perfil">
               <Perfil />
+            </Route>
+            <Route path="/perfilModificarDatos">
+              <PerfilModificarDatos />
             </Route>
             <Route path="/notificaciones">
               <Notificaciones />

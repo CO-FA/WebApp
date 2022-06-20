@@ -1,10 +1,10 @@
-import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { menuOptions } from "../utils/menuOptionsList";
+import * as React from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { menuOptions } from "utils/menuOptionsList";
 
 export default function SimpleAccordion() {
   const optionsToShow = [
@@ -12,9 +12,8 @@ export default function SimpleAccordion() {
     "modificarDatos",
     "promociones",
     "pagoRecarga",
-    "soporte",  
+    "soporte",
   ];
-
 
   return (
     <div>
@@ -24,20 +23,21 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
+           <div className="accordion-container">
+              {optionsToShow.map((option) => {
+              return menuOptions[option];
+            })}
+            </div>   
           <Typography>
-          {optionsToShow.map((option) => {
-            return menuOptions[option];
-          })}
+          
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <Typography></Typography>
         </AccordionDetails>
       </Accordion>
-      
+   
     </div>
+   
   );
 }

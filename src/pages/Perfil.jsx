@@ -6,7 +6,6 @@ import SolicitarPrestamo from "../components/commons/SolicitarPrestamo";
 import Button from "../components/commons/Button";
 import { Link } from "react-router-dom";
 import OfertaPrestamoPerfil from "../components/commons/OfertaPrestamoPerfil";
-import { menuOptions } from "../utils/menuOptionsList";
 import Acordeon from  "../components/commons/Acordeon"
 
 export default function Perfil() {
