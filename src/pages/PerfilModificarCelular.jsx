@@ -6,9 +6,6 @@ import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 import Button from "../components/commons/Button";
 import { formErrors } from "../utils/constantsErrors";
-
-import RegistroSetps from "../components/registro/RegistroSteps";
-import { STEPS } from "../components/registro/constantsSteps";
 import { LoaderContext } from "../components/loader/LoaderContext";
 
 export default function RegistroStep5({ celCodigo, cellNumero }) {
@@ -18,12 +15,12 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
 
   const submitForm = (values, setSubmitting) => {
     if (errors) {
-      return
+      return;
     }
     setShowLoader(true);
     setTimeout(() => {
       if (!errors) {
-        setShowLoader(false)
+        setShowLoader(false);
         history.push("/validateEmail");
       }
     }, 2000);
@@ -60,7 +57,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
   };
   return (
     <>
-      <Encabezado title={<RegistroSetps current={STEPS.STEP_2_CELULAR} />} />
+      <Encabezado title="Modificar Mis Datos" />
       <Formik
         initialValues={{
           clienteCelCodigo: celCodigo,
@@ -99,6 +96,18 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                       errors={[]}
                       values={values}
                     />
+                    <h3>Vamos a validar el celular</h3>
+                    <div className="row">
+                      <Input
+                        label="Cód"
+                        type="number"
+                        placeholder="011"
+                        className="form-control"
+                        name="clienteCelCodigo"
+                        errors={[]}
+                        values={values}
+                      />
+                    </div>
                   </div>
                   <div className="col-12">
                     {errors["clienteCelCodigo"] && (

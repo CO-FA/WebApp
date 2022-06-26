@@ -83,7 +83,7 @@ export default function Navigation() {
               <PerfilModificarDatos />
             </Route>
             <Route path="/perfilModificarCelular">
-              <PerfilModificarDatos />
+              <PerfilModificarCelular/>
             </Route>
             <Route path="/notificaciones">
               <Notificaciones />
