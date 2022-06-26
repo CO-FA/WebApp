@@ -7,6 +7,9 @@ import { useHistory } from "react-router-dom";
 import Button from "../components/commons/Button";
 import { formErrors } from "../utils/constantsErrors";
 import { LoaderContext } from "../components/loader/LoaderContext";
+import EncabezadoVerde from "../components/commons/EncabezadoVerde"
+
+
 
 export default function RegistroStep5({ celCodigo, cellNumero }) {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -57,7 +60,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
   };
   return (
     <>
-      <Encabezado title="Modificar Mis Datos" />
+      <EncabezadoVerde/>
       <Formik
         initialValues={{
           clienteCelCodigo: celCodigo,
@@ -96,18 +99,6 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                       errors={[]}
                       values={values}
                     />
-                    <h3>Vamos a validar el celular</h3>
-                    <div className="row">
-                      <Input
-                        label="Cód"
-                        type="number"
-                        placeholder="011"
-                        className="form-control"
-                        name="clienteCelCodigo"
-                        errors={[]}
-                        values={values}
-                      />
-                    </div>
                   </div>
                   <div className="col-12">
                     {errors["clienteCelCodigo"] && (
@@ -149,8 +140,8 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                     </p>
                   </div>
                 </div>
-              </section>
-
+              
+                </section>
               <Footer>
                 <div className="col-12">
                   <Button
