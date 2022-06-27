@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Encabezado from "../components/commons/Encabezado";
+
 import Input from "../components/commons/Input";
 import Footer from "../components/commons/Footer";
 import { Formik } from "formik";
@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import Button from "../components/commons/Button";
 import { formErrors } from "../utils/constantsErrors";
 import { LoaderContext } from "../components/loader/LoaderContext";
-import EncabezadoVerde from "../components/commons/EncabezadoVerde"
+import Encabezadoverde from "../components/commons/EncabezadoVerde";
 
 
 
@@ -60,7 +60,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
   };
   return (
     <>
-      <EncabezadoVerde />
+      <Encabezadoverde />
       <Formik
         initialValues={{
           clienteCelCodigo: celCodigo,
@@ -76,8 +76,32 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
           <>
             <form>
               <section>
-                <h3>Vamos a validar el celular</h3>
-                <div className="row">
+                <h3>Mi celular registrado es:</h3>
+                
+                <div className="row col">
+                  <div className="form-group col">
+                    <Input
+                      label="Cód"
+                      type="number"
+                      placeholder="011"
+                      className="form-control"
+                      name="clienteCelCodigo"
+                      errors={[]}
+                      values={values}
+                    />
+                  </div>
+                  <div className="form-group col">
+                    <Input
+                      label="Celular"
+                      placeholder="38913312"
+                      type="number"
+                      className="form-control"
+                      name="clienteCelNumero"
+                      errors={[]}
+                      values={values}
+                    />
+                  </div>
+                  <h3>Mi Nuevo Celular es:</h3>
                   <div className="form-group col-3">
                     <Input
                       label="Cód"
@@ -89,7 +113,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                       values={values}
                     />
                   </div>
-                  <div className="form-group col-9">
+                  <div className="form-group">
                     <Input
                       label="Celular"
                       placeholder="38913312"
@@ -100,6 +124,14 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                       values={values}
                     />
                   </div>
+                  
+                
+
+
+
+
+
+
                   <div className="col-12">
                     {errors["clienteCelCodigo"] && (
                       <span
@@ -139,6 +171,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                       </a>
                     </p>
                   </div>
+                  <div />
                 </div>
               
                 </section>
