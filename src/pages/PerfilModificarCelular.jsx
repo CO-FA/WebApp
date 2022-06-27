@@ -60,7 +60,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
   };
   return (
     <>
-      <EncabezadoVerde/>
+      <EncabezadoVerde />
       <Formik
         initialValues={{
           clienteCelCodigo: celCodigo,
