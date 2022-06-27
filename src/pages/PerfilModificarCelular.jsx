@@ -9,8 +9,6 @@ import { formErrors } from "../utils/constantsErrors";
 import { LoaderContext } from "../components/loader/LoaderContext";
 import Encabezadoverde from "../components/commons/EncabezadoVerde";
 
-
-
 export default function RegistroStep5({ celCodigo, cellNumero }) {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
@@ -76,32 +74,8 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
           <>
             <form>
               <section>
-                <h3>Mi celular registrado es:</h3>
-                
-                <div className="row col">
-                  <div className="form-group col">
-                    <Input
-                      label="Cód"
-                      type="number"
-                      placeholder="011"
-                      className="form-control"
-                      name="clienteCelCodigo"
-                      errors={[]}
-                      values={values}
-                    />
-                  </div>
-                  <div className="form-group col">
-                    <Input
-                      label="Celular"
-                      placeholder="38913312"
-                      type="number"
-                      className="form-control"
-                      name="clienteCelNumero"
-                      errors={[]}
-                      values={values}
-                    />
-                  </div>
-                  <h3>Mi Nuevo Celular es:</h3>
+                <h3 className="mt-5">Mi celular registrado es:</h3>
+                <div className="row">
                   <div className="form-group col-3">
                     <Input
                       label="Cód"
@@ -113,7 +87,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                       values={values}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="form-group col">
                     <Input
                       label="Celular"
                       placeholder="38913312"
@@ -124,14 +98,33 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                       values={values}
                     />
                   </div>
-                  
-                
 
-
-
-
-
-
+                  <div />
+                </div>
+                <h3 className="mt-3">Mi nuevo celular es:</h3>
+                <div className="row">
+                  <div className="form-group col-3">
+                    <Input
+                      label="Cód"
+                      type="number"
+                      placeholder="011"
+                      className="form-control"
+                      name="clienteCelCodigo"
+                      errors={[]}
+                      values={values}
+                    />
+                  </div>
+                  <div className="form-group col">
+                    <Input
+                      label="Celular"
+                      placeholder="38913312"
+                      type="number"
+                      className="form-control"
+                      name="clienteCelNumero"
+                      errors={[]}
+                      values={values}
+                    />
+                  </div>
                   <div className="col-12">
                     {errors["clienteCelCodigo"] && (
                       <span
@@ -150,9 +143,10 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                       </span>
                     )}
                   </div>
-                  <div className="col-12 mt-3">
-                    <h3>Ingresá el PIN SMS</h3>
-                  </div>
+                </div>
+
+                <h3 className="mt-3">Ingresá el PIN SMS</h3>
+                <div className="row">
                   <div className="form-group col-12">
                     <Input
                       label="PIN"
@@ -171,10 +165,8 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                       </a>
                     </p>
                   </div>
-                  <div />
                 </div>
-              
-                </section>
+              </section>
               <Footer>
                 <div className="col-12">
                   <Button

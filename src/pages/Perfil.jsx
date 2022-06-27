@@ -6,7 +6,7 @@ import SolicitarPrestamo from "../components/commons/SolicitarPrestamo";
 import Button from "../components/commons/Button";
 import { Link } from "react-router-dom";
 import OfertaPrestamoPerfil from "../components/commons/OfertaPrestamoPerfil";
-import Acordeon from  "../components/commons/Acordeon"
+import Acordeon from "../components/commons/Acordeon";
 
 export default function Perfil() {
   const optionsToShow = [
@@ -14,14 +14,12 @@ export default function Perfil() {
     "modificarDatos",
     "promociones",
     "pagoRecarga",
-    "soporte",  
+    "soporte",
   ];
 
   return (
     <>
-    <div className="col-12 mt-3 border-radius-2.75px" >
       <Encabezado withoutBackButton title={<EncabezadoPerfil />} />
-      </div>
 
       <div className="row profile-container">
         <div className="col-12 mt-3">
@@ -40,9 +38,7 @@ export default function Perfil() {
           <SolicitarPrestamo text="Solicitar un préstamo" />
         </div>
         <div className="col-12 mt-3">
-          
-       <Acordeon/>
-
+          <Acordeon />
         </div>
         <div className="col-12 mt-3 w-100 mb-4">
           <Link to="/home">
