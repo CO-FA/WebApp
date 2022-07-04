@@ -17,6 +17,9 @@ import OlvidePasswordStep3 from "../pages/OlvidePasswordStep3";
 import Perfil from "./Perfil";
 import PerfilModificarCelular from  "../pages/PerfilModificarCelular"
 import PerfilModificarEmail from "../pages/PerfilModificarEmail"
+import PerfilModificarEmailValidacion from "../pages/PerfilModificarEmailValidicion"
+import PerfilModificarPass from "../pages/PerfilModificarPass"
+import PerfilModificarDireccion from "../pages/PerfilModificarDireccion"
 import Notificaciones from "./Notificaciones";
 import RegistroDniValido from "./RegistroDniValido";
 import PersonalInformation from "./PersonalInformation";
@@ -84,6 +87,15 @@ export default function Navigation() {
             </Route>
             <Route path="/perfilModificarEmail">
               <PerfilModificarEmail/>
+            </Route>
+            <Route path="/perfilModificarEmailValidacion">
+              <PerfilModificarEmailValidacion/>
+            </Route>
+            <Route path="/perfilModificarPass">
+              <PerfilModificarPass/>
+            </Route>
+            <Route path="/perfilModificarDireccion">
+              <PerfilModificarDireccion/>
             </Route>
             <Route path="/notificaciones">
               <Notificaciones />

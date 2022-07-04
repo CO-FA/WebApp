@@ -62,7 +62,6 @@ export default function RegistroStep6() {
               <section>
                 <h3>Vamos a validar el Email</h3>
                 <div className="row">
-
                   <div className="form-group col-9">
                     <Input
                       label="Ingresá tu Email"
