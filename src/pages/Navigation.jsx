@@ -14,12 +14,12 @@ import Login from "../pages/Login";
 import OlvidePasswordStep1 from "../pages/OlvidePasswordStep1";
 import OlvidePasswordStep2 from "../pages/OlvidePasswordStep2";
 import OlvidePasswordStep3 from "../pages/OlvidePasswordStep3";
-import Perfil from "./Perfil";
-import PerfilModificarCelular from  "../pages/PerfilModificarCelular"
-import PerfilModificarEmail from "../pages/PerfilModificarEmail"
-import PerfilModificarEmailValidacion from "../pages/PerfilModificarEmailValidicion"
-import PerfilModificarPass from "../pages/PerfilModificarPass"
-import PerfilModificarDireccion from "../pages/PerfilModificarDireccion"
+import Perfil from "./perfil/Perfil";
+import PerfilModificarCelular from "../pages/perfil/PerfilModificarCelular";
+import PerfilModificarEmail from "../pages/perfil/PerfilModificarEmail";
+import PerfilModificarEmailValidacion from "../pages/perfil/PerfilModificarEmailValidicion";
+import PerfilModificarPass from "../pages/perfil/PerfilModificarPass";
+import PerfilModificarDireccion from "../pages/perfil/PerfilModificarDireccion";
 import Notificaciones from "./Notificaciones";
 import RegistroDniValido from "./RegistroDniValido";
 import PersonalInformation from "./PersonalInformation";
@@ -83,19 +83,19 @@ export default function Navigation() {
               <Perfil />
             </Route>
             <Route path="/perfilModificarCelular">
-              <PerfilModificarCelular/>
+              <PerfilModificarCelular />
             </Route>
             <Route path="/perfilModificarEmail">
-              <PerfilModificarEmail/>
+              <PerfilModificarEmail />
             </Route>
             <Route path="/perfilModificarEmailValidacion">
-              <PerfilModificarEmailValidacion/>
+              <PerfilModificarEmailValidacion />
             </Route>
             <Route path="/perfilModificarPass">
-              <PerfilModificarPass/>
+              <PerfilModificarPass />
             </Route>
             <Route path="/perfilModificarDireccion">
-              <PerfilModificarDireccion/>
+              <PerfilModificarDireccion />
             </Route>
             <Route path="/notificaciones">
               <Notificaciones />

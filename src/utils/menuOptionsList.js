@@ -97,3 +97,33 @@ export const menuOptions = {
     />
   ),
 };
+
+
+export const optionsToShow2 = [
+  {
+    menu: "Cambiar mis datos personales",
+    submenu: [
+      { menu: "Cambiar mi celular", submenu: [], href:"/perfilModificarCelular"},
+      { menu: "Cambiar mi email", submenu: [],href:"/perfilModificarEmail" },
+      { menu: "Cambiar mi contraseña", submenu: [],href:"/perfilModificarPass" },
+      { menu: "Cambiar mi domicilio", submenu: [],href:"/perfilModificarDireccion" },
+    ],
+  },
+  {
+    menu: "Ver mi estado financiero",
+    submenu: [
+      { menu: "Modificar Mi Celular", submenu: [] },
+      { menu: "Modificar Mi DNI", submenu: [] },
+      { menu: "Modificar Mi DOMICILIO", submenu: [] },
+    ],
+  },
+
+  {
+    menu: "Ver mis seguros",
+    submenu: [
+      { menu: "Modificar Mi Celular", submenu: [] },
+      { menu: "Modificar Mi DNI", submenu: [] },
+      { menu: "Modificar Mi DOMICILIO", submenu: [] },
+    ],
+  },
+];

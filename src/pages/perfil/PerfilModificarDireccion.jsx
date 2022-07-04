@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
-import { formErrors } from "../utils/constantsErrors";
-import Input from "components/commons/Input";
-import Footer from "components/commons/Footer";
-import Button from "components/commons/Button";
-import { LoaderContext } from "../components/loader/LoaderContext";
-import EncabezadoVerde from "components/commons/EncabezadoVerde";
+import { formErrors } from "../../utils/constantsErrors";
+import Input from "../../components/commons/Input";
+import Footer from "../../components/commons/Footer";
+import Button from "../../components/commons/Button";
+import { LoaderContext } from "../../components/loader/LoaderContext";
+import EncabezadoVerde from "../../components/commons/EncabezadoVerde";
 
 export default function RegistroStep6() {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -57,53 +57,71 @@ export default function RegistroStep6() {
           <>
             <form>
               <section>
-                <h3 className="mt-5">Mi E-Mail registrado es</h3>
+                <h3 className="mt-5">Cambiar mi direccion</h3>
                 <div className="row">
                   <div className="form-group col-9">
                     <Input
-                      label="Ingresá tu Email"
-                      placeholder="xxxx@gmail.com"
-                      type="email"
+                      label="Calle"
+                      placeholder="Av. Santa Fe 1200,CABA"
+                      type="text"
                       className="form-control"
                       name="clienteEmail"
                       errors={[]}
                       values={values}
                     />
                   </div>
-                </div>  
-                  <h3 className="mt-3">Mi E-Mail nuevo es</h3>
-                  <div className="row">
-                  <div className="form-group col-9">
+                </div>
+                <div className="row">
+                  <div className="form-group col-6">
                     <Input
-                      label="Ingresá tu Email"
-                      placeholder="xxxx@gmail.com"
-                      type="email"
+                      label="Numero"
+                      placeholder=""
+                      type="number"
                       className="form-control"
                       name="clienteEmail"
                       errors={[]}
                       values={values}
                     />
                   </div>
+                </div>
+                <div className="row">
+                  <div className="form-group col-6">
+                    <Input
+                      label="Piso"
+                      placeholder=""
+                      type="number"
+                      className="form-control"
+                      name="clienteEmail"
+                      errors={[]}
+                      values={values}
+                    />
                   </div>
-                  <div className="col-12">
-                    {errors["clienteEmail"] && (
-                      <span
-                        id="clienteEmail-errorMsg"
-                        className="form-text text-danger small"
-                      >
-                        *{errors["clienteEmail"]}
-                      </span>
-                    )}
+                  <div className="form-group col-6">
+                    <Input
+                      label="Departamento"
+                      placeholder=""
+                      type="number"
+                      className="form-control"
+                      name="clienteEmail"
+                      errors={[]}
+                      values={values}
+                    />
                   </div>
+                </div>
 
-                  <div className="col-12">
-                    <p className="mt-5 text-center">
-                      <a href="/" className="text-underline">
-                        Te vamos a enviar un mail con un codigo de activación de
-                        4 digitos
-                      </a>
-                    </p>
+                <div className="row">
+                  <div className="form-group col-6">
+                    <Input
+                      label="Codigo Postal"
+                      placeholder=""
+                      type="number"
+                      className="form-control"
+                      name="clienteEmail"
+                      errors={[]}
+                      values={values}
+                    />
                   </div>
+                </div>
               </section>
 
               <Footer>

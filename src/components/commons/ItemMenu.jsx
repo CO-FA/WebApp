@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function ItemMenu({ text,icon }) {
+export default function ItemMenu({ text, icon, href }) {
   return (
-    <button
-      class="btn py-3 w-100 border-0 d-flex justify-content-between align-items-center"
-      type="button"
+    <Link
+      className="btn py-3 w-100 border-0 d-flex justify-content-between align-items-center"
+      to={href}
     >
       <span>
         {icon}
@@ -24,6 +25,6 @@ export default function ItemMenu({ text,icon }) {
           fill="#333"
         ></path>
       </svg>
-    </button>
+    </Link>
   );
 }

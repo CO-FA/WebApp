@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Input from "../components/commons/Input";
-import Footer from "../components/commons/Footer";
+import Input from "../../components/commons/Input";
+import Footer from "../../components/commons/Footer";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
-import Button from "../components/commons/Button";
-import { formErrors } from "../utils/constantsErrors";
-import { LoaderContext } from "../components/loader/LoaderContext";
-import Encabezadoverde from "../components/commons/EncabezadoVerde";
+import Button from "../../components/commons/Button";
+import { formErrors } from "../../utils/constantsErrors";
+import { LoaderContext } from "../../components/loader/LoaderContext";
+import Encabezadoverde from "../../components/commons/EncabezadoVerde";
 
 export default function RegistroStep5({ celCodigo, cellNumero }) {
   let { setShowLoader } = React.useContext(LoaderContext);

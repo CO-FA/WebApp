@@ -1,40 +1,40 @@
 import React, { useState } from "react";
-import Input from "../components/commons/Input";
-import Button from "../components/commons/Button";
-import Encabezado from "../components/commons/Encabezado";
-import Footer from "../components/commons/Footer";
+import Input from "../../components/commons/Input";
+import Button from "../../components/commons/Button";
+import Encabezado from "../../components/commons/Encabezado";
+import Footer from "../../components/commons/Footer";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
-import {  formErrors  } from "../utils/constantsErrors";
+import { formErrors } from "../../utils/constantsErrors";
 
-import RegistroSetps from "../components/registro/RegistroSteps";
-import { STEPS } from "../components/registro/constantsSteps";
-import { LoaderContext } from "../components/loader/LoaderContext";
+import RegistroSetps from "../../components/registro/RegistroSteps";
+import { STEPS } from "../../components/registro/constantsSteps";
+import { LoaderContext } from "../../components/loader/LoaderContext";
 
 export default function RegistroStep7() {
   let { setShowLoader } = React.useContext(LoaderContext);
-	const [errors, setErrors] = useState(false);
-	const history = useHistory();
+  const [errors, setErrors] = useState(false);
+  const history = useHistory();
 
-	const submitForm = (values, setSubmitting) => {
-		if (!errors) {
-      setShowLoader(false)
-			history.push("/newPassword");
-		}
-	};
-	const validateForm = values => {
-		if (!values.clientePin) {
-			setErrors({ clientePin: formErrors.CODE_EMPTY });
-		} else if (String(values.clientePin).length !== 4) {
-			setErrors({ clientePin: formErrors.CODE_LENGTH });
-		} else {
-			setErrors(false);
-		}
-	};
+  const submitForm = (values, setSubmitting) => {
+    if (!errors) {
+      setShowLoader(false);
+      history.push("/newPassword");
+    }
+  };
+  const validateForm = (values) => {
+    if (!values.clientePin) {
+      setErrors({ clientePin: formErrors.CODE_EMPTY });
+    } else if (String(values.clientePin).length !== 4) {
+      setErrors({ clientePin: formErrors.CODE_LENGTH });
+    } else {
+      setErrors(false);
+    }
+  };
 
-	return (
+  return (
     <>
-      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_EMAIL} />}/>
+      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_EMAIL} />} />
       <Formik
         initialValues={{ clientePin: "" }}
         onSubmit={(values, { setSubmitting }) =>
