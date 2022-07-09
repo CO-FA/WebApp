@@ -18,7 +18,7 @@ export default function RegistroStep6() {
     setTimeout(() => {
       if (!errors) {
         setShowLoader(false);
-        history.push("/emailCode");
+        history.push("/perfilModificarEmailValidacion");
       }
     }, 2000);
   };

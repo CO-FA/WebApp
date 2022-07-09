@@ -19,7 +19,7 @@ export default function RegistroStep7() {
   const submitForm = (values, setSubmitting) => {
     if (!errors) {
       setShowLoader(false);
-      history.push("/newPassword");
+      history.push("/perfil");
     }
   };
   const validateForm = (values) => {
@@ -85,7 +85,7 @@ export default function RegistroStep7() {
                   type="submit"
                   onClick={handleSubmit}
                 >
-                  Continuar
+                  Guardar
                 </Button>
               </div>
             </Footer>
