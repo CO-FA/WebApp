@@ -1,6 +1,7 @@
 import React from "react";
 import userImage from "../../assets/images/user-img.png";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 export default function EncabezadoPerfil() {
   return (
@@ -48,8 +49,8 @@ export default function EncabezadoPerfil() {
         <div className="p-1 text-center">
           <a
             className="btn btn-link px-0 position-relative d-block notif"
-            href="/notificaciones"
-          >
+            href="http://localhost:3001/#/notificaciones"
+            >
             <svg
               width="19"
               height="21"

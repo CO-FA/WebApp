@@ -10,7 +10,15 @@ import {
   cbuIcon,
   domicilioIcon,
   tarjetaIcon,
-  seguroIcon
+  seguroIcon,
+  misPrestamos,
+  estadoFinanciero,
+  proximosVenc,
+  celuIcon,
+  alquilerIcon,
+  casaIcon,
+  motoIcon,
+  autoIcon,
 } from "./iconsSvg";
 export const menuOptions = {
   estadoCuenta: (
@@ -101,29 +109,33 @@ export const menuOptions = {
 
 export const optionsToShow2 = [
   {
-    menu: "Cambiar mis datos personales",
+    menu: "Cambiar mis datos personales", icon:modificarDatosIcon,
     submenu: [
-      { menu: "Cambiar mi celular", submenu: [], href:"/perfilModificarCelular"},
-      { menu: "Cambiar mi email", submenu: [],href:"/perfilModificarEmail" },
-      { menu: "Cambiar mi contraseña", submenu: [],href:"/perfilModificarPass" },
-      { menu: "Cambiar mi domicilio", submenu: [],href:"/perfilModificarDireccion" },
+      { menu: "Cambiar mi celular", submenu: [], href:"/perfilModificarCelular", icon:celularIcon},
+      { menu: "Cambiar mi email", submenu: [],href:"/perfilModificarEmail", icon:emailIcon },
+      { menu: "Cambiar mi contraseña", submenu: [],href:"/perfilModificarPass", icon:passwordIcon },
+      { menu: "Cambiar mi domicilio", submenu: [],href:"/perfilModificarDireccion", icon:domicilioIcon },
     ],
   },
   {
-    menu: "Ver mi estado financiero",
+    menu: "Ver mi estado financiero", icon:estadoFinanciero,
     submenu: [
-      { menu: "Modificar Mi Celular", submenu: [] },
-      { menu: "Modificar Mi DNI", submenu: [] },
-      { menu: "Modificar Mi DOMICILIO", submenu: [] },
+      { menu: "Mis préstamos", submenu: [], icon:misPrestamos},
+      { menu: "Proximos vencimientos", submenu: [],icon:proximosVenc },
+      { menu: "Cargar mi CBU/CVU", submenu: [],icon:cbuIcon },
+      { menu: "Cargar mi Tarjeta", submenu: [],icon:tarjetaIcon },
     ],
   },
 
   {
-    menu: "Ver mis seguros",
+    menu: "Ver mis seguros", icon:seguroIcon,
     submenu: [
-      { menu: "Modificar Mi Celular", submenu: [] },
-      { menu: "Modificar Mi DNI", submenu: [] },
-      { menu: "Modificar Mi DOMICILIO", submenu: [] },
+      { menu: "Seguro de Auto", submenu: [],icon:autoIcon },
+      { menu: "Seguro de Moto", submenu: [],icon:motoIcon },
+      { menu: "Seguro de Casa", submenu: [], icon:casaIcon},
+      { menu: "Seguro de Alquiler", submenu: [], icon:alquilerIcon },
+      { menu: "Seguro de Celular", submenu: [],icon:celuIcon },
     ],
   },
 ];
+
