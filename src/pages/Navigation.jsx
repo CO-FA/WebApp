@@ -25,6 +25,7 @@ import RegistroDniValido from "./RegistroDniValido";
 import PersonalInformation from "./PersonalInformation";
 import EstadoCuenta from "./EstadoCuenta";
 import Soporte from "./Soporte";
+import cargarmiCbu from "../pages/estadofinanciero/cargarmicbu";
 
 export default function Navigation() {
   // let location = useLocation();
@@ -99,6 +100,9 @@ export default function Navigation() {
             </Route>
             <Route path="/notificaciones">
               <Notificaciones />
+            </Route>
+            <Route path="/cargarmiCbu">
+              <cargarmiCbu />
             </Route>
             <Route path="/informacionPersonal">
               <PersonalInformation />
