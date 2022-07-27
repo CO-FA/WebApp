@@ -24,7 +24,7 @@ export default function OfertaPrestamoPerfil({
         <div class="col-12 mt-3">
           <Link to={buttonLink}>
             <Button
-              className="btn btn-light button-rounded p-3"
+              className="btn btn-light button-rounded p-3 shadow"
               disabled={false}
               type="button"
             >

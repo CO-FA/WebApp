@@ -14,7 +14,7 @@ export default function EncabezadoPerfil() {
           }}
         >
           <svg
-          className="text-white"
+            className="text-white"
             width="15"
             height="15"
             fill="none"
@@ -26,7 +26,9 @@ export default function EncabezadoPerfil() {
             />
           </svg>
         </Button>
-        <h5 className="text-white flex-grow-1 text-center align-self-end">Mi Perfil</h5>
+        <h5 className="text-white flex-grow-1 text-center align-self-end">
+          Mi Perfil
+        </h5>
         <div className="p-1 text-center">
           <a
             className="btn btn-link px-0 position-relative d-block notif"
@@ -47,10 +49,10 @@ export default function EncabezadoPerfil() {
           </a>
         </div>
         <div className="p-1 text-center">
-          <a
+          <Link
             className="btn btn-link px-0 position-relative d-block notif"
-            href="http://localhost:3001/#/notificaciones"
-            >
+            to="/notificaciones"
+          >
             <svg
               width="19"
               height="21"
@@ -66,11 +68,11 @@ export default function EncabezadoPerfil() {
               />
             </svg>
             <span className="badge badge-danger"></span>
-          </a>
+          </Link>
         </div>
       </div>
 
-      <div className="col-6 offset-3 text-center">
+      <div className="d-flex justify-content-center w-100">
         <a href="/" className="photo mt-3 position-relative">
           <img
             src={userImage}
@@ -78,7 +80,10 @@ export default function EncabezadoPerfil() {
             width="100"
             height="100"
           />
-          <span>
+          <span
+            className="position-absolute"
+            style={{ bottom: "0", right: "0px" }}
+          >
             <svg
               width="21"
               height="21"

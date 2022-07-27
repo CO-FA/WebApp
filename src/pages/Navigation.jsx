@@ -25,7 +25,7 @@ import RegistroDniValido from "./RegistroDniValido";
 import PersonalInformation from "./PersonalInformation";
 import EstadoCuenta from "./EstadoCuenta";
 import Soporte from "./Soporte";
-import CargarmiCbu from "../pages/estadofinanciero/CargarmiCbu";
+import CargarmiCbu from "./estadofinanciero/CargarmiCbu";
 import Cbu from "../pages/estadofinanciero/Cbu";
 
 export default function Navigation() {
@@ -105,7 +105,7 @@ export default function Navigation() {
             <Route path="/cargarmiCbu">
               <CargarmiCbu />
             </Route>
-            <Route path="/cbu">
+            <Route path="/cargarmiCbu/cbu">
               <Cbu />
             </Route>
             <Route path="/informacionPersonal">

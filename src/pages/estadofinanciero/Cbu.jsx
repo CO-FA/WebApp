@@ -1,38 +1,59 @@
-import React from 'react';
-import Button from "./Button";
+import Button from "components/commons/Button";
+import { useModal } from "components/modal/ModalContext";
+import React from "react";
+import "./cbu.css";
 
 export default function Cbu() {
+  const { showModal } = useModal();
   return (
-    <div className="row">
-      <div className="bg-gradient d-flex justify-content-end flex-grow-1 py-2 w-100">
+    <div className="container bg-green w-100 h-100 cbu-background text-left">
+      <div className="d-flex justify-content-end mb-3 mt-3">
         <Button
-          className="btn btn-link px-3"
+          className={"text-white"}
           onClick={() => {
-            window.history.back();
+            showModal(false);
           }}
         >
-          <svg
-          className="text-white"
-            width="15"
-            height="15"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M13.75 6.25H4.257l4.127-4.11A1.253 1.253 0 0 0 7.497 0c-.333 0-.653.132-.888.367L.356 6.612a1.249 1.249 0 0 0-.262.412 1.248 1.248 0 0 0 0 .95c.06.153.149.293.262.412L6.61 14.63a1.251 1.251 0 0 0 1.776 0 1.25 1.25 0 0 0 0-1.774l-4.127-4.11h9.492A1.251 1.251 0 0 0 15 7.5a1.248 1.248 0 0 0-1.25-1.249z"
-              fill="#FFF"
-            />
-          </svg>
+          X
         </Button>
-        <h5 className="text-white flex-grow-1 text-center align-self-end">Modificar mis Datos</h5>
-        <div className="p-1 text-center">
-          <a
-            className="btn btn-link px-0 position-relative d-block notif"
-            href="http://www.wa.me/54911xxxxxx"
-          >
-          </a>
-        </div>
       </div>
-    </div>  
+
+      <h3 className="text-white">¿Qué es la CBU y de dónde la saco?</h3>
+      <p className="text-white">
+        El CBU es un dato de tu cuenta bancaria, está compuesto por 22 dígitos
+        que representan tu cuenta bancaria, todos los CBU tienen esa cantidad de
+        dígitos, si tiene menos es porque no es el CBU.
+      </p>
+      <h3 className="text-white">La CBU podés obtenerla de 3 maneras:</h3>
+      <p className="text-white">
+        1.Ir a cualquier cajero automático
+        <ul>
+          <li> Introducir la tarjeta débito en el cajero.</li>
+        </ul>
+        Colocar tu clave.
+        <ul>
+          <li>
+            {" "}
+            Cuando ingresás dentro de tu cuenta, tenés que elegir la opción
+            “Consultas”.
+          </li>
+          <li>
+            {" "}
+            Luego debés elegir la opción “Consulta de CBU” (si tenés más de una
+            cuenta deberás seleccionar una de ellas).¡Listo! El cajero te va a
+            entregar un ticket con el CBU de tu cuenta bancaria.
+          </li>
+        </ul>
+      </p>
+      <p className="text-white">
+        2. Por internet, ingresás al Home Banking de tu banco, seleccionás la
+        opción detalle de CBU, según cada banco puede variar donde está ubicada
+        esta opción.
+      </p>
+      <p className="text-white">
+        3. Ir personalmente a la sucursal de tu banco y pedir un comprobante de
+        tu CBU
+      </p>
+    </div>
   );
 }

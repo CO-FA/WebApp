@@ -1,17 +1,19 @@
-import {
-  HashRouter as Router,
-} from "react-router-dom";
-import './assets/css/main.css'
+import { HashRouter as Router } from "react-router-dom";
+import "./assets/css/main.css";
 import Navigation from "./pages/Navigation";
-import {
-  LoaderProvider
-} from "./components/loader/LoaderContext"
+import { LoaderProvider } from "./components/loader/LoaderContext";
+import { ModalProvider } from "components/modal/ModalContext";
 
 function App() {
-  return <LoaderProvider>
-    <Router>
-      <Navigation />
-    </Router> </LoaderProvider>
+  return (
+    <LoaderProvider>
+      <ModalProvider>
+        <Router>
+          <Navigation />
+        </Router>
+      </ModalProvider>
+    </LoaderProvider>
+  );
 }
 
 export default App;

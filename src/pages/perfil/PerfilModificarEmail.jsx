@@ -59,7 +59,7 @@ export default function RegistroStep6() {
               <section>
                 <h3 className="mt-5">Mi E-Mail registrado es</h3>
                 <div className="row">
-                  <div className="form-group col-9">
+                  <div className="form-group col">
                     <Input
                       label="Ingresá tu Email"
                       placeholder="xxxx@gmail.com"
@@ -73,7 +73,7 @@ export default function RegistroStep6() {
                 </div>
                 <h3 className="mt-3">Mi E-Mail nuevo es</h3>
                 <div className="row">
-                  <div className="form-group col-9">
+                  <div className="form-group col-12">
                     <Input
                       label="Ingresá tu Email"
                       placeholder="xxxx@gmail.com"
@@ -114,7 +114,7 @@ export default function RegistroStep6() {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    Continuar
+                    VALIDAR MI EMAIL
                   </Button>
                 </div>
               </Footer>

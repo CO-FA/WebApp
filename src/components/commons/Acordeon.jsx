@@ -5,7 +5,6 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { optionsToShow2 } from "utils/menuOptionsList";
-import { menuOptions } from "utils/menuOptionsList";
 
 import ItemMenu from "./ItemMenu";
 
@@ -20,12 +19,20 @@ export default function Menu() {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>{opcion.icon} {opcion.menu} </Typography>
+              <Typography>
+                {opcion.icon} {opcion.menu}{" "}
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
                 {opcion.submenu.map((opcion2) => {
-                  return <ItemMenu text={opcion2.menu} href={opcion2.href} icon={opcion2.icon}/>;
+                  return (
+                    <ItemMenu
+                      text={opcion2.menu}
+                      href={opcion2.href}
+                      icon={opcion2.icon}
+                    />
+                  );
                 })}
               </Typography>
             </AccordionDetails>

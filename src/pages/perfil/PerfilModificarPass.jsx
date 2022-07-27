@@ -69,7 +69,6 @@ export default function OlvidePasswordStep2() {
                       name="clientePass"
                       className="form-control border-right-0"
                       type="password"
-                      maxlength="8"
                       errors={errors}
                       showPasswordButton
                       values={values}
@@ -81,10 +80,10 @@ export default function OlvidePasswordStep2() {
                   <div class="form-group col-12">
                     <Input
                       label="Ingresá tu contraseña nueva"
-                      name="clientePass"
+                      name="clientePassNew"
                       className="form-control border-right-0"
                       type="password"
-                      maxlength="8"
+                      required
                       errors={errors}
                       showPasswordButton
                       values={values}
@@ -98,8 +97,7 @@ export default function OlvidePasswordStep2() {
                       name="clientePassConfirm"
                       className="form-control border-right-0"
                       type="password"
-                      required=""
-                      maxlength="8"
+                      required
                       errors={errors}
                       showPasswordButton
                       values={values}
@@ -126,7 +124,7 @@ export default function OlvidePasswordStep2() {
                   type="submit"
                   onClick={handleSubmit}
                 >
-                  Continuar
+                  GUARDAR
                 </Button>
               </div>
             </Footer>
