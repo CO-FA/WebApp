@@ -3,6 +3,8 @@ import { useModal } from "components/modal/ModalContext";
 import React from "react";
 import "./cbu.css";
 
+import { ReactComponent as CloseIcon } from "assets/images/close.svg";
+
 export default function Cbu() {
   const { showModal } = useModal();
   return (
@@ -14,7 +16,7 @@ export default function Cbu() {
             showModal(false);
           }}
         >
-          X
+          <CloseIcon />
         </Button>
       </div>
 

@@ -27,13 +27,18 @@ import EstadoCuenta from "./EstadoCuenta";
 import Soporte from "./Soporte";
 import CargarmiCbu from "./estadofinanciero/CargarmiCbu";
 import Cbu from "../pages/estadofinanciero/Cbu";
+import CbuList from "./estadofinanciero/CbuList";
 
 export default function Navigation() {
   // let location = useLocation();
   const nodeRef = useRef(null);
   return (
     <div className="index">
-      <main role="main" className="container">
+      <main
+        role="main"
+        className="container"
+        style={{ borderRadius: "35px", overflow: "hidden" }}
+      >
         {/* <TransitionGroup>
           <CSSTransition
             key={location.pathname}
@@ -102,12 +107,16 @@ export default function Navigation() {
             <Route path="/notificaciones">
               <Notificaciones />
             </Route>
-            <Route path="/cargarmiCbu">
-              <CargarmiCbu />
-            </Route>
             <Route path="/cargarmiCbu/cbu">
               <Cbu />
             </Route>
+            <Route path="/cargarmiCbu/cbu-list">
+              <CbuList />
+            </Route>
+            <Route path="/cargarmiCbu">
+              <CargarmiCbu />
+            </Route>
+
             <Route path="/informacionPersonal">
               <PersonalInformation />
             </Route>
