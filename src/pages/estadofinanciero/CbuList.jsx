@@ -1,12 +1,11 @@
 import Button from "components/commons/Button";
 import EncabezadoVerde from "components/commons/EncabezadoVerde";
+import { Dialog } from "components/dialog/Dialog";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCbu } from "./hooks/useCbu";
 
 import { ItemCbuList } from "./ItemCbuList";
-
-const Dialog = () => {};
 
 export default function CbuList() {
   const { cbuList, deleteCbu } = useCbu();
@@ -30,18 +29,33 @@ export default function CbuList() {
           );
         })}
       </ul>
-      {/* <Dialog open>
-        <Dialog.body>{"Desea borrar el cbu " + cbuABorrar}</Dialog.body>
-        <Button
-          onClick={() => {
-            deleteCbu(cbuABorrar).then(() => {
-              setOpen(false);
-            });
+
+      {
+        <Dialog
+          open={open}
+          title={"Eliminar CBU"}
+          handleClose={() => {
+            setOpen(false);
           }}
         >
-          Si, borrar
-        </Button>
-      </Dialog> */}
+          <div className="mb-2">
+            <b>{"Estás por borrar el"}</b>
+          </div>
+          <div className="mb-2">{"CBU: " + cbuABorrar?.cbu}</div>
+          <div className="mb-2">{cbuABorrar?.banco}</div>
+          <div className="mb-4">{"¿Estás seguro?"}</div>
+          <Button
+            className={"btn-primary"}
+            onClick={() => {
+              deleteCbu(cbuABorrar).then(() => {
+                setOpen(false);
+              });
+            }}
+          >
+            Si, borrar
+          </Button>
+        </Dialog>
+      }
     </>
   );
 }

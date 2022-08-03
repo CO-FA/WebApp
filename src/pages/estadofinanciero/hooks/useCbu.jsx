@@ -21,13 +21,8 @@ const CbuService = async () => {
 
 export const useCbu = () => {
   const [cbuList, setCbuList] = useState();
-  const { showModal } = useModal();
 
-  const deleteCbu = (cbu) => {};
-
-  const askDelete = (cbu, callbackSuccess) => {
-    showModal(true);
-  };
+  const deleteCbu = async (cbu, callbackSuccess) => {};
 
   useEffect(() => {
     CbuService().then((cbus) => setCbuList(cbus));
