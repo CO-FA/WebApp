@@ -105,7 +105,12 @@ export const optionsToShow2 = [
     menu: "Ver mi estado financiero",
     icon: estadoFinanciero,
     submenu: [
-      { menu: "Mis préstamos", submenu: [], icon: misPrestamos, href: "/prestamo-2545" },
+      {
+        menu: "Mis préstamos",
+        submenu: [],
+        icon: misPrestamos,
+        href: "/detalle-prestamo",
+      },
       {
         menu: "Proximos vencimientos",
         submenu: [],
