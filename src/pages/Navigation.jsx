@@ -28,6 +28,7 @@ import Soporte from "./Soporte";
 import CargarmiCbu from "./estadofinanciero/CargarmiCbu";
 import Cbu from "../pages/estadofinanciero/Cbu";
 import CbuList from "./estadofinanciero/CbuList";
+import DetallePrestamo from "./estadofinanciero/DetallePrestamo"
 
 export default function Navigation() {
   // let location = useLocation();
@@ -115,6 +116,9 @@ export default function Navigation() {
             </Route>
             <Route path="/cargarmiCbu">
               <CargarmiCbu />
+            </Route>
+            <Route path="/DetallePrestamo">
+              <DetallePrestamo />
             </Route>
 
             <Route path="/informacionPersonal">
