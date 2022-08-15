@@ -61,7 +61,7 @@ const ItemCuota = ({ cuota }) => {
   );
 };
 
-export default function DetallePrestamo() {
+export default function PagarCuota() {
   return (
     <>
       <EncabezadoVerde />
@@ -89,11 +89,7 @@ export default function DetallePrestamo() {
           </div>
 
           <Footer>
-            <Button className="btn btn-primary cont mt-2">
-              <a href="/detalleprestamo-pagarcuotas">
-              PAGAR CUOTA
-              </a>
-              </Button>
+            <Button className="btn btn-primary cont mt-2">PAGAR CUOTA</Button>
             <Button className="btn btn-primary cont mt-4">
               CANCELAR PRESTAMO
             </Button>
