@@ -3,6 +3,7 @@ import EncabezadoVerde from "components/commons/EncabezadoVerde";
 import Footer from "components/commons/Footer";
 import React from "react";
 import { ReactComponent as FlechaIcon } from "assets/images/flecha-arriba.svg";
+import { Link } from "react-router-dom";
 
 const convertToDate = (dateString) => {
   //  Convert a "dd/MM/yyyy" string into a Date object
@@ -89,11 +90,9 @@ export default function DetallePrestamo() {
           </div>
 
           <Footer>
-            <Button className="btn btn-primary cont mt-2">
-              <a href="/detalleprestamo-pagarcuotas">
-              PAGAR CUOTA
-              </a>
-              </Button>
+            <Link to= "/prestamo-pagarcuotas">
+              <Button className="btn btn-primary cont mt-2">PAGAR CUOTA</Button>
+            </Link>
             <Button className="btn btn-primary cont mt-4">
               CANCELAR PRESTAMO
             </Button>

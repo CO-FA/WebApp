@@ -121,7 +121,7 @@ export default function Navigation() {
             <Route path="/detalle-prestamo">
               <DetallePrestamo />
             </Route>
-            <Route path="/detalleprestamo-pagarcuotas">
+            <Route path="/prestamo-pagarcuotas">
               <PagarCuota />
             </Route>
 
