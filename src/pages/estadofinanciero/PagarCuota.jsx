@@ -2,7 +2,7 @@ import Button from "components/commons/Button";
 import EncabezadoVerde from "components/commons/EncabezadoVerde";
 import Footer from "components/commons/Footer";
 import React from "react";
-import { ReactComponent as FlechaIcon } from "assets/images/flecha-arriba.svg";
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
