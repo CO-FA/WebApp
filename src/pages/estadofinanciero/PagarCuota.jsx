@@ -4,6 +4,7 @@ import Footer from "components/commons/Footer";
 import React from "react";
 import { ReactComponent as FlechaIcon } from "assets/images/flecha-arriba.svg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const convertToDate = (dateString) => {
   //  Convert a "dd/MM/yyyy" string into a Date object
@@ -131,9 +132,11 @@ export default function PagarCuota() {
             </Button>
           
           <Footer>
+            <Link to= "/prestamo-pagarcuotas-mediodepago">
             <Button className="btn btn-primary cont mt-2">
               GENERAR LINK DE PAGO
             </Button>
+            </Link>
             <Button className="btn cont mt-4">VOLVER</Button>
           </Footer>
         </div>
