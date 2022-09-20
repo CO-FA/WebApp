@@ -23,20 +23,8 @@ export default function RegistroStep6() {
     }, 2000);
   };
   const validateForm = (values) => {
-    const pattern =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const regex = new RegExp(pattern);
-
-    if (!values.clienteEmail) {
-      setErrors({
-        clienteEmail: formErrors.EMAIL_EMPTY,
-      });
-    } else if (!regex.test(values.clienteEmail)) {
-      setErrors({
-        clienteEmail: formErrors.PATTERN_EMAIL_ERROR,
-      });
-    } else {
-      setErrors(false);
+    if (values.clienteEmail === "") {
+      setErrors({ clienteEmail: "No puede estar vacio" });
     }
   };
   return (
@@ -62,7 +50,7 @@ export default function RegistroStep6() {
                     <Input
                       label=""
                       placeholder="Fecha de pago DD/MM/AAAA"
-                      type="text"
+                      type="date"
                       className="form-control"
                       name="clienteEmail"
                       errors={[]}
@@ -75,7 +63,7 @@ export default function RegistroStep6() {
                     <Input
                       label=""
                       placeholder="$ Importe de pago realizado"
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="clienteEmail"
                       errors={[]}
@@ -88,7 +76,7 @@ export default function RegistroStep6() {
                     <Input
                       label=""
                       placeholder="Numero de comprobante"
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="clienteEmail"
                       errors={[]}
@@ -96,7 +84,35 @@ export default function RegistroStep6() {
                     />
                   </div>
                 </div>
-                
+                <div className="form-group">
+                  <label for="exampleFormControlSelect1"></label>
+                  <select
+                    className="form-control"
+                    id="exampleFormControlSelect1"
+                  >
+                    <option>Detalle de Pago</option>
+                    <option>Cuota Atrasada</option>
+                    <option>Adelanto de cuota</option>
+                    <option>Cancelacion de Préstamo</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label for="exampleFormControlSelect1"></label>
+                  <select
+                    className="form-control"
+                    id="exampleFormControlSelect1"
+                  >
+                    <option>Medio de Pago</option>
+                    <option>Mercado de Pago</option>
+                    <option>RapiPago</option>
+                    <option>CobroExpress</option>
+                    <option>Transferencia Bancaria</option>
+                    <option>Pago mis cuentas</option>
+                    <option>Link</option>
+                    <option>Provincia Net</option>
+                    <option>Pago en Sucursal</option>
+                  </select>
+                </div>
               </section>
 
               <Footer>

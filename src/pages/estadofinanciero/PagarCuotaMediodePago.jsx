@@ -13,7 +13,7 @@ export default function DetallePrestamo() {
         </p>
 
         <div className="col mt-3">
-          <h6> RAPIPAGO</h6>
+          <h6><strong>RAPIPAGO</strong></h6>
 
           <p>Presentarse en cualquier local y :</p>
           <ul>1-Mencionar que realizara un pago</ul>

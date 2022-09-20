@@ -32,6 +32,7 @@ import DetallePrestamo from "./estadofinanciero/DetallePrestamo";
 import PagarCuota from "./estadofinanciero/PagarCuota";
 import PagarCuotaMediodePago from "./estadofinanciero/PagarCuotaMediodePago";
 import InformePago from "./estadofinanciero/InformePago";
+import SinPrestamo from "./estadofinanciero/SinPrestamo";
 
 export default function Navigation() {
   // let location = useLocation();
@@ -131,6 +132,9 @@ export default function Navigation() {
             </Route>
             <Route path="/prestamo-pagarcuotas-mediodepago">
               <PagarCuotaMediodePago />
+            </Route>
+            <Route path="/sinPrestamo">
+              <SinPrestamo />
             </Route>
 
             <Route path="/informacionPersonal">
