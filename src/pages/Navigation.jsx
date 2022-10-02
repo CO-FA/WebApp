@@ -33,6 +33,12 @@ import PagarCuota from "./estadofinanciero/PagarCuota";
 import PagarCuotaMediodePago from "./estadofinanciero/PagarCuotaMediodePago";
 import InformePago from "./estadofinanciero/InformePago";
 import SinPrestamo from "./estadofinanciero/SinPrestamo";
+import RegistroValidacionCelular from "./RegistroValidacionCelular";
+import RegistroValidacionPin from "./RegistroValidacionPin";
+import RegistroValidacionUsuario from "./RegistroValidacionUsuario";
+import RegistroValidacionApertura from "./RegistroValidacionApertura";
+import RegistroValidacionFecha from "./RegistroValidacionFecha";
+
 
 export default function Navigation() {
   // let location = useLocation();
@@ -136,6 +142,23 @@ export default function Navigation() {
             <Route path="/sinPrestamo">
               <SinPrestamo />
             </Route>
+            <Route path="/registro-validacion-celular">
+              <RegistroValidacionCelular />
+            </Route>
+            <Route path="/registro-validacion-pin">
+              <RegistroValidacionPin />
+            </Route>
+            <Route path="/registro-validacion-usuario">
+              <RegistroValidacionUsuario />
+            </Route>
+            <Route path="/registro-apertura">
+              <RegistroValidacionApertura />
+            </Route>
+            <Route path="/registro-fecha">
+              <RegistroValidacionFecha />
+            </Route>
+
+
 
             <Route path="/informacionPersonal">
               <PersonalInformation />
