@@ -1,14 +1,15 @@
 import Button from "components/commons/Button";
 import Encabezado from "components/commons/Encabezado";
+import { Link } from "react-router-dom";
 
 export default function Perfil() {
   return (
     <>
       <Encabezado />
-      <h2 className="text-center">
+      <h2 className="text-center font-weight-bold mt-4 mb-4">
         Elegi la fecha en la que queres pagar la cuota
       </h2>
-      <div className="form-check mt-5 mb-3">
+      <div className="form-check mt-5 mb-3 ml-3">
         <input
           className="form-check-input"
           type="radio"
@@ -21,7 +22,7 @@ export default function Perfil() {
           Ultimo dia del mes
         </label>
       </div>
-      <div className="form-check mb-3">
+      <div className="form-check mb-3 ml-3">
         <input
           className="form-check-input"
           type="radio"
@@ -34,7 +35,7 @@ export default function Perfil() {
           1er. dia habil del mes
         </label>
       </div>
-      <div className="form-check mb-3">
+      <div className="form-check mb-3 ml-3">
         <input
           className="form-check-input"
           type="radio"
@@ -47,7 +48,7 @@ export default function Perfil() {
           2do. dia habil del mes
         </label>
       </div>
-      <div className="form-check mb-3">
+      <div className="form-check mb-3 ml-3">
         <input
           className="form-check-input"
           type="radio"
@@ -60,7 +61,7 @@ export default function Perfil() {
           3ero. dia habil del mes
         </label>
       </div>
-      <div className="form-check mb-3">
+      <div className="form-check mb-3 ml-3">
         <input
           className="form-check-input"
           type="radio"
@@ -73,7 +74,7 @@ export default function Perfil() {
           4to. dia habil del mes
         </label>
       </div>
-      <div className="form-check mb-3">
+      <div className="form-check mb-3 ml-3">
         <input
           className="form-check-input"
           type="radio"
@@ -87,16 +88,17 @@ export default function Perfil() {
         </label>
       </div>
       <small className="text-center ml-2 d-block">
-       La misma se debitará de la Tarjeta de Debito que ingresaste
+        La misma se debitará de la Tarjeta de Debito que ingresaste
       </small>
-
-      <Button
-        className="btn btn-primary cont mt-3"
-        disabled={false}
-        type="submit"
-      >
-        Continuar
-      </Button>
+      <Link to="/cargarmiCbu">
+        <Button
+          className="btn btn-primary cont mt-3"
+          disabled={false}
+          type="submit"
+        >
+          Continuar
+        </Button>
+      </Link>
     </>
   );
 }

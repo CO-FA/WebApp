@@ -10722,3 +10722,11 @@ body main.prestamo footer {
 .custom-control-label:hover{
   text-decoration: underline;
 }
+
+.input-slider {
+  font-size: 24px;
+  font-weight: bold;
+  border: 1px solid #333;
+  position: relative;
+}
+

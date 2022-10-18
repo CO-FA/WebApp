@@ -16,7 +16,7 @@ export default function Perfil() {
           <input
             label="Nro DNI"
             type="number"
-            className="form-control mb-4 text-center"
+            className="form-control mb-4 text-center input-slider"
             placeholder="$"
             name="clienteDocNumero"
             value={monto}

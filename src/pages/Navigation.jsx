@@ -38,6 +38,7 @@ import RegistroValidacionPin from "./RegistroValidacionPin";
 import RegistroValidacionUsuario from "./RegistroValidacionUsuario";
 import RegistroValidacionApertura from "./RegistroValidacionApertura";
 import RegistroValidacionFecha from "./RegistroValidacionFecha";
+import RegistroValidacionUltimo from "./RegistroValidacionUltimo";
 
 
 export default function Navigation() {
@@ -156,6 +157,9 @@ export default function Navigation() {
             </Route>
             <Route path="/registro-fecha">
               <RegistroValidacionFecha />
+            </Route>
+            <Route path="/registro-ultimo">
+              <RegistroValidacionUltimo />
             </Route>
 
 

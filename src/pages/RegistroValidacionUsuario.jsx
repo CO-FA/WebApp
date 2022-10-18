@@ -18,7 +18,7 @@ export default function OlvidePasswordStep2() {
 
   const submitForm = (values, setSubmitting) => {
     if (!errors) {
-      history.push("/login");
+      history.push("/registro-apertura");
     }
   };
   const validateForm = (values) => {
@@ -72,7 +72,7 @@ export default function OlvidePasswordStep2() {
                   <div className="form-group col-12">
                     <Input
                       label="Tu Usuario es:"
-                      type="number"
+                      type="text"
                       className="form-control"
                       name="clienteDocNumero"
                       errors={errors}

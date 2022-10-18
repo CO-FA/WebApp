@@ -10,6 +10,7 @@ import Encabezadoverde from "../../components/commons/EncabezadoVerde";
 import { useModal } from "components/modal/ModalContext";
 import { useEffect } from "react";
 import Cbu from "./Cbu";
+import { Link } from "react-router-dom";
 
 export default function CargarmiCbu({ celCodigo, cellNumero }) {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -30,7 +31,7 @@ export default function CargarmiCbu({ celCodigo, cellNumero }) {
     setTimeout(() => {
       if (!errors) {
         setShowLoader(false);
-        history.push("/validateEmail");
+        history.push("/registro-ultimo");
       }
     }, 2000);
   };
@@ -82,9 +83,9 @@ export default function CargarmiCbu({ celCodigo, cellNumero }) {
           <>
             <form>
               <section>
-                <h1 className="mt-5">Cargar mi CBU/CVU</h1>
+                <h1 className="mt-5">Cargar mi CBU/CVU asi te transferimos</h1>
                 <h3 className="mt-5">
-                  Ingresa el CBU de tu cuenta
+                  Ingresa el numero
                   <Button
                     onClick={() => {
                       showModal(true);
@@ -126,13 +127,27 @@ export default function CargarmiCbu({ celCodigo, cellNumero }) {
               <Footer>
                 <div className="col-12">
                   <Button
+                    className="btn btn-primary cont mb-3"
+                    disabled={false}
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    ¿Es correcto el numero?
+                  </Button>
+
+                  <span className="btn-primary cont">
+                    Por favor no te olvides de tener tu cbu actualizado
+                  </span>
+                  <Link to="/registro-ultimo">
+                  <Button
                     className="btn btn-primary cont"
                     disabled={false}
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    CARGAR
+                    Continuar
                   </Button>
+                  </Link>
                 </div>
               </Footer>
             </form>
