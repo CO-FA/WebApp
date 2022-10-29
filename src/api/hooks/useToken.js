@@ -1,13 +1,25 @@
-import useSWR from "swr"
-import { getToken } from "../token"
+import { useEffect } from "react";
+import useSWR from "swr";
+import { useLocalStorage } from "utils/hooks/useLocalStorage";
+import { getToken } from "../token";
 
-export const useToken = ()=>{
-    console.log("useToken")
-    const {data,error} = useSWR('tokens',getToken,{refreshInterval: 60000,})
-    return {
-        token: data?.token,
-        expires_in:data?.expires_in,
-        isLoading: !error && !data,
-        isError: error
-      }
-}
+export const useToken = () => {
+  const [token, setToken] = useLocalStorage("token");
+  const shouldFetch = !token;
+  const { data, error } = useSWR(shouldFetch ? "tokens" : null, getToken, {
+    refreshInterval: 120000,
+  });
+
+  useEffect(() => {
+    if (data?.token) {
+      setToken(data);
+    }
+  }, [data]);
+  console.log("useToken", token);
+  return {
+    token: token?.token,
+    expires_in: token?.expires_in,
+    isLoading: !error && !token,
+    isError: error,
+  };
+};
