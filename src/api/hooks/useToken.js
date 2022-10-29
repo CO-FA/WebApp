@@ -11,6 +11,7 @@ export const useToken = () => {
   });
 
   useEffect(() => {
+    //TODO: Verify expires_in and error
     if (data?.token) {
       setToken(data);
     }
