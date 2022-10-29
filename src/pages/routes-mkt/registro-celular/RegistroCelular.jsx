@@ -10,11 +10,13 @@ import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useLoaderContext } from "components/loader/LoaderContext";
 import Button from "components/commons/Button";
+import { useStepAtom } from "../atoms/Atoms";
 
 export function RegistroCelular() {
   let { setShowLoader } = useLoaderContext();
   const [errors, setErrors] = useState(false);
   const history = useHistory();
+  const { setCurrentStep } = useStepAtom();
 
   const submitForm = (values, setSubmitting) => {
     setShowLoader(true);
@@ -22,6 +24,7 @@ export function RegistroCelular() {
       if (!errors) {
         setShowLoader(false);
         history.push("/onboarding/validar-pin");
+        setCurrentStep(STEPS.STEP_3_CELULAR);
       }
     }, 2000);
   };

@@ -7,6 +7,7 @@ import Button from "components/commons/Button";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import OptionNombre from "components/registro/OptionNombre";
+import { useStepAtom } from "../atoms/Atoms";
 
 const API = {
   getCandidatos: async () => {
@@ -20,10 +21,11 @@ const API = {
 export default function RegistroElegirIdentidad() {
   const history = useHistory();
   const [candidatos, setCandidatos] = useState();
-
+  const { setCurrentStep } = useStepAtom();
   const submitForm = (values, setSubmitting) => {
     //TODO: Enviar sms de validación
     history.push("/onboarding/celular");
+    setCurrentStep(STEPS.STEP_3_CELULAR);
   };
 
   useEffect(() => {

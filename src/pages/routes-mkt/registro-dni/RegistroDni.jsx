@@ -8,14 +8,16 @@ import Button from "components/commons/Button";
 import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
+import { useStepAtom } from "../atoms/Atoms";
 
 export function RegistroDni() {
   const [errors, setErrors] = useState(false);
   const history = useHistory();
-
+  const { setCurrentStep } = useStepAtom();
   const submitForm = (values, setSubmitting) => {
     if (!errors) {
       history.push("/onboarding/elegir-identidad");
+      setCurrentStep(STEPS.STEP_2_IDENTIDAD);
     }
   };
   const validateForm = (values) => {

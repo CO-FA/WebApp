@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import Button from "./Button";
 
-export default function EncabezadoVerde() {
+export function EncabezadoVerde({ children }) {
   return (
     <div className="row">
       <div className="bg-gradient d-flex justify-content-end flex-grow-1 py-4 w-100">
@@ -12,7 +12,7 @@ export default function EncabezadoVerde() {
           }}
         >
           <svg
-          className="text-white"
+            className="text-white"
             width="15"
             height="15"
             fill="none"
@@ -24,15 +24,16 @@ export default function EncabezadoVerde() {
             />
           </svg>
         </Button>
-        <h5 className="text-white flex-grow-1 text-center align-self-end">Hola</h5>
+        <div className="text-white flex-grow-1 text-center align-self-end">
+          {children}
+        </div>
         <div className="p-1 text-center">
           <a
             className="btn btn-link px-0 position-relative d-block notif"
             href="http://www.wa.me/54911xxxxxx"
-          >
-          </a>
+          ></a>
         </div>
       </div>
-    </div>  
+    </div>
   );
 }

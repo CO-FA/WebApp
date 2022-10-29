@@ -8,13 +8,15 @@ import Button from "components/commons/Button";
 import { formErrors } from "utils/constantsErrors";
 
 import RegistroSetps from "components/registro/RegistroSteps";
-import { STEPS } from "components/registro/constantsSteps";
+import { STEPS } from "components/registro/STEPS-MKT";
 import { LoaderContext } from "components/loader/LoaderContext";
+import { useStepAtom } from "../atoms/Atoms";
 
 export function RegistroValidacionCelular({ celCodigo, cellNumero }) {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
   const history = useHistory();
+  const { setCurrentStep } = useStepAtom();
 
   const submitForm = (values, setSubmitting) => {
     if (errors) {
@@ -24,7 +26,8 @@ export function RegistroValidacionCelular({ celCodigo, cellNumero }) {
     setTimeout(() => {
       if (!errors) {
         setShowLoader(false);
-        history.push("/registro-validacion-usuario");
+        history.push("/onboarding/calculadora-prestamo");
+        setCurrentStep(STEPS.STEP_4_PRESTAMO);
       }
     }, 2000);
   };
