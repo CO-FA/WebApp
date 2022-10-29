@@ -40,7 +40,6 @@ import RegistroValidacionApertura from "./RegistroValidacionApertura";
 import RegistroValidacionFecha from "./RegistroValidacionFecha";
 import RegistroValidacionUltimo from "./RegistroValidacionUltimo";
 
-
 export default function Navigation() {
   // let location = useLocation();
   const nodeRef = useRef(null);
@@ -51,14 +50,6 @@ export default function Navigation() {
         className="container"
         style={{ borderRadius: "35px", overflow: "hidden" }}
       >
-        {/* <TransitionGroup>
-          <CSSTransition
-            key={location.pathname}
-            classNames="page"
-            timeout={300}
-            nodeRef={nodeRef}
-            unmountOnExit
-          > */}
         {/*TODO: Arreglar animación de transicion entre pantallas*/}
         <div className="animation-item" ref={nodeRef}>
           <Switch>
@@ -162,8 +153,6 @@ export default function Navigation() {
               <RegistroValidacionUltimo />
             </Route>
 
-
-
             <Route path="/informacionPersonal">
               <PersonalInformation />
             </Route>
@@ -179,8 +168,6 @@ export default function Navigation() {
             </Route>
           </Switch>
         </div>
-        {/* </CSSTransition>
-        </TransitionGroup> */}
       </main>
     </div>
   );
