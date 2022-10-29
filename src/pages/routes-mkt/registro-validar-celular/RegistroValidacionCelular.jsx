@@ -60,7 +60,7 @@ export function RegistroValidacionCelular({ celCodigo, cellNumero }) {
   };
   return (
     <>
-      <Encabezado title={<RegistroSetps current={STEPS.STEP_2_CELULAR} />} />
+      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_CELULAR} />} />
       <Formik
         initialValues={{
           clienteCelCodigo: celCodigo,

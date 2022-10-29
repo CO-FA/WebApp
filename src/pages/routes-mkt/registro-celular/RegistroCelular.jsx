@@ -57,7 +57,7 @@ export function RegistroCelular() {
   };
   return (
     <>
-      <Encabezado title={<RegistroSetps current={STEPS.STEP_2_CELULAR} />} />
+      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_CELULAR} />} />
       <Formik
         initialValues={{ clienteCelCodigo: "", clienteCelNumero: "" }}
         onSubmit={(values, { setSubmitting }) =>
