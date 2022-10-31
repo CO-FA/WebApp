@@ -18,6 +18,7 @@ export function RegistroDni() {
     if (!errors) {
       history.push("/onboarding/elegir-identidad");
       setCurrentStep(STEPS.STEP_2_IDENTIDAD);
+      console.log("nav /onboarding/elegir-identidad");
     }
   };
   const validateForm = (values) => {

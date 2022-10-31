@@ -14,18 +14,25 @@ import { STEPS } from "components/registro/STEPS-MKT";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
+  const { setCurrentStep } = useStepAtom();
+
   useEffect(() => {
     history.push("/onboarding/registro-dni");
+    setCurrentStep(STEPS.STEP_1_DNI);
+    console.log("aaa");
   }, []);
+
   return null;
 };
+
 const VerifyStep = ({ children, step }) => {
   const { currentStep } = useStepAtom();
 
   if (currentStep <= step) {
     return children;
   }
-  console.log("Step not set", step);
+  console.log("Step not set", step, currentStep);
+  return <RedirectOnboardign />;
 };
 
 export function RoutesMkt() {
