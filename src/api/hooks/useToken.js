@@ -7,7 +7,7 @@ export const useToken = () => {
   const [token, setToken] = useLocalStorage("token");
   const shouldFetch = !token;
   const { data, error } = useSWR(shouldFetch ? "tokens" : null, getToken, {
-    refreshInterval: 120000,
+    refreshInterval: 1200000,
   });
 
   useEffect(() => {

@@ -11,6 +11,7 @@ import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroVa
 
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
+import { useToken } from "api/hooks/useToken";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -36,6 +37,7 @@ const VerifyStep = ({ children, step }) => {
 };
 
 export function RoutesMkt() {
+  useToken();
   // let location = useLocation();
   const nodeRef = useRef(null);
   return (

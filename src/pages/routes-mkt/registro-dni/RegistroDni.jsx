@@ -2,20 +2,27 @@ import React, { useState } from "react";
 import Input from "components/commons/Input";
 import Encabezado from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import { useHistory } from "react-router-dom";
 import Button from "components/commons/Button";
 import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useStepAtom } from "../atoms/Atoms";
+import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
+import { useLoaderContext } from "components/loader/LoaderContext";
 
 export function RegistroDni() {
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
-  const submitForm = (values, setSubmitting) => {
+  const { documento, setDocumento } = useIdentidadAtom();
+  const { setShowLoader } = useLoaderContext();
+
+  const submitForm = async (values, setSubmitting) => {
     if (!errors) {
+      setDocumento(values.clienteDocNumero);
+      setShowLoader(true);
+
       history.push("/onboarding/elegir-identidad");
       setCurrentStep(STEPS.STEP_2_IDENTIDAD);
       console.log("nav /onboarding/elegir-identidad");
@@ -39,7 +46,7 @@ export function RegistroDni() {
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_1_DNI} />} />
       <Formik
-        initialValues={{ clienteDocNumero: "" }}
+        initialValues={{ clienteDocNumero: documento }}
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)
         }
@@ -48,20 +55,23 @@ export function RegistroDni() {
         {({ values, handleSubmit }) => (
           <>
             <section>
-              <form className="pt-3">
-                <div className="row">
-                  <div className="form-group col-12">
-                    <Input
-                      label="Nro DNI"
-                      type="number"
-                      className="form-control"
-                      name="clienteDocNumero"
-                      errors={errors}
-                      values={values}
-                    />
+              <Form>
+                <div className="pt-3">
+                  <div className="row">
+                    <div className="form-group col-12">
+                      <Input
+                        label="Nro DNI"
+                        type="number"
+                        placeholder={"Ingrese Nro DNI"}
+                        className="form-control"
+                        name="clienteDocNumero"
+                        errors={errors}
+                        values={values}
+                      />
+                    </div>
                   </div>
                 </div>
-              </form>
+              </Form>
             </section>
             <Footer>
               <div className="col-12">

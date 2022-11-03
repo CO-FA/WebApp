@@ -7,21 +7,16 @@ import Button from "components/commons/Button";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import OptionNombre from "components/registro/OptionNombre";
-import { useStepAtom } from "../atoms/Atoms";
-
-const API = {
-  getCandidatos: async () => {
-    return [
-      { documento: "123123", apeYNom: "Ronaldo de Assis Moreira" },
-      { documento: "22221412", apeYNom: "Adalberto Carlos Fragoso De Arruda" },
-    ];
-  },
-};
+import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
+import { useLoaderContext } from "components/loader/LoaderContext";
+import { getPadronAfip } from "api/PadronAfip";
 
 export default function RegistroElegirIdentidad() {
   const history = useHistory();
   const [candidatos, setCandidatos] = useState();
+  const { documento } = useIdentidadAtom();
   const { setCurrentStep } = useStepAtom();
+  const { setShowLoader } = useLoaderContext();
   const submitForm = (values, setSubmitting) => {
     //TODO: Enviar sms de validación
     history.push("/onboarding/celular");
@@ -30,7 +25,9 @@ export default function RegistroElegirIdentidad() {
 
   useEffect(() => {
     (async () => {
-      setCandidatos(await API.getCandidatos());
+      const identidades = await getPadronAfip(documento);
+      setCandidatos(identidades);
+      setShowLoader(false);
     })();
   }, []);
 
@@ -60,12 +57,10 @@ export default function RegistroElegirIdentidad() {
                   {(candidatos || []).map((c, ix) => {
                     return (
                       <OptionNombre
-                        value={c.documento}
-                        label={c.apeYNom}
+                        value={c.dni}
+                        label={c.nombreCompleto}
                         key={ix}
-                        className={
-                          values.clienteNombres === c.documento && "active"
-                        }
+                        className={values.clienteNombres === c.dni && "active"}
                       />
                     );
                   })}

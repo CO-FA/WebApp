@@ -6,7 +6,7 @@ export const useStepAtom = () => {
   return { currentStep, setCurrentStep };
 };
 
-const documentoAtom = atom(-1);
+const documentoAtom = atom("");
 const nombreAtom = atom("");
 const cuitAtom = atom("");
 export const useIdentidadAtom = () => {
