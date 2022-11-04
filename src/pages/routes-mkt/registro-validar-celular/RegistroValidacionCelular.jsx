@@ -10,26 +10,29 @@ import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { LoaderContext } from "components/loader/LoaderContext";
-import { useStepAtom } from "../atoms/Atoms";
+import { useStepAtom, useIdentidadAtom, useCelularAtom } from "../atoms/Atoms";
+import { savePhone } from "api/PhoneValidation";
 
-export function RegistroValidacionCelular({ celCodigo, cellNumero }) {
+export function RegistroValidacionCelular() {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
-
-  const submitForm = (values, setSubmitting) => {
+  const { identidad } = useIdentidadAtom();
+  const { codArea, setCodArea, numCelular, setNumCelular, pin, setPin } =
+    useCelularAtom();
+  const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;
     }
-    setShowLoader(true);
-    setTimeout(() => {
-      if (!errors) {
-        setShowLoader(false);
-        history.push("/onboarding/calculadora-prestamo");
-        setCurrentStep(STEPS.STEP_4_PRESTAMO);
-      }
-    }, 2000);
+
+    if (!errors) {
+      setShowLoader(true);
+      setShowLoader(false);
+      const data = await savePhone(values.clientePin, identidad.dni);
+      history.push("/onboarding/calculadora-prestamo");
+      setCurrentStep(STEPS.STEP_4_PRESTAMO);
+    }
   };
   const validateForm = (values) => {
     var errorsAUx = {};
@@ -66,8 +69,8 @@ export function RegistroValidacionCelular({ celCodigo, cellNumero }) {
       <Encabezado title={<RegistroSetps current={STEPS.STEP_3_CELULAR} />} />
       <Formik
         initialValues={{
-          clienteCelCodigo: celCodigo,
-          clienteCelNumero: cellNumero,
+          clienteCelCodigo: codArea,
+          clienteCelNumero: numCelular,
           clientePin: "",
         }}
         onSubmit={(values, { setSubmitting }) =>
@@ -94,7 +97,7 @@ export function RegistroValidacionCelular({ celCodigo, cellNumero }) {
                   <div className="form-group col-9">
                     <Input
                       label="Celular"
-                      placeholder="38913312"
+                      placeholder="38 XX XX XX"
                       type="number"
                       className="form-control"
                       name="clienteCelNumero"

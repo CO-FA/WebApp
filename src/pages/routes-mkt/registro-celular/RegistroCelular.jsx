@@ -10,23 +10,34 @@ import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useLoaderContext } from "components/loader/LoaderContext";
 import Button from "components/commons/Button";
-import { useStepAtom } from "../atoms/Atoms";
+import { useStepAtom, useIdentidadAtom, useCelularAtom } from "../atoms/Atoms";
+import { enviarSMSValidacion } from "api/PhoneValidation";
 
 export function RegistroCelular() {
   let { setShowLoader } = useLoaderContext();
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
+  const { codArea, setCodArea, numCelular, setNumCelular, pin, setPin } =
+    useCelularAtom();
+  const { identidad } = useIdentidadAtom();
 
-  const submitForm = (values, setSubmitting) => {
-    setShowLoader(true);
-    setTimeout(() => {
-      if (!errors) {
-        setShowLoader(false);
-        history.push("/onboarding/validar-pin");
-        setCurrentStep(STEPS.STEP_3_CELULAR);
-      }
-    }, 2000);
+  const submitForm = async (values, setSubmitting) => {
+    if (!errors) {
+      setShowLoader(true);
+
+      setCodArea(values.clienteCelCodigo);
+      setNumCelular(values.clienteCelNumero);
+
+      const data = await enviarSMSValidacion(
+        values.clienteCelCodigo + "" + values.clienteCelNumero,
+        identidad.dni
+      );
+
+      setShowLoader(false);
+      history.push("/onboarding/validar-pin");
+      setCurrentStep(STEPS.STEP_3_CELULAR);
+    }
   };
   const validateForm = (values) => {
     var errorsAUx = {};

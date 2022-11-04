@@ -1,24 +1,23 @@
 import { atom, useAtom } from "jotai";
-
+import { atomWithStorage } from "jotai/utils";
 export const stepAtom = atom(1);
 export const useStepAtom = () => {
   const [currentStep, setCurrentStep] = useAtom(stepAtom);
   return { currentStep, setCurrentStep };
 };
 
-const documentoAtom = atom("");
-const nombreAtom = atom("");
-const cuitAtom = atom("");
+const documentoAtom = atomWithStorage("");
+const identidadAtom = atomWithStorage("");
+
 export const useIdentidadAtom = () => {
   const [documento, setDocumento] = useAtom(documentoAtom);
-  const [nombre, setNombre] = useAtom(nombreAtom);
-  const [cuit, setCuit] = useAtom(cuitAtom);
-  return { documento, setDocumento, nombre, setNombre, cuit, setCuit };
+  const [identidad, setIdentidad] = useAtom(identidadAtom);
+  return { documento, setDocumento, identidad, setIdentidad };
 };
 
-const codAreaAtom = atom("");
-const numCelularAtom = atom("");
-const pinAtom = atom("");
+const codAreaAtom = atomWithStorage("");
+const numCelularAtom = atomWithStorage("");
+const pinAtom = atomWithStorage("");
 export const useCelularAtom = () => {
   const [codArea, setCodArea] = useAtom(codAreaAtom);
   const [numCelular, setNumCelular] = useAtom(numCelularAtom);

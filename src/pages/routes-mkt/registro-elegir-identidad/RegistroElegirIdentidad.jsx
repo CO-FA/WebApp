@@ -14,11 +14,16 @@ import { getPadronAfip } from "api/PadronAfip";
 export default function RegistroElegirIdentidad() {
   const history = useHistory();
   const [candidatos, setCandidatos] = useState();
-  const { documento } = useIdentidadAtom();
+  const { documento, identidad, setIdentidad } = useIdentidadAtom();
   const { setCurrentStep } = useStepAtom();
   const { setShowLoader } = useLoaderContext();
   const submitForm = (values, setSubmitting) => {
-    //TODO: Enviar sms de validación
+    // "" + values.clienteNombres === c.dni + ""
+    const identidad = (candidatos || []).find(
+      (c) => "" + values.clienteNombres === c.dni + ""
+    );
+    setIdentidad(identidad);
+
     history.push("/onboarding/celular");
     setCurrentStep(STEPS.STEP_3_CELULAR);
   };
@@ -35,7 +40,7 @@ export default function RegistroElegirIdentidad() {
     <>
       <Header title={<RegistroSetps current={STEPS.STEP_1_DNI} />} />
       <Formik
-        initialValues={{ clienteNombres: null }}
+        initialValues={{ clienteNombres: identidad?.dni }}
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)
         }
@@ -60,7 +65,9 @@ export default function RegistroElegirIdentidad() {
                         value={c.dni}
                         label={c.nombreCompleto}
                         key={ix}
-                        className={values.clienteNombres === c.dni && "active"}
+                        className={
+                          "" + values.clienteNombres === c.dni + "" && "active"
+                        }
                       />
                     );
                   })}

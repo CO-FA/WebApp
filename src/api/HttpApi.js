@@ -1,7 +1,7 @@
 export const getAuth = async () => {
-  const item = window.localStorage.getItem("token");
+  const item = window.sessionStorage.getItem("token");
   const tokenObj = item ? JSON.parse(item) : null;
-  console.log("getAuth token ", tokenObj?.token);
+  console.log("getAuth token ", tokenObj, tokenObj?.token);
   return tokenObj?.token || "";
 };
 
@@ -19,13 +19,17 @@ const HttpApi = async function (url, request) {
 
 export const post = async (url, body) => {
   try {
-    const response = await HttpApi(url, {
+    let response = await HttpApi(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
     });
+    if (response.status === 401) {
+      console.log("Se debe revalidar el token");
+    }
+
     return response.json();
   } catch (error) {
     console.error(error);

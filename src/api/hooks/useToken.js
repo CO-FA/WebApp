@@ -1,21 +1,26 @@
 import { useEffect } from "react";
 import useSWR from "swr";
-import { useLocalStorage } from "utils/hooks/useLocalStorage";
+import { useSessionStorage } from "utils/hooks/useSessionStorage";
 import { getToken } from "../token";
 
 export const useToken = () => {
-  const [token, setToken] = useLocalStorage("token");
+  const [token, setToken] = useSessionStorage("token");
   const shouldFetch = !token;
   const { data, error } = useSWR(shouldFetch ? "tokens" : null, getToken, {
-    refreshInterval: 1200000,
+    refreshInterval: 30000,
   });
 
   useEffect(() => {
     //TODO: Verify expires_in and error
     if (data?.token) {
-      setToken(data);
+      let tokenData = {
+        ...data,
+        expires: new Date(Date.now() + data?.expires_in * 1000),
+      };
+      setToken(tokenData);
     }
   }, [data]);
+
   console.log("useToken", token);
   return {
     token: token?.token,
