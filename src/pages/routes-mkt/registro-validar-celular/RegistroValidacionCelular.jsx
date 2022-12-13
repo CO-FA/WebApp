@@ -28,10 +28,15 @@ export function RegistroValidacionCelular() {
 
     if (!errors) {
       setShowLoader(true);
+      try {
+        const data = await savePhone(values.clientePin, identidad.dni);
+
+        history.push("/onboarding/calculadora-prestamo");
+        setCurrentStep(STEPS.STEP_4_PRESTAMO);
+      } catch (error) {
+        console.error(error);
+      }
       setShowLoader(false);
-      const data = await savePhone(values.clientePin, identidad.dni);
-      history.push("/onboarding/calculadora-prestamo");
-      setCurrentStep(STEPS.STEP_4_PRESTAMO);
     }
   };
   const validateForm = (values) => {
