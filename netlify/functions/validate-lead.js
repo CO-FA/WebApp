@@ -37,12 +37,14 @@ exports.handler = async (event, context, callback) => {
         body: JSON.stringify({ error: "Nro de documento invalido" }),
       };
     }
-    console.log("Devuelvo todo bien");
-    return {
+
+    const resp = {
       headers: headers,
       statusCode: 200,
       body: JSON.stringify(response),
     };
+    console.log("Devuelvo todo bien", resp);
+    return resp;
   } catch (error) {
     console.error("Error VALIDATE LEAD", error);
     return {
