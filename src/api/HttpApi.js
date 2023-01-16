@@ -1,3 +1,5 @@
+import { getToken } from "./token";
+
 export const getAuth = async () => {
   const item = window.sessionStorage.getItem("token");
   const tokenObj = item ? JSON.parse(item) : null;
@@ -11,6 +13,7 @@ const HttpApi = async function (url, request) {
   request.headers = {
     ...request?.headers,
     Authorization: "Bearer " + auth,
+    "Content-Type": "application/json; charset=utf-8",
   };
 
   console.log("Request => ", url, request);
@@ -21,21 +24,47 @@ export const post = async (url, body) => {
   try {
     let response = await HttpApi(url, {
       method: "POST",
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify(body),
     });
     if (response.status === 401) {
       console.log("Se debe revalidar el token");
+      await revalidateToken();
+      response = await HttpApi(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
     }
-
-    return response.json();
+    console.log("response", response);
+    const res = await response.text();
+    console.log("respText", res);
+    return JSON.parse(res);
   } catch (error) {
     console.error(error);
     return Promise.reject(error);
   }
 };
+const revalidateToken = async () => {
+  try {
+    const data = await getToken();
+    let tokenData = {
+      ...data,
+      expires: new Date(Date.now() + data?.expires_in * 1000),
+    };
+
+    sessionStorage.setItem("token", JSON.stringify(tokenData));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 /**
  *
  * @param {*} url URL string del api

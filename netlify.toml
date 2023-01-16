@@ -15,3 +15,13 @@
   force = true # COMMENT: ensure that we always redirect
   #headers = {X-From = "Netlify"}
   #signed = "API_SIGNATURE_TOKEN"
+
+
+[[redirects]]
+  from = "/back/*"
+  to = "/.netlify/functions/:splat"
+  force = true
+  status = 200
+  #headers = {X-From = "Netlify"}
+  #signed = "API_SIGNATURE_TOKEN"
+

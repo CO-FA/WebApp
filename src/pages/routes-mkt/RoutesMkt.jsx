@@ -12,6 +12,7 @@ import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroVa
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useToken } from "api/hooks/useToken";
+import { Error } from "./error/Error";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -72,6 +73,11 @@ export function RoutesMkt() {
             <Route path="/onboarding/calculadora-prestamo">
               <VerifyStep step={STEPS.STEP_4_PRESTAMO}>
                 <CalculadoraPrestamo />
+              </VerifyStep>
+            </Route>
+            <Route path="/onboarding/error">
+              <VerifyStep step={STEPS.STEP_99_ERROR}>
+                <Error />
               </VerifyStep>
             </Route>
 

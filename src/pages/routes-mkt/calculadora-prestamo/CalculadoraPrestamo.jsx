@@ -60,7 +60,7 @@ export default function CalculadoraPrestamo() {
       </EncabezadoVerde>
       <div className="mb-3 mt-4">
         <div className="d-flex form-group align-items-center justify-content-center decorator">
-          <span class="decorator-input">$</span>
+          <span className="decorator-input">$</span>
           <input
             type="number"
             className="form-control mb-4 text-center input-slider"

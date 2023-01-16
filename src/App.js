@@ -5,6 +5,8 @@ import { LoaderProvider } from "./components/loader/LoaderContext";
 import { ModalProvider } from "components/modal/ModalContext";
 import { RoutesMkt } from "./pages/routes-mkt/RoutesMkt";
 
+console.log(process.env);
+
 function App() {
   return (
     <LoaderProvider>

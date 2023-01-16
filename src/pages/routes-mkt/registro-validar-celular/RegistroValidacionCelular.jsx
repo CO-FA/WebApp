@@ -12,28 +12,37 @@ import { STEPS } from "components/registro/STEPS-MKT";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { useStepAtom, useIdentidadAtom, useCelularAtom } from "../atoms/Atoms";
 import { savePhone } from "api/PhoneValidation";
+import { validarLead } from "api/LeadValidation";
 
 export function RegistroValidacionCelular() {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
-  const { identidad } = useIdentidadAtom();
+  const { documento } = useIdentidadAtom();
   const { codArea, setCodArea, numCelular, setNumCelular, pin, setPin } =
     useCelularAtom();
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;
     }
-
     if (!errors) {
       setShowLoader(true);
       try {
-        const data = await savePhone(values.clientePin, identidad.dni);
+        //TODO: Validar nro doc
+        //TODO: Validar CENDEU
+        //TODO: Validar Nosis
+        //TODO: Generar preaprobado
+        console.log("identidad", documento);
+        const valid = await validarLead(documento);
+
+        const data = await savePhone(values.clientePin, documento);
 
         history.push("/onboarding/calculadora-prestamo");
         setCurrentStep(STEPS.STEP_4_PRESTAMO);
       } catch (error) {
+        history.push("/onboarding/error");
+        setCurrentStep(STEPS.STEP_99_ERROR);
         console.error(error);
       }
       setShowLoader(false);

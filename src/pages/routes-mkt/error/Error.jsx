@@ -24,10 +24,27 @@ export function Error() {
     <>
       <div
         className="container  w-100 h-100 text-center"
-        style={{ background: "#FFD233" }}
+        style={{
+          background: "#FFD233",
+          width: "100vw !important",
+          height: "100vh !important",
+          position: "fixed",
+          left: 0,
+          top: 0,
+          margin: "0px",
+          padding: "40px",
+          display: "flex",
+          alignContent: "center",
+          alignItems: "center",
+          justifyContent: "space-around",
+          flexDirection: "column",
+          gap: "6em",
+        }}
       >
         <h3>En estos momentos no tenemos un préstamo para ofrecerte. </h3>
-        <Button onClick={volver}>Volver</Button>
+        <Button onClick={volver} className="btn btn-light cont">
+          Volver
+        </Button>
       </div>
     </>
   );
