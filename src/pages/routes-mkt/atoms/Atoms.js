@@ -6,8 +6,8 @@ export const useStepAtom = () => {
   return { currentStep, setCurrentStep };
 };
 
-const documentoAtom = atomWithStorage("");
-const identidadAtom = atomWithStorage("");
+const documentoAtom = atomWithStorage("documento");
+const identidadAtom = atomWithStorage("identidad");
 
 export const useIdentidadAtom = () => {
   const [documento, setDocumento] = useAtom(documentoAtom);
@@ -15,12 +15,20 @@ export const useIdentidadAtom = () => {
   return { documento, setDocumento, identidad, setIdentidad };
 };
 
-const codAreaAtom = atomWithStorage("");
-const numCelularAtom = atomWithStorage("");
-const pinAtom = atomWithStorage("");
+const codAreaAtom = atomWithStorage("codArea");
+const numCelularAtom = atomWithStorage("numCel");
+const pinAtom = atomWithStorage("pin");
+
 export const useCelularAtom = () => {
   const [codArea, setCodArea] = useAtom(codAreaAtom);
   const [numCelular, setNumCelular] = useAtom(numCelularAtom);
   const [pin, setPin] = useAtom(pinAtom);
   return { codArea, setCodArea, numCelular, setNumCelular, pin, setPin };
+};
+
+const interesesAtom = atomWithStorage("intereses");
+export const usePrestamoAtom = () => {
+  const [intereses, setIntereses] = useAtom(interesesAtom);
+
+  return { intereses, setIntereses };
 };

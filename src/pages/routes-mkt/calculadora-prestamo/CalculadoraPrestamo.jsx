@@ -4,7 +4,7 @@ import { Slider } from "@mui/material";
 import Button from "components/commons/Button";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
+import { useStepAtom, useIdentidadAtom, usePrestamoAtom } from "../atoms/Atoms";
 //TODO: sacar del stateGlobal
 
 const maxPrestamo = 100000;
@@ -14,6 +14,17 @@ export default function CalculadoraPrestamo() {
   const [montoCuota, setMontoCuota] = useState(maxPrestamo / 12);
   const [cuota, setCuota] = useState(12);
   const { identidad } = useIdentidadAtom();
+  const { intereses } = usePrestamoAtom();
+
+  useEffect(() => {
+    setMonto(intereses.prestamo_preaprobado);
+    const valorCuota = (
+      (parseInt(intereses.prestamo_preaprobado) * (intereses.interes / 100)) /
+      parseInt(12)
+    ).toFixed(2);
+
+    setMontoCuota(valorCuota);
+  }, [intereses]);
 
   const handleChangeMonto = (event) => {
     const value = event.target.value;
@@ -33,8 +44,9 @@ export default function CalculadoraPrestamo() {
     if (cuotas === 0 || monto === 0) {
       setMontoCuota(0);
     }
+    //TODO: valor de la cuota
     const valorCuota = (
-      (parseInt(total) * (intereses / 100)) /
+      (parseInt(total) * (intereses.interes / 100)) /
       parseInt(cuotas)
     ).toFixed(2);
 
@@ -55,7 +67,7 @@ export default function CalculadoraPrestamo() {
           Tenes un préstamo aprobado por
         </h1>
         <h2 className="text-white flex-grow-1 text-center align-self-end">
-          ${maxPrestamo}
+          ${intereses.prestamo_preaprobado}
         </h2>
       </EncabezadoVerde>
       <div className="mb-3 mt-4">
@@ -79,7 +91,7 @@ export default function CalculadoraPrestamo() {
           sx={{
             color: "#53BA38",
           }}
-          max={maxPrestamo}
+          max={intereses.prestamo_preaprobado}
         />
       </div>
 
@@ -104,7 +116,7 @@ export default function CalculadoraPrestamo() {
             color: "#53BA38",
           }}
           min={3}
-          max={36}
+          max={intereses.maximo_cantidad_cuotas}
         />
       </div>
       <div className="mb-4 mt-4">
@@ -112,8 +124,8 @@ export default function CalculadoraPrestamo() {
           {cuota} Cuotas de ${montoCuota}
         </h4>
       </div>
-      <Link to="/registro-fecha">
-        <Button className="btn btn-primary cont" disabled={true} type="submit">
+      <Link to="/registro-nosis">
+        <Button className="btn btn-primary cont" disabled={false} type="submit">
           Continuar
         </Button>
       </Link>

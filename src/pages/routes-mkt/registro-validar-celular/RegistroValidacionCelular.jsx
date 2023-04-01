@@ -10,7 +10,12 @@ import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { LoaderContext } from "components/loader/LoaderContext";
-import { useStepAtom, useIdentidadAtom, useCelularAtom } from "../atoms/Atoms";
+import {
+  useStepAtom,
+  useIdentidadAtom,
+  useCelularAtom,
+  usePrestamoAtom,
+} from "../atoms/Atoms";
 import { savePhone } from "api/PhoneValidation";
 import { validarLead } from "api/LeadValidation";
 
@@ -19,9 +24,9 @@ export function RegistroValidacionCelular() {
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
-  const { documento } = useIdentidadAtom();
-  const { codArea, setCodArea, numCelular, setNumCelular, pin, setPin } =
-    useCelularAtom();
+  const { identidad } = useIdentidadAtom();
+  const { codArea, numCelular } = useCelularAtom();
+  const { setIntereses } = usePrestamoAtom();
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;
@@ -33,10 +38,11 @@ export function RegistroValidacionCelular() {
         //TODO: Validar CENDEU
         //TODO: Validar Nosis
         //TODO: Generar preaprobado
-        console.log("identidad", documento);
-        const valid = await validarLead(documento);
 
-        const data = await savePhone(values.clientePin, documento);
+        console.log("identidad", identidad);
+        const valid = await validarLead(identidad);
+        setIntereses(valid.data);
+        const data = await savePhone(values.clientePin, identidad.dni);
 
         history.push("/onboarding/calculadora-prestamo");
         setCurrentStep(STEPS.STEP_4_PRESTAMO);
