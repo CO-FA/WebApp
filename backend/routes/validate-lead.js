@@ -1,9 +1,11 @@
+import { validateLead } from "../services/validate-lead";
 const express = require("express");
 const router = express.Router();
 
-router.post("/validate-lead", function (req, res) {
+router.post("/validate-lead", async function (req, res) {
+  const response = await validateLead(req.params);
   res.json({
-    Title: "Hola mundo usando rutas!",
+    ...response,
   });
 });
 
