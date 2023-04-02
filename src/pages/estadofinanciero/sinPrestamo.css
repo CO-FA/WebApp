@@ -1,0 +1,7 @@
+.sinPrestamo-background{
+    background: linear-gradient(180deg, #FF3366 0%, #C80334 100%);
+    padding: 40px;
+    margin: 0px -40px;
+    width: 120% !important;
+    height: 120% !important;
+}

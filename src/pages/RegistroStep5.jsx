@@ -17,11 +17,14 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
   const history = useHistory();
 
   const submitForm = (values, setSubmitting) => {
+    if (errors) {
+      return
+    }
     setShowLoader(true);
     setTimeout(() => {
       if (!errors) {
-        setShowLoader(false);
-        history.push("/validatePhonePIN");
+        setShowLoader(false)
+        history.push("/validateEmail");
       }
     }, 2000);
   };

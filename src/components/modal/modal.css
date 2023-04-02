@@ -1,0 +1,14 @@
+.modal-app{
+    z-index: 1000;
+    position: absolute;
+    top:0px;
+    width: 100vw;
+    height: 100vh;
+    background: var(--primary);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#fff;
+    text-align: center;
+}

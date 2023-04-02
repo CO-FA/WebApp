@@ -10,8 +10,21 @@
   ## This rule redirects to an external API, signing requests with a secret
 [[redirects]]
   from = "/app/*"
-  to = "https://sandbox.sbsoftware.net//:splat"
+  to = "https://cofatest.sbfintech.net/:splat"
   status = 200
   force = true # COMMENT: ensure that we always redirect
   #headers = {X-From = "Netlify"}
   #signed = "API_SIGNATURE_TOKEN"
+
+
+[[redirects]]
+  from = "/back/*"
+  to = "/.netlify/functions/:splat"
+  force = true
+  status = 200
+  #headers = {X-From = "Netlify"}
+  #signed = "API_SIGNATURE_TOKEN"
+
+[functions]
+  node_bundler = "esbuild"
+

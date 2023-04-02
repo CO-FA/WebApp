@@ -3,7 +3,7 @@ import Button from "./Button";
 
 export default function Encabezado({ title, withoutBackButton }) {
   return (
-    <header>
+    <header className="rounded-top">
       {!withoutBackButton && (
         <Button
           className="btn btn-link px-0 py-4"
@@ -24,7 +24,7 @@ export default function Encabezado({ title, withoutBackButton }) {
           </svg>
         </Button>
       )}
-      {title && <h1 className="my-3 text-center">{title}</h1>}
+      {title && <h1 className="text-center">{title}</h1>}
     </header>
   );
 }

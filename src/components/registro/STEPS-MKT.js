@@ -1,0 +1,8 @@
+export const STEPS = {
+  STEP_1_DNI: 1,
+  STEP_2_IDENTIDAD: 2,
+  STEP_3_CELULAR: 3,
+  STEP_4_PRESTAMO: 4,
+  STEP_5_CLAVE: 5,
+  STEP_99_ERROR: 99,
+};
