@@ -1,4 +1,4 @@
-import { validateLead } from "../services/validate-lead";
+import { validateLead } from "../services/validate-lead.mjs";
 const express = require("express");
 const router = express.Router();
 
