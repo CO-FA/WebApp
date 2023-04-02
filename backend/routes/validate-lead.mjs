@@ -1,5 +1,5 @@
 import { validateLead } from "../services/validate-lead.mjs";
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 router.post("/validate-lead", async function (req, res) {
