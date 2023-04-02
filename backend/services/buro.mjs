@@ -19,7 +19,10 @@ export const getVariablesBuro = async (nroDocumento) => {
       redirect: "follow",
     };
     const resp = await fetch(URL + "API/v1/lending/bureau", requestOptions);
-    return await resp.json();
+
+    const respText = await resp.text();
+    console.log("Resp getVariablesBuro", respText);
+    return JSON.parse(respText);
   } catch (error) {
     console.log(error);
   }
