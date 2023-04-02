@@ -4,11 +4,10 @@ import { Slider } from "@mui/material";
 import Button from "components/commons/Button";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { useStepAtom, useIdentidadAtom, usePrestamoAtom } from "../atoms/Atoms";
-//TODO: sacar del stateGlobal
+import { useIdentidadAtom, usePrestamoAtom } from "../atoms/Atoms";
 
 const maxPrestamo = 100000;
-const intereses = 180.67;
+
 export default function CalculadoraPrestamo() {
   const [monto, setMonto] = useState(maxPrestamo);
   const [montoCuota, setMontoCuota] = useState(maxPrestamo / 12);
@@ -17,12 +16,14 @@ export default function CalculadoraPrestamo() {
   const { intereses } = usePrestamoAtom();
 
   useEffect(() => {
+    const cantCuotas = parseInt(intereses.maximo_cantidad_cuotas / 2);
+    const valorCuota = calcularCuota(
+      intereses.prestamo_preaprobado,
+      intereses.interes,
+      cantCuotas
+    );
     setMonto(intereses.prestamo_preaprobado);
-    const valorCuota = (
-      (parseInt(intereses.prestamo_preaprobado) * (intereses.interes / 100)) /
-      parseInt(12)
-    ).toFixed(2);
-
+    setCuota(cantCuotas);
     setMontoCuota(valorCuota);
   }, [intereses]);
 
@@ -38,21 +39,23 @@ export default function CalculadoraPrestamo() {
       setCuota(value);
     }
   };
-  //TODO: calcular monto y cuotas según formula excel
-  //Interes compuesto
+
   const caculateMontoCuota = (cuotas, total) => {
     if (cuotas === 0 || monto === 0) {
       setMontoCuota(0);
     }
-    //TODO: valor de la cuota
-    const valorCuota = (
-      (parseInt(total) * (intereses.interes / 100)) /
-      parseInt(cuotas)
-    ).toFixed(2);
+
+    const valorCuota = calcularCuota(total, intereses.interes, cuotas).toFixed(
+      2
+    );
 
     setMontoCuota(valorCuota);
   };
 
+  function calcularCuota(capital, interes, plazo) {
+    var cuota = capital * (interes / (1 - Math.pow(1 + interes, -plazo)));
+    return cuota;
+  }
   useEffect(() => {
     caculateMontoCuota(cuota, monto);
   }, [monto, cuota]);

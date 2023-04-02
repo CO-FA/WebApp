@@ -17,11 +17,9 @@ import { Error } from "./error/Error";
 const RedirectOnboardign = () => {
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
-
   useEffect(() => {
     history.push("/onboarding/registro-dni");
     setCurrentStep(STEPS.STEP_1_DNI);
-    console.log("aaa");
   }, []);
 
   return null;
@@ -39,7 +37,6 @@ const VerifyStep = ({ children, step }) => {
 
 export function RoutesMkt() {
   useToken();
-  // let location = useLocation();
   const nodeRef = useRef(null);
   return (
     <div className="index">
@@ -73,6 +70,41 @@ export function RoutesMkt() {
             <Route path="/onboarding/calculadora-prestamo">
               <VerifyStep step={STEPS.STEP_4_PRESTAMO}>
                 <CalculadoraPrestamo />
+              </VerifyStep>
+            </Route>
+            <Route path="/onboarding/password">
+              <VerifyStep step={STEPS.STEP_5_CLAVE}>
+                <>Componente guardar clave</>
+              </VerifyStep>
+            </Route>
+            <Route path="/onboarding/cbu">
+              <VerifyStep step={STEPS.STEP_6_VALIDAR_CBU}>
+                <>Componente verificar CBU</>
+              </VerifyStep>
+            </Route>
+            <Route path="/onboarding/cargar-cuenta">
+              <VerifyStep step={STEPS.STEP_7_MOBBEX}>
+                <>Componente cargar mobbex</>
+              </VerifyStep>
+            </Route>
+            <Route path="/onboarding/email">
+              <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
+                <>Componente cargar email</>
+              </VerifyStep>
+            </Route>
+            <Route path="/onboarding/validar-pin-email">
+              <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
+                <>Componente validar email</>
+              </VerifyStep>
+            </Route>
+            <Route path="/onboarding/verificar-info">
+              <VerifyStep step={STEPS.STEP_9_VERIFICAR_PREAPROBADO}>
+                <>Componente verificar info antes de nosis</>
+              </VerifyStep>
+            </Route>
+            <Route path="/onboarding/confirmar-info">
+              <VerifyStep step={STEPS.STEP_11_CONFIRMAR_PREAPROBADO}>
+                <>Componente verificar info despues de nosis</>
               </VerifyStep>
             </Route>
             <Route path="/onboarding/error">
