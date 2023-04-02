@@ -1,4 +1,4 @@
-import { URL } from "./url";
+import { URL } from "./url.mjs";
 //const { URL } = require("./url");
 import fetch, { Headers } from "node-fetch";
 

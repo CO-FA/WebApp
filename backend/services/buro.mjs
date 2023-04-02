@@ -1,5 +1,5 @@
-import { getToken } from "./token";
-import { URL } from "./url";
+import { getToken } from "./token.mjs";
+import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
 export const getVariablesBuro = async (nroDocumento) => {
