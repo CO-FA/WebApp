@@ -1,7 +1,9 @@
 import validateLead from "./routes/validate-lead.mjs";
-const express = require("express");
+import express from "express";
+import morgan from "morgan";
+
 const app = express();
-const morgan = require("morgan");
+
 const port = process.env.PORT || 3000;
 
 //Configuraciones

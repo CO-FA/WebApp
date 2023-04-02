@@ -1,7 +1,6 @@
 import { getVariablesBuro } from "./buro.mjs";
 import { getCountSituaciones } from "./situaciones.mjs";
-// Connect to our database
-const { createClient } = require("@supabase/supabase-js");
+import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
