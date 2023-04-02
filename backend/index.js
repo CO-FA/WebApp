@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use(require("./routes/validate-lead"));
+app.use(require("./routes/validate-lead.mjs"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

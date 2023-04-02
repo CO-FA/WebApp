@@ -9,4 +9,4 @@ router.post("/validate-lead", async function (req, res) {
   });
 });
 
-module.exports = router;
+export default router;
