@@ -1,3 +1,4 @@
+import validateLead from "./routes/validate-lead.mjs";
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -18,7 +19,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use(require("./routes/validate-lead.mjs"));
+app.use(validateLead);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
