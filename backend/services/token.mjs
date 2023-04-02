@@ -20,8 +20,9 @@ export const getToken = async () => {
       URL + "/API/v1/login/authenticate",
       requestOptions
     );
-
-    const token = await resp.json();
+    const respText = await resp.text();
+    console.log("Response get token", respText);
+    const token = JSON.parse(respText);
     console.log("getToken", token);
     return token;
   } catch (error) {
