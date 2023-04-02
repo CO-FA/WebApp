@@ -1,5 +1,5 @@
-import { getVariablesBuro } from "./services/buro";
-import { getCountSituaciones } from "./services/situaciones";
+import { getVariablesBuro } from "./buro.mjs";
+import { getCountSituaciones } from "./situaciones.mjs";
 // Connect to our database
 const { createClient } = require("@supabase/supabase-js");
 
