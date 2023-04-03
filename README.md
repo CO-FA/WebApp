@@ -1,6 +1,6 @@
-#Cofapp
+# Cofapp
 
-##Preriquisitos
+## Preriquisitos
 - node v16
 - netlify cli
 
@@ -11,7 +11,7 @@
     /backend -> backend -> hecho en node con express
 
 
-##Para ejecutar el proyecto
+## Para ejecutar el proyecto
 
 Frontend
 - Sobre el root del proyecto ejecutar el siguiente comando:
