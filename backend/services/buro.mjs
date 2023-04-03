@@ -18,7 +18,7 @@ export const getVariablesBuro = async (nroDocumento) => {
       body: JSON.stringify(body),
       redirect: "follow",
     };
-    const resp = await fetch(URL + "API/v1/lending/bureau", requestOptions);
+    const resp = await fetch(URL + "/API/v1/lending/bureau", requestOptions);
 
     const respText = await resp.text();
     console.log("Resp getVariablesBuro", respText);

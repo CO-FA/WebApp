@@ -17,12 +17,12 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json({
-    Title: "Test",
+    test: "Test",
   });
 });
 
 app.use(validateLead);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Backend cofa app listening on port ${port}`);
 });

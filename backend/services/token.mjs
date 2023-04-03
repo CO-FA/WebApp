@@ -16,6 +16,11 @@ export const getToken = async () => {
       body: JSON.stringify(req),
       redirect: "follow",
     };
+    console.log(
+      "Req token",
+      URL + "/API/v1/login/authenticate",
+      requestOptions
+    );
     const resp = await fetch(
       URL + "/API/v1/login/authenticate",
       requestOptions

@@ -18,7 +18,7 @@ export const getSituacionesBcra = async (nroDocumento) => {
       body: JSON.stringify(body),
       redirect: "follow",
     };
-    const resp = await fetch(URL + "API/v1/lending/bcra", requestOptions);
+    const resp = await fetch(URL + "/API/v1/lending/bcra", requestOptions);
     return await resp.json();
   } catch (error) {
     console.log(error);

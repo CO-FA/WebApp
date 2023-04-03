@@ -37,7 +37,7 @@ const getNSE = async (nroDocumento) => {
   const variables = await getVariablesBuro(nroDocumento);
   console.log(variables);
 
-  const result = variables.find((el) => el.Variable === "NSE");
+  const result = variables?.find((el) => el.Variable === "NSE");
 
   return result?.Valor;
 };
@@ -57,7 +57,7 @@ const getIntereses = async (categoria) => {
 export const validateLead = async (body) => {
   console.log("This was a POST request.. CONTINUE");
   try {
-    const maxDocument = process.env.maxDocument || "18000000";
+    const maxDocument = process.env.MAX_DOCUMENT || "18000000";
     //const token = event.queryStringParameters.token;
     // Parse the JSON text received.
     const response = { mensaje: "lead valido" };
