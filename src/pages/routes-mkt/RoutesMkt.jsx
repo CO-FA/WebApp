@@ -8,6 +8,7 @@ import { RegistroCelular } from "./registro-celular/RegistroCelular";
 import { RegistroDni } from "./registro-dni/RegistroDni";
 import RegistroElegirIdentidad from "./registro-elegir-identidad/RegistroElegirIdentidad";
 import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroValidacionCelular";
+import { RegistroClave } from "./registro-clave/RegistroClave";
 
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
@@ -67,14 +68,14 @@ export function RoutesMkt() {
                 <RegistroValidacionCelular />
               </VerifyStep>
             </Route>
-            <Route path="/onboarding/calculadora-prestamo">
+            {/* <Route path="/onboarding/calculadora-prestamo">
               <VerifyStep step={STEPS.STEP_4_PRESTAMO}>
                 <CalculadoraPrestamo />
               </VerifyStep>
-            </Route>
+            </Route> */}
             <Route path="/onboarding/password">
               <VerifyStep step={STEPS.STEP_5_CLAVE}>
-                <>Componente guardar clave</>
+                <RegistroClave/>
               </VerifyStep>
             </Route>
             <Route path="/onboarding/cbu">
