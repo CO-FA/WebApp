@@ -10710,11 +10710,11 @@ body main.prestamo footer {
 }
 .border-bold{
   border: 2px solid grey
-}
+}/* 
 .profile-container{
   overflow-y: auto;
   max-height: 70%;
-}
+} */
 .center-header{
   position: relative;
    left: -13%;
