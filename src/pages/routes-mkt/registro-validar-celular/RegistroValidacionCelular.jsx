@@ -44,8 +44,8 @@ export function RegistroValidacionCelular() {
         setIntereses(valid.data);
         const data = await savePhone(values.clientePin, identidad.dni);
 
-        history.push("/onboarding/calculadora-prestamo");
-        setCurrentStep(STEPS.STEP_4_PRESTAMO);
+        history.push("/onboarding/password");
+        setCurrentStep(STEPS.STEP_5_CLAVE);
       } catch (error) {
         history.push("/onboarding/error");
         setCurrentStep(STEPS.STEP_99_ERROR);
