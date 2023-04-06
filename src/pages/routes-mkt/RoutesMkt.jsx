@@ -74,9 +74,9 @@ export function RoutesMkt() {
               </VerifyStep>
             </Route> */}
             <Route path="/onboarding/password">
-              <VerifyStep step={STEPS.STEP_5_CLAVE}>
-                <RegistroClave/>
-              </VerifyStep>
+              {/* <VerifyStep step={STEPS.STEP_5_CLAVE}> */}
+              <RegistroClave />
+              {/* </VerifyStep> */}
             </Route>
             <Route path="/onboarding/cbu">
               <VerifyStep step={STEPS.STEP_6_VALIDAR_CBU}>

@@ -9,19 +9,21 @@ import { useHistory } from "react-router-dom";
 import Button from "components/commons/Button";
 import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
-import { STEPS } from "components/registro/constantsSteps";
+import { STEPS } from "components/registro/STEPS-MKT";
 import { Link } from "react-router-dom";
+import { useStepAtom } from "../atoms/Atoms";
 
 export const RegistroClave = (props) => {
   /* return <div>Acá va la pantalla de registro clave</div>; */
-
-  const [errors, setErrors] = useState(false);
-  
   const history = useHistory();
+  const { setCurrentStep } = useStepAtom();
+  const [errors, setErrors] = useState(false);
 
   const submitForm = (values, setSubmitting) => {
     if (!errors) {
-      history.push("/registro-apertura");
+      //TODO: ejecutar WS de guardar clave
+      setCurrentStep(STEPS.STEP_6_VALIDAR_CBU);
+      history.push("/onboarding/cbu");
     }
   };
   const validateForm = (values) => {
@@ -71,7 +73,6 @@ export const RegistroClave = (props) => {
                 <h3>¡Último paso!</h3>
 
                 <div className="row profile-container">
-                
                   <div class="form-group col-12">
                     <Input
                       label="Ingresá tu contraseña alfanumérica"
@@ -109,24 +110,22 @@ export const RegistroClave = (props) => {
                   </div>
                 </div>
               </form>
-            </section>  
+            </section>
             <Footer>
               <div class="col-12">
                 <Button
                   className="btn btn-primary cont"
                   disabled={false}
-                  type="submit"
+                  type="button"
                   onClick={handleSubmit}
                 >
                   Continuar
                 </Button>
               </div>
             </Footer>
-        
           </>
         )}
       </Formik>
     </>
   );
 };
-
