@@ -1,5 +1,3 @@
-/* import React from "react"; */
-
 import React, { useState } from "react";
 import Input from "components/commons/Input";
 import Encabezado from "components/commons/Encabezado";
@@ -10,11 +8,9 @@ import Button from "components/commons/Button";
 import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { Link } from "react-router-dom";
 import { useStepAtom } from "../atoms/Atoms";
 
 export const RegistroClave = (props) => {
-  /* return <div>Acá va la pantalla de registro clave</div>; */
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
   const [errors, setErrors] = useState(false);
