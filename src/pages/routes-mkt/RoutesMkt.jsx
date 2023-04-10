@@ -9,6 +9,7 @@ import { RegistroDni } from "./registro-dni/RegistroDni";
 import RegistroElegirIdentidad from "./registro-elegir-identidad/RegistroElegirIdentidad";
 import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroValidacionCelular";
 import { RegistroClave } from "./registro-clave/RegistroClave";
+import CargarmiCbu from "./registro-CBU/RegistroCbu";
 
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
@@ -73,16 +74,19 @@ export function RoutesMkt() {
                 <CalculadoraPrestamo />
               </VerifyStep>
             </Route> */}
+
             <Route path="/onboarding/password">
               {/* <VerifyStep step={STEPS.STEP_5_CLAVE}> */}
               <RegistroClave />
               {/* </VerifyStep> */}
             </Route>
+
             <Route path="/onboarding/cbu">
-              <VerifyStep step={STEPS.STEP_6_VALIDAR_CBU}>
-                <>Componente verificar CBU</>
-              </VerifyStep>
+              {/* <VerifyStep step={STEPS.STEP_6_VALIDAR_CBU}> */}
+                <CargarmiCbu/>
+              {/* </VerifyStep> */}
             </Route>
+            
             <Route path="/onboarding/cargar-cuenta">
               <VerifyStep step={STEPS.STEP_7_MOBBEX}>
                 <>Componente cargar mobbex</>
