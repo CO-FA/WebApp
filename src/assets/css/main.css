@@ -7705,7 +7705,7 @@ button.bg-dark:focus {
 
 .mt-5,
 .my-5 {
-  margin-top: 3rem !important;
+  margin-top: 1rem !important;
 }
 
 .mr-5,
@@ -10594,7 +10594,7 @@ body main header .breadcrumb.two-items .breadcrumb-item:before {
   width: 375%;
 }
 body main section {
-  height: 70%;
+  height: 60%;
 }
 body main footer {
   min-height: 10%;
@@ -10747,3 +10747,17 @@ body main.prestamo footer {
   padding-left: 40px;
 }
 
+
+/* anto */
+
+.mobbex-cont{
+  background-color: #359BE0;
+  width: auto;
+  height: 120%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mobbex{
+  color: #FFF;
+}

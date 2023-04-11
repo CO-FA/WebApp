@@ -84,7 +84,7 @@ export default function CargarmiCbu({ celCodigo, cellNumero }) {
         {({ values, handleSubmit }) => (
           <>
             <section>
-                <h3>Cargá tu CBU/CVU y te deposito el dinero</h3>
+                <h2 style={{fontWeight:"bold",textAlign:"center"}}>Cargá tu CBU/CVU <br></br> y te deposito el dinero</h2>
                 <form className="pt-3">
     
                     <h4>
@@ -125,6 +125,7 @@ export default function CargarmiCbu({ celCodigo, cellNumero }) {
                         </div>
                     </div>
                     <div className="col-12">
+                      {/* TODO: boton secundario!!! modificar */}
                         <Button
                         className="btn btn-primary cont mb-3"
                         disabled={false}
@@ -134,16 +135,16 @@ export default function CargarmiCbu({ celCodigo, cellNumero }) {
                             ¿ES CORRECTO EL NÚMERO?
                         </Button>
 
-                        <span className="btn-primary cont">
+                        <span className="btn-primary cont" >
                             {/* todo: cambiar fondo */}
-                            Por favor no te olvides de tener tu cbu actualizado
+                            Por favor no olvides tener tu cbu actualizado
                         </span>
                     </div>
                 </form>
             </section>
             <Footer>
                 <div className="col-12">
-                  {/* <Link to="/registro-ultimo"> */}
+                  {/* <Link to="/mobbex"> */} {/* lo haces con link o con la funcion handle? */}
                   <Button
                     className="btn btn-primary cont"
                     disabled={false}

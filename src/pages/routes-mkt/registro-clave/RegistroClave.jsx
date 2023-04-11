@@ -9,6 +9,7 @@ import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useStepAtom } from "../atoms/Atoms";
+import { Link } from "react-router-dom";
 
 export const RegistroClave = (props) => {
   const history = useHistory();
@@ -65,9 +66,8 @@ export const RegistroClave = (props) => {
         }) => (
           <>
             <section>
-              <form className="pt-3">
+              <form>
                 <h3>¡Último paso!</h3>
-
                 <div className="row profile-container">
                   <div class="form-group col-12">
                     <Input
@@ -109,14 +109,16 @@ export const RegistroClave = (props) => {
             </section>
             <Footer>
               <div class="col-12">
-                <Button
-                  className="btn btn-primary cont"
-                  disabled={false}
-                  type="button"
-                  onClick={handleSubmit}
-                >
-                  Continuar
-                </Button>
+                <Link to="/cbu">
+                  <Button
+                    className="btn btn-primary cont"
+                    disabled={false}
+                    type="button"
+                    onClick={handleSubmit}
+                  >
+                    Continuar
+                  </Button>
+                </Link>
               </div>
             </Footer>
           </>
