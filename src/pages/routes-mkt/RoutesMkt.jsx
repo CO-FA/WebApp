@@ -10,11 +10,15 @@ import RegistroElegirIdentidad from "./registro-elegir-identidad/RegistroElegirI
 import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroValidacionCelular";
 import { RegistroClave } from "./registro-clave/RegistroClave";
 import CargarmiCbu from "./registro-CBU/RegistroCbu";
+import { Mobbex } from "./mobbex/Mobbex";
+import RegistroEmail from "./registro-email/RegistroEmail";
+import RegistroValidacionEmail from "./registro-validar-email/RegistroValidacionEmail";
 
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useToken } from "api/hooks/useToken";
 import { Error } from "./error/Error";
+import { InfoPreNosis } from "./info-pre-nosis/InfoPreNosis";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -69,6 +73,7 @@ export function RoutesMkt() {
                 <RegistroValidacionCelular />
               </VerifyStep>
             </Route>
+
             {/* <Route path="/onboarding/calculadora-prestamo">
               <VerifyStep step={STEPS.STEP_4_PRESTAMO}>
                 <CalculadoraPrestamo />
@@ -76,37 +81,37 @@ export function RoutesMkt() {
             </Route> */}
 
             <Route path="/onboarding/password">
-              {/* <VerifyStep step={STEPS.STEP_5_CLAVE}> */}
-              <RegistroClave />
-              {/* </VerifyStep> */}
+              <VerifyStep step={STEPS.STEP_5_CLAVE}>
+                <RegistroClave/>
+              </VerifyStep>
             </Route>
-
             <Route path="/onboarding/cbu">
-              {/* <VerifyStep step={STEPS.STEP_6_VALIDAR_CBU}> */}
+              <VerifyStep step={STEPS.STEP_6_VALIDAR_CBU}>
                 <CargarmiCbu/>
-              {/* </VerifyStep> */}
+              </VerifyStep>
             </Route>
-            
-            <Route path="/onboarding/cargar-cuenta">
+            <Route path="/onboarding/mobbex">
               <VerifyStep step={STEPS.STEP_7_MOBBEX}>
-                <>Componente cargar mobbex</>
+                <Mobbex/>
               </VerifyStep>
             </Route>
             <Route path="/onboarding/email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
-                <>Componente cargar email</>
+                <RegistroEmail/>
               </VerifyStep>
             </Route>
             <Route path="/onboarding/validar-pin-email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
-                <>Componente validar email</>
+                <RegistroValidacionEmail/>
               </VerifyStep>
             </Route>
+
             <Route path="/onboarding/verificar-info">
               <VerifyStep step={STEPS.STEP_9_VERIFICAR_PREAPROBADO}>
-                <>Componente verificar info antes de nosis</>
+                <InfoPreNosis/>
               </VerifyStep>
             </Route>
+            
             <Route path="/onboarding/confirmar-info">
               <VerifyStep step={STEPS.STEP_11_CONFIRMAR_PREAPROBADO}>
                 <>Componente verificar info despues de nosis</>
