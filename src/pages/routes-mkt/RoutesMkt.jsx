@@ -9,16 +9,18 @@ import { RegistroDni } from "./registro-dni/RegistroDni";
 import RegistroElegirIdentidad from "./registro-elegir-identidad/RegistroElegirIdentidad";
 import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroValidacionCelular";
 import { RegistroClave } from "./registro-clave/RegistroClave";
-import CargarmiCbu from "./registro-CBU/RegistroCbu";
+import RegistroCbu from "./registro-cbu/RegistroCbu";
 import { Mobbex } from "./mobbex/Mobbex";
 import RegistroEmail from "./registro-email/RegistroEmail";
 import RegistroValidacionEmail from "./registro-validar-email/RegistroValidacionEmail";
+import { InfoPreNosis } from "./info-pre-nosis/InfoPreNosis";
+
 
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useToken } from "api/hooks/useToken";
 import { Error } from "./error/Error";
-import { InfoPreNosis } from "./info-pre-nosis/InfoPreNosis";
+
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -68,7 +70,7 @@ export function RoutesMkt() {
                 <RegistroCelular />
               </VerifyStep>
             </Route>
-            <Route path="/onboarding/validar-pin">
+            <Route path="/onboarding/validar-pin"> {/* hacer 4 lugares para ingresar pin */}
               <VerifyStep step={STEPS.STEP_3_CELULAR}>
                 <RegistroValidacionCelular />
               </VerifyStep>
@@ -85,9 +87,11 @@ export function RoutesMkt() {
                 <RegistroClave/>
               </VerifyStep>
             </Route>
+            {/* se rompe ruta */}
+
             <Route path="/onboarding/cbu">
               <VerifyStep step={STEPS.STEP_6_VALIDAR_CBU}>
-                <CargarmiCbu/>
+                <RegistroCbu/>
               </VerifyStep>
             </Route>
             <Route path="/onboarding/mobbex">

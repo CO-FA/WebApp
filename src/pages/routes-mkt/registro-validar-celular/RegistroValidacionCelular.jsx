@@ -27,6 +27,7 @@ export function RegistroValidacionCelular() {
   const { identidad } = useIdentidadAtom();
   const { codArea, numCelular } = useCelularAtom();
   const { setIntereses } = usePrestamoAtom();
+  
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;

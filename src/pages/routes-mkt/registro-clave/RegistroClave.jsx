@@ -51,7 +51,7 @@ export const RegistroClave = (props) => {
 
   return (
     <>
-      <Encabezado title={<RegistroSetps current={STEPS.STEP_4_CLAVE} />} />
+      <Encabezado title={<RegistroSetps current={STEPS.STEP_5_CLAVE} />} />
       <Formik
         initialValues={{ clientePass: "", clientePassConfirm: "" }}
         onSubmit={(values, { setSubmitting }) =>
@@ -109,16 +109,14 @@ export const RegistroClave = (props) => {
             </section>
             <Footer>
               <div class="col-12">
-                <Link to="/cbu">
-                  <Button
-                    className="btn btn-primary cont"
-                    disabled={false}
-                    type="button"
-                    onClick={handleSubmit}
-                  >
-                    Continuar
-                  </Button>
-                </Link>
+                <Button
+                  className="btn btn-primary cont"
+                  disabled={false}
+                  type="button"
+                  onClick={handleSubmit}
+                >
+                  Continuar
+                </Button>
               </div>
             </Footer>
           </>
