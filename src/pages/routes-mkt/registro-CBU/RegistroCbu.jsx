@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import Cbu from "pages/estadofinanciero/Cbu";
 import { Link } from "react-router-dom";
 
-export default function CargarmiCbu({ celCodigo, cellNumero }) {
+export default function RegistroCbu({ celCodigo, cellNumero }) {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
   const history = useHistory();
@@ -84,9 +84,9 @@ export default function CargarmiCbu({ celCodigo, cellNumero }) {
         {({ values, handleSubmit }) => (
           <>
             <section>
+              {/* checkear estilos */}
                 <h2 style={{fontWeight:"bold",textAlign:"center"}}>Cargá tu CBU/CVU <br></br> y te deposito el dinero</h2>
                 <form className="pt-3">
-    
                     <h4>
                     Ingresá el CBU de tu cuenta
                     <Button
