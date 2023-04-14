@@ -10751,13 +10751,17 @@ body main.prestamo footer {
 /* anto */
 
 .mobbex-cont{
-  background-color: #359BE0;
-  width: auto;
-  height: 120%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
 }
-.mobbex{
-  color: #FFF;
+.span-cbu{
+  color: #fff;
+  background-color: #53BA38;
+  border-color: #53BA38;
+  width: 100%;
+  display: block;
+  padding: 30px 20px;
+  font-size: 1.3rem;
+  text-align: center;
+  border-radius: 1rem;
 }

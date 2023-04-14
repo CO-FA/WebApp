@@ -10,5 +10,6 @@ export const STEPS = {
   STEP_9_VERIFICAR_PREAPROBADO: 9,
   STEP_10_VALIDAR_IDENTIDAD: 10,
   STEP_11_CONFIRMAR_PREAPROBADO: 11,
+  /* falta paso 12 prestamo exitoso! */
   STEP_99_ERROR: 99,
 };

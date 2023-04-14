@@ -14,7 +14,8 @@ import { Mobbex } from "./mobbex/Mobbex";
 import RegistroEmail from "./registro-email/RegistroEmail";
 import RegistroValidacionEmail from "./registro-validar-email/RegistroValidacionEmail";
 import { InfoPreNosis } from "./info-pre-nosis/InfoPreNosis";
-
+import { InfoPostNosis } from "./info-post-nosis/InfoPostNosis";
+import { PrestamoExitoso } from "./prestamo-exitoso/PrestamoExitoso";
 
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
@@ -36,9 +37,9 @@ const RedirectOnboardign = () => {
 const VerifyStep = ({ children, step }) => {
   const { currentStep } = useStepAtom();
 
-  if (currentStep <= step) {
+  /* if (currentStep <= step) { */
     return children;
-  }
+  /* } */
   console.log("Step not set", step, currentStep);
   return <RedirectOnboardign />;
 };
@@ -57,7 +58,7 @@ export function RoutesMkt() {
           <Switch>
             <Route path="/onboarding/registro-dni">
               <VerifyStep step={STEPS.STEP_1_DNI}>
-                <RegistroDni />
+                <RegistroDni/>
               </VerifyStep>
             </Route>
             <Route path="/onboarding/elegir-identidad">
@@ -95,9 +96,9 @@ export function RoutesMkt() {
               </VerifyStep>
             </Route>
             <Route path="/onboarding/mobbex">
-              <VerifyStep step={STEPS.STEP_7_MOBBEX}>
-                <Mobbex/>
-              </VerifyStep>
+              {/* <VerifyStep step={STEPS.STEP_7_MOBBEX}> */}
+                <Mobbex urlMobbex={"https://www.google.com"}/>
+              {/* </VerifyStep> */}
             </Route>
             <Route path="/onboarding/email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
@@ -118,9 +119,16 @@ export function RoutesMkt() {
             
             <Route path="/onboarding/confirmar-info">
               <VerifyStep step={STEPS.STEP_11_CONFIRMAR_PREAPROBADO}>
-                <>Componente verificar info despues de nosis</>
+                <InfoPostNosis/>
               </VerifyStep>
             </Route>
+
+            <Route path="/onboarding/prestamo-exitoso">
+              {/* <VerifyStep step={STEPS.STEP_11_CONFIRMAR_PREAPROBADO}> */}
+                <PrestamoExitoso/>
+              {/* </VerifyStep> */}
+            </Route>
+
             <Route path="/onboarding/error">
               <VerifyStep step={STEPS.STEP_99_ERROR}>
                 <Error />
