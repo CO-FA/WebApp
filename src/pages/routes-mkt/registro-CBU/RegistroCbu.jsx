@@ -135,7 +135,7 @@ export default function RegistroCbu({ celCodigo, cellNumero }) {
                             ¿ES CORRECTO EL NÚMERO?
                         </Button>
 
-                        <span className="btn-primary cont" >
+                        <span className="span-cbu" >
                             {/* todo: cambiar fondo */}
                             Por favor no olvides tener tu cbu actualizado
                         </span>
