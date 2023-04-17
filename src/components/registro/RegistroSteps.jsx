@@ -31,7 +31,7 @@ export default function RegistroSetps({ current = 1 }) {
                 (current === STEPS.STEP_4_PRESTAMO && "active")
               }
             >
-              <p>Solicitar Prestamo</p>
+              <p>Solicitar Préstamo</p>
             </li>
             <li
               className={
@@ -41,6 +41,15 @@ export default function RegistroSetps({ current = 1 }) {
               aria-current="page"
             >
               <p>Contraseña</p>
+            </li>
+            <li
+              className={
+                "breadcrumb-item " +
+                (current === STEPS.STEP_8_VALIDAR_EMAIL && "active")
+              }
+              aria-current="page"
+            >
+              <p>Validar Mail</p>
             </li>
           </ol>
         </nav>
