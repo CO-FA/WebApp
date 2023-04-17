@@ -43,7 +43,7 @@ export function Error() {
       >
         <h3>En estos momentos no tenemos un préstamo para ofrecerte. </h3>
         <Button onClick={volver} className="btn btn-light cont">
-          Volver
+          VOLVER AL PERFIL
         </Button>
       </div>
     </>
