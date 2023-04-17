@@ -16,7 +16,7 @@ export default function Perfil() {
           disabled={false}
           type="submit"
         >
-          Continuar
+          CONTINUAR
         </Button>
       </Link>
     </>

@@ -51,7 +51,7 @@ export function InfoPreNosis() {
                             type="submit"
                             onClick={handleSubmit}
                         >
-                            Continuar
+                            CONTINUAR
                         </Button>
                         </div>
                     </Footer>

@@ -150,7 +150,7 @@ export default function RegistroStep5({ celCodigo, cellNumero }) {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    Continuar
+                    CONTINUAR
                   </Button>
                 </div>
               </Footer>

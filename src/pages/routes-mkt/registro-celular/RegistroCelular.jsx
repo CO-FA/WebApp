@@ -140,7 +140,7 @@ export function RegistroCelular() {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    Continuar
+                    CONTINUAR
                   </Button>
                 </div>
               </Footer>

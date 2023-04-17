@@ -109,7 +109,7 @@ export default function OlvidePasswordStep2() {
                   type="submit"
                   onClick={handleSubmit}
                 >
-                  Continuar
+                  CONTINUAR
                 </Button>
               </div>
             </Footer>

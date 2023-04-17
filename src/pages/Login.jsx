@@ -89,7 +89,7 @@ export default function Login() {
                   type="submit"
                   onClick={handleSubmit}
                 >
-                  Continuar
+                  CONTINUAR
                 </Button>
               </form>
             </Footer>

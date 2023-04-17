@@ -127,7 +127,7 @@ export default function RegistroStep4(){
                       type="submit"
                       onClick={handleSubmit}
                     >
-                      Continuar
+                      CONTINUAR
                     </Button>
                   </div>
                 </Footer>

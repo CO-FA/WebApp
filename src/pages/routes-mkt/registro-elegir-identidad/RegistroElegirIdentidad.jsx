@@ -87,7 +87,7 @@ export default function RegistroElegirIdentidad() {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    Continuar
+                    CONTINUAR
                   </Button>
                 </div>
               </Footer>

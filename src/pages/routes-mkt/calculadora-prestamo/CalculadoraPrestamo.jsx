@@ -129,7 +129,7 @@ export default function CalculadoraPrestamo() {
       </div>
       <Link to="/registro-nosis">
         <Button className="btn btn-primary cont" disabled={false} type="submit">
-          Continuar
+          CONTINUAR
         </Button>
       </Link>
     </>

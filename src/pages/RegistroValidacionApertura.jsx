@@ -54,7 +54,7 @@ export default function Perfil() {
       </div>
       <Link to="/registro-fecha">
         <Button className="btn btn-primary cont" disabled={false} type="submit">
-          Continuar
+          CONTINUAR
         </Button>
       </Link>
     </>

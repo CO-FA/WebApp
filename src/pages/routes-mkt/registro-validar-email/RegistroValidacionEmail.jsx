@@ -85,7 +85,7 @@ export default function RegistroValidacionEmail() {
                   type="submit"
                   onClick={handleSubmit}
                 >
-                  Continuar
+                  CONTINUAR
                 </Button>
               </div>
             </Footer>

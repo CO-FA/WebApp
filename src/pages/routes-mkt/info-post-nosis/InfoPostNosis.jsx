@@ -48,7 +48,7 @@ export function InfoPostNosis() {
                                 type="submit"
                                 onClick={handleSubmit}
                             >
-                                Continuar
+                                CONTINUAR
                             </Button>
                             <p>Al confirmar declaro aceptar la solicitud de crédito y sus términos y condiciones</p>
                             <div className="form-group col-12">

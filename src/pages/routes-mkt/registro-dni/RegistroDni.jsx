@@ -81,7 +81,7 @@ export function RegistroDni() {
                   type="submit"
                   onClick={handleSubmit}
                 >
-                  Continuar
+                  CONTINUAR
                 </Button>
               </div>
             </Footer>

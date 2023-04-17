@@ -145,7 +145,7 @@ export default function CargarmiCbu({ celCodigo, cellNumero }) {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    Continuar
+                    CONTINUAR
                   </Button>
                   </Link>
                 </div>
