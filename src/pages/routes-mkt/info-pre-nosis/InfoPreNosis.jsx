@@ -7,19 +7,41 @@ import Input from "components/commons/Input";
 import Footer from "components/commons/Footer";
 import Button from "components/commons/Button";
 
-import RegistroSetps from "../../../components/registro/RegistroSteps";
 import { STEPS } from "../../../components/registro/constantsSteps";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
+import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
 
 export function InfoPreNosis() {
+    let { setShowLoader } = React.useContext(LoaderContext);
+	const [errors, setErrors] = useState(false);
+	const history = useHistory();
+    const { setCurrentStep } = useStepAtom();
+
+    const submitForm = (values, setSubmitting) => {
+        if (errors) {
+        return;
+        }
+        if (!errors) {
+        setShowLoader(true);
+        try{
+            history.push("/onboarding/nosis");
+            setCurrentStep(STEPS.STEP_10_VALIDAR_IDENTIDAD_NOSIS);
+        }catch (error) {
+            history.push("/onboarding/error");
+            setCurrentStep(STEPS.STEP_99_ERROR);
+            console.error(error);
+        }
+        setShowLoader(false);
+        }
+    };
+
     return(
         <>
         <Encabezado/>
         <Formik
-            /* onSubmit={(values, { setSubmitting }) =>
+            onSubmit={(values, { setSubmitting }) =>
             submitForm(values, setSubmitting)
             }
-            validate={(values) => validateForm(values)} */
         >
             {({
             values,
