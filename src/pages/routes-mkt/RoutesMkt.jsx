@@ -16,11 +16,13 @@ import RegistroValidacionEmail from "./registro-validar-email/RegistroValidacion
 import { InfoPreNosis } from "./info-pre-nosis/InfoPreNosis";
 import { InfoPostNosis } from "./info-post-nosis/InfoPostNosis";
 import { PrestamoExitoso } from "./prestamo-exitoso/PrestamoExitoso";
+import Nosis from "./nosis/Nosis";
 
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useToken } from "api/hooks/useToken";
 import { Error } from "./error/Error";
+
 
 
 const RedirectOnboardign = () => {
@@ -88,17 +90,16 @@ export function RoutesMkt() {
                 <RegistroClave/>
               </VerifyStep>
             </Route>
-            {/* se rompe ruta */}
-
             <Route path="/onboarding/cbu">
               <VerifyStep step={STEPS.STEP_6_VALIDAR_CBU}>
                 <RegistroCbu/>
               </VerifyStep>
             </Route>
+            {/* --> va a mobbex */}
             <Route path="/onboarding/mobbex">
-              {/* <VerifyStep step={STEPS.STEP_7_MOBBEX}> */}
+              <VerifyStep step={STEPS.STEP_7_MOBBEX}>
                 <Mobbex urlMobbex={"https://www.google.com"}/>
-              {/* </VerifyStep> */}
+              </VerifyStep>
             </Route>
             <Route path="/onboarding/email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
@@ -111,22 +112,29 @@ export function RoutesMkt() {
               </VerifyStep>
             </Route>
 
-            <Route path="/onboarding/verificar-info">
+            <Route path="/onboarding/info-pre-nosis">
               <VerifyStep step={STEPS.STEP_9_VERIFICAR_PREAPROBADO}>
                 <InfoPreNosis/>
               </VerifyStep>
             </Route>
-            
-            <Route path="/onboarding/confirmar-info">
+
+            {/* --> va a nosis */}
+            <Route path="/onboarding/nosis">
+              <VerifyStep step={STEPS.STEP_10_VALIDAR_IDENTIDAD_NOSIS}>
+                <Nosis/>
+              </VerifyStep>
+            </Route>
+
+            <Route path="/onboarding/info-post-nosis">
               <VerifyStep step={STEPS.STEP_11_CONFIRMAR_PREAPROBADO}>
                 <InfoPostNosis/>
               </VerifyStep>
             </Route>
 
             <Route path="/onboarding/prestamo-exitoso">
-              {/* <VerifyStep step={STEPS.STEP_11_CONFIRMAR_PREAPROBADO}> */}
+              <VerifyStep step={STEPS.STEP_12_PRESTAMO_EXITOSO}>
                 <PrestamoExitoso/>
-              {/* </VerifyStep> */}
+              </VerifyStep>
             </Route>
 
             <Route path="/onboarding/error">
