@@ -8,23 +8,35 @@ import Footer from "components/commons/Footer";
 import Button from "components/commons/Button";
 
 import RegistroSetps from "../../../components/registro/RegistroSteps";
-import { STEPS } from "../../../components/registro/constantsSteps";
+import { STEPS } from "../../../components/registro/STEPS-MKT";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
+import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
 
 export default function RegistroEmail() {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
   const history = useHistory();
+  const { setCurrentStep } = useStepAtom();
 
   const submitForm = (values, setSubmitting) => {
-    setShowLoader(true);
-    setTimeout(() => {
-      if (!errors) {
-        setShowLoader(false)
-        history.push("/emailCode");
+    if (errors) {
+      return;
+    }
+    if (!errors) {
+      setShowLoader(true);
+      try{
+        history.push("/onboarding/validar-pin-email");
+        setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);
+      }catch (error) {
+        history.push("/onboarding/error");
+        setCurrentStep(STEPS.STEP_99_ERROR);
+        console.error(error);
       }
-    },2000);
+      setShowLoader(false);
+    }
   };
+
+
   const validateForm = (values) => {
     const pattern =
 			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -44,7 +56,7 @@ export default function RegistroEmail() {
   }
   return (
     <>
-      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_EMAIL} />} />
+      <Encabezado title={<RegistroSetps current={STEPS.STEP_8_VALIDAR_EMAIL} />} />
       <Formik
         initialValues={{ clienteEmail: "", }}
         onSubmit={(values, { setSubmitting }) =>
@@ -60,7 +72,7 @@ export default function RegistroEmail() {
           <>
             <form>
               <section>
-                <h3>Vamos a validar el Email</h3>
+                <h3>Validamos tu Email</h3>
                 <div className="row profile-container">
                   <div className="form-group col-12">
                     <Input
@@ -102,7 +114,7 @@ export default function RegistroEmail() {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    Continuar
+                    CONTINUAR
                   </Button>
                 </div>
               </Footer>

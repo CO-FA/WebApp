@@ -6,19 +6,42 @@ import { formErrors } from "../../../utils/constantsErrors";
 import Footer from "components/commons/Footer";
 import Button from "components/commons/Button";
 
-import RegistroSetps from "../../../components/registro/RegistroSteps";
 import { STEPS } from "../../../components/registro/constantsSteps";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
+import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
 
 export function InfoPostNosis() {
+    let { setShowLoader } = React.useContext(LoaderContext);
+	const [errors, setErrors] = useState(false);
+	const history = useHistory();
+    const { setCurrentStep } = useStepAtom();
+
+    const submitForm = (values, setSubmitting) => {
+        if (errors) {
+        return;
+        }
+        if (!errors) {
+        setShowLoader(true);
+        try{
+            history.push("/onboarding/prestamo-exitoso");
+            setCurrentStep(STEPS.STEP_12_PRESTAMO_EXITOSO);
+        }catch (error) {
+            history.push("/onboarding/error");
+            setCurrentStep(STEPS.STEP_99_ERROR);
+            console.error(error);
+        }
+        setShowLoader(false);
+        }
+    };
+
     return(
         <>
         <Encabezado/>
         <Formik
-            /* onSubmit={(values, { setSubmitting }) =>
+            onSubmit={(values, { setSubmitting }) =>
             submitForm(values, setSubmitting)
             }
-            validate={(values) => validateForm(values)} */
+            /* validate={(values) => validateForm(values)} */
         >
             {({
             values,

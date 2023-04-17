@@ -1,5 +1,3 @@
-/* pantalla registro CBU copiada de estadofinanciero-->cargarmicbu */
-
 import React, { useState } from "react";
 import Input from "components/commons/Input";
 import Footer from "components/commons/Footer";
@@ -12,13 +10,15 @@ import Encabezado from "components/commons/Encabezado";
 import { useModal } from "components/modal/ModalContext";
 import { useEffect } from "react";
 import Cbu from "pages/estadofinanciero/Cbu";
-import { Link } from "react-router-dom";
+import { STEPS } from "components/registro/STEPS-MKT";
+import { useStepAtom } from "../atoms/Atoms";
 
-export default function RegistroCbu({ celCodigo, cellNumero }) {
+export default function RegistroCbu({celCodigo,cellNumero}) {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const { showModal, show, setElement } = useModal();
+  const { setCurrentStep } = useStepAtom();
 
   useEffect(() => {
     setElement(<Cbu />);
@@ -29,44 +29,24 @@ export default function RegistroCbu({ celCodigo, cellNumero }) {
     if (errors) {
       return;
     }
-    setShowLoader(true);
-    setTimeout(() => {
-      if (!errors) {
-        setShowLoader(false);
-        history.push("/registro-ultimo");
+    if (!errors) {
+      setShowLoader(true);
+      try{
+        history.push("/onboarding/mobbex");
+        setCurrentStep(STEPS.STEP_7_MOBBEX);
+      }catch (error) {
+        history.push("/onboarding/error");
+        setCurrentStep(STEPS.STEP_99_ERROR);
+        console.error(error);
       }
-    }, 2000);
+      setShowLoader(false);
+    }
   };
+
   const validateForm = (values) => {
-    var errorsAUx = {};
-    if (!values.clienteCelCodigo) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelCodigo: formErrors.CODE_EMPTY,
-      };
-    } else if (String(values.clienteCelCodigo).length < 2) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelCodigo: formErrors.CODE_PHONE_ERROR,
-      };
-    } else {
-      errorsAUx = false;
-    }
-    if (!values.clienteCelNumero) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelNumero: formErrors.PHONE_EMPTY,
-      };
-    } else if (String(values.clienteCelNumero).length < 6) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelNumero: formErrors.PHONE_ERROR,
-      };
-    } else {
-      errorsAUx = errorsAUx || false;
-    }
-    setErrors(errorsAUx);
+    /* ir a BD a buscar el nombre de la entidad bancaria de acuerdo al num de CBU/CVU */
   };
+
   return (
     <>
       <Encabezado/>
@@ -121,6 +101,7 @@ export default function RegistroCbu({ celCodigo, cellNumero }) {
                             name="clienteCelCodigo"
                             errors={[]}
                             values={values}
+                            /* falta icono editar */
                             />
                         </div>
                     </div>
@@ -132,29 +113,26 @@ export default function RegistroCbu({ celCodigo, cellNumero }) {
                         type="submit"
                         onClick={handleSubmit}
                         >
-                            ¿ES CORRECTO EL NÚMERO?
+                            ¿Es correcto el número?
                         </Button>
 
                         <span className="span-cbu" >
-                            {/* todo: cambiar fondo */}
                             Por favor no olvides tener tu cbu actualizado
                         </span>
                     </div>
                 </form>
             </section>
             <Footer>
-                <div className="col-12">
-                  {/* <Link to="/mobbex"> */} {/* lo haces con link o con la funcion handle? */}
-                  <Button
-                    className="btn btn-primary cont"
-                    disabled={false}
-                    type="submit"
-                    onClick={handleSubmit}
-                  >
-                    Continuar
-                  </Button>
-                  {/* </Link> */}
-                </div>
+              <div className="col-12">
+                <Button
+                  className="btn btn-primary cont"
+                  disabled={false}
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  CONTINUAR
+                </Button>
+              </div>
             </Footer>
         </>
         )}

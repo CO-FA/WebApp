@@ -8,20 +8,34 @@ import { Formik } from "formik";
 import {  formErrors  } from "../../../utils/constantsErrors";
 
 import RegistroSetps from "../../../components/registro/RegistroSteps";
-import { STEPS } from "../../../components/registro/constantsSteps";
+import { STEPS } from "../../../components/registro/STEPS-MKT";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
+import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
 
 export default function RegistroValidacionEmail() {
   let { setShowLoader } = React.useContext(LoaderContext);
 	const [errors, setErrors] = useState(false);
 	const history = useHistory();
+  const { setCurrentStep } = useStepAtom();
 
-	const submitForm = (values, setSubmitting) => {
-		if (!errors) {
-      setShowLoader(false)
-			history.push("/newPassword");
-		}
-	};
+  const submitForm = (values, setSubmitting) => {
+    if (errors) {
+      return;
+    }
+    if (!errors) {
+      setShowLoader(true);
+      try{
+        history.push("/onboarding/info-pre-nosis");
+        setCurrentStep(STEPS.STEP_9_VERIFICAR_PREAPROBADO);
+      }catch (error) {
+        history.push("/onboarding/error");
+        setCurrentStep(STEPS.STEP_99_ERROR);
+        console.error(error);
+      }
+      setShowLoader(false);
+    }
+  };
+
 	const validateForm = values => {
 		if (!values.clientePin) {
 			setErrors({ clientePin: formErrors.CODE_EMPTY });
@@ -34,7 +48,7 @@ export default function RegistroValidacionEmail() {
 
 	return (
     <>
-      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_EMAIL} />}/>
+      <Encabezado title={<RegistroSetps current={STEPS.STEP_8_VALIDAR_EMAIL} />}/>
       <Formik
         initialValues={{ clientePin: "" }}
         onSubmit={(values, { setSubmitting }) =>

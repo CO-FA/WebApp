@@ -9,20 +9,33 @@ import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useStepAtom } from "../atoms/Atoms";
-import { Link } from "react-router-dom";
+import { LoaderContext } from "components/loader/LoaderContext";
 
 export const RegistroClave = (props) => {
+  let { setShowLoader } = React.useContext(LoaderContext);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
   const [errors, setErrors] = useState(false);
 
   const submitForm = (values, setSubmitting) => {
+    if (errors) {
+      return;
+    }
     if (!errors) {
-      //TODO: ejecutar WS de guardar clave
-      setCurrentStep(STEPS.STEP_6_VALIDAR_CBU);
-      history.push("/onboarding/cbu");
+      setShowLoader(true);
+      try{
+        //TODO: ejecutar WS de guardar clave
+        history.push("/onboarding/cbu");
+        setCurrentStep(STEPS.STEP_6_VALIDAR_CBU);
+      }catch (error) {
+        history.push("/onboarding/error");
+        setCurrentStep(STEPS.STEP_99_ERROR);
+        console.error(error);
+      }
+      setShowLoader(false);
     }
   };
+
   const validateForm = (values) => {
     debugger;
     // Min 8, 1 letra mayus, 1 letra min, 1 num
@@ -99,7 +112,7 @@ export const RegistroClave = (props) => {
                       <li>
                         Tu contraseña debe tener mínimo 8 caracteres que
                         contengan al menos una minúscula, una mayúscula y un
-                        número.{" "}
+                        número.
                       </li>
                       <li>Ejemplo: Mica2010</li>
                     </ul>
@@ -112,10 +125,10 @@ export const RegistroClave = (props) => {
                 <Button
                   className="btn btn-primary cont"
                   disabled={false}
-                  type="button"
+                  type="submit"
                   onClick={handleSubmit}
                 >
-                  Continuar
+                  CONTINUAR
                 </Button>
               </div>
             </Footer>
