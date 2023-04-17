@@ -10,7 +10,7 @@ export const getVariablesBuro = async (nroDocumento) => {
     myHeaders.append("Authorization", "Bearer " + token?.token);
     myHeaders.append("Content-type", "application/json");
 
-    const body = { nroDocumento: nroDocumento };
+    const body = { nroDocumento: nroDocumento, sexo: "M" };
 
     const requestOptions = {
       method: "POST",
@@ -18,6 +18,9 @@ export const getVariablesBuro = async (nroDocumento) => {
       body: JSON.stringify(body),
       redirect: "follow",
     };
+    console.log("URL getVariablesBuro", URL + "/API/v1/lending/bureau");
+    console.log("Req getVariablesBuro", requestOptions);
+
     const resp = await fetch(URL + "/API/v1/lending/bureau", requestOptions);
 
     const respText = await resp.text();

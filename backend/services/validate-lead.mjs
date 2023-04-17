@@ -37,7 +37,7 @@ const getNSE = async (nroDocumento) => {
   const variables = await getVariablesBuro(nroDocumento);
   console.log(variables);
 
-  const result = variables?.find((el) => el.Variable === "NSE");
+  const result = variables?.find((el) => el.Variable === "IncomePredictor");
 
   return result?.Valor;
 };

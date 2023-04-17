@@ -16,13 +16,13 @@ export default function CalculadoraPrestamo() {
   const { intereses } = usePrestamoAtom();
 
   useEffect(() => {
-    const cantCuotas = parseInt(intereses.maximo_cantidad_cuotas / 2);
+    const cantCuotas = parseInt((intereses?.maximo_cantidad_cuotas || 12) / 2);
     const valorCuota = calcularCuota(
-      intereses.prestamo_preaprobado,
-      intereses.interes,
+      intereses?.prestamo_preaprobado,
+      intereses?.interes,
       cantCuotas
     );
-    setMonto(intereses.prestamo_preaprobado);
+    setMonto(intereses?.prestamo_preaprobado);
     setCuota(cantCuotas);
     setMontoCuota(valorCuota);
   }, [intereses]);
@@ -70,7 +70,7 @@ export default function CalculadoraPrestamo() {
           Tenes un préstamo aprobado por
         </h1>
         <h2 className="text-white flex-grow-1 text-center align-self-end">
-          ${intereses.prestamo_preaprobado}
+          ${intereses?.prestamo_preaprobado}
         </h2>
       </EncabezadoVerde>
       <div className="mb-3 mt-4">
@@ -94,7 +94,7 @@ export default function CalculadoraPrestamo() {
           sx={{
             color: "#53BA38",
           }}
-          max={intereses.prestamo_preaprobado}
+          max={intereses?.prestamo_preaprobado}
         />
       </div>
 
@@ -119,7 +119,7 @@ export default function CalculadoraPrestamo() {
             color: "#53BA38",
           }}
           min={3}
-          max={intereses.maximo_cantidad_cuotas}
+          max={intereses?.maximo_cantidad_cuotas}
         />
       </div>
       <div className="mb-4 mt-4">

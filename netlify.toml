@@ -23,7 +23,7 @@
   to = "http://localhost:3001/:splat"
   force = true
   status = 200
-  #headers = {X-From = "Netlify"}
+  #headers = {content-type = "application/json"}
   #signed = "API_SIGNATURE_TOKEN"
 
 [functions]

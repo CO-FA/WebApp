@@ -27,7 +27,7 @@ export function RegistroValidacionCelular() {
   const { identidad } = useIdentidadAtom();
   const { codArea, numCelular } = useCelularAtom();
   const { setIntereses } = usePrestamoAtom();
-  
+
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;
@@ -45,8 +45,8 @@ export function RegistroValidacionCelular() {
         setIntereses(valid.data);
         const data = await savePhone(values.clientePin, identidad.dni);
 
-        history.push("/onboarding/password");
-        setCurrentStep(STEPS.STEP_5_CLAVE);
+        history.push("/onboarding/calculadora-prestamo");
+        setCurrentStep(STEPS.STEP_4_PRESTAMO);
       } catch (error) {
         history.push("/onboarding/error");
         setCurrentStep(STEPS.STEP_99_ERROR);
@@ -55,7 +55,7 @@ export function RegistroValidacionCelular() {
       setShowLoader(false);
     }
   };
-  
+
   const validateForm = (values) => {
     var errorsAUx = {};
     if (!values.clienteCelCodigo) {

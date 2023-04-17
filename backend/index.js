@@ -2,6 +2,7 @@ import validateLead from "./routes/validate-lead.mjs";
 import express from "express";
 import morgan from "morgan";
 import { createClient } from "@supabase/supabase-js";
+//import { validateLead } from "./services/validate-lead.mjs";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
@@ -25,11 +26,23 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use(validateLead);
+
+/*app.post("/validate-lead", async function (request, res) {
+  console.log("Req VALIDATE LEAD", request.body);
+  const response = await validateLead(request.body);
+  res.json({
+    ...response,
+    //params: request.body,
+  });
+});*/
+
 app.post("/find-cbu", async (request, res) => {
   //TODO: BUSCAR CBU EN SUPABASE
   //004213123123123123
-  const cbu = request.params.cbu;
 
+  const cbu = request.body.cbu;
+  console.log("cbu", cbu);
   let { data: bancos_cbus, error } = await supabase
     .from("bancos_cbus")
     .select("*");
@@ -43,8 +56,6 @@ app.post("/find-cbu", async (request, res) => {
     error: error,
   });
 });
-
-app.use(validateLead);
 
 app.listen(port, () => {
   console.log(`Backend cofa app listening on port ${port}`);

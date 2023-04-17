@@ -3,7 +3,8 @@ import express from "express";
 const router = express.Router();
 
 router.post("/validate-lead", async function (req, res) {
-  const response = await validateLead(req.params);
+  console.log("Req VALIDATE LEAD", req.body);
+  const response = await validateLead(req.body);
   res.json({
     ...response,
   });
