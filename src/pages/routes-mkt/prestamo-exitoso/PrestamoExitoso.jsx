@@ -28,15 +28,15 @@ export function PrestamoExitoso() {
             <>
                 <form>
                     <section>
-                        <div className="row profile-container">
+                        <div className="row profile-container" style={{textAlign: "center"}}>
                             
-                            <div className="form-group col-12">
+                            <div className="form-group col-12" >
                                 <h4>FELICITACIONES</h4>
                                 <p>Nombre Cliente <br/> El préstamo ya lo tenés !!!</p>
                                 <p>En segundos vas a tener depositado el préstamo en tu cuenta.</p>
                             </div>
-                            <div className="col-12">
-                                <h5>Gracias por confiar en nosotros.</h5>
+                            <div className="col-12" style={{marginTop:"60px"}}>
+                                <h5 >Gracias por confiar en nosotros.</h5>
                             </div>
                         </div>
                     </section>
