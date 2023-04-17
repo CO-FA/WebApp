@@ -55,6 +55,7 @@ export function RegistroValidacionCelular() {
       setShowLoader(false);
     }
   };
+  
   const validateForm = (values) => {
     var errorsAUx = {};
     if (!values.clienteCelCodigo) {
@@ -176,7 +177,7 @@ export function RegistroValidacionCelular() {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    Continuar
+                    CONTINUAR
                   </Button>
                 </div>
               </Footer>
