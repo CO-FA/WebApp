@@ -1,5 +1,6 @@
 import { atom, useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
+
 export const stepAtom = atom(1);
 export const useStepAtom = () => {
   const [currentStep, setCurrentStep] = useAtom(stepAtom);
@@ -31,4 +32,10 @@ export const usePrestamoAtom = () => {
   const [intereses, setIntereses] = useAtom(interesesAtom);
 
   return { intereses, setIntereses };
+};
+
+const situacionLaboralAtom = atomWithStorage("situacionLaboral");
+export const useSituacionLaboralAtom = () => {
+  const [situacionLaboral, setSituacionLaboral] = useAtom(situacionLaboralAtom);
+  return { situacionLaboral, setSituacionLaboral };
 };

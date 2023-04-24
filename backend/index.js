@@ -1,7 +1,9 @@
 import validateLead from "./routes/validate-lead.mjs";
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 import { createClient } from "@supabase/supabase-js";
+
 //import { validateLead } from "./services/validate-lead.mjs";
 
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -19,6 +21,7 @@ app.set("json spaces", 2);
 app.use(morgan("combined"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({

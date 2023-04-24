@@ -3,8 +3,13 @@ import { useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 
 import "../../assets/css/main.css";
+
+//Export default
 import CalculadoraPrestamo from "./calculadora-prestamo/CalculadoraPrestamo";
+
+//export
 import { RegistroCelular } from "./registro-celular/RegistroCelular";
+
 import { RegistroDni } from "./registro-dni/RegistroDni";
 import RegistroElegirIdentidad from "./registro-elegir-identidad/RegistroElegirIdentidad";
 import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroValidacionCelular";

@@ -13,7 +13,7 @@ const HttpApi = async function (url, request) {
   request.headers = {
     ...request?.headers,
     Authorization: "Bearer " + auth,
-    "content-type": "application/json",
+    "Content-Type": "application/json",
   };
 
   console.log("Request => ", url, request);
@@ -24,9 +24,8 @@ export const post = async (url, body) => {
   try {
     let response = await HttpApi(url, {
       method: "POST",
-      mode: "no-cors",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify(body),
