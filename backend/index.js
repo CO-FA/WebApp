@@ -63,3 +63,17 @@ app.post("/find-cbu", async (request, res) => {
 app.listen(port, () => {
   console.log(`Backend cofa app listening on port ${port}`);
 });
+
+//BUSCA SITUACION LABORAL EN SUPABASE
+app.get("/situaciones", async (req, res) => {
+
+  let { data: situacion_laboral, error } = await supabase
+    .from("situacion_laboral")
+    .select("*");
+
+  res.json({
+    data: situacion_laboral,
+    error: error,
+  });
+});
+
