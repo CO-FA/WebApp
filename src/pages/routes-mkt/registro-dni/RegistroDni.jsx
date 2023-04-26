@@ -8,7 +8,7 @@ import Button from "components/commons/Button";
 import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
+import { useStepAtom, useIdentidadAtom, useSituacionLaboralAtom } from "../atoms/Atoms";
 import { useLoaderContext } from "components/loader/LoaderContext";
 
 export function RegistroDni() {
@@ -16,11 +16,13 @@ export function RegistroDni() {
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
   const { documento, setDocumento } = useIdentidadAtom();
+  const { situacionLaboral, setSituacionLaboral } = useSituacionLaboralAtom();
   const { setShowLoader } = useLoaderContext();
 
   const submitForm = async (values, setSubmitting) => {
     if (!errors) {
       setDocumento(values.clienteDocNumero);
+      setSituacionLaboral(values.clienteSituacionLaboral)
       setShowLoader(true);
 
       history.push("/onboarding/elegir-identidad");
@@ -46,7 +48,7 @@ export function RegistroDni() {
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_1_DNI} />} />
       <Formik
-        initialValues={{ clienteDocNumero: documento }}
+        initialValues={{ clienteDocNumero: documento, clienteSituacionLaboral: situacionLaboral}}
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)
         }
@@ -68,6 +70,22 @@ export function RegistroDni() {
                         errors={errors}
                         values={values}
                       />
+                    </div>
+                    <div className="form-group col-12">
+                      {/* select que guarda info en situacion laboral atoms!*/}
+                      <label for="situacionLaboral">Situación Laboral</label>
+                      <select className="form-control" name="clienteSituacionLaboral" id="situacionLaboral">
+                        <option value="empleado">Empleado</option>
+                        <option value="empleadoPublico">Empleado Público</option>
+                        <option value="autonomo">Autónomo</option>
+                        <option value="monotibutista">Monotributista</option>
+                        <option value="tabajadorIndependiente">Trabajador Independiente</option>
+                        <option value="jubilado">Jubilado</option>
+                        <option value="beneficiarioDePlan">Beneficiario de Plan</option>
+                        <option value="policia">Policía</option>
+                        <option value="fuerzasArmadas">Fuerzas Armadas</option>
+                        <option value="desempleado">Desempleado</option>
+                      </select>
                     </div>
                   </div>
                 </div>
