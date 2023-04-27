@@ -2,7 +2,7 @@ import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
-export const getVariablesBuro = async (nroDocumento) => {
+export const getVariablesBuro = async ({ nroDocumento, sexo }) => {
   try {
     const token = await getToken();
 
@@ -10,7 +10,7 @@ export const getVariablesBuro = async (nroDocumento) => {
     myHeaders.append("Authorization", "Bearer " + token?.token);
     myHeaders.append("Content-type", "application/json");
 
-    const body = { nroDocumento: nroDocumento, sexo: "M" };
+    const body = { nroDocumento: nroDocumento, sexo: sexo };
 
     const requestOptions = {
       method: "POST",

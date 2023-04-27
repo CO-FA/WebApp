@@ -70,7 +70,7 @@ export default function CalculadoraPrestamo() {
       <EncabezadoVerde>
         <TextoHeaderSecundario text={identidad?.nombreCompleto} />
         <TextoHeaderPrimario text={"Tenes un préstamo aprobado por"} />
-        <TextoHeaderSecundario text={intereses?.prestamo_preaprobado} />
+        <TextoHeaderSecundario text={"$" + intereses?.prestamo_preaprobado} />
       </EncabezadoVerde>
       <Box>
         <InputWithDecorator
@@ -86,6 +86,8 @@ export default function CalculadoraPrestamo() {
           sx={{
             color: "#53BA38",
           }}
+          step={500}
+          min={2000}
           max={intereses?.prestamo_preaprobado}
         />
       </Box>

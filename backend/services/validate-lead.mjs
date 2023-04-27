@@ -5,6 +5,16 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
 
+const isValidSituacionLaboral = async (codigoSituacion) => {
+  let { data: situacion, error } = await supabase
+    .from("situacion_laboral")
+    .select()
+    .eq("id", codigoSituacion);
+  console.log("situaciones Laborales", situacion, error);
+
+  return situacion.some((sit) => sit.categoria_riesgo > 0);
+};
+
 const isInvalidBcra = async (nroDocumento) => {
   let { data: bcraValidationConfig, error } = await supabase
     .from("bcra_validation_config")
@@ -33,8 +43,8 @@ const isValidBuro = async (nroDocumento) => {
   return result;
 };
 
-const getNSE = async (nroDocumento) => {
-  const variables = await getVariablesBuro(nroDocumento);
+const getNivelRiesgo = async ({ nroDocumento, sexo }) => {
+  const variables = await getVariablesBuro({ nroDocumento, sexo });
   console.log(variables);
 
   const result = variables?.find((el) => el.Variable === "IncomePredictor");
@@ -62,9 +72,7 @@ export const validateLead = async (body) => {
     // Parse the JSON text received.
     const response = { mensaje: "lead valido" };
     console.info("REQUEST body", body);
-    //TODO: Validar nro doc
-    //TODO: Validar CENDEU
-    //TODO: Validar Nosis
+
     //TODO: Generar preaprobado
     if (parseFloat(body.nroDocumento) < parseFloat(maxDocument)) {
       console.error(`Nro de documento invalido, mayor a ${maxDocument}`, body);
@@ -72,6 +80,12 @@ export const validateLead = async (body) => {
       return { error: "Nro de documento inválido" };
     }
 
+    const isValidSituacion = await isValidSituacionLaboral(body.situacion);
+
+    if (!isValidSituacion) {
+      console.log("Situación INVALIDO");
+      return { error: "No tenemos prestamos para ofrecerte" };
+    }
     const isInvalidBCRA = await isInvalidBcra(body.nroDocumento);
     if (isInvalidBCRA) {
       console.log("BCRA INVALIDO");
@@ -79,7 +93,10 @@ export const validateLead = async (body) => {
     }
 
     //const isValidBURO = await isValidBuro(body.nroDocumento);
-    const nse = await getNSE(body.nroDocumento);
+    const nse = await getNivelRiesgo({
+      nroDocumento: body.nroDocumento,
+      sexo: body.sexo,
+    });
     console.log("NSE", nse);
 
     const intereses = await getIntereses(nse);

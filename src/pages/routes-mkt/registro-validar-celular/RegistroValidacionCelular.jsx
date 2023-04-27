@@ -15,6 +15,8 @@ import {
   useIdentidadAtom,
   useCelularAtom,
   usePrestamoAtom,
+  useSituacionLaboralAtom,
+  useGeneroAtom,
 } from "../atoms/Atoms";
 import { savePhone } from "api/PhoneValidation";
 import { validarLead } from "api/LeadValidation";
@@ -25,8 +27,10 @@ export function RegistroValidacionCelular() {
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
   const { identidad } = useIdentidadAtom();
+  const { situacionLaboral } = useSituacionLaboralAtom();
   const { codArea, numCelular } = useCelularAtom();
   const { setIntereses } = usePrestamoAtom();
+  const { genero } = useGeneroAtom();
 
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
@@ -41,7 +45,12 @@ export function RegistroValidacionCelular() {
         //TODO: Generar preaprobado
 
         console.log("identidad", identidad);
-        const valid = await validarLead(identidad);
+        const valid = await validarLead({
+          dni: identidad.dni,
+          cuit: identidad.cuit,
+          sexo: genero,
+          situacion: situacionLaboral,
+        });
         setIntereses(valid.data);
         const data = await savePhone(values.clientePin, identidad.dni);
 

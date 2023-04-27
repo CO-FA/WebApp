@@ -1,12 +1,14 @@
 import { post } from "./HttpApi";
 
-export const validarLead = async ({ dni, cuit }) => {
+export const validarLead = async ({ dni, cuit, sexo, situacion }) => {
   let url = process.env.IS_LOCAL
     ? "/back/validate-lead"
     : "http://localhost:3001/validate-lead";
   const body = {
     nroDocumento: dni,
     cuit: cuit,
+    sexo,
+    situacion,
   };
   const obj = await fetch(url, {
     method: "POST",

@@ -39,3 +39,9 @@ export const useSituacionLaboralAtom = () => {
   const [situacionLaboral, setSituacionLaboral] = useAtom(situacionLaboralAtom);
   return { situacionLaboral, setSituacionLaboral };
 };
+
+const generoAtom = atomWithStorage("generoAtom");
+export const useGeneroAtom = () => {
+  const [genero, setGenero] = useAtom(generoAtom);
+  return { genero, setGenero };
+};

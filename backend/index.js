@@ -31,19 +31,9 @@ app.get("/", (req, res) => {
 
 app.use(validateLead);
 
-/*app.post("/validate-lead", async function (request, res) {
-  console.log("Req VALIDATE LEAD", request.body);
-  const response = await validateLead(request.body);
-  res.json({
-    ...response,
-    //params: request.body,
-  });
-});*/
-
 app.post("/find-cbu", async (request, res) => {
   //TODO: BUSCAR CBU EN SUPABASE
   //004213123123123123
-
   const cbu = request.body.cbu;
   console.log("cbu", cbu);
   let { data: bancos_cbus, error } = await supabase
@@ -66,14 +56,15 @@ app.listen(port, () => {
 
 //BUSCA SITUACION LABORAL EN SUPABASE
 app.get("/situaciones", async (req, res) => {
-
   let { data: situacion_laboral, error } = await supabase
     .from("situacion_laboral")
     .select("*");
 
+  const data = situacion_laboral.map((sit) => {
+    return { id: sit.id, descripcion: sit.descripcion };
+  });
   res.json({
-    data: situacion_laboral,
+    data: data,
     error: error,
   });
 });
-
