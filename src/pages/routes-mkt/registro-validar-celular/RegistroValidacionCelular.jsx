@@ -45,6 +45,9 @@ export function RegistroValidacionCelular() {
         //TODO: Generar preaprobado
 
         console.log("identidad", identidad);
+        
+        console.log("genero", genero)
+
         const valid = await validarLead({
           dni: identidad.dni,
           cuit: identidad.cuit,
