@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "components/commons/Input";
 import Encabezado from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { useHistory } from "react-router-dom";
 import Button from "components/commons/Button";
 import { formErrors } from "utils/constantsErrors";
@@ -17,62 +17,9 @@ import {
 import { useLoaderContext } from "components/loader/LoaderContext";
 import { useEffect } from "react";
 import { getSituaciones } from "api/SituacionesLaborales";
+import { SelectGenero } from "./hooks/SelectGenero";
+import { SelectSituacionLaboral } from "./hooks/SelectSituacionLaboral";
 
-const SelectSituacionLaboral = ({ opciones, errors }) => {
-  return (
-    <>
-      {" "}
-      <label htmlFor="situacionLaboral">Situación Laboral</label>
-      <Field
-        className="form-control"
-        name="clienteSituacionLaboral"
-        id="situacionLaboral"
-        as="select"
-      >
-        <option value={""} disabled selected>
-          Seleccione Situación Laboral...
-        </option>
-        {opciones?.map((opt) => {
-          return (
-            <option value={opt.id} key={opt.id}>
-              {opt.descripcion}
-            </option>
-          );
-        })}
-      </Field>
-      {errors.clienteSituacionLaboral && (
-        <span id="clientePass-errorMsg" className="form-text text-danger small">
-          {`* ${errors.clienteSituacionLaboral}`}
-        </span>
-      )}
-    </>
-  );
-};
-
-const SelectGenero = ({ errors }) => {
-  return (
-    <>
-      <label htmlFor="clienteGenero">Genero</label>
-      <Field
-        className="form-control"
-        name="clienteGenero"
-        id="clienteGenero"
-        as="select"
-      >
-        <option value={""} disabled selected>
-          Seleccione Genero...
-        </option>
-        <option value={"M"}>Masculino</option>
-        <option value={"F"}>Femenino</option>
-      </Field>
-      {errors.clienteSituacionLaboral && (
-        <span id="clientePass-errorMsg" className="form-text text-danger small">
-          {`* ${errors.clienteGenero}`}
-        </span>
-      )}
-    </>
-  );
-};
 
 export function RegistroDni() {
   const [opciones, setOpciones] = useState();
