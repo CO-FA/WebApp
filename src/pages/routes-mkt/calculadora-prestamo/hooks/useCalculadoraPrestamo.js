@@ -1,6 +1,5 @@
 import { usePrestamoAtom } from "pages/routes-mkt/atoms/Atoms";
 import { useEffect, useState } from "react";
-
 import { useCallback } from "react";
 
 const maxPrestamo = 100000;
@@ -52,7 +51,7 @@ export const useCalculadoraPrestamo = () => {
 
       const valorCuota = calcularCuota(
         total,
-        intereses.interes,
+        intereses?.interes,
         cuotas
       ).toFixed(2);
       setMontoCuota(valorCuota);
