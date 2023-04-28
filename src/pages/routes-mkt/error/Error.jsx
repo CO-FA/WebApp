@@ -5,6 +5,7 @@ import { STEPS } from "components/registro/STEPS-MKT";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { useStepAtom } from "../atoms/Atoms";
 import Button from "components/commons/Button";
+import Footer from "components/commons/Footer";
 
 export function Error() {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -22,29 +23,21 @@ export function Error() {
 
   return (
     <>
-      <div
-        className="container  w-100 h-100 text-center"
-        style={{
-          background: "#FFD233",
-          width: "100vw !important",
-          height: "100vh !important",
-          position: "fixed",
-          left: 0,
-          top: 0,
-          margin: "0px",
-          padding: "40px",
-          display: "flex",
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "space-around",
-          flexDirection: "column",
-          gap: "6em",
-        }}
+      <div className="text-center" style={{
+        background: "#FFD233",
+        width: "100vw !important",
+        height: "inherit",
+        padding: "40px",
+        marginLeft: "-15px",
+        marginRight: "-15px",
+      }}
       >
         <h3>En estos momentos no tenemos un préstamo para ofrecerte. </h3>
-        <Button onClick={volver} className="btn btn-light cont">
-          VOLVER AL PERFIL
-        </Button>
+        <Footer>
+          <Button onClick={volver} className="btn btn-light cont">
+            VOLVER
+          </Button>
+        </Footer>
       </div>
     </>
   );
