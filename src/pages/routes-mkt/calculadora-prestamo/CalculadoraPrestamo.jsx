@@ -5,55 +5,11 @@ import Button from "components/commons/Button";
 import { Link } from "react-router-dom";
 import { useCalculadoraPrestamo } from "./hooks/useCalculadoraPrestamo";
 import { useIdentidadAtom } from "../atoms/Atoms";
-
-const TextoHeaderSecundario = ({ text }) => {
-  return (
-    <h2 className="text-white flex-grow-1 text-center align-self-end">
-      {text}
-    </h2>
-  );
-};
-const TextoHeaderPrimario = ({ text }) => {
-  return (
-    <h1 className="text-white flex-grow-1 text-center align-self-end">
-      {text}
-    </h1>
-  );
-};
-const InputWithDecorator = ({
-  decorator,
-  placeholder,
-  name,
-  value,
-  onChange,
-  ...props
-}) => {
-  return (
-    <div className="d-flex form-group align-items-center justify-content-center decorator">
-      {decorator && <span className="decorator-input">{decorator}</span>}
-      <input
-        type="number"
-        className="form-control mb-4 text-center input-slider"
-        placeholder={placeholder}
-        name={name}
-        value={value}
-        onChange={onChange}
-      />
-    </div>
-  );
-};
-
-const Message = ({ text }) => {
-  return (
-    <div className="mb-4 mt-4">
-      <h4 className="text-center">{text}</h4>
-    </div>
-  );
-};
-
-const Box = ({ children, className }) => {
-  return <div className={"mb-3 mt-4 " + (className || "")}>{children}</div>;
-};
+import { Box } from "./hooks/Box";
+import { InputWithDecorator } from "./hooks/InputWithDecorator";
+import { TextoHeaderSecundario } from "./hooks/TextoHeaderSecundario";
+import { TextoHeaderPrimario } from "./hooks/TextoHeaderPrimario";
+import { Message } from "./hooks/Message";
 
 export default function CalculadoraPrestamo() {
   const { identidad } = useIdentidadAtom();
@@ -91,7 +47,6 @@ export default function CalculadoraPrestamo() {
           max={intereses?.prestamo_preaprobado}
         />
       </Box>
-
       <Box>
         <InputWithDecorator
           placeholder="Cuotas"
@@ -99,7 +54,6 @@ export default function CalculadoraPrestamo() {
           value={cuota}
           onChange={handleChangeCuota}
         />
-
         <Slider
           value={cuota}
           onChange={handleChangeCuota}
@@ -111,7 +65,7 @@ export default function CalculadoraPrestamo() {
         />
       </Box>
       <Message text={`${cuota} Cuotas de ${montoCuota}`} />
-      <Link to="/registro-nosis">
+      <Link to="/onboarding/password">
         <Button className="btn btn-primary cont" disabled={false} type="submit">
           CONTINUAR
         </Button>
