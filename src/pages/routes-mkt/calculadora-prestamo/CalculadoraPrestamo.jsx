@@ -5,7 +5,7 @@ import Button from "components/commons/Button";
 import { Link } from "react-router-dom";
 import { useCalculadoraPrestamo } from "./hooks/useCalculadoraPrestamo";
 import { useIdentidadAtom } from "../atoms/Atoms";
-import { Box } from "./hooks/Box";
+import { Box } from "./components/Box";
 import { InputWithDecorator } from "./hooks/InputWithDecorator";
 import { TextoHeaderSecundario } from "./hooks/TextoHeaderSecundario";
 import { TextoHeaderPrimario } from "./hooks/TextoHeaderPrimario";
