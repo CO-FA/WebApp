@@ -5,11 +5,11 @@ import Button from "components/commons/Button";
 import { Link } from "react-router-dom";
 import { useCalculadoraPrestamo } from "./hooks/useCalculadoraPrestamo";
 import { useIdentidadAtom } from "../atoms/Atoms";
+import { TextoHeaderSecundario } from "./components/TextoHeaderSecundario";
+import { TextoHeaderPrimario } from "./components/TextoHeaderPrimario";
+import { InputWithDecorator } from "./components/InputWithDecorator";
+import { Message } from "./components/Message";
 import { Box } from "./components/Box";
-import { InputWithDecorator } from "./hooks/InputWithDecorator";
-import { TextoHeaderSecundario } from "./hooks/TextoHeaderSecundario";
-import { TextoHeaderPrimario } from "./hooks/TextoHeaderPrimario";
-import { Message } from "./hooks/Message";
 
 export default function CalculadoraPrestamo() {
   const { identidad } = useIdentidadAtom();
