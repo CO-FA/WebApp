@@ -23,11 +23,11 @@ export const RegistroClave = (props) => {
     }
     if (!errors) {
       setShowLoader(true);
-      try{
+      try {
         //TODO: ejecutar WS de guardar clave
         history.push("/onboarding/cbu");
         setCurrentStep(STEPS.STEP_6_VALIDAR_CBU);
-      }catch (error) {
+      } catch (error) {
         history.push("/onboarding/error");
         setCurrentStep(STEPS.STEP_99_ERROR);
         console.error(error);
@@ -37,7 +37,6 @@ export const RegistroClave = (props) => {
   };
 
   const validateForm = (values) => {
-    debugger;
     // Min 8, 1 letra mayus, 1 letra min, 1 num
     let pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/g;
 
@@ -82,7 +81,7 @@ export const RegistroClave = (props) => {
               <form>
                 <h3>¡Último paso!</h3>
                 <div className="row profile-container">
-                  <div class="form-group col-12">
+                  <div className="form-group col-12">
                     <Input
                       label="Ingresá tu contraseña alfanumérica"
                       name="clientePass"
@@ -94,7 +93,7 @@ export const RegistroClave = (props) => {
                       values={values}
                     />
                   </div>
-                  <div class="form-group col-12">
+                  <div className="form-group col-12">
                     <Input
                       label="Repetí tu contraseña alfanumérica"
                       name="clientePassConfirm"
