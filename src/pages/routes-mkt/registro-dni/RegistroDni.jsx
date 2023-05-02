@@ -17,8 +17,8 @@ import {
 import { useLoaderContext } from "components/loader/LoaderContext";
 import { useEffect } from "react";
 import { getSituaciones } from "api/SituacionesLaborales";
-import { SelectGenero } from "./hooks/SelectGenero";
-import { SelectSituacionLaboral } from "./hooks/SelectSituacionLaboral";
+import { SelectGenero } from "./components/SelectGenero";
+import { SelectSituacionLaboral } from "./components/SelectSituacionLaboral";
 
 
 export function RegistroDni() {

@@ -32,8 +32,6 @@ app.get("/", (req, res) => {
 app.use(validateLead);
 
 app.post("/find-cbu", async (request, res) => {
-  //TODO: BUSCAR CBU EN SUPABASE
-  //004213123123123123
   const cbu = request.body.cbu;
   console.log("cbu", cbu);
   let { data: bancos_cbus, error } = await supabase
