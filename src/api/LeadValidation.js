@@ -3,7 +3,7 @@ export const validarLead = async ({ dni, cuit, sexo, situacion }) => {
   const body = {
     nroDocumento: dni,
     cuit: cuit,
-    sexo,
+    sexo, //ANTO: acá decia genero y se recibia como parametro sexo
     situacion,
   };
   const obj = await fetch(url, {
