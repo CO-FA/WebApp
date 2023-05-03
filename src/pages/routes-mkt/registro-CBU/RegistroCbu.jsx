@@ -11,8 +11,7 @@ import { useModal } from "components/modal/ModalContext";
 import { useEffect } from "react";
 import Cbu from "pages/estadofinanciero/Cbu";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useStepAtom } from "../atoms/Atoms";
-import { getNombreBanco } from "api/NombreBanco";
+import { useCbuAtom, useStepAtom } from "../atoms/Atoms";
 import { useFindBanco } from "./hooks/useFindBanco";
 
 export default function RegistroCbu({}) {
@@ -23,6 +22,7 @@ export default function RegistroCbu({}) {
   const { setCurrentStep } = useStepAtom();
   const [cbu, setCbu] = useState();
   const { banco } = useFindBanco({ cbu });
+  const {clienteCbu, setClienteCbu} = useCbuAtom();
 
   useEffect(() => {
     setElement(<Cbu />);
@@ -35,6 +35,7 @@ export default function RegistroCbu({}) {
     }
     if (!errors) {
       setShowLoader(true);
+      setClienteCbu(values.nroCbu)
       try {
         history.push("/onboarding/mobbex");
         setCurrentStep(STEPS.STEP_7_MOBBEX);
@@ -56,7 +57,7 @@ export default function RegistroCbu({}) {
     <>
       <Encabezado />
       <Formik
-        initialValues={{}}
+        initialValues={{nroCbu: clienteCbu}}
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)
         }
@@ -112,7 +113,7 @@ export default function RegistroCbu({}) {
                   <Button
                     className="btn btn-warning cont mb-3"
                     // no toma estos estilos, clase btn
-                    /* style={
+                   /* style={
                         {
                           height: "43px",
                           borderRadius: "50px",
