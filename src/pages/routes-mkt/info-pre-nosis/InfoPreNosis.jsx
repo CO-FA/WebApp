@@ -10,8 +10,15 @@ import Button from "components/commons/Button";
 import { STEPS } from "../../../components/registro/constantsSteps";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
 import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
+import { useCalculadoraPrestamo } from "../calculadora-prestamo/hooks/useCalculadoraPrestamo";
 
 export function InfoPreNosis() {
+    const {
+        monto,
+        cuota,
+        montoCuota,
+    } = useCalculadoraPrestamo();
+
     let { setShowLoader } = React.useContext(LoaderContext);
 	const [errors, setErrors] = useState(false);
 	const history = useHistory();
@@ -55,12 +62,12 @@ export function InfoPreNosis() {
                         <div className="row profile-container">
                             <div className="form-group col-12">
                                 <h4>Ya tenés APROBADO el préstamo por </h4>
-                                <h4>[[var importe]]</h4>
-                                <p>En {}x cuotas de ${}</p>
+                                <h4>${monto}</h4>
+                                <p>En {cuota} cuotas de ${montoCuota}</p>
                             </div>
                             <div className="form-group col-12">
-                                <h3>Vamos a validar tu identidad</h3>
-                                <p>Necesitamos:<br/>Foto del DNI, frente y dorso <br/>Una selfie </p>
+                                <h4  style={{ fontWeight: "bold"}}>Vamos a validar tu identidad</h4>
+                                <p>Necesitamos:<br/>- Foto del frente y dorso de tu DNI <br/>- Una selfie :)</p>
                             
                             </div>
                         </div>

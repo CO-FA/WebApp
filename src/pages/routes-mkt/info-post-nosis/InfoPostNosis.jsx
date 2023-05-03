@@ -9,12 +9,22 @@ import Button from "components/commons/Button";
 import { STEPS } from "../../../components/registro/constantsSteps";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
 import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
+import { useCalculadoraPrestamo } from "../calculadora-prestamo/hooks/useCalculadoraPrestamo";
+import { useCbuAtom } from "../atoms/Atoms";
+import { useFindBanco } from "../registro-cbu/hooks/useFindBanco";
 
-export function InfoPostNosis() {
+export function InfoPostNosis({ cbu }) {
     let { setShowLoader } = React.useContext(LoaderContext);
 	const [errors, setErrors] = useState(false);
 	const history = useHistory();
     const { setCurrentStep } = useStepAtom();
+    const {
+        monto,
+        cuota,
+        montoCuota,
+    } = useCalculadoraPrestamo();
+    const {clienteCbu} = useCbuAtom();
+    const { banco } = useFindBanco({ clienteCbu });
 
     const submitForm = (values, setSubmitting) => {
         if (errors) {
@@ -54,13 +64,10 @@ export function InfoPostNosis() {
                         <h3>Revisá y confirmá</h3>
                         <div className="row profile-container">
                             <div className="form-group col-12">
-                                <p>Estas pidiendo un préstamo de <br/> $99999999</p>
-                                <p>a devolver en 99 cuotas de <br/> $99999999 <b> con vencimiento <br/> primera cuota el DD/MM/AA </b></p>
-                                <p>Te lo estaremos depositando en tu CBU/CVU <br/> 000000000000000000000000 <br/>(nombre entidad bancaria)</p>
+                                <p>Estas pidiendo un préstamo de ${monto}</p>
+                                <p>A devolver en {cuota} cuotas de ${montoCuota} <br/><b> con vencimiento primera cuota el DD/MM/AA </b></p>
+                                <p>Te lo estaremos depositando en tu CBU/CVU <br/> {clienteCbu} <br/>{banco?.ds_banco}</p>
                             </div>
-                            {/* <div className="form-group col-12">
-                            
-                            </div> */}
                         </div>
                     </section>
                     <Footer>
