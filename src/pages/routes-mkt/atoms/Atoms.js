@@ -45,3 +45,9 @@ export const useGeneroAtom = () => {
   const [genero, setGenero] = useAtom(generoAtom);
   return { genero, setGenero };
 };
+
+const cbuAtom = atomWithStorage("cbuAtom");
+export const useCbuAtom = () => {
+  const [clienteCbu, setClienteCbu] = useAtom(cbuAtom);
+  return { clienteCbu, setClienteCbu };
+};
