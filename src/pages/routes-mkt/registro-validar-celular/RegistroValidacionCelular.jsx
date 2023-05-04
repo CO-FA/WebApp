@@ -39,14 +39,11 @@ export function RegistroValidacionCelular() {
     if (!errors) {
       setShowLoader(true);
       try {
-        //TODO: Validar nro doc
-        //TODO: Validar CENDEU
-        //TODO: Validar Nosis
         //TODO: Generar preaprobado
 
         console.log("identidad", identidad);
-        
-        console.log("genero", genero)
+
+        console.log("genero", genero);
 
         const valid = await validarLead({
           dni: identidad.dni,
@@ -54,7 +51,9 @@ export function RegistroValidacionCelular() {
           sexo: genero,
           situacion: situacionLaboral,
         });
+        //TODO: validar datos antes de navegar
         setIntereses(valid.data);
+        //TODO: ELIMINAR FUNCIÓN DEL FRONT
         const data = await savePhone(values.clientePin, identidad.dni);
 
         history.push("/onboarding/calculadora-prestamo");

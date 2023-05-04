@@ -64,9 +64,21 @@ const getIntereses = async (categoria) => {
   return config_intereses.length > 0 && config_intereses[0];
 };
 
+const ERRORS = {
+  error_documento: { error: "Nro de documento inválido", cd_error: 1 },
+  error_sin_prestamo: {
+    error: "No tenemos prestamos para ofrecerte",
+    cd_error: 2,
+  },
+};
+
 export const validateLead = async (body) => {
   console.log("This was a POST request.. CONTINUE");
   try {
+    //TODO: validar PIN SMS
+    // SI DEVUELVE ALGUN ERROR RETORNAR ERROR AL FRONT
+    //SI EL RESULTADO ES SUCCESS CONTINUAR
+
     const maxDocument = process.env.MAX_DOCUMENT || "18000000";
     //const token = event.queryStringParameters.token;
     // Parse the JSON text received.
@@ -77,19 +89,19 @@ export const validateLead = async (body) => {
     if (parseFloat(body.nroDocumento) < parseFloat(maxDocument)) {
       console.error(`Nro de documento invalido, mayor a ${maxDocument}`, body);
 
-      return { error: "Nro de documento inválido" };
+      return ERRORS.error_documento;
     }
 
     const isValidSituacion = await isValidSituacionLaboral(body.situacion);
 
     if (!isValidSituacion) {
       console.log("Situación INVALIDO");
-      return { error: "No tenemos prestamos para ofrecerte" };
+      return ERRORS.error_sin_prestamo;
     }
     const isInvalidBCRA = await isInvalidBcra(body.nroDocumento);
     if (isInvalidBCRA) {
       console.log("BCRA INVALIDO");
-      return { error: "No tenemos prestamos para ofrecerte" };
+      return ERRORS.error_sin_prestamo;
     }
 
     //const isValidBURO = await isValidBuro(body.nroDocumento);
