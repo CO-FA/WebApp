@@ -11,11 +11,15 @@ export const calcularCuota = (capital, interes, plazo) => {
 };
 
 export const useCalculadoraPrestamo = () => {
-  const [monto, setMonto] = useState(maxPrestamo);
-  const [montoCuota, setMontoCuota] = useState(maxPrestamo / 12);
-  const [cuota, setCuota] = useState(12);
-
-  const { intereses } = usePrestamoAtom();
+  const {
+    intereses,
+    monto,
+    setMonto,
+    montoCuota,
+    setMontoCuota,
+    cuota,
+    setCuota,
+  } = usePrestamoAtom();
 
   useEffect(() => {
     const cantCuotas = parseInt((intereses?.maximo_cantidad_cuotas || 12) / 2);

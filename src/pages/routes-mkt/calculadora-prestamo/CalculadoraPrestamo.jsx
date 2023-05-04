@@ -33,11 +33,11 @@ export default function CalculadoraPrestamo() {
           decorator="$"
           placeholder="Monto"
           name="monto"
-          value={monto}
+          value={monto || 2000}
           onChange={handleChangeMonto}
         />
         <Slider
-          value={monto}
+          value={monto || 2000}
           onChange={handleChangeMonto}
           sx={{
             color: "#53BA38",
@@ -51,11 +51,11 @@ export default function CalculadoraPrestamo() {
         <InputWithDecorator
           placeholder="Cuotas"
           name="cuota"
-          value={cuota}
+          value={cuota || 12}
           onChange={handleChangeCuota}
         />
         <Slider
-          value={cuota}
+          value={cuota || 12}
           onChange={handleChangeCuota}
           sx={{
             color: "#53BA38",

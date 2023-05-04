@@ -28,10 +28,25 @@ export const useCelularAtom = () => {
 };
 
 const interesesAtom = atomWithStorage("intereses");
+const cuotaAtom = atomWithStorage("cuota");
+const montoCuotaAtom = atomWithStorage("montoCuota");
+const montoAtom = atomWithStorage("monto");
 export const usePrestamoAtom = () => {
   const [intereses, setIntereses] = useAtom(interesesAtom);
+  const [monto, setMonto] = useAtom(montoAtom);
+  const [montoCuota, setMontoCuota] = useAtom(montoCuotaAtom);
+  const [cuota, setCuota] = useAtom(cuotaAtom);
 
-  return { intereses, setIntereses };
+  return {
+    intereses,
+    setIntereses,
+    monto,
+    setMonto,
+    montoCuota,
+    setMontoCuota,
+    cuota,
+    setCuota,
+  };
 };
 
 const situacionLaboralAtom = atomWithStorage("situacionLaboral");
