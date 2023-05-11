@@ -18,7 +18,6 @@ import {
   useSituacionLaboralAtom,
   useGeneroAtom,
 } from "../atoms/Atoms";
-import { savePhone } from "api/PhoneValidation";
 import { validarLead } from "api/LeadValidation";
 
 export function RegistroValidacionCelular() {
@@ -53,8 +52,6 @@ export function RegistroValidacionCelular() {
         });
         //TODO: validar datos antes de navegar
         setIntereses(valid.data);
-        //TODO: ELIMINAR FUNCIÓN DEL FRONT
-        const data = await savePhone(values.clientePin, identidad.dni);
 
         history.push("/onboarding/calculadora-prestamo");
         setCurrentStep(STEPS.STEP_4_PRESTAMO);

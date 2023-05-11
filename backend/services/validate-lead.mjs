@@ -1,3 +1,4 @@
+import { savePhone } from "./phoneValidation.js";
 import { getVariablesBuro } from "./buro.mjs";
 import { getCountSituaciones } from "./situaciones.mjs";
 import { createClient } from "@supabase/supabase-js";
@@ -35,13 +36,13 @@ const isInvalidBcra = async (nroDocumento) => {
   return result;
 };
 
-const isValidBuro = async (nroDocumento) => {
+/* const isValidBuro = async (nroDocumento) => {
   const variables = await getVariablesBuro(nroDocumento);
   console.log(variables);
   const result = true;
 
   return result;
-};
+}; */
 
 const getNivelRiesgo = async ({ nroDocumento, sexo }) => {
   const variables = await getVariablesBuro({ nroDocumento, sexo });
@@ -70,15 +71,22 @@ const ERRORS = {
     error: "No tenemos prestamos para ofrecerte",
     cd_error: 2,
   },
+  error_pin: {
+    error: "PIN invalido",
+    cd_error: 3,
+  }
 };
 
 export const validateLead = async (body) => {
   console.log("This was a POST request.. CONTINUE");
   try {
     //TODO: validar PIN SMS
-    // SI DEVUELVE ALGUN ERROR RETORNAR ERROR AL FRONT
-    //SI EL RESULTADO ES SUCCESS CONTINUAR
-
+    const isValidPinSMS = await savePhone();
+    if (!isValidPinSMS) {
+      console.log("PIN INVALIDO");
+      return ERRORS.error_pin;
+    }
+     
     const maxDocument = process.env.MAX_DOCUMENT || "18000000";
     //const token = event.queryStringParameters.token;
     // Parse the JSON text received.
@@ -88,16 +96,15 @@ export const validateLead = async (body) => {
     //TODO: Generar preaprobado
     if (parseFloat(body.nroDocumento) < parseFloat(maxDocument)) {
       console.error(`Nro de documento invalido, mayor a ${maxDocument}`, body);
-
       return ERRORS.error_documento;
     }
 
     const isValidSituacion = await isValidSituacionLaboral(body.situacion);
-
     if (!isValidSituacion) {
       console.log("Situación INVALIDO");
       return ERRORS.error_sin_prestamo;
     }
+
     const isInvalidBCRA = await isInvalidBcra(body.nroDocumento);
     if (isInvalidBCRA) {
       console.log("BCRA INVALIDO");
