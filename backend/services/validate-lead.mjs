@@ -74,19 +74,20 @@ const ERRORS = {
   error_pin: {
     error: "PIN invalido",
     cd_error: 3,
-  }
+  },
 };
 
 export const validateLead = async (body) => {
   console.log("This was a POST request.. CONTINUE");
   try {
     //TODO: validar PIN SMS
-    const isValidPinSMS = await savePhone();
+    const responsePhone = await savePhone(body.codigo, body.nroDocumento);
+    const isValidPinSMS = responsePhone.status === "";
     if (!isValidPinSMS) {
       console.log("PIN INVALIDO");
       return ERRORS.error_pin;
     }
-     
+
     const maxDocument = process.env.MAX_DOCUMENT || "18000000";
     //const token = event.queryStringParameters.token;
     // Parse the JSON text received.
