@@ -82,6 +82,7 @@ export const validateLead = async (body) => {
   try {
     //TODO: validar PIN SMS
     const responsePhone = await savePhone(body.codigo, body.nroDocumento);
+    console.log("responsePhone", responsePhone);
     const isValidPinSMS = responsePhone.status === "";
     if (!isValidPinSMS) {
       console.log("PIN INVALIDO");
