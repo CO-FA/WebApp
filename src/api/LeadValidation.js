@@ -1,11 +1,14 @@
-export const validarLead = async ({ dni, cuit, sexo, situacion }) => {
+export const validarLead = async ({ dni, cuit, sexo, situacion, codigo }) => {
   let url = "/back/validate-lead";
   const body = {
     nroDocumento: dni,
     cuit: cuit,
     sexo,
     situacion,
+    codigo,
   };
+  console.log("datos-Body", body);
+  
   const obj = await fetch(url, {
     method: "POST",
     headers: {

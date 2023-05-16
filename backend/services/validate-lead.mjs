@@ -83,49 +83,51 @@ export const validateLead = async (body) => {
     //TODO: validar PIN SMS
     const responsePhone = await savePhone(body.codigo, body.nroDocumento);
     console.log("responsePhone", responsePhone);
-    const isValidPinSMS = responsePhone.status === "";
+    const isValidPinSMS = responsePhone.status === "OK";
     if (!isValidPinSMS) {
-      console.log("PIN INVALIDO");
       return ERRORS.error_pin;
+    }else if (isValidPinSMS) {
+      console.log("PIN VALIDO");
+      
+      const maxDocument = process.env.MAX_DOCUMENT || "18000000";
+      //const token = event.queryStringParameters.token;
+      // Parse the JSON text received.
+      const response = { mensaje: "lead valido" };
+      console.info("REQUEST body", body);
+
+      //TODO: Generar preaprobado
+      if (parseFloat(body.nroDocumento) < parseFloat(maxDocument)) {
+        console.error(`Nro de documento invalido, mayor a ${maxDocument}`, body);
+        return ERRORS.error_documento;
+      }
+
+      const isValidSituacion = await isValidSituacionLaboral(body.situacion);
+      if (!isValidSituacion) {
+        console.log("Situación INVALIDO");
+        return ERRORS.error_sin_prestamo;
+      }
+
+      const isInvalidBCRA = await isInvalidBcra(body.nroDocumento);
+      if (isInvalidBCRA) {
+        console.log("BCRA INVALIDO");
+        return ERRORS.error_sin_prestamo;
+      }
+
+      //const isValidBURO = await isValidBuro(body.nroDocumento);
+      const nse = await getNivelRiesgo({
+        nroDocumento: body.nroDocumento,
+        sexo: body.sexo,
+      });
+      console.log("NSE", nse);
+
+      const intereses = await getIntereses(nse);
+      console.log("intereses", intereses);
+      response.data = intereses;
+
+      console.log("Devuelvo todo bien", response);
+      return response;
     }
-
-    const maxDocument = process.env.MAX_DOCUMENT || "18000000";
-    //const token = event.queryStringParameters.token;
-    // Parse the JSON text received.
-    const response = { mensaje: "lead valido" };
-    console.info("REQUEST body", body);
-
-    //TODO: Generar preaprobado
-    if (parseFloat(body.nroDocumento) < parseFloat(maxDocument)) {
-      console.error(`Nro de documento invalido, mayor a ${maxDocument}`, body);
-      return ERRORS.error_documento;
-    }
-
-    const isValidSituacion = await isValidSituacionLaboral(body.situacion);
-    if (!isValidSituacion) {
-      console.log("Situación INVALIDO");
-      return ERRORS.error_sin_prestamo;
-    }
-
-    const isInvalidBCRA = await isInvalidBcra(body.nroDocumento);
-    if (isInvalidBCRA) {
-      console.log("BCRA INVALIDO");
-      return ERRORS.error_sin_prestamo;
-    }
-
-    //const isValidBURO = await isValidBuro(body.nroDocumento);
-    const nse = await getNivelRiesgo({
-      nroDocumento: body.nroDocumento,
-      sexo: body.sexo,
-    });
-    console.log("NSE", nse);
-
-    const intereses = await getIntereses(nse);
-    console.log("intereses", intereses);
-    response.data = intereses;
-
-    console.log("Devuelvo todo bien", response);
-    return response;
+    
   } catch (error) {
     console.error("Error VALIDATE LEAD", error);
     return { error: error };

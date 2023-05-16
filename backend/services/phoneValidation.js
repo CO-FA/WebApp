@@ -21,6 +21,7 @@ export const savePhone = async (codigo, documento) => {
       body: JSON.stringify(body),
       redirect: "follow",
     };
+    
     const resp = await fetch(URL + "/API/v1/lending/savePhone", requestOptions);
     return await resp.json();
   } catch (error) {
