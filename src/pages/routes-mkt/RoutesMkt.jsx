@@ -45,8 +45,8 @@ const VerifyStep = ({ children, step }) => {
   /* if (currentStep <= step) { */
   return children;
   /* } */
-  console.log("Step not set", step, currentStep);
-  return <RedirectOnboardign />;
+  /* console.log("Step not set", step, currentStep);
+  return <RedirectOnboardign />; */
 };
 
 export function RoutesMkt() {
