@@ -1,20 +1,19 @@
-export const datosPrestamo = async ({ intereses, monto, cuota, montoCuota, }) => {
-    let url = "/back/generarPreaprobados";
+export const datosPrestamo = async ({ documento, monto, cuota }) => {
+  let url = "/back/generar-preaprobados";
 
-    const body = {
-      intereses,
-      monto,
-      cuota,
-      montoCuota,
-    };
-    console.log("datos calculadora prestamo", body);
-    
-    const obj = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    return obj.json() || {};
+  const body = {
+    monto,
+    cuota,
+    documento,
   };
+  console.log("datos calculadora prestamo", body);
+
+  const obj = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  return obj.json() || {};
+};

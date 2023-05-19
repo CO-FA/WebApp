@@ -48,6 +48,7 @@ const getNivelRiesgo = async ({ nroDocumento, sexo }) => {
   const variables = await getVariablesBuro({ nroDocumento, sexo });
   console.log(variables);
 
+  //ACUTALIZAR LEAD CON LAS VARIABLES
   const result = variables?.find((el) => el.Variable === "IncomePredictor");
 
   return result?.Valor;
@@ -80,35 +81,45 @@ const ERRORS = {
 export const validateLead = async (body) => {
   console.log("This was a POST request.. CONTINUE");
   try {
+    //TODO: agregar 2 columnas a la tabla lead
+    // categoria, resultado de variables buro
+    // TODO: guardar lead en supabase con los datos que tengamos hasta el momento en la BD
+    //GENERAR FUNCIóN de guardado
+
     //TODO: validar PIN SMS
     const responsePhone = await savePhone(body.codigo, body.nroDocumento);
     console.log("responsePhone", responsePhone);
     const isValidPinSMS = responsePhone.status === "OK";
     if (!isValidPinSMS) {
       return ERRORS.error_pin;
-    }else if (isValidPinSMS) {
+    } else if (isValidPinSMS) {
       console.log("PIN VALIDO");
-      
+
       const maxDocument = process.env.MAX_DOCUMENT || "18000000";
       //const token = event.queryStringParameters.token;
       // Parse the JSON text received.
       const response = { mensaje: "lead valido" };
       console.info("REQUEST body", body);
 
-      //TODO: Generar preaprobado
       if (parseFloat(body.nroDocumento) < parseFloat(maxDocument)) {
-        console.error(`Nro de documento invalido, mayor a ${maxDocument}`, body);
+        //TODO: ACTUALIZAR lead a rechazado
+        console.error(
+          `Nro de documento invalido, mayor a ${maxDocument}`,
+          body
+        );
         return ERRORS.error_documento;
       }
 
       const isValidSituacion = await isValidSituacionLaboral(body.situacion);
       if (!isValidSituacion) {
+        //TODO: ACTUALIZAR lead a rechazado
         console.log("Situación INVALIDO");
         return ERRORS.error_sin_prestamo;
       }
 
       const isInvalidBCRA = await isInvalidBcra(body.nroDocumento);
       if (isInvalidBCRA) {
+        //TODO: ACTUALIZAR lead a rechazado
         console.log("BCRA INVALIDO");
         return ERRORS.error_sin_prestamo;
       }
@@ -125,12 +136,11 @@ export const validateLead = async (body) => {
       response.data = intereses;
 
       console.log("Devuelvo todo bien", response);
+
       return response;
     }
-    
   } catch (error) {
     console.error("Error VALIDATE LEAD", error);
     return { error: error };
   }
 };
-
