@@ -66,6 +66,20 @@ const getIntereses = async (categoria) => {
   return config_intereses.length > 0 && config_intereses[0];
 };
 
+//tengo error con los parametros
+const guardarLead = async ({nroDocumento, nombre, apellido, sexo, fecha_nacimiento, telefono}) => {
+  const { data: nuevoLead, error } = await supabase
+    .from('leads')
+    .insert([
+      {"documento": nroDocumento, 
+      "nombre": nombre,
+      "genero": sexo,
+      },
+    ])
+    console.log("datos guardarLead", nuevoLead, error);
+    return nuevoLead;
+};
+
 const ERRORS = {
   error_documento: { error: "Nro de documento inválido", cd_error: 1 },
   error_sin_prestamo: {
@@ -78,17 +92,20 @@ const ERRORS = {
   },
 };
 
+
 export const validateLead = async (body) => {
   console.log("This was a POST request.. CONTINUE");
   try {
-    //TODO: agregar 2 columnas a la tabla lead
-    // categoria, resultado de variables buro
+    
     // TODO: guardar lead en supabase con los datos que tengamos hasta el momento en la BD
     //GENERAR FUNCIóN de guardado
-
+    const nuevoLead = await guardarLead(body.nroDocumento, body.nombre, body.apellido, body.sexo, body.fecha_nacimiento);
+    console.log("nuevoLead", nuevoLead);
+  
     //TODO: validar PIN SMS
     const responsePhone = await savePhone(body.codigo, body.nroDocumento);
     console.log("responsePhone", responsePhone);
+
     const isValidPinSMS = responsePhone.status === "OK";
     if (!isValidPinSMS) {
       return ERRORS.error_pin;

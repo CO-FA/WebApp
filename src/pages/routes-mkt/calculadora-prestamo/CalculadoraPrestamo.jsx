@@ -3,7 +3,7 @@ import { EncabezadoVerde } from "components/commons/EncabezadoVerdeDos";
 import { Slider } from "@mui/material";
 import Button from "components/commons/Button";
 import { useCalculadoraPrestamo } from "./hooks/useCalculadoraPrestamo";
-import { useIdentidadAtom, usePrestamoAtom } from "../atoms/Atoms";
+import { useIdentidadAtom} from "../atoms/Atoms";
 import { TextoHeaderSecundario } from "./components/TextoHeaderSecundario";
 import { TextoHeaderPrimario } from "./components/TextoHeaderPrimario";
 import { InputWithDecorator } from "./components/InputWithDecorator";
