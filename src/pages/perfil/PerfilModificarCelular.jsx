@@ -8,7 +8,7 @@ import { formErrors } from "../../utils/constantsErrors";
 import { LoaderContext } from "../../components/loader/LoaderContext";
 import Encabezadoverde from "../../components/commons/EncabezadoVerde";
 
-export default function RegistroStep5({ celCodigo, cellNumero }) {
+export default function ModificarCelular({ celCodigo, cellNumero }) {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
   const history = useHistory();

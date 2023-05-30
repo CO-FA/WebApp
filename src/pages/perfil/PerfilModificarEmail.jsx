@@ -8,7 +8,7 @@ import Button from "../../components/commons/Button";
 import { LoaderContext } from "../../components/loader/LoaderContext";
 import EncabezadoVerde from "../../components/commons/EncabezadoVerde";
 
-export default function RegistroStep6() {
+export default function ModificarEmail() {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
   const history = useHistory();

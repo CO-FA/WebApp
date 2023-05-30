@@ -27,6 +27,11 @@ import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useToken } from "api/hooks/useToken";
 import { Error } from "./error/Error";
+import Perfil from "pages/perfil/Perfil";
+import ModificarCelular from "pages/perfil/PerfilModificarCelular";
+import ModificarEmail from "pages/perfil/PerfilModificarEmail";
+import OlvidePasswordStep2 from "pages/perfil/PerfilModificarPass";
+import ModificarDireccion from "pages/perfil/PerfilModificarDireccion";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -141,6 +146,54 @@ export function RoutesMkt() {
                 <PrestamoExitoso />
               </VerifyStep>
             </Route>
+
+            <Route path="/perfil">
+              <VerifyStep step={STEPS.STEP_13_PERFIL}>
+                <Perfil />
+              </VerifyStep>
+            </Route>
+
+            <Route path="/notificaciones">
+              <VerifyStep step={STEPS.STEP_14_NOTIFICACIONES}>
+                {/* falta pantalla */}
+              </VerifyStep>
+            </Route>
+
+            <Route path="/editar-perfil">
+              <VerifyStep step={STEPS.STEP_15_EDITAR_PERFIL}>
+                {/* falta pantalla */}
+              </VerifyStep>
+            </Route>
+
+            <Route path="/perfil-modificar-celular">
+              <VerifyStep step={STEPS.STEP_16_MODIFICAR_CELULAR}>
+                <ModificarCelular />
+              </VerifyStep>
+            </Route>
+            <Route path="/perfil-modificar-email">
+              <VerifyStep step={STEPS.STEP_17_MODIFICAR_EMAIL}>
+                <ModificarEmail />
+              </VerifyStep>
+            </Route>
+            <Route path="/perfil-modificar-contraseña">
+              <VerifyStep step={STEPS.STEP_18_MODIFICAR_CONTRASEÑA}>
+                <OlvidePasswordStep2 />
+              </VerifyStep>
+            </Route>
+
+            <Route path="/perfil-modificar-direccion">
+              <VerifyStep step={STEPS.STEP_19_MODIFICAR_DIRECCION}>
+                <ModificarDireccion />
+              </VerifyStep>
+            </Route>
+
+
+
+
+
+
+
+
 
             <Route path="/onboarding/error">
               <VerifyStep step={STEPS.STEP_99_ERROR}>
