@@ -1,10 +1,10 @@
-export const datosPrestamo = async ({ documento, monto, cuota }) => {
-  let url = "/back/generar-preaprobados";
+export const datosPrestamo = async ({ documento, monto, cuota}) => {
+  let url = "/back/generar-preaprobado";
 
   const body = {
-    monto,
-    cuota,
     documento,
+    monto,
+    cuota
   };
   console.log("datos calculadora prestamo", body);
 

@@ -67,16 +67,19 @@ const getIntereses = async (categoria) => {
 };
 
 //tengo error con los parametros
-const guardarLead = async ({nroDocumento, nombre, apellido, sexo, fecha_nacimiento, telefono}) => {
+const guardarLead = async ({documento, nombre, sexo}) => {
   const { data: nuevoLead, error } = await supabase
     .from('leads')
     .insert([
-      {"documento": nroDocumento, 
-      "nombre": nombre,
+      {"documento": documento, 
+      "nombre": nombre, // esto incluye nombre y apellido
       "genero": sexo,
+      // telefono es clienteCelCodigo + clienteCelNumero
+      // direccion
+
       },
     ])
-    console.log("datos guardarLead", nuevoLead, error);
+    console.log("datos insert guardarLead", nuevoLead, error);
     return nuevoLead;
 };
 
@@ -99,10 +102,10 @@ export const validateLead = async (body) => {
     
     // TODO: guardar lead en supabase con los datos que tengamos hasta el momento en la BD
     //GENERAR FUNCIóN de guardado
-    const nuevoLead = await guardarLead(body.nroDocumento, body.nombre, body.apellido, body.sexo, body.fecha_nacimiento);
+    const nuevoLead = await guardarLead(body.nroDocumento, body.nombre, body.sexo,);
     console.log("nuevoLead", nuevoLead);
   
-    //TODO: validar PIN SMS
+    //TODO: validar PIN SMS 
     const responsePhone = await savePhone(body.codigo, body.nroDocumento);
     console.log("responsePhone", responsePhone);
 

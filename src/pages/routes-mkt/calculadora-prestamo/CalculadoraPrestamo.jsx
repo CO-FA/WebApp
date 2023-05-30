@@ -20,6 +20,7 @@ import { datosPrestamo } from "api/Prestamo";
 export default function CalculadoraPrestamo() {
   let { setShowLoader } = React.useContext(LoaderContext);
   const { identidad } = useIdentidadAtom();
+  console.log("identidad",identidad)
   const {
     intereses,
     monto,
@@ -46,6 +47,7 @@ export default function CalculadoraPrestamo() {
           monto,
           cuota,
           montoCuota,
+          documento: identidad.dni
         });
 
         if (datos.success) {

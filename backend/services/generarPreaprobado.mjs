@@ -3,18 +3,12 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
 
-const calcularCuota = (capital, interes, plazo) => {
-  const interest = (capital * (interes * 0.01)) / plazo;
-  let payment = capital / plazo + interest;
-  return payment || 0.0;
-};
-
 const recuperarLead = async (documento) => {
   let { data: leads, error } = await supabase
   .from('leads')
   .select('*')
   .eq('documento', documento)
-  console.log(leads, error)
+  console.log("leads",leads, error)
 
   return leads
 };
@@ -25,10 +19,19 @@ const recuperarIntereses = async () => {
   .select('interes')
   console.log(config_intereses, error)
   
-  return interes
+  const interes = config_intereses.interes
+  console.log(interes)
+
+  return interes // este interes tiene que ir a la funcion para calcular el monto de la cuota
 };
 
-export const generarPreaprobado = async (body) => {
+const calcularCuota = (capital, interes, plazo) => {
+  const interest = (capital * (interes * 0.01)) / plazo;
+  let payment = capital / plazo + interest;
+  return payment || 0.0;
+};
+
+export const generarPreaprobado = async (body, interes) => {
   console.log("DATOS RECIBIDOS DE PRESTAMOS", body);
   const { monto, cuota, documento } = body;
 
@@ -37,7 +40,7 @@ export const generarPreaprobado = async (body) => {
   console.log("leadRecuperado", leadRecuperado);
 
   //Recuperar los intereses de la BD (config_intereses)
-  const interesRecuperado = await recuperarIntereses(documento);
+  const interesRecuperado = await recuperarIntereses();
   console.log("interesRecuperado", interesRecuperado);
 
   //Calcular el prestamo desde el backend
@@ -46,5 +49,6 @@ export const generarPreaprobado = async (body) => {
   console.log("calularPrestamos", calularPrestamos) 
 
   //Enviar todo a SB
-  
 };
+
+console.log(generarPreaprobado)

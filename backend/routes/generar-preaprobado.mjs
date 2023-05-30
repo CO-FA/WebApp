@@ -8,6 +8,7 @@ router.post("/generar-preaprobado", async function (req, res) {
   res.json({
     ...response,
   });
+  console.log("response", response)
 });
 
 export default router;
