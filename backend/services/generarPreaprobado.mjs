@@ -4,25 +4,21 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
 
 const recuperarLead = async (documento) => {
-  let { data: leads, error } = await supabase
+  let { data: lead, error } = await supabase
   .from('leads')
   .select('*')
   .eq('documento', documento)
-  console.log("leads",leads, error)
+  console.log(error)
+  return lead
+}; 
 
-  return leads
-};
-
-const recuperarIntereses = async () => {
+const recuperarIntereses = async (categoriaLeadRecuperado) => {
   let { data: config_intereses, error } = await supabase
   .from('config_intereses')
-  .select('interes')
-  console.log(config_intereses, error)
-  
-  const interes = config_intereses.interes
-  console.log(interes)
-
-  return interes // este interes tiene que ir a la funcion para calcular el monto de la cuota
+  .select('*')
+  .eq('categoria', categoriaLeadRecuperado)
+  console.log(error)
+  return config_intereses
 };
 
 const calcularCuota = (capital, interes, plazo) => {
@@ -31,24 +27,20 @@ const calcularCuota = (capital, interes, plazo) => {
   return payment || 0.0;
 };
 
-export const generarPreaprobado = async (body, interes) => {
-  console.log("DATOS RECIBIDOS DE PRESTAMOS", body);
+export const generarPreaprobado = async (body) => {
   const { monto, cuota, documento } = body;
 
-  //Recuperar el lead de la BD (leads)
   const leadRecuperado = await recuperarLead(documento);
-  console.log("leadRecuperado", leadRecuperado);
+  console.log("lead recuperado:", leadRecuperado);
+  const categoriaLeadRecuperado = leadRecuperado[0].categoria
+  console.log("categoria lead: ", categoriaLeadRecuperado)
 
-  //Recuperar los intereses de la BD (config_intereses)
-  const interesRecuperado = await recuperarIntereses();
-  console.log("interesRecuperado", interesRecuperado);
+  const interesXcategoria = await recuperarIntereses(categoriaLeadRecuperado);
+  const interesRecuperado = interesXcategoria[0].interes
+  console.log("interes recuperado: ", interesRecuperado);
 
-  //Calcular el prestamo desde el backend
-  //interes viene de los interes recuperados
-  const calularPrestamos = calcularCuota(monto, interes, cuota)
+  const calularPrestamos = calcularCuota(monto, interesRecuperado, cuota)
   console.log("calularPrestamos", calularPrestamos) 
 
-  //Enviar todo a SB
+  //TODO: Enviar todo a SB
 };
-
-console.log(generarPreaprobado)
