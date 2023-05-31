@@ -32,6 +32,7 @@ import ModificarCelular from "pages/perfil/PerfilModificarCelular";
 import ModificarEmail from "pages/perfil/PerfilModificarEmail";
 import OlvidePasswordStep2 from "pages/perfil/PerfilModificarPass";
 import ModificarDireccion from "pages/perfil/PerfilModificarDireccion";
+import DetallePrestamo from "pages/estadofinanciero/DetallePrestamo";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -187,6 +188,49 @@ export function RoutesMkt() {
               </VerifyStep>
             </Route>
 
+            <Route path="/estado-financiero">
+              <VerifyStep step={STEPS.STEP_20_ESTADO_FINANCIERO}>
+                {/* falta pantalla */}
+              </VerifyStep>
+            </Route>
+
+            <Route path="/mis-prestamos">
+              <VerifyStep step={STEPS.STEP_21_MIS_PRESTAMOS}>
+                {/* aparecen los numeros de todos los prestamos en pantalla */}
+                {/* seleccionando uno va a detalle prestamo */}
+              </VerifyStep>
+            </Route>
+
+            <Route path="/detalle-prestamos">
+              <VerifyStep step={STEPS.STEP_22_DETALLE_PRESTAMO}>
+                <DetallePrestamo />
+              </VerifyStep>
+            </Route>
+
+            <Route path="/cargar-otro-cbu">
+              <VerifyStep step={STEPS.STEP_23_CARGAR_CBU}>
+                {/* carga cbu */}
+                {/* pequeños cambios con respecto a la pantalla de onboarding */}
+              </VerifyStep>
+            </Route>
+
+            <Route path="/cargar-tarjeta">
+              <VerifyStep step={STEPS.STEP_24_CARGAR_TARJETA}>
+                {/* cargar mi tarjta --> va a mobbex */}
+              </VerifyStep>
+            </Route>
+
+            <Route path="/seguros">
+              <VerifyStep step={STEPS.STEP_25_SEGUROS}>
+                {/* perfil --> seguros */}
+              </VerifyStep>
+            </Route>
+
+            {/* <Route path="/">
+              <VerifyStep step={STEPS.}>
+
+              </VerifyStep>
+            </Route> */}
 
 
 
