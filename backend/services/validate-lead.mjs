@@ -76,24 +76,24 @@ const getIntereses = async (categoria) => {
   return (categoria?.Valor, nombre?.Valor, ingresos?.Valor);
 }; */
 
-/*  const guardarLead = async ({nroDocumento, sexo}) => {
-
+const guardarLead = async (nroDocumento, sexo) => {
   const { data, error } = await supabase
     .from('leads')
     .insert([
       {// DATOS INGRESADOS POR USUARIO
-        "documento": documento, 
+        "documento": nroDocumento, 
         //"telefono": clienteCelCodigo + clienteCelNumero
 
         // DATOS BURO  
-        "nombre": infoLead.nombre?.Valor, //MAGNANO, ANTONELLA
+        //"nombre": infoLead.nombre?.Valor, //MAGNANO, ANTONELLA
         "genero": sexo, // F o M
-        "categoria": infoLead.categoria?.Valor,
-        "ingresos": infoLead.ingresos?.Valor,
+        //"categoria": infoLead.categoria?.Valor,
+        //"ingresos": infoLead.ingresos?.Valor,
       },
     ])
+  console.log("documento y sexo", nroDocumento,sexo)
   console.log(data, error); 
-}; */
+};
 
 const ERRORS = {
   error_documento: { error: "Nro de documento inválido", cd_error: 1 },
@@ -113,13 +113,10 @@ export const validateLead = async (body) => {
   console.log("validateLead", body)
   console.log("This was a POST request.. CONTINUE");
   try {
-    /* const infoLead = await datosLead ({nroDocumento: nroDocumento,
-      sexo: sexo});
-    console.log(infoLead)
+    // nroDoc y sexo puedo usarlos de aca
+    const nuevoLead = await guardarLead(nroDocumento, sexo)
     // TODO: guardar lead en supabase con los datos que tengamos hasta el momento en la BD
     //GENERAR FUNCIóN de guardado
-    const nuevoLead = await guardarLead(nroDocumento, sexo);
-    console.log("nuevoLead", nuevoLead); */
   
     //TODO: validar PIN SMS 
     const responsePhone = await savePhone(codigo, nroDocumento);
