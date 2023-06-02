@@ -44,57 +44,24 @@ const isInvalidBcra = async (nroDocumento) => {
   return result;
 }; */
 
-const getNivelRiesgo = async ({ nroDocumento, sexo, variables }) => {
-  console.log(variables);
-
-  //ACUTALIZAR LEAD CON LAS VARIABLES
-  const result = variables?.find((el) => el.Variable === "IncomePredictor");
-
-  return result?.Valor;
-};
-
-const getIntereses = async (categoria) => {
-  let { data: config_intereses, error } = await supabase
-    .from("config_intereses")
-    .select("*")
-
-    // Filters
-    .eq("categoria", categoria);
-  console.log(config_intereses, error);
-
-  return config_intereses.length > 0 && config_intereses[0];
-};
-
-/* const datosLead = async (nroDocumento, sexo) => {
-  const variables = await getVariablesBuro({ nroDocumento, sexo }); 
-
-  const categoria = variables?.find((el) => el.Variable === "IncomePredictor");
-  const nombre = variables?.find((el) => el.Variable === "Nombre");
-  const ingresos = variables?.find((el) => el.Variable === "TipoIngreso");
-
-  return (categoria?.Valor, nombre?.Valor, ingresos?.Valor);
-}; */
-
 const guardarLead = async ({
   nroDocumento,
   cuit,
   sexo,
   situacion,
-  codigo,
   nombre,
   telefono,
-}) => {
+  }) => {
   const { data, error } = await supabase.from("leads").insert([
     {
-      // DATOS INGRESADOS POR USUARIO
       documento: nroDocumento,
-      //"telefono": clienteCelCodigo + clienteCelNumero,
-      //"nombre": infoLead.nombre?.Valor, //MAGNANO, ANTONELLA
-      //"situacion_laboral":"sit",
-      genero: sexo, // F o M
+      telefono: telefono,
+      nombre: nombre,
+      situacion: situacion,
+      genero: sexo,
+      cuit: cuit,
     },
   ]);
-  console.log("documento y sexo", nroDocumento, sexo);
   console.log(data, error);
   return { lead: data, error };
 };
@@ -108,21 +75,38 @@ const updateEstadoLead = async ({ documento, estado, mensaje }) => {
       updated_at: new Date(),
     })
     .eq("documento", documento);
+  return { estadoLead: data, error };
 };
 
+//esta funcion no anda!
 const updateVariablesLead = async ({ documento, variables }) => {
   const categoria = variables?.find((el) => el.Variable === "IncomePredictor");
-  const nombre = variables?.find((el) => el.Variable === "Nombre");
-
   const { data, error } = await supabase
     .from("leads")
     .update({
       variables,
       categoria: categoria?.Valor,
-      nombre: nombre?.Valor,
       updated_at: new Date(),
     })
     .eq("documento", documento);
+  
+  return { updateVariablesLead: data, error };
+};
+
+const getNivelRiesgo = async ({ nroDocumento, variables }) => {
+  await updateVariablesLead({ documento: nroDocumento, variables });
+  const result = variables?.find((el) => el.Variable === "IncomePredictor");
+  return result?.Valor;
+};
+
+const getIntereses = async (categoria) => {
+  let { data: config_intereses, error } = await supabase
+    .from("config_intereses")
+    .select("*")
+    .eq("categoria", categoria);
+  console.log(config_intereses, error);
+
+  return config_intereses.length > 0 && config_intereses[0];
 };
 
 const ERRORS = {
@@ -138,15 +122,10 @@ const ERRORS = {
 };
 
 export const validateLead = async (body) => {
-  const { nroDocumento, cuit, sexo, situacion, codigo, nombre, telefono } =
-    body;
-  console.log("validateLead", body);
+  const { nroDocumento, cuit, sexo, situacion, codigo, nombre, telefono } = body;
   console.log("This was a POST request.. CONTINUE");
   try {
-    // nroDoc y sexo puedo usarlos de aca
-    const nuevoLead = await guardarLead(body);
-
-    //TODO: validar PIN SMS
+    await guardarLead(body);
     const responsePhone = await savePhone(codigo, nroDocumento);
     console.log("responsePhone", responsePhone);
 
@@ -154,17 +133,15 @@ export const validateLead = async (body) => {
     if (!isValidPinSMS) {
       return ERRORS.error_pin;
     } else if (isValidPinSMS) {
-      console.log("PIN VALIDO");
-
       const maxDocument = process.env.MAX_DOCUMENT || "18000000";
       //const token = event.queryStringParameters.token;
       // Parse the JSON text received.
       const response = { mensaje: "lead valido" };
-      console.info("REQUEST body", body);
 
       if (parseFloat(nroDocumento) < parseFloat(maxDocument)) {
-        //TODO: ACTUALIZAR lead a rechazado
-        //updateEstadoLead
+        let estado = "Rechazado";
+        let mensaje = `Nro de documento invalido, mayor a ${maxDocument}`;
+        await updateEstadoLead({ documento: nroDocumento, estado, mensaje})
         console.error(
           `Nro de documento invalido, mayor a ${maxDocument}`,
           body
@@ -174,16 +151,18 @@ export const validateLead = async (body) => {
 
       const isValidSituacion = await isValidSituacionLaboral(situacion);
       if (!isValidSituacion) {
-        //TODO: ACTUALIZAR lead a rechazado
-        //updateEstadoLead
-        console.log("Situación INVALIDO");
+        let estado = "Rechazado";
+        let mensaje = "Situacion laboral invalida";
+        await updateEstadoLead({ documento: nroDocumento, estado, mensaje })
+        console.log("isValidSituacion","Situación INVALIDO");
         return ERRORS.error_sin_prestamo;
       }
 
       const isInvalidBCRA = await isInvalidBcra(nroDocumento);
       if (isInvalidBCRA) {
-        //TODO: ACTUALIZAR lead a rechazado
-        //updateEstadoLead
+        let estado = "Rechazado"
+        let mensaje= `BCRA invalido`
+        await updateEstadoLead({documento: nroDocumento, estado, mensaje})
         console.log("BCRA INVALIDO");
         return ERRORS.error_sin_prestamo;
       }
@@ -191,7 +170,7 @@ export const validateLead = async (body) => {
       //const isValidBURO = await isValidBuro(body.nroDocumento);
 
       //ACA GUARDAR LOS DATOS DE BURO
-      const variables = await getVariablesBuro({ nroDocumento, sexo });
+      const variables = await getVariablesBuro({ nroDocumento: nroDocumento, sexo: sexo });
       await updateVariablesLead({ documento: nroDocumento, variables });
 
       const nse = await getNivelRiesgo({
@@ -202,7 +181,6 @@ export const validateLead = async (body) => {
       console.log("NSE", nse);
 
       const intereses = await getIntereses(nse);
-      console.log("intereses", intereses);
       response.data = intereses;
 
       console.log("Devuelvo todo bien", response);

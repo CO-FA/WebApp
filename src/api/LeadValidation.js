@@ -1,4 +1,4 @@
-export const validarLead = async ({ dni, cuit, sexo, situacion, codigo }) => {
+export const validarLead = async ({ dni, cuit, sexo, situacion, codigo, nombre, telefono }) => {
   let url = "/back/validate-lead";
   const body = {
     nroDocumento: dni,
@@ -6,6 +6,8 @@ export const validarLead = async ({ dni, cuit, sexo, situacion, codigo }) => {
     sexo,
     situacion,
     codigo,
+    nombre,
+    telefono,
   };
   console.log("datos-Body", body);
   
