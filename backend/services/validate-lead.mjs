@@ -44,8 +44,7 @@ const isInvalidBcra = async (nroDocumento) => {
   return result;
 }; */
 
-const getNivelRiesgo = async ({ nroDocumento, sexo }) => {
-  const variables = await getVariablesBuro({ nroDocumento, sexo }); 
+const getNivelRiesgo = async ({ nroDocumento, sexo, variables }) => {
   console.log(variables);
 
   //ACUTALIZAR LEAD CON LAS VARIABLES
@@ -76,23 +75,54 @@ const getIntereses = async (categoria) => {
   return (categoria?.Valor, nombre?.Valor, ingresos?.Valor);
 }; */
 
-const guardarLead = async (nroDocumento, sexo) => {
-  const { data, error } = await supabase
-    .from('leads')
-    .insert([
-      {// DATOS INGRESADOS POR USUARIO
-        "documento": nroDocumento, 
-        //"telefono": clienteCelCodigo + clienteCelNumero
+const guardarLead = async ({
+  nroDocumento,
+  cuit,
+  sexo,
+  situacion,
+  codigo,
+  nombre,
+  telefono,
+}) => {
+  const { data, error } = await supabase.from("leads").insert([
+    {
+      // DATOS INGRESADOS POR USUARIO
+      documento: nroDocumento,
+      //"telefono": clienteCelCodigo + clienteCelNumero,
+      //"nombre": infoLead.nombre?.Valor, //MAGNANO, ANTONELLA
+      //"situacion_laboral":"sit",
+      genero: sexo, // F o M
+    },
+  ]);
+  console.log("documento y sexo", nroDocumento, sexo);
+  console.log(data, error);
+  return { lead: data, error };
+};
 
-        // DATOS BURO  
-        //"nombre": infoLead.nombre?.Valor, //MAGNANO, ANTONELLA
-        "genero": sexo, // F o M
-        //"categoria": infoLead.categoria?.Valor,
-        //"ingresos": infoLead.ingresos?.Valor,
-      },
-    ])
-  console.log("documento y sexo", nroDocumento,sexo)
-  console.log(data, error); 
+const updateEstadoLead = async ({ documento, estado, mensaje }) => {
+  const { data, error } = await supabase
+    .from("leads")
+    .update({
+      sb_status: estado,
+      sb_motivo: mensaje,
+      updated_at: new Date(),
+    })
+    .eq("documento", documento);
+};
+
+const updateVariablesLead = async ({ documento, variables }) => {
+  const categoria = variables?.find((el) => el.Variable === "IncomePredictor");
+  const nombre = variables?.find((el) => el.Variable === "Nombre");
+
+  const { data, error } = await supabase
+    .from("leads")
+    .update({
+      variables,
+      categoria,
+      nombre,
+      updated_at: new Date(),
+    })
+    .eq("documento", documento);
 };
 
 const ERRORS = {
@@ -107,18 +137,16 @@ const ERRORS = {
   },
 };
 
-
 export const validateLead = async (body) => {
-  const { nroDocumento, sexo, codigo, situacion } = body;
-  console.log("validateLead", body)
+  const { nroDocumento, cuit, sexo, situacion, codigo, nombre, telefono } =
+    body;
+  console.log("validateLead", body);
   console.log("This was a POST request.. CONTINUE");
   try {
     // nroDoc y sexo puedo usarlos de aca
-    const nuevoLead = await guardarLead(nroDocumento, sexo)
-    // TODO: guardar lead en supabase con los datos que tengamos hasta el momento en la BD
-    //GENERAR FUNCIóN de guardado
-  
-    //TODO: validar PIN SMS 
+    const nuevoLead = await guardarLead(body);
+
+    //TODO: validar PIN SMS
     const responsePhone = await savePhone(codigo, nroDocumento);
     console.log("responsePhone", responsePhone);
 
@@ -136,6 +164,7 @@ export const validateLead = async (body) => {
 
       if (parseFloat(nroDocumento) < parseFloat(maxDocument)) {
         //TODO: ACTUALIZAR lead a rechazado
+        //updateEstadoLead
         console.error(
           `Nro de documento invalido, mayor a ${maxDocument}`,
           body
@@ -146,6 +175,7 @@ export const validateLead = async (body) => {
       const isValidSituacion = await isValidSituacionLaboral(situacion);
       if (!isValidSituacion) {
         //TODO: ACTUALIZAR lead a rechazado
+        //updateEstadoLead
         console.log("Situación INVALIDO");
         return ERRORS.error_sin_prestamo;
       }
@@ -153,14 +183,21 @@ export const validateLead = async (body) => {
       const isInvalidBCRA = await isInvalidBcra(nroDocumento);
       if (isInvalidBCRA) {
         //TODO: ACTUALIZAR lead a rechazado
+        //updateEstadoLead
         console.log("BCRA INVALIDO");
         return ERRORS.error_sin_prestamo;
       }
 
       //const isValidBURO = await isValidBuro(body.nroDocumento);
+
+      //ACA GUARDAR LOS DATOS DE BURO
+      const variables = await getVariablesBuro({ nroDocumento, sexo });
+      await updateVariablesLead({ documento: nroDocumento, variables });
+
       const nse = await getNivelRiesgo({
         nroDocumento: nroDocumento,
         sexo: sexo,
+        variables,
       });
       console.log("NSE", nse);
 
