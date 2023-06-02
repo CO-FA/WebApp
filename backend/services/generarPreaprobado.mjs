@@ -27,20 +27,30 @@ const calcularCuota = (capital, interes, plazo) => {
   return payment || 0.0;
 };
 
+const actualizarLead = async (documento, monto, cuota, importeCuota) => { 
+  const { data, error } = await supabase
+  .from('leads')
+  .update(
+    { "monto": monto,
+      "cuotas": cuota,
+      "importeCuota": importeCuota,
+    }
+  )
+  .eq('documento', documento)
+  console.log(error)
+};
+
 export const generarPreaprobado = async (body) => {
   const { monto, cuota, documento } = body;
 
   const leadRecuperado = await recuperarLead(documento);
-  console.log("lead recuperado:", leadRecuperado);
   const categoriaLeadRecuperado = leadRecuperado[0].categoria
-  console.log("categoria lead: ", categoriaLeadRecuperado)
 
   const interesXcategoria = await recuperarIntereses(categoriaLeadRecuperado);
   const interesRecuperado = interesXcategoria[0].interes
-  console.log("interes recuperado: ", interesRecuperado);
 
-  const calularPrestamos = calcularCuota(monto, interesRecuperado, cuota)
-  console.log("calularPrestamos", calularPrestamos) 
-
-  //TODO: Enviar todo a SB
+  const importeCuota = calcularCuota(monto, interesRecuperado, cuota)
+  
+  const actualizacion = await actualizarLead(documento, monto, cuota, importeCuota)
+  console.log(actualizacion)
 };
