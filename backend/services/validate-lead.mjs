@@ -45,7 +45,7 @@ const isInvalidBcra = async (nroDocumento) => {
 }; */
 
 const getNivelRiesgo = async ({ nroDocumento, sexo }) => {
-  const variables = await getVariablesBuro({ nroDocumento, sexo });
+  const variables = await getVariablesBuro({ nroDocumento, sexo }); 
   console.log(variables);
 
   //ACUTALIZAR LEAD CON LAS VARIABLES
@@ -66,22 +66,34 @@ const getIntereses = async (categoria) => {
   return config_intereses.length > 0 && config_intereses[0];
 };
 
-//tengo error con los parametros
-const guardarLead = async ({documento, nombre, sexo}) => {
-  const { data: nuevoLead, error } = await supabase
+/* const datosLead = async (nroDocumento, sexo) => {
+  const variables = await getVariablesBuro({ nroDocumento, sexo }); 
+
+  const categoria = variables?.find((el) => el.Variable === "IncomePredictor");
+  const nombre = variables?.find((el) => el.Variable === "Nombre");
+  const ingresos = variables?.find((el) => el.Variable === "TipoIngreso");
+
+  return (categoria?.Valor, nombre?.Valor, ingresos?.Valor);
+}; */
+
+/*  const guardarLead = async ({nroDocumento, sexo}) => {
+
+  const { data, error } = await supabase
     .from('leads')
     .insert([
-      {"documento": documento, 
-      "nombre": nombre, // esto incluye nombre y apellido
-      "genero": sexo,
-      // telefono es clienteCelCodigo + clienteCelNumero
-      // direccion
+      {// DATOS INGRESADOS POR USUARIO
+        "documento": documento, 
+        //"telefono": clienteCelCodigo + clienteCelNumero
 
+        // DATOS BURO  
+        "nombre": infoLead.nombre?.Valor, //MAGNANO, ANTONELLA
+        "genero": sexo, // F o M
+        "categoria": infoLead.categoria?.Valor,
+        "ingresos": infoLead.ingresos?.Valor,
       },
     ])
-    console.log("datos insert guardarLead", nuevoLead, error);
-    return nuevoLead;
-};
+  console.log(data, error); 
+}; */
 
 const ERRORS = {
   error_documento: { error: "Nro de documento inválido", cd_error: 1 },
@@ -97,16 +109,20 @@ const ERRORS = {
 
 
 export const validateLead = async (body) => {
+  const { nroDocumento, sexo, codigo, situacion } = body;
+  console.log("validateLead", body)
   console.log("This was a POST request.. CONTINUE");
   try {
-    
+    /* const infoLead = await datosLead ({nroDocumento: nroDocumento,
+      sexo: sexo});
+    console.log(infoLead)
     // TODO: guardar lead en supabase con los datos que tengamos hasta el momento en la BD
     //GENERAR FUNCIóN de guardado
-    const nuevoLead = await guardarLead(body.nroDocumento, body.nombre, body.sexo,);
-    console.log("nuevoLead", nuevoLead);
+    const nuevoLead = await guardarLead(nroDocumento, sexo);
+    console.log("nuevoLead", nuevoLead); */
   
     //TODO: validar PIN SMS 
-    const responsePhone = await savePhone(body.codigo, body.nroDocumento);
+    const responsePhone = await savePhone(codigo, nroDocumento);
     console.log("responsePhone", responsePhone);
 
     const isValidPinSMS = responsePhone.status === "OK";
@@ -121,7 +137,7 @@ export const validateLead = async (body) => {
       const response = { mensaje: "lead valido" };
       console.info("REQUEST body", body);
 
-      if (parseFloat(body.nroDocumento) < parseFloat(maxDocument)) {
+      if (parseFloat(nroDocumento) < parseFloat(maxDocument)) {
         //TODO: ACTUALIZAR lead a rechazado
         console.error(
           `Nro de documento invalido, mayor a ${maxDocument}`,
@@ -130,14 +146,14 @@ export const validateLead = async (body) => {
         return ERRORS.error_documento;
       }
 
-      const isValidSituacion = await isValidSituacionLaboral(body.situacion);
+      const isValidSituacion = await isValidSituacionLaboral(situacion);
       if (!isValidSituacion) {
         //TODO: ACTUALIZAR lead a rechazado
         console.log("Situación INVALIDO");
         return ERRORS.error_sin_prestamo;
       }
 
-      const isInvalidBCRA = await isInvalidBcra(body.nroDocumento);
+      const isInvalidBCRA = await isInvalidBcra(nroDocumento);
       if (isInvalidBCRA) {
         //TODO: ACTUALIZAR lead a rechazado
         console.log("BCRA INVALIDO");
@@ -146,8 +162,8 @@ export const validateLead = async (body) => {
 
       //const isValidBURO = await isValidBuro(body.nroDocumento);
       const nse = await getNivelRiesgo({
-        nroDocumento: body.nroDocumento,
-        sexo: body.sexo,
+        nroDocumento: nroDocumento,
+        sexo: sexo,
       });
       console.log("NSE", nse);
 
