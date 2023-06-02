@@ -33,15 +33,13 @@ export default function CalculadoraPrestamo() {
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
 
- // submitForm es una funcion
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;
     }
     if (!errors) {
       setShowLoader(true);
-      try {
-        //enviar al backend datos del formulario 
+      try { 
         const datos = await datosPrestamo({
           intereses,
           monto,

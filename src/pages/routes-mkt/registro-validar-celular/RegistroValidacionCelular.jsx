@@ -43,7 +43,7 @@ export function RegistroValidacionCelular() {
         console.log("identidad", identidad);
 
         const valid = await validarLead({
-          nombre: identidad.nombreCompleto, //verificar si es asi el campo
+          nombre: identidad.nombreCompleto,
           telefono: codArea + " " + numCelular,
           dni: identidad.dni,
           cuit: identidad.cuit,
