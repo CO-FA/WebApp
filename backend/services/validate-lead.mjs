@@ -118,8 +118,8 @@ const updateVariablesLead = async ({ documento, variables }) => {
     .from("leads")
     .update({
       variables,
-      categoria,
-      nombre,
+      categoria: categoria?.Valor,
+      nombre: nombre?.Valor,
       updated_at: new Date(),
     })
     .eq("documento", documento);
