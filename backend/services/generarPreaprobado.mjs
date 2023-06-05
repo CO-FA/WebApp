@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { createIdPreaprobado } from "./createIDPreaprobado.mjs";
+//import { createIdPreaprobado } from "./createIDPreaprobado.mjs";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
@@ -36,13 +36,13 @@ const actualizarLead = async (documento, monto, cuota, importeCuota) => {
   console.log(error);
 };
 
-const actualizarIDLead = async (documento, resp) => {
+/* const actualizarIDLead = async (documento, resp) => {
   const { data, error } = await supabase
     .from("leads")
     .update({ id_preaprobado: resp.idPreaprobado, sb_status: resp.status, sb_motivo: resp.motivo})
     .eq("documento", documento);
   console.log(error);
-};
+}; */
 
 export const generarPreaprobado = async (body) => {
   const { monto, cuota, documento } = body;
@@ -64,12 +64,12 @@ export const generarPreaprobado = async (body) => {
   );
 
   leadRecuperado = await recuperarLead(documento);
-
-  const resp = await createIdPreaprobado (leadRecuperado)
+  
+  /* const resp = await createIdPreaprobado (leadRecuperado)
   console.log("id-preaprobado", resp)
 
   await actualizarIDLead(
     documento,
     resp
-  );
+  ); */
 };
