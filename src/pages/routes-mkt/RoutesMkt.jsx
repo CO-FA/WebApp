@@ -83,13 +83,10 @@ export function RoutesMkt() {
               </VerifyStep>
             </Route>
             <Route path="/onboarding/validar-pin">
-              {" "}
-              {/* hacer 4 lugares para ingresar pin */}
               <VerifyStep step={STEPS.STEP_3_CELULAR}>
                 <RegistroValidacionCelular />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/calculadora-prestamo">
               <VerifyStep step={STEPS.STEP_4_PRESTAMO}>
                 <CalculadoraPrestamo />

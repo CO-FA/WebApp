@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { createIdPreaprobado } from "./createIDPreaprobado.mjs";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
@@ -35,25 +36,40 @@ const actualizarLead = async (documento, monto, cuota, importeCuota) => {
   console.log(error);
 };
 
+const actualizarIDLead = async (documento, resp) => {
+  const { data, error } = await supabase
+    .from("leads")
+    .update({ id_preaprobado: resp.idPreaprobado, sb_status: resp.status, sb_motivo: resp.motivo})
+    .eq("documento", documento);
+  console.log(error);
+};
+
 export const generarPreaprobado = async (body) => {
   const { monto, cuota, documento } = body;
 
-  const leadRecuperado = await recuperarLead(documento);
+  let leadRecuperado = await recuperarLead(documento);
   const categoriaLeadRecuperado = leadRecuperado.categoria;
+  console.log("Lead-recuperado: ", leadRecuperado)
 
   const interesXcategoria = await recuperarIntereses(categoriaLeadRecuperado);
   const interesRecuperado = interesXcategoria.interes;
 
   const importeCuota = calcularCuota(monto, interesRecuperado, cuota);
 
-  const actualizacion = await actualizarLead(
+  await actualizarLead(
     documento,
     monto,
     cuota,
     importeCuota
   );
 
-  //TODO: invocar el WS de generación de preaprobado en SB y con el resultado actualizar lead con el ID de preaprobado que devolvió SB su status
+  leadRecuperado = await recuperarLead(documento);
 
-  console.log(actualizacion);
+  const resp = await createIdPreaprobado (leadRecuperado)
+  console.log("id-preaprobado", resp)
+
+  await actualizarIDLead(
+    documento,
+    resp
+  );
 };

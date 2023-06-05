@@ -36,14 +36,6 @@ const isInvalidBcra = async (nroDocumento) => {
   return result;
 };
 
-/* const isValidBuro = async (nroDocumento) => {
-  const variables = await getVariablesBuro(nroDocumento);
-  console.log(variables);
-  const result = true;
-
-  return result;
-}; */
-
 const guardarLead = async ({
   nroDocumento,
   cuit,
@@ -52,18 +44,31 @@ const guardarLead = async ({
   nombre,
   telefono,
   }) => {
-  const { data, error } = await supabase.from("leads").insert([
-    {
-      documento: nroDocumento,
-      telefono: telefono,
-      nombre: nombre,
-      situacion: situacion,
-      genero: sexo,
-      cuit: cuit,
-    },
-  ]);
-  console.log(data, error);
-  return { lead: data, error };
+
+  // Verificar si el nroDocumento ya existe
+  const { data: leadsExistente, error} = await supabase
+  .from("leads")
+  .select("*")
+  .eq("documento", nroDocumento);
+
+  // Si ya existe un registro con el nroDocumento, no insertar
+  if (leadsExistente.length > 0) {
+    console.log("El nroDocumento ya existe. No se insertará.");
+    return { lead: null, error: null };
+  } else {
+    const { data, error } = await supabase.from("leads").insert([
+      {
+        documento: nroDocumento,
+        telefono: telefono,
+        nombre: nombre,
+        situacion: situacion,
+        genero: sexo,
+        cuit: cuit,
+      },
+    ]);
+    console.log(data, error);
+    return { lead: data, error };
+  }
 };
 
 const updateEstadoLead = async ({ documento, estado, mensaje }) => {
@@ -78,13 +83,12 @@ const updateEstadoLead = async ({ documento, estado, mensaje }) => {
   return { estadoLead: data, error };
 };
 
-//esta funcion no anda!
 const updateVariablesLead = async ({ documento, variables }) => {
   const categoria = variables?.find((el) => el.Variable === "IncomePredictor");
   const { data, error } = await supabase
     .from("leads")
     .update({
-      variables,
+      variables_buro: variables,
       categoria: categoria?.Valor,
       updated_at: new Date(),
     })
@@ -167,16 +171,15 @@ export const validateLead = async (body) => {
         return ERRORS.error_sin_prestamo;
       }
 
-      //const isValidBURO = await isValidBuro(body.nroDocumento);
-
-      //ACA GUARDAR LOS DATOS DE BURO
       const variables = await getVariablesBuro({ nroDocumento: nroDocumento, sexo: sexo });
-      await updateVariablesLead({ documento: nroDocumento, variables });
+      console.log("variables de getVariablesBuro", variables)
+
+      await updateVariablesLead({ documento: nroDocumento, varibales: variables });
 
       const nse = await getNivelRiesgo({
         nroDocumento: nroDocumento,
         sexo: sexo,
-        variables,
+        variables: variables,
       });
       console.log("NSE", nse);
 
@@ -184,7 +187,6 @@ export const validateLead = async (body) => {
       response.data = intereses;
 
       console.log("Devuelvo todo bien", response);
-
       return response;
     }
   } catch (error) {
