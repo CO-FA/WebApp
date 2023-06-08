@@ -17,6 +17,7 @@ import {
   usePrestamoAtom,
   useSituacionLaboralAtom,
   useGeneroAtom,
+  useCodigoAtom
 } from "../atoms/Atoms";
 import { validarLead } from "api/LeadValidation";
 
@@ -30,6 +31,7 @@ export function RegistroValidacionCelular() {
   const { codArea, numCelular } = useCelularAtom();
   const { setIntereses } = usePrestamoAtom();
   const { genero } = useGeneroAtom();
+  const { setClientePin } = useCodigoAtom()
 
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
@@ -37,6 +39,7 @@ export function RegistroValidacionCelular() {
     }
     if (!errors) {
       setShowLoader(true);
+      setClientePin(values.clientePin)
       try {
         //TODO: Generar preaprobado
 
@@ -118,7 +121,7 @@ export function RegistroValidacionCelular() {
                     <Input
                       label="Cód"
                       type="number"
-                      placeholder="011"
+                      placeholder="000"
                       className="form-control"
                       name="clienteCelCodigo"
                       errors={[]}
@@ -128,7 +131,7 @@ export function RegistroValidacionCelular() {
                   <div className="form-group col-9">
                     <Input
                       label="Celular"
-                      placeholder="38 XX XX XX"
+                      placeholder="00000000"
                       type="number"
                       className="form-control"
                       name="clienteCelNumero"

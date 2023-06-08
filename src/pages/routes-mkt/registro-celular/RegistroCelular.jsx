@@ -93,7 +93,7 @@ export function RegistroCelular() {
                     <Input
                       label="Cód"
                       type="number"
-                      placeholder="011"
+                      placeholder="000"
                       className="form-control"
                       name="clienteCelCodigo"
                       errors={[]}
@@ -103,7 +103,7 @@ export function RegistroCelular() {
                   <div className="form-group col-9">
                     <Input
                       label="Celular"
-                      placeholder="38913312"
+                      placeholder="00000000"
                       type="number"
                       className="form-control"
                       name="clienteCelNumero"

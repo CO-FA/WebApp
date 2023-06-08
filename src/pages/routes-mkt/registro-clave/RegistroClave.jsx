@@ -8,16 +8,19 @@ import Button from "components/commons/Button";
 import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useStepAtom } from "../atoms/Atoms";
-import { LoaderContext } from "components/loader/LoaderContext";
+import { useStepAtom, useIdentidadAtom, useCodigoAtom } from "../atoms/Atoms";
+import { LoaderContext } from "components/loader/LoaderContext"; 
+import { crearContraseña } from "api/Contraseña";
 
 export const RegistroClave = (props) => {
   let { setShowLoader } = React.useContext(LoaderContext);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
   const [errors, setErrors] = useState(false);
+  const { identidad } = useIdentidadAtom();
+  const { clientePin } = useCodigoAtom();
 
-  const submitForm = (values, setSubmitting) => {
+  const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;
     }
@@ -25,6 +28,12 @@ export const RegistroClave = (props) => {
       setShowLoader(true);
       try {
         //TODO: ejecutar WS de guardar clave
+        const datos = await crearContraseña({
+          documento: identidad.dni,
+          codigo: clientePin,
+          clave: values.clientePass,
+          confirmacionClave: values.clientePassConfirm,
+        })
         history.push("/onboarding/cbu");
         setCurrentStep(STEPS.STEP_6_VALIDAR_CBU);
       } catch (error) {

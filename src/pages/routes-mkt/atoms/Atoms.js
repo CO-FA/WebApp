@@ -66,3 +66,9 @@ export const useCbuAtom = () => {
   const [clienteCbu, setClienteCbu] = useAtom(cbuAtom);
   return { clienteCbu, setClienteCbu };
 };
+
+const codigoAtom = atomWithStorage("codigoAtom");
+export const useCodigoAtom = () => {
+  const [clientePin, setClientePin] = useAtom(codigoAtom);
+  return { clientePin, setClientePin };
+};
