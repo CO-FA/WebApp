@@ -1,5 +1,5 @@
 export const datosPrestamo = async ({ documento, monto, cuota}) => {
-  let url = "/back/generar-preaprobado";
+  let url = "/back/update-datos-prestamo";
 
   const body = {
     documento,

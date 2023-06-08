@@ -1,5 +1,5 @@
 import validateLead from "./routes/validate-lead.mjs";
-import generarPreaprobado from "./routes/generar-preaprobado.mjs";
+import updateDatosPrestamo from "./routes/update-datos-prestamo.mjs";
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(validateLead);
-app.use(generarPreaprobado);
+app.use(updateDatosPrestamo);
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;

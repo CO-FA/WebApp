@@ -36,6 +36,25 @@ const isInvalidBcra = async (nroDocumento) => {
   return result;
 };
 
+/* const isValidBuro = async (variablesBuro) => {
+  let { data: condiciones, error } = await supabase
+  .from("buro_validation_config")
+  .select();
+
+  console.log(variablesBuro);
+
+  condiciones.forEach((condicion)=>{
+    const variable = variablesBuro?.find((el) => el.Variable === condicion.variable);
+    console.log(variable.Valor,variable.Variable)
+    // eslint-disable-next-line default-case
+    switch(variable.condicion){
+      case "=":
+        if(variable.valor !== condicion.valor)
+          return false
+    }
+  })
+}; */
+
 const guardarLead = async ({
   nroDocumento,
   cuit,
@@ -172,9 +191,9 @@ export const validateLead = async (body) => {
       }
 
       const variables = await getVariablesBuro({ nroDocumento: nroDocumento, sexo: sexo });
-      console.log("variables de getVariablesBuro", variables)
-
       await updateVariablesLead({ documento: nroDocumento, varibales: variables });
+
+      //const isValidBURO= await isValidBuro();
 
       const nse = await getNivelRiesgo({
         nroDocumento: nroDocumento,

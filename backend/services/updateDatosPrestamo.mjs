@@ -44,7 +44,7 @@ const actualizarLead = async (documento, monto, cuota, importeCuota) => {
   console.log(error);
 }; */
 
-export const generarPreaprobado = async (body) => {
+export const updateDatosPrestamo = async (body) => {
   const { monto, cuota, documento } = body;
 
   let leadRecuperado = await recuperarLead(documento);
@@ -64,6 +64,8 @@ export const generarPreaprobado = async (body) => {
   );
 
   leadRecuperado = await recuperarLead(documento);
+  console.log("leadRecuperado",leadRecuperado)
+  return leadRecuperado;
   
   /* const resp = await createIdPreaprobado (leadRecuperado)
   console.log("id-preaprobado", resp)

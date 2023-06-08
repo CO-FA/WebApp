@@ -48,11 +48,9 @@ export default function CalculadoraPrestamo() {
           documento: identidad.dni
         });
 
-        if (datos.success) {
-          setShowLoader(false);
-          history.push("/onboarding/password");
-          setCurrentStep(STEPS.STEP_5_CLAVE);
-        }        
+        setShowLoader(false);
+        history.push("/onboarding/password");
+        setCurrentStep(STEPS.STEP_5_CLAVE);
       } catch (error) {
         history.push("/onboarding/error");
         setCurrentStep(STEPS.STEP_99_ERROR);
