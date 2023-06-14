@@ -1,9 +1,12 @@
 import validateLead from "./routes/validate-lead.mjs";
 import updateDatosPrestamo from "./routes/update-datos-prestamo.mjs";
+import crearPassword from "./routes/crear-password.mjs"
+import suscripcionMobbex from "./routes/mobbex.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { createClient } from "@supabase/supabase-js";
+
 
 //import { validateLead } from "./services/validate-lead.mjs";
 
@@ -32,6 +35,8 @@ app.get("/", (req, res) => {
 
 app.use(validateLead);
 app.use(updateDatosPrestamo);
+app.use(crearPassword)
+app.use(suscripcionMobbex)
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;

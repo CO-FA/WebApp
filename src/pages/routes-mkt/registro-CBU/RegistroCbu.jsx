@@ -11,8 +11,9 @@ import { useModal } from "components/modal/ModalContext";
 import { useEffect } from "react";
 import Cbu from "pages/estadofinanciero/Cbu";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useCbuAtom, useStepAtom } from "../atoms/Atoms";
+import { useCbuAtom, useIdentidadAtom, useStepAtom } from "../atoms/Atoms";
 import { useFindBanco } from "./hooks/useFindBanco";
+import { suscripcionMobbex } from "api/SuscripcionMobbex";
 
 export default function RegistroCbu({}) {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -23,13 +24,14 @@ export default function RegistroCbu({}) {
   const [cbu, setCbu] = useState();
   const { banco } = useFindBanco({ cbu });
   const {clienteCbu, setClienteCbu} = useCbuAtom();
+  const { identidad } = useIdentidadAtom();
 
   useEffect(() => {
     setElement(<Cbu />);
     return () => setElement(null);
   }, []);
 
-  const submitForm = (values, setSubmitting) => {
+  const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;
     }
@@ -37,6 +39,11 @@ export default function RegistroCbu({}) {
       setShowLoader(true);
       setClienteCbu(values.nroCbu)
       try {
+        const datos = await suscripcionMobbex({
+          nroDocumento: identidad.dni,
+          //returnURL: "http://localhost:8888/#/onboarding/email",
+          returnURL: "http://localhost:8888/#/onboarding/finalizar-mobbex",
+        })
         history.push("/onboarding/mobbex");
         setCurrentStep(STEPS.STEP_7_MOBBEX);
       } catch (error) {
@@ -49,7 +56,6 @@ export default function RegistroCbu({}) {
   };
 
   const validateForm = (values) => {
-    /* ir a BD a buscar el nombre de la entidad bancaria de acuerdo al num de CBU/CVU */
     setCbu(values.nroCbu);
   };
 
