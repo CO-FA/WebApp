@@ -10,7 +10,7 @@ import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useStepAtom, useIdentidadAtom, useCodigoAtom } from "../atoms/Atoms";
 import { LoaderContext } from "components/loader/LoaderContext"; 
-import { crearContraseña } from "api/Contraseña";
+import { crearPassword } from "api/Password";
 
 export const RegistroClave = (props) => {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -28,11 +28,10 @@ export const RegistroClave = (props) => {
       setShowLoader(true);
       try {
         //TODO: ejecutar WS de guardar clave
-        const datos = await crearContraseña({
+        const datos = await crearPassword({
           documento: identidad.dni,
           codigo: clientePin,
           clave: values.clientePass,
-          confirmacionClave: values.clientePassConfirm,
         })
         history.push("/onboarding/cbu");
         setCurrentStep(STEPS.STEP_6_VALIDAR_CBU);

@@ -3,7 +3,7 @@ import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
-export const crearContraseña = async (codigo, documento, clave, confirmacionClave) => {
+export const crearPassword = async (codigo, documento, clave) => {
   try {
     const token = await getToken();
 
@@ -13,9 +13,8 @@ export const crearContraseña = async (codigo, documento, clave, confirmacionCla
 
     const body2 = {
       nroDocumento: documento,
-      codigo,
-      clave,
-      confirmacionClave,
+      codigo: codigo,
+      password: clave,
     };
 
     const requestOptions = {
@@ -28,7 +27,7 @@ export const crearContraseña = async (codigo, documento, clave, confirmacionCla
     const resp = await fetch(URL + "/API/v1/lending/resetLoginSMS", requestOptions);
     const data = await resp.json();
   
-    console.log("respuesta sb crear contraseña", data)
+    console.log("respuesta sb crearPassword", data)
 
     return data
   } catch (error) {
