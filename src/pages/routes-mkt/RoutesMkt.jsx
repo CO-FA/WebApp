@@ -107,7 +107,7 @@ export function RoutesMkt() {
             {/* --> va a mobbex */}
             <Route path="/onboarding/mobbex">
               <VerifyStep step={STEPS.STEP_7_MOBBEX}>
-                <Mobbex urlMobbex={"https://www.google.com"} />
+                <Mobbex />
               </VerifyStep>
             </Route>
             <Route path="/onboarding/email">
