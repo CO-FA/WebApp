@@ -112,7 +112,7 @@ export default function CalculadoraPrestamo() {
                 max={intereses?.maximo_cantidad_cuotas}
                 />
             </Box>
-            <Message text={`${cuota} Cuotas de ${montoCuota}`} />
+            <Message text={`${cuota} Cuotas de $ ${montoCuota}`} />
             <Footer>
               <div className="col-12">
                 <Button
