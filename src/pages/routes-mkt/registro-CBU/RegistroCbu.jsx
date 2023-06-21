@@ -41,10 +41,8 @@ export default function RegistroCbu({}) {
       try {
         const datos = await suscripcionMobbex({
           nroDocumento: identidad.dni,
-          //returnURL: "http://localhost:8888/#/onboarding/email",
-          returnURL: "http://localhost:8888/#/onboarding/finalizar-mobbex",
+          returnURL: "http://localhost:8888/#/onboarding/finalizar-suscripcion?nroDocumento=" + identidad.dni ,
         })
-        //datos voy a tener la variable de retorno la cual desp voy a pasar a la page mobbex
         history.push("/onboarding/mobbex");
         setCurrentStep(STEPS.STEP_7_MOBBEX);
       } catch (error) {

@@ -33,6 +33,7 @@ import ModificarEmail from "pages/perfil/PerfilModificarEmail";
 import OlvidePasswordStep2 from "pages/perfil/PerfilModificarPass";
 import ModificarDireccion from "pages/perfil/PerfilModificarDireccion";
 import DetallePrestamo from "pages/estadofinanciero/DetallePrestamo";
+import { FinalizarMobbex } from "./mobbex/FinalizarMobbex";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -104,12 +105,17 @@ export function RoutesMkt() {
                 <RegistroCbu />
               </VerifyStep>
             </Route>
-            {/* --> va a mobbex */}
             <Route path="/onboarding/mobbex">
               <VerifyStep step={STEPS.STEP_7_MOBBEX}>
                 <Mobbex />
               </VerifyStep>
             </Route>
+            {/* <Route path="/onboarding/finalizar-suscripcion">
+              <VerifyStep step={STEPS.STEP_7_MOBBEX}>
+                <FinalizarMobbex />
+              </VerifyStep>
+            </Route> */}
+            
             <Route path="/onboarding/email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
                 <RegistroEmail />
