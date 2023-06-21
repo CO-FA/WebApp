@@ -128,7 +128,7 @@ export const RegistroClave = (props) => {
               </form>
             </section>
             <Footer>
-              <div class="col-12">
+              <div className="col-12">
                 <Button
                   className="btn btn-primary cont"
                   disabled={false}

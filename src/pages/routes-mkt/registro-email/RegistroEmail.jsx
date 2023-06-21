@@ -10,7 +10,7 @@ import Button from "components/commons/Button";
 import RegistroSetps from "../../../components/registro/RegistroSteps";
 import { STEPS } from "../../../components/registro/STEPS-MKT";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
-import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
+import { useStepAtom } from "../atoms/Atoms";
 
 export default function RegistroEmail() {
   let { setShowLoader } = React.useContext(LoaderContext);
