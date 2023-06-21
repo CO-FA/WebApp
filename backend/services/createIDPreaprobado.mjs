@@ -3,7 +3,7 @@ import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
 export const createIdPreaprobado = async (leadRecuperado) => {
-  const {documento, nombre, genero, monto, cuota, importeCuota, categoria, situacion} = leadRecuperado;
+  const {documento, nombre, genero, monto, cuota, importeCuota, categoria, situacion, telefono, fecha_nacimiento} = leadRecuperado;
   try {
     const token = await getToken();
 
@@ -12,14 +12,24 @@ export const createIdPreaprobado = async (leadRecuperado) => {
     myHeaders.append("Content-type", "application/json");
 
     const body1 = {
-      documento: documento,
-      nombre: nombre,
-      genero: genero,
-      monto: monto,
-      cuota: cuota,
-      importeCuota: importeCuota,
-      categoria: categoria,
-      situacion: situacion,
+      /*categoria: categoria,
+      situacion: situacion,*/
+      "nombre":nombre,
+      "apellido": nombre,
+      "genero":genero,
+      "nroDocumento":documento,
+      "fechaNacimiento": fecha_nacimiento,
+      "email":documento+"@cofa.com.ar",
+      "celular":telefono,
+      "ingresos":0,
+      "monto": monto,
+      "cuotas": cuota,
+      "lineaCredito":0,
+      "diaPago":0,
+      "importeCuota": importeCuota,
+      "comercializadora_sucursal":0,
+      "origen":"WebApp",
+      "enviarMailOnboarding":false
     };
 
     const requestOptions = {
@@ -31,8 +41,6 @@ export const createIdPreaprobado = async (leadRecuperado) => {
     
     const resp = await fetch(URL + "/API/v1/lending/score", requestOptions);
     const data = await resp.json();
-  
-    console.log("respuesta sb id y status", data)
 
     return data
   } catch (error) {

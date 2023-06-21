@@ -1,10 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
-//import { createIdPreaprobado } from "./createIDPreaprobado.mjs";
+import { createIdPreaprobado } from "./createIDPreaprobado.mjs";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
 
-const recuperarLead = async (documento) => {
+export const recuperarLead = async (documento) => {
   let { data: lead, error } = await supabase
     .from("leads")
     .select("*")
@@ -36,13 +36,17 @@ const actualizarLead = async (documento, monto, cuota, importeCuota) => {
   console.log(error);
 };
 
-/* const actualizarIDLead = async (documento, resp) => {
+const actualizarIDLead = async (documento, resp) => {
   const { data, error } = await supabase
     .from("leads")
-    .update({ id_preaprobado: resp.idPreaprobado, sb_status: resp.status, sb_motivo: resp.motivo})
+    .update({ 
+      id_preaprobado: resp.idPreaprobado, 
+      sb_status: resp.status, 
+      sb_motivo: resp.motivo, 
+      sb_preaprobado: resp.preaprobado})
     .eq("documento", documento);
   console.log(error);
-}; */
+};
 
 export const updateDatosPrestamo = async (body) => {
   const { monto, cuota, documento } = body;
@@ -64,14 +68,18 @@ export const updateDatosPrestamo = async (body) => {
   );
 
   leadRecuperado = await recuperarLead(documento);
-  console.log("leadRecuperado",leadRecuperado)
-  return leadRecuperado;
   
-  /* const resp = await createIdPreaprobado (leadRecuperado)
-  console.log("id-preaprobado", resp)
+
+  const resp = await createIdPreaprobado (leadRecuperado)
+  console.log("id-preaprobado", resp) 
+  //id-preaprobado { preaprobado: true, status: 'OK', idPreaprobado: 5002683, motivo: '' }
 
   await actualizarIDLead(
     documento,
     resp
-  ); */
+  );
+
+  await recuperarLead(documento);
+  console.log("leadRecuperado",leadRecuperado)
+  return leadRecuperado;
 };
