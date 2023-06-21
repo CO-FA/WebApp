@@ -8,7 +8,6 @@ router.post("/mobbex", async function (req, res) {
   res.json({
     ...response,
   });
-  console.log("response suscripcionMobbex", response)
 });
 
 export default router;

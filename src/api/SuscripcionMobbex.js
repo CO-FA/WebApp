@@ -15,7 +15,6 @@ export const suscripcionMobbex = async ({nroDocumento, returnURL }) => {
         },
         body: JSON.stringify(body),
     });
-
-    console.log(obj);
+    
     return obj.json() || {};
 };

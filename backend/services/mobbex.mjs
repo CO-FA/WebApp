@@ -4,7 +4,7 @@ import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 import { recuperarLead } from "./updateDatosPrestamo.mjs";
 
-export const suscripcionMobbex = async ({nroDocumento, returnURL,}) => {
+export const suscripcionMobbex = async ({nroDocumento, returnURL}) => {
   let leadRecuperado = await recuperarLead(nroDocumento);
   console.log("lead recuperado mobbex back/services", leadRecuperado)
 
@@ -16,7 +16,7 @@ export const suscripcionMobbex = async ({nroDocumento, returnURL,}) => {
     myHeaders.append("Content-type", "application/json");
 
     const body = {
-      nroDocumento: nroDocumento,
+      nroDocumento,
       idPreaprobado: leadRecuperado.id_preaprobado,
       returnURL,
     };
@@ -31,6 +31,7 @@ export const suscripcionMobbex = async ({nroDocumento, returnURL,}) => {
 
     const resp = await fetch(URL + "/API/v1/lending/mobbexSubscription", requestOptions);
     const dataMobbexSuscription = await resp.json();
+
     console.log("dataMobbexSuscription", dataMobbexSuscription)
     return dataMobbexSuscription
     // dato que necesito! subscriptionURL: 'https://mobbex.com/p/subscriptions/757AVV6I1NHFE4T57D/subscriber/DZWK7SJ4K3CYUNLODT/source' 

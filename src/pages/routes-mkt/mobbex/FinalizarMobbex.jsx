@@ -21,7 +21,6 @@ export function FinalizarMobbex() {
                 setShowLoader(false);
               }
         },[]) */
-    
         return <>cargando...</>
     //};
 };

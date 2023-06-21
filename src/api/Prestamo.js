@@ -15,5 +15,7 @@ export const datosPrestamo = async ({ documento, monto, cuota}) => {
     },
     body: JSON.stringify(body),
   });
+
+  console.log("obj api/Prestamo/datosPrestamo", obj)
   return obj.json() || {};
 };

@@ -110,11 +110,11 @@ export function RoutesMkt() {
                 <Mobbex />
               </VerifyStep>
             </Route>
-            {/* <Route path="/onboarding/finalizar-suscripcion">
+            <Route path="/onboarding/finalizar-suscripcion">
               <VerifyStep step={STEPS.STEP_7_MOBBEX}>
                 <FinalizarMobbex />
               </VerifyStep>
-            </Route> */}
+            </Route>
             
             <Route path="/onboarding/email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
