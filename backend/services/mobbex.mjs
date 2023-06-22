@@ -5,8 +5,10 @@ import fetch, { Headers } from "node-fetch";
 import { recuperarLead } from "./updateDatosPrestamo.mjs";
 
 export const suscripcionMobbex = async ({nroDocumento, returnURL}) => {
-  let leadRecuperado = await recuperarLead(nroDocumento);
+  const leadRecuperado = await recuperarLead(nroDocumento);
   console.log("lead recuperado mobbex back/services", leadRecuperado)
+  console.log("dni mobbex",nroDocumento)
+  console.log("leadRecuperado.id_preaprobado mobbex",leadRecuperado.id_preaprobado)
 
   try {
     const token = await getToken();
