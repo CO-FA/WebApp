@@ -21,6 +21,7 @@ export const getVariablesBuro = async ({ nroDocumento, sexo }) => {
     console.log("URL getVariablesBuro", URL + "/API/v1/lending/bureau");
     console.log("Req getVariablesBuro", requestOptions);
 
+    //const resp = await fetch("URL DE SERVICIO PROPIO", requestOptions);
     const resp = await fetch(URL + "/API/v1/lending/bureau", requestOptions);
 
     const respText = await resp.text();
