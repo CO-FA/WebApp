@@ -1,26 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../assets/css/main.css";
+import { useHistory } from "react-router-dom";
+import { useStepAtom } from "../atoms/Atoms";
+import { STEPS } from "components/registro/STEPS-MKT";
 
 export function FinalizarMobbex() {
-   /*  const finalizarSuscripcion = () => {
-        useEffect(() => {
-            if (!errors) {
-                setShowLoader(true);
-                setClienteCbu(values.nroCbu)
-                try {
-                    const finalizar = await finalizar()
-                    //funcion fetch que va a api, reoutes y services
-                   .then(() => {
-                    history.push("/onboarding/email");
-                    setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);})
-                } catch (error) {
-                  history.push("/onboarding/error");
-                  setCurrentStep(STEPS.STEP_99_ERROR);
-                  console.error(error);
-                }
-                setShowLoader(false);
-              }
-        },[]) */
-        return <>cargando...</>
-    //};
+  const [errors, setErrors] = useState(false);
+  const history = useHistory();
+  const { setCurrentStep } = useStepAtom();
+
+  useEffect(() => {
+      if (!errors) {
+        history.push("/onboarding/email");
+        setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);
+      }else{
+        history.push("/onboarding/error");
+        setCurrentStep(STEPS.STEP_99_ERROR);
+      }
+  },[])     
+  
+  return <>Cargando...</>
 };

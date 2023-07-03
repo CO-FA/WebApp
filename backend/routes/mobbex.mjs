@@ -9,7 +9,6 @@ router.post("/mobbex", async function (req, res) {
     ...response,
     
   });
-  console.log("response routes/mobbex",response)
 });
 
 export default router;

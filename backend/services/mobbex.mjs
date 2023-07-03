@@ -6,10 +6,7 @@ import { recuperarLead } from "./updateDatosPrestamo.mjs";
 
 export const suscripcionMobbex = async ({nroDocumento, returnURL}) => {
   const leadRecuperado = await recuperarLead(nroDocumento);
-  console.log("lead recuperado mobbex back/services", leadRecuperado)
-  console.log("dni mobbex",nroDocumento)
-  console.log("leadRecuperado.id_preaprobado mobbex",leadRecuperado.id_preaprobado)
-
+  
   try {
     const token = await getToken();
 
@@ -22,7 +19,6 @@ export const suscripcionMobbex = async ({nroDocumento, returnURL}) => {
       idPreaprobado: leadRecuperado.id_preaprobado,
       returnURL,
     };
-    console.log("susciptionMobbex datos",body);
 
     const requestOptions = {
       method: "POST",
@@ -35,8 +31,11 @@ export const suscripcionMobbex = async ({nroDocumento, returnURL}) => {
     const dataMobbexSuscription = await resp.json();
 
     console.log("dataMobbexSuscription", dataMobbexSuscription)
-    return dataMobbexSuscription
-    // dato que necesito! subscriptionURL: 'https://mobbex.com/p/subscriptions/757AVV6I1NHFE4T57D/subscriber/DZWK7SJ4K3CYUNLODT/source' 
+    const subscriptionURL = dataMobbexSuscription.subscriptionURL   
+    console.log("subscriptionURL", subscriptionURL)
+
+    return subscriptionURL
+    
   } catch (error) {
     console.log(error);
   }

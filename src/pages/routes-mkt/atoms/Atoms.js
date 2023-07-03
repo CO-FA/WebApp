@@ -72,3 +72,9 @@ export const useCodigoAtom = () => {
   const [clientePin, setClientePin] = useAtom(codigoAtom);
   return { clientePin, setClientePin };
 };
+
+const subscriptionURLAtom = atomWithStorage("subscriptionURLAtom");
+export const useSubscriptionURLAtom = () => {
+  const [subscriptionURL, setSubscriptionURL] = useAtom(subscriptionURLAtom);
+  return { subscriptionURL, setSubscriptionURL };
+};
