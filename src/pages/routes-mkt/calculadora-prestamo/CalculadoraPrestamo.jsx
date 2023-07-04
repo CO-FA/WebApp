@@ -45,7 +45,7 @@ export default function CalculadoraPrestamo() {
           monto,
           cuota,
           montoCuota,
-          documento: identidad.dni
+          documento: identidad.cuit
         });
 
         setShowLoader(false);

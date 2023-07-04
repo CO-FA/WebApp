@@ -29,7 +29,7 @@ export const RegistroClave = (props) => {
       try {
         //TODO: ejecutar WS de guardar clave
         const datos = await crearPassword({
-          documento: identidad.dni,
+          documento: identidad.cuit,
           codigo: clientePin,
           clave: values.clientePass,
         })

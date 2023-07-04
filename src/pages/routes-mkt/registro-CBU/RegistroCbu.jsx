@@ -40,8 +40,8 @@ export default function RegistroCbu({}) {
       setClienteCbu(values.nroCbu)
       try {
         const datosMobbex = await suscripcionMobbex({
-          nroDocumento: identidad.dni,
-          returnURL: "http://localhost:8888/#/onboarding/finalizar-suscripcion?nroDocumento=" + identidad.dni ,
+          nroDocumento: identidad.cuit,
+          returnURL: "http://localhost:8888/#/onboarding/finalizar-suscripcion?nroDocumento=" + identidad.cuit ,
         })
         const subscriptionURLmobbex = Object.values(datosMobbex).join('');
         setSubscriptionURL(subscriptionURLmobbex)
