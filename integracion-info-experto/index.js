@@ -1,36 +1,88 @@
-import { dataInfoExperto } from "./infoExperto.js";
+/* import { dataInfoExperto } from "./infoExperto.js";
+const datos = dataInfoExperto.datos;
+const result = Object.entries(datos).map((entry, index) => {
+  const [key, value] = entry;
 
-const URL_INFO_EXPERTO = "";
-const API_KEY = "aaaaa";
+  return {
+    Variable: key,
+    Valor: value,
+  };
+});
+console.log("Result", result); */
+
+/* const URL_INFO_EXPERTO = "https://servicio.infoexperto.com.ar/app/api/v1/informe/apikey";
+const API_KEY = "907f2535-d4a4-4f69-8824-3486fc9392eb";
+
 const llamarPorGetAInfoExperto = (cuit) => {
-  const result = fetch(URL_INFO_EXPERTO + "/" + API_KEY + "/" + cuit).then(
+  const result = fetch(URL_INFO_EXPERTO + "/" + API_KEY + "/cuit/" + cuit + "?formato=teclab").then(
     (response) => response.json()
   );
   return result;
 };
 
-//TODO: mapear los resultados recursivamente si es un objeto
 function mapVariables(key, value) {
-  return value;
+  if (typeof value === 'object' && value !== null) {
+    return Object.entries(value).map(([nestedKey, nestedValue]) => ({
+      Variable: `${key}.${nestedKey}`,
+      Valor: mapVariables(nestedKey, nestedValue)
+    }));
+  } else {
+    return value;
+  }
 }
 
 async function main() {
   console.log("start mapping");
-  //TODO: invocar el WS de info experto
-  //TODO: mapear el resultado a array de objetos clave valor
+  const dataInfoExperto = await llamarPorGetAInfoExperto("20357534411")
+  const resultMap = mapVariables('datos', dataInfoExperto.datos);
   //TODO: exponer todo en un endpoint que reciba el numero de cuit
 
-  //const data = await llamarPorGetAInfoExperto("20357534411")
-  const datos = dataInfoExperto.datos;
-  const result = Object.entries(datos).map((entry, index) => {
-    const [key, value] = entry;
+}
+main(); */
 
-    return {
-      Variable: key,
-      Valor: value,
-    };
-  });
-  console.log("Result", result);
+
+const express = require('express');
+const app = express();
+const port = 3000; // Puerto en el que se ejecutará el servidor
+
+const URL_INFO_EXPERTO = "https://servicio.infoexperto.com.ar/app/api/v1/informe/apikey";
+const API_KEY = "907f2535-d4a4-4f69-8824-3486fc9392eb";
+
+const llamarPorGetAInfoExperto = (cuit) => {
+  const result = fetch(URL_INFO_EXPERTO + "/" + API_KEY + "/cuit/" + cuit + "?formato=teclab").then(
+    (response) => response.json()
+  );
+  return result;
+};
+
+// mapear los resultados recursivamente si es un objeto
+function mapVariables(key, value) {
+  if (typeof value === 'object' && value !== null) {
+    return Object.entries(value).map(([nestedKey, nestedValue]) => ({
+      Variable: `${key}.${nestedKey}`,
+      Valor: mapVariables(nestedKey, nestedValue)
+    }));
+  } else {
+    return value;
+  }
 }
 
-main();
+// Endpoint GET para obtener los datos mapeados
+app.get('/api/datos/:cuit', async (req, res) => {
+  const { cuit } = req.params;
+  
+  try {
+    const dataInfoExperto = await llamarPorGetAInfoExperto(cuit);
+    const resultMap = mapVariables('datos', dataInfoExperto.datos);
+    
+    res.json(resultMap);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Ocurrió un error al obtener los datos mapeados.' });
+  }
+});
+
+// Iniciar el servidor
+app.listen(port, () => {
+  console.log(`Servidor escuchando en el puerto ${port}`);
+});
