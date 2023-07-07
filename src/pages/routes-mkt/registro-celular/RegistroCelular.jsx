@@ -31,7 +31,7 @@ export function RegistroCelular() {
 
       const data = await enviarSMSValidacion(
         values.clienteCelCodigo + "" + values.clienteCelNumero,
-        identidad.cuit
+        identidad.dni
       );
 
       setShowLoader(false);

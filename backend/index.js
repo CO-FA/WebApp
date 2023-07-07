@@ -2,6 +2,7 @@ import validateLead from "./routes/validate-lead.mjs";
 import updateDatosPrestamo from "./routes/update-datos-prestamo.mjs";
 import crearPassword from "./routes/crear-password.mjs"
 import suscripcionMobbex from "./routes/mobbex.mjs"
+import validarEmail from "./routes/validar-email.mjs";
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -37,6 +38,7 @@ app.use(validateLead);
 app.use(updateDatosPrestamo);
 app.use(crearPassword)
 app.use(suscripcionMobbex)
+app.use(validarEmail)
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;

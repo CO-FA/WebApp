@@ -10,21 +10,28 @@ import Button from "components/commons/Button";
 import RegistroSetps from "../../../components/registro/RegistroSteps";
 import { STEPS } from "../../../components/registro/STEPS-MKT";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
-import { useStepAtom } from "../atoms/Atoms";
+import { useIdentidadAtom, useStepAtom } from "../atoms/Atoms";
+import { validacionEmail } from "api/EmailValidation";
 
 export default function RegistroEmail() {
   let { setShowLoader } = React.useContext(LoaderContext);
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
+  const { identidad } = useIdentidadAtom();
 
-  const submitForm = (values, setSubmitting) => {
+  const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;
     }
     if (!errors) {
       setShowLoader(true);
       try{
+        const datosEmail = await validacionEmail({
+          "nroDocumento": identidad.cuit,
+	        "email":values.clienteEmail
+        })
+
         history.push("/onboarding/validar-pin-email");
         setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);
       }catch (error) {
