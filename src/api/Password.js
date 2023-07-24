@@ -1,11 +1,10 @@
 
-export const crearPassword = async ({documento, codigo, clave}) => {
+export const crearPassword = async ({nroDocumento, password}) => {
     let url = "/back/crear-password";
 
     const body = {
-        nroDocumento: documento,
-        codigo: codigo,
-        password: clave,
+        nroDocumento,
+        password
     };
     console.log("crearPassword front", body);
 

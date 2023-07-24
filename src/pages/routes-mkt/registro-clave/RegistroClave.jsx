@@ -8,7 +8,7 @@ import Button from "components/commons/Button";
 import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useStepAtom, useIdentidadAtom, useCodigoAtom } from "../atoms/Atoms";
+import { useStepAtom, useIdentidadAtom} from "../atoms/Atoms";
 import { LoaderContext } from "components/loader/LoaderContext"; 
 import { crearPassword } from "api/Password";
 
@@ -18,7 +18,6 @@ export const RegistroClave = (props) => {
   const { setCurrentStep } = useStepAtom();
   const [errors, setErrors] = useState(false);
   const { identidad } = useIdentidadAtom();
-  const { clientePin } = useCodigoAtom();
 
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
@@ -27,11 +26,9 @@ export const RegistroClave = (props) => {
     if (!errors) {
       setShowLoader(true);
       try {
-        //TODO: ejecutar WS de guardar clave
         const datos = await crearPassword({
-          documento: identidad.cuit,
-          codigo: clientePin,
-          clave: values.clientePass,
+          nroDocumento: identidad.dni,
+          password: values.clientePass,
         })
         history.push("/onboarding/cbu");
         setCurrentStep(STEPS.STEP_6_VALIDAR_CBU);

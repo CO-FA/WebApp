@@ -1,37 +1,24 @@
-//back
-import { getToken } from "./token.mjs";
-import { URL } from "./url.mjs";
-import fetch, { Headers } from "node-fetch";
+import { createClient } from "@supabase/supabase-js";
+import { recuperarLead } from "./updateDatosPrestamo.mjs";
 
-export const crearPassword = async (codigo, documento, clave) => {
-  try {
-    const token = await getToken();
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
 
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token?.token);
-    myHeaders.append("Content-type", "application/json");
+const actualizarPasswordLead = async (nroDocumento, password) => {
+  const { data, error } = await supabase
+    .from("leads")
+    .update({ password: password })
+    .eq("documento", nroDocumento);
+  console.log(error);
+};
 
-    const body2 = {
-      nroDocumento: documento,
-      codigo: codigo,
-      password: clave,
-    };
+export const crearPassword = async ({nroDocumento, password}) => {
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: JSON.stringify(body2),
-      redirect: "follow",
-    };
-    
-    const resp = await fetch(URL + "/API/v1/lending/resetLoginSMS", requestOptions);
-    const data = await resp.json();
+  await actualizarPasswordLead (nroDocumento, password)
   
-    console.log("respuesta sb crearPassword", data)
+  const leadPassActualizada = await recuperarLead (nroDocumento)
 
-    return data
-  } catch (error) {
-    console.log(error);
-  }
-  return Promise.resolve(null);
+  console.log("Lead password actualizada", leadPassActualizada )
+  return leadPassActualizada
+
 };
