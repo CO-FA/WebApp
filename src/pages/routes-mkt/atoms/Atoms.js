@@ -78,3 +78,9 @@ export const useSubscriptionURLAtom = () => {
   const [subscriptionURL, setSubscriptionURL] = useAtom(subscriptionURLAtom);
   return { subscriptionURL, setSubscriptionURL };
 };
+
+const leadAtom = atomWithStorage("leadAtom");
+export const useLeadAtom = () => {
+  const [lead, setLead] = useAtom(leadAtom);
+  return { lead, setLead };
+};

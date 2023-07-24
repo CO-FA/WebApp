@@ -3,7 +3,7 @@ import { EncabezadoVerde } from "components/commons/EncabezadoVerdeDos";
 import { Slider } from "@mui/material";
 import Button from "components/commons/Button";
 import { useCalculadoraPrestamo } from "./hooks/useCalculadoraPrestamo";
-import { useIdentidadAtom} from "../atoms/Atoms";
+import { useIdentidadAtom, useLeadAtom} from "../atoms/Atoms";
 import { TextoHeaderSecundario } from "./components/TextoHeaderSecundario";
 import { TextoHeaderPrimario } from "./components/TextoHeaderPrimario";
 import { InputWithDecorator } from "./components/InputWithDecorator";
@@ -32,6 +32,7 @@ export default function CalculadoraPrestamo() {
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
+  const {setLead} = useLeadAtom();
 
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
@@ -40,14 +41,14 @@ export default function CalculadoraPrestamo() {
     if (!errors) {
       setShowLoader(true);
       try { 
-        const datos = await datosPrestamo({
+        const datosLead = await datosPrestamo({
           intereses,
           monto,
           cuota,
           montoCuota,
           documento: identidad.dni
         });
-
+        setLead(datosLead);
         setShowLoader(false);
         history.push("/onboarding/password");
         setCurrentStep(STEPS.STEP_5_CLAVE);

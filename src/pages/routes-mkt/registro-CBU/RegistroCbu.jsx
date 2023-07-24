@@ -10,7 +10,7 @@ import { useModal } from "components/modal/ModalContext";
 import { useEffect } from "react";
 import Cbu from "pages/estadofinanciero/Cbu";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useCbuAtom, useIdentidadAtom, useStepAtom, useSubscriptionURLAtom } from "../atoms/Atoms";
+import { useCbuAtom, useIdentidadAtom, useLeadAtom, useStepAtom, useSubscriptionURLAtom } from "../atoms/Atoms";
 import { useFindBanco } from "./hooks/useFindBanco";
 import { suscripcionMobbex } from "api/SuscripcionMobbex";
 
@@ -25,6 +25,7 @@ export default function RegistroCbu({}) {
   const {clienteCbu, setClienteCbu} = useCbuAtom();
   const { identidad } = useIdentidadAtom();
   const { setSubscriptionURL } = useSubscriptionURLAtom();
+  const { lead } = useLeadAtom();
 
   useEffect(() => {
     setElement(<Cbu />);
@@ -41,6 +42,7 @@ export default function RegistroCbu({}) {
       try {
         const datosMobbex = await suscripcionMobbex({
           nroDocumento: identidad.cuit,
+          idPreaprobado: lead.id_preaprobado,
           returnURL: "http://localhost:8888/#/onboarding/finalizar-suscripcion?nroDocumento=" + identidad.cuit ,
         })
         const subscriptionURLmobbex = Object.values(datosMobbex).join('');

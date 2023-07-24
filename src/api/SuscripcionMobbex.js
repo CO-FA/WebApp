@@ -1,9 +1,10 @@
 
-export const suscripcionMobbex = async ({nroDocumento, returnURL }) => {
+export const suscripcionMobbex = async ({nroDocumento, idPreaprobado, returnURL }) => {
     let url = "/back/mobbex";
 
     const body = {
         nroDocumento: nroDocumento,
+        idPreaprobado,
         returnURL: returnURL
     };
     console.log("mobbex front", body);

@@ -2,11 +2,8 @@
 import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
-import { recuperarLead } from "./updateDatosPrestamo.mjs";
 
-export const suscripcionMobbex = async ({nroDocumento, returnURL}) => {
-  const leadRecuperado = await recuperarLead(nroDocumento);
-  
+export const suscripcionMobbex = async ({nroDocumento, idPreaprobado,returnURL}) => {
   try {
     const token = await getToken();
 
@@ -16,7 +13,7 @@ export const suscripcionMobbex = async ({nroDocumento, returnURL}) => {
 
     const body = {
       nroDocumento,
-      idPreaprobado: leadRecuperado.id_preaprobado,
+      idPreaprobado,
       returnURL,
     };
 
