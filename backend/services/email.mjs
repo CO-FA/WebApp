@@ -1,11 +1,9 @@
 //back
 import { getToken } from "./token.mjs";
-import { recuperarLead } from "./updateDatosPrestamo.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
-export const validarEmail = async ({nroDocumento, email}) => {
-    const leadRecuperado = await recuperarLead(nroDocumento);
+export const validarEmail = async ({nroDocumento,idPreaprobado, email, enviarCodigo}) => {
   try {
     const token = await getToken();
 
@@ -15,8 +13,9 @@ export const validarEmail = async ({nroDocumento, email}) => {
 
     const body = {
       nroDocumento,
-      idPreaprobado: leadRecuperado.id_preaprobado,
+      idPreaprobado,
       email,
+      enviarCodigo
     };
     console.log("datos validarEmail", body);
 

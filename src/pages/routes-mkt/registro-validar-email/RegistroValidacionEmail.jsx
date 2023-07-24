@@ -25,6 +25,14 @@ export default function RegistroValidacionEmail() {
     if (!errors) {
       setShowLoader(true);
       try{
+        // TO DO: WS PARA VAÑIDAR EL CODIGO + FUNCIONES DE BACK!
+        const validarEmail = await validacionCodigoEmail({
+          "nroDocumento": identidad.cuit,
+          "idPreaprobado":lead.id_preaprobado,
+          "enviarCodigo": values.clientePin,
+        })
+        console.log("datos email", validarEmail);
+
         history.push("/onboarding/info-pre-nosis");
         setCurrentStep(STEPS.STEP_9_VERIFICAR_PREAPROBADO);
       }catch (error) {

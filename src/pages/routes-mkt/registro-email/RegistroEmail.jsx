@@ -10,7 +10,7 @@ import Button from "components/commons/Button";
 import RegistroSetps from "../../../components/registro/RegistroSteps";
 import { STEPS } from "../../../components/registro/STEPS-MKT";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
-import { useIdentidadAtom, useStepAtom } from "../atoms/Atoms";
+import { useIdentidadAtom, useLeadAtom, useStepAtom } from "../atoms/Atoms";
 import { validacionEmail } from "api/EmailValidation";
 
 export default function RegistroEmail() {
@@ -19,6 +19,7 @@ export default function RegistroEmail() {
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
   const { identidad } = useIdentidadAtom();
+  const {lead } = useLeadAtom();
 
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
@@ -29,9 +30,11 @@ export default function RegistroEmail() {
       try{
         const datosEmail = await validacionEmail({
           "nroDocumento": identidad.cuit,
-	        "email":values.clienteEmail
+          "idPreaprobado":lead.id_preaprobado,
+	        "email":values.clienteEmail,
+          "enviarCodigo":true,
         })
-
+        console.log("datos email", datosEmail);
         history.push("/onboarding/validar-pin-email");
         setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);
       }catch (error) {

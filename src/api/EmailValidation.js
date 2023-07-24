@@ -1,9 +1,11 @@
-export const validacionEmail = async ({ nroDocumento, email}) => {
+export const validacionEmail = async ({ nroDocumento,idPreaprobado, email, enviarCodigo}) => {
     let url = "/back/validar-email";
   
     const body = {
-        "nroDocumento": nroDocumento,
-        "email": email,
+        nroDocumento: nroDocumento,
+        idPreaprobado: idPreaprobado,
+        email: email,
+        enviarCodigo: enviarCodigo,
     };
     console.log("datos validacion email", body);
   
