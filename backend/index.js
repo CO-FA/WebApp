@@ -3,6 +3,8 @@ import updateDatosPrestamo from "./routes/update-datos-prestamo.mjs";
 import crearPassword from "./routes/crear-password.mjs"
 import suscripcionMobbex from "./routes/mobbex.mjs"
 import validarEmail from "./routes/validar-email.mjs";
+import validarCodigoEmail from "./routes/codigo-validar-email.mjs";
+import validarIdentidadNosis from "./routes/validar-identidad-nosis.mjs";
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -39,6 +41,8 @@ app.use(updateDatosPrestamo);
 app.use(crearPassword)
 app.use(suscripcionMobbex)
 app.use(validarEmail)
+app.use(validarCodigoEmail)
+app.use(validarIdentidadNosis)
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;

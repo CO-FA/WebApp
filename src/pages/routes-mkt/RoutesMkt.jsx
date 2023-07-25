@@ -34,6 +34,7 @@ import OlvidePasswordStep2 from "pages/perfil/PerfilModificarPass";
 import ModificarDireccion from "pages/perfil/PerfilModificarDireccion";
 import DetallePrestamo from "pages/estadofinanciero/DetallePrestamo";
 import { FinalizarMobbex } from "./mobbex/FinalizarMobbex";
+import { FinalizarNosis } from "./nosis/FinalizarNosis";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -115,7 +116,6 @@ export function RoutesMkt() {
                 <FinalizarMobbex />
               </VerifyStep>
             </Route>
-            
             <Route path="/onboarding/email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
                 <RegistroEmail />
@@ -126,7 +126,6 @@ export function RoutesMkt() {
                 <RegistroValidacionEmail />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/info-pre-nosis">
               <VerifyStep step={STEPS.STEP_9_VERIFICAR_PREAPROBADO}>
                 <InfoPreNosis />
@@ -134,9 +133,10 @@ export function RoutesMkt() {
             </Route>
 
             {/* --> va a nosis */}
-            <Route path="/onboarding/nosis">
+            
+            <Route path="/onboarding/finalizar-validacion-nosis">
               <VerifyStep step={STEPS.STEP_10_VALIDAR_IDENTIDAD_NOSIS}>
-                <Nosis />
+                <FinalizarNosis />
               </VerifyStep>
             </Route>
 
