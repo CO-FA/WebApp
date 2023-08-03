@@ -2,7 +2,7 @@ import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
-export const savePhone = async (codigo, documento) => {
+export const savePhone = async (codigo, cuit) => {
   try {
     const token = await getToken();
 
@@ -11,7 +11,7 @@ export const savePhone = async (codigo, documento) => {
     myHeaders.append("Content-type", "application/json");
 
     const body = {
-      nroDocumento: documento,
+      nroDocumento: cuit,
       codigo: codigo,
     };
 

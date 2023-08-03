@@ -103,12 +103,12 @@ const updateEstadoLead = async ({ documento, estado, mensaje }) => {
 };
 
 const updateVariablesLead = async ({ documento, variables }) => {
-  const categoria = variables?.find((el) => el.Variable === "IncomePredictor");
+  const categoria = variables?.find((el) => el.variable === "datos.nivelSocioeconomico.nse_personal");
   const { data, error } = await supabase
     .from("leads")
     .update({
       variables_buro: variables,
-      categoria: categoria?.Valor,
+      categoria: categoria?.valor,
       updated_at: new Date(),
     })
     .eq("documento", documento);
@@ -118,8 +118,8 @@ const updateVariablesLead = async ({ documento, variables }) => {
 
 const getNivelRiesgo = async ({ nroDocumento, variables }) => {
   await updateVariablesLead({ documento: nroDocumento, variables });
-  const result = variables?.find((el) => el.Variable === "IncomePredictor");
-  return result?.Valor;
+  const result = variables?.find((el) => el.variable === "datos.nivelSocioeconomico.nse_personal");
+  return result?.valor;
 };
 
 const getIntereses = async (categoria) => {
@@ -149,7 +149,7 @@ export const validateLead = async (body) => {
   console.log("This was a POST request.. CONTINUE");
   try {
     await guardarLead(body);
-    const responsePhone = await savePhone(codigo, nroDocumento);
+    const responsePhone = await savePhone(codigo, cuit);
     console.log("responsePhone", responsePhone);
 
     const isValidPinSMS = responsePhone.status === "OK";
@@ -190,7 +190,7 @@ export const validateLead = async (body) => {
         return ERRORS.error_sin_prestamo;
       }
 
-      const variables = await getVariablesBuro({ nroDocumento: nroDocumento, sexo: sexo });
+      const variables = await getVariablesBuro({ cuit: cuit});
       await updateVariablesLead({ documento: nroDocumento, varibales: variables });
 
       //const isValidBURO= await isValidBuro();
