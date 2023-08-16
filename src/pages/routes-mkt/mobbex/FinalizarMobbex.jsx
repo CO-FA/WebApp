@@ -10,13 +10,16 @@ export function FinalizarMobbex() {
   const { setCurrentStep } = useStepAtom();
 
   useEffect(() => {
-      if (!errors) {
-        history.push("/onboarding/email");
-        setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);
-      }else{
-        history.push("/onboarding/error");
-        setCurrentStep(STEPS.STEP_99_ERROR);
-      }
+    if (window.parent) {
+      window.parent.location.href = window.location.href
+    }
+    if (!errors) {
+      history.push("/onboarding/email");
+      setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);
+    }else{
+      history.push("/onboarding/error");
+      setCurrentStep(STEPS.STEP_99_ERROR);
+    }
   },[])     
   
   return <>Cargando...</>
