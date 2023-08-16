@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import Encabezado from "components/commons/Encabezado";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
-import { formErrors } from "../../../utils/constantsErrors";
 import Footer from "components/commons/Footer";
 import Button from "components/commons/Button";
-
 import { STEPS } from "../../../components/registro/constantsSteps";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
-import { useStepAtom, useIdentidadAtom, usePrestamoAtom } from "../atoms/Atoms";
-import { useCalculadoraPrestamo } from "../calculadora-prestamo/hooks/useCalculadoraPrestamo";
+import { useStepAtom, usePrestamoAtom, useLeadAtom, useIdentidadAtom } from "../atoms/Atoms";
 import { useCbuAtom } from "../atoms/Atoms";
 import { useFindBanco } from "../registro-cbu/hooks/useFindBanco";
+import { aceptacionDeTerminos } from "api/TerminosYCondiciones";
 
 export function InfoPostNosis() {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -21,16 +19,28 @@ export function InfoPostNosis() {
   const { monto, cuota, montoCuota } = usePrestamoAtom();
   const { clienteCbu } = useCbuAtom();
   const { banco } = useFindBanco({ cbu: clienteCbu });
+  const { identidad } = useIdentidadAtom();
+  const { lead } = useLeadAtom();
 
-  const submitForm = (values, setSubmitting) => {
+  const submitForm = async (values, setSubmitting) => {
     if (errors) {
       return;
     }
     if (!errors) {
       setShowLoader(true);
       try {
-        history.push("/onboarding/prestamo-exitoso");
-        setCurrentStep(STEPS.STEP_12_PRESTAMO_EXITOSO);
+        const confirmacionSolicitud = await aceptacionDeTerminos(
+          { 
+          idPreaprobado: lead.id_preaprobado,
+          nroDocumento:identidad.cuit,
+          IP:"181.46.137.97"
+        })
+        console.log("satus confirmacion prestamo", confirmacionSolicitud) // "status": "OK"
+
+        if (confirmacionSolicitud.status === "OK") {  
+          history.push("/onboarding/prestamo-exitoso");
+          setCurrentStep(STEPS.STEP_12_PRESTAMO_EXITOSO);
+        }
       } catch (error) {
         history.push("/onboarding/error");
         setCurrentStep(STEPS.STEP_99_ERROR);
@@ -83,14 +93,14 @@ export function InfoPostNosis() {
                   >
                     CONTINUAR
                   </Button>
-                  <p>
+                  <p style={{fontSize: '12px'}}>
+                    <b>
                     Al confirmar declaro aceptar la solicitud de crédito y sus
-                    términos y condiciones
+                    términos y condiciones</b>
                   </p>
                   <div className="form-group col-12">
                     <Button>Detalles de la operación</Button>
                     <Button>Solicitud de crédito</Button>
-                    <Button>Anexo de solicitud (?)</Button>
                   </div>
                 </div>
               </Footer>
