@@ -85,8 +85,8 @@ export const useLeadAtom = () => {
   return { lead, setLead };
 };
 
-const urlNosisAtom = atomWithStorage("urlNosisAtom");
-export const useUrlNosisAtom = () => {
-  const [urlNosis, setUrlNosis] = useAtom(urlNosisAtom);
-  return { urlNosis, setUrlNosis };
+const statusNosisAtom = atomWithStorage("statusNosisAtom");
+export const useStatusNosisAtom = () => {
+  const [statusNosis, setStatusNosis] = useAtom(statusNosisAtom);
+  return { statusNosis, setStatusNosis };
 };
