@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import "../../../assets/css/main.css";
 import { useUrlNosisAtom } from "../atoms/Atoms";
 
@@ -12,4 +12,4 @@ export default function Nosis() {
             src={urlNosis} title="URL validacion identidad Nosis" allowFullScreen></iframe>
         </div>
     );
-};
+}; */

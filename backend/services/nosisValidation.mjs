@@ -1,6 +1,26 @@
 import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
+
+const actualizarTicketSB =  async (valorTicket, nroDocumento) => {
+  const { data, error } = await supabase
+    .from('leads')
+    .update({ nosis_ticket: valorTicket })
+    .eq('cuit', nroDocumento)
+  console.log(error)
+}
+
+const actualizarStatusNosis =  async (statusNosis, nroDocumento) => {
+  const { data, error } = await supabase
+    .from('leads')
+    .update({ nosis_status: statusNosis })
+    .eq('cuit', nroDocumento)
+  console.log(error)
+}
 
 export const validarIdentidadNosis = async ({ nroDocumento,idPreaprobado, CallbackURL}) => {
   try {
@@ -28,7 +48,18 @@ export const validarIdentidadNosis = async ({ nroDocumento,idPreaprobado, Callba
     const data = await resp.json();
 
     console.log("data validarNOSIS", data)
-    //URL es el dato que necesito
+    
+    const querystring = data.URL.split("?")[1]
+    console.log(querystring)
+    const paramsURL = new URLSearchParams(querystring)
+    const valorTicket = paramsURL.get('ticket')
+    console.log("params/numticket", valorTicket)
+    
+    await actualizarTicketSB(valorTicket, nroDocumento)
+
+    const statusNosis = data.status
+    await actualizarStatusNosis(statusNosis, nroDocumento)
+  
     return data
     
   } catch (error) {

@@ -6,7 +6,7 @@ import Footer from "components/commons/Footer";
 import Button from "components/commons/Button";
 import { STEPS } from "../../../components/registro/constantsSteps";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
-import { useStepAtom, usePrestamoAtom, useIdentidadAtom, useLeadAtom, useUrlNosisAtom } from "../atoms/Atoms";
+import { useStepAtom, usePrestamoAtom, useIdentidadAtom, useLeadAtom, useStatusNosisAtom } from "../atoms/Atoms";
 import { validacionNosis } from "api/NosisValidation";
 
 export function InfoPreNosis() {
@@ -18,11 +18,11 @@ export function InfoPreNosis() {
   const { setCurrentStep } = useStepAtom();
   const { identidad } = useIdentidadAtom();
   const { lead } = useLeadAtom();
-  const { urlNosis ,setUrlNosis,  } = useUrlNosisAtom();
+  const { setStatusNosis } = useStatusNosisAtom();
 
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
-      return;
+      return;  
     }
     if (!errors) {
       setShowLoader(true);
@@ -30,14 +30,15 @@ export function InfoPreNosis() {
         const datosNosis = await validacionNosis({
           nroDocumento: identidad.cuit,
           idPreaprobado: lead.id_preaprobado,
-          CallbackURL: "http://localhost:8888/#/onboarding/finalizar-validacion-nosis?nroDocumento=" + identidad.cuit ,
+          CallbackURL: "http://localhost:8888/#/onboarding/finalizar-validacion-nosis/" + identidad.cuit ,
         })
         console.log("URL para Nosis", datosNosis.URL)
+        console.log("status-nosis", datosNosis.status)
+        
+        setStatusNosis(datosNosis.status)
+        
+        window.location.href = datosNosis.URL
 
-        setUrlNosis(datosNosis.URL);
-
-        window.open(urlNosis, "Verificar Identidad Nosis");
-        history.push("/onboarding/finalizar-validacion-nosis");
         setCurrentStep(STEPS.STEP_10_VALIDAR_IDENTIDAD_NOSIS);
       } catch (error) {
         history.push("/onboarding/error");

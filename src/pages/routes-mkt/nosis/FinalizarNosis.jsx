@@ -1,27 +1,42 @@
 import React, { useEffect, useState } from "react";
 import "../../../assets/css/main.css";
 import { useHistory } from "react-router-dom";
-import { useStepAtom, useUrlNosisAtom } from "../atoms/Atoms";
+import { LoaderContext } from "../../../components/loader/LoaderContext";
+import { useStatusNosisAtom, useStepAtom } from "../atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
+import { useParams } from "react-router-dom";
+
 
 export function FinalizarNosis() {
-  const [errors, setErrors] = useState(false);
+  let { setShowLoader } = React.useContext(LoaderContext);
+  const [errors] = useState(false);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
-  const { urlNosis } = useUrlNosisAtom();
-
-  useEffect(() => {
-      if (!errors) {
-        history.push("/onboarding/info-post-nosis");
-        setCurrentStep(STEPS.STEP_11_CONFIRMAR_PREAPROBADO);
-      }else{
-        history.push("/onboarding/error");
-        setCurrentStep(STEPS.STEP_99_ERROR);
-      }
-  },[]);    
+  const { statusNosis } = useStatusNosisAtom();
+  let { cuit } = useParams();
   
-  return <>
-    Cargando...
-    {window.open(urlNosis, "Verificar Identidad Nosis")}
-  </>
+ 
+  useEffect(() => {
+    if (errors) {
+      return;  
+    }
+    if (!errors) {
+      setShowLoader(true);
+      try {
+        //http://localhost:8888/#/onboarding/finalizar-validacion-nosis/:nrodocumento + ticket.
+        /* invocar a nuestro backend con el numero de documento que recibimos en la url (querystring) */
+        /* guardar estado nosis y navego a la proxima pantalla */
+        if(statusNosis === "OK"){
+          history.push("/onboarding/info-post-nosis");
+          setCurrentStep(STEPS.STEP_11_CONFIRMAR_PREAPROBADO);
+        }
+      } catch (error) {
+        history.push("/onboarding/error"); 
+        setCurrentStep(STEPS.STEP_99_ERROR);
+        console.error(error);
+      }
+      setShowLoader(false);
+  }}, [cuit]);
+
+  return <>Cargando...</>;
 };
