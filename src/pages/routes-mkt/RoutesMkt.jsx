@@ -21,7 +21,6 @@ import RegistroValidacionEmail from "./registro-validar-email/RegistroValidacion
 import { InfoPreNosis } from "./info-pre-nosis/InfoPreNosis";
 import { InfoPostNosis } from "./info-post-nosis/InfoPostNosis";
 import { PrestamoExitoso } from "./prestamo-exitoso/PrestamoExitoso";
-import Nosis from "./nosis/Nosis";
 
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
@@ -134,7 +133,7 @@ export function RoutesMkt() {
 
             {/* --> va a nosis */}
             
-            <Route path="/onboarding/finalizar-validacion-nosis">
+            <Route path="/onboarding/finalizar-validacion-nosis/:cuit">
               <VerifyStep step={STEPS.STEP_10_VALIDAR_IDENTIDAD_NOSIS}>
                 <FinalizarNosis />
               </VerifyStep>
