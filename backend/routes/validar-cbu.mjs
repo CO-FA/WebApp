@@ -1,10 +1,10 @@
 import express from "express";
-import { validarCBU } from "../services/validarCBU";
+import { validandoCBU } from "../services/validarCBU.js";
 const router = express.Router();
 
 router.post("/validar-cbu", async function (req, res) {
-  console.log("Req mobbex", req.body);
-  const response = await validarCBU(req.body);
+  console.log("Req validar-cbu", req.body);
+  const response = await validandoCBU(req.body);
   res.json({
     ...response,
     
@@ -12,3 +12,4 @@ router.post("/validar-cbu", async function (req, res) {
 });
 
 export default router;
+ 

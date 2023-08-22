@@ -11,6 +11,10 @@ const actualizarStatusNosis =  async (cuit, nosis_status) => {
     console.log(error)
 }
 
-await actualizarStatusNosis()
+export const update = async ({cuit, nosis_status}) => {
 
-console.log ("Actualicacion STATUS NOSIS exitosa.")
+  await actualizarStatusNosis(cuit, nosis_status)
+
+  console.log ("Actualicacion STATUS NOSIS exitosa.")
+
+}

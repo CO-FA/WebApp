@@ -12,7 +12,8 @@ import Cbu from "pages/estadofinanciero/Cbu";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useCbuAtom, useIdentidadAtom, useLeadAtom, useStepAtom, useSubscriptionURLAtom } from "../atoms/Atoms";
 import { useFindBanco } from "./hooks/useFindBanco";
-import { suscripcionMobbex, validarCBU } from "api/SuscripcionMobbex";
+import { suscripcionMobbex } from "api/SuscripcionMobbex";
+import { validarCBU } from "api/ValidarCBU";
 
 export default function RegistroCbu() {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -26,7 +27,7 @@ export default function RegistroCbu() {
   const { identidad } = useIdentidadAtom();
   const { setSubscriptionURL } = useSubscriptionURLAtom();
   const { lead } = useLeadAtom();
-  const botonContinuar = useRef(null);
+  const [isContinuarButtonEnabled, setIsContinuarButtonEnabled] = useState(false);
   
 
   useEffect(() => {
@@ -68,14 +69,16 @@ export default function RegistroCbu() {
     const validacionCBU = await validarCBU({
       nroDocumento: identidad.cuit,
       idPreaprobado: lead.id_preaprobado,
-      CBU: values.nroCbu,
+      CBU: cbu,
       guardarCBU: true,
     });
     console.log("Resp validacionCBU", validacionCBU)
-    if (validacionCBU.status === "OK") {
-      botonContinuar.current.disabled = false;
-    }else if (validacionCBU.status !== "OK"){
+    if (validacionCBU.status === 'OK') {
+      //habilitar boton continuar
+      setIsContinuarButtonEnabled(true);
+    }else {
       console.log("Error CBU", validacionCBU.status);
+      setIsContinuarButtonEnabled(false);
     }
     setCbu(values.nroCbu);
   };
@@ -168,10 +171,9 @@ export default function RegistroCbu() {
               <div className="col-12">
                 <Button
                   className="btn btn-primary cont"
-                  disabled={true}
+                  disabled={!isContinuarButtonEnabled}
                   type="submit"
                   onClick={handleSubmit}
-                  ref={botonContinuar}
                 >
                   CONTINUAR
                 </Button>

@@ -1,13 +1,13 @@
-
-export const suscripcionMobbex = async ({nroDocumento, idPreaprobado, returnURL }) => {
-    let url = "/back/mobbex";
+export const validarCBU =  async ({nroDocumento, idPreaprobado, CBU, guardarCBU}) => {
+    let url = "/back/validar-cbu";
 
     const body = {
         nroDocumento: nroDocumento,
-        idPreaprobado,
-        returnURL: returnURL
+        idPreaprobado: idPreaprobado,
+        CBU: CBU,
+        guardarCBU: guardarCBU,
     };
-    console.log("mobbex front", body);
+    console.log("Validar CBU", body);
 
     const obj = await fetch(url, {
         method: "POST",
@@ -18,4 +18,5 @@ export const suscripcionMobbex = async ({nroDocumento, idPreaprobado, returnURL 
     });
     
     return obj.json() || {};
-};
+
+}

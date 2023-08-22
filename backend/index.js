@@ -6,8 +6,8 @@ import validarEmail from "./routes/validar-email.mjs";
 import validarCodigoEmail from "./routes/codigo-validar-email.mjs";
 import validarIdentidadNosis from "./routes/validar-identidad-nosis.mjs";
 import terminosYcondiciones from "./routes/aceptar-terminos-condiciones.mjs";
-import validarCBU from "./routes/validar-cbu.mjs"
-import actualizarStatusNosis from "./routes/update-nosis-status.mjs"
+import validandoCBU from "./routes/validar-cbu.mjs"
+import update from "./routes/update-nosis-status.mjs"
 import firmaElectronica from "./routes/firma-electronica.mjs"
 import express from "express";
 import morgan from "morgan";
@@ -43,12 +43,12 @@ app.get("/", (req, res) => {
 app.use(validateLead);
 app.use(updateDatosPrestamo);
 app.use(crearPassword)
-app.use(validarCBU)
+app.use(validandoCBU)
 app.use(suscripcionMobbex)
 app.use(validarEmail)
 app.use(validarCodigoEmail)
 app.use(validarIdentidadNosis)
-app.use(actualizarStatusNosis)
+app.use(update)
 app.use(terminosYcondiciones)
 app.use(firmaElectronica)
 

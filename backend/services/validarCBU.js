@@ -2,7 +2,7 @@ import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
-export const validarCBU = async ({nroDocumento, idPreaprobado,CBU, guardarCBU,}) => {
+export const validandoCBU = async ({nroDocumento, idPreaprobado, CBU, guardarCBU,}) => {
   try {
     const token = await getToken();
 
@@ -13,9 +13,10 @@ export const validarCBU = async ({nroDocumento, idPreaprobado,CBU, guardarCBU,})
     const body = {
       nroDocumento,
       idPreaprobado,
-      CBU,
-      guardarCBU,
+      CBU: CBU,
+      guardarCBU: guardarCBU,
     };
+    console.log("body validandoCBU", body);
 
     const requestOptions = {
       method: "POST",
