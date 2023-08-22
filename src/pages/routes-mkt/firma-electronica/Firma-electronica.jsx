@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { LoaderContext } from "components/loader/LoaderContext";
 
 export default function FirmaElectronica() {
-    let { setShowLoader } = React.useContext(LoaderContext);
+    /* let { setShowLoader } = React.useContext(LoaderContext);
     const { setCurrentStep } = useStepAtom();
     const [errors, setErrors] = useState(false);
     const history = useHistory();
@@ -29,7 +29,7 @@ export default function FirmaElectronica() {
         console.error(error);
     }
     setShowLoader(false);
-    }
+    } */
 
     return(
         //pantalla intermedia que espera que el cliente firme. 
