@@ -8,7 +8,7 @@ export function Mobbex() {
     
     return(
         <div className="iframe-container">
-            <iframe style={{paddingRight:"-15px", paddingLeft:"-15px"}} 
+            <iframe 
             src={subscriptionURL} title="URL suscripcion Mobbex" allowFullScreen></iframe>
         </div>
     );
