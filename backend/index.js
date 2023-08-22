@@ -5,6 +5,8 @@ import suscripcionMobbex from "./routes/mobbex.mjs"
 import validarEmail from "./routes/validar-email.mjs";
 import validarCodigoEmail from "./routes/codigo-validar-email.mjs";
 import validarIdentidadNosis from "./routes/validar-identidad-nosis.mjs";
+import terminosYcondiciones from "./routes/aceptar-terminos-condiciones.mjs";
+import validarCBU from "./routes/validar-cbu.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -39,10 +41,12 @@ app.get("/", (req, res) => {
 app.use(validateLead);
 app.use(updateDatosPrestamo);
 app.use(crearPassword)
+app.use(validarCBU)
 app.use(suscripcionMobbex)
 app.use(validarEmail)
 app.use(validarCodigoEmail)
 app.use(validarIdentidadNosis)
+app.use(terminosYcondiciones)
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;
@@ -65,7 +69,6 @@ app.listen(port, () => {
   console.log(`Backend cofa app listening on port ${port}`);
 });
 
-//BUSCA SITUACION LABORAL EN SUPABASE
 app.get("/situaciones", async (req, res) => {
   let { data: situacion_laboral, error } = await supabase
     .from("situacion_laboral")
