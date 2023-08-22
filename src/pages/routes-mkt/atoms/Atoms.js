@@ -84,9 +84,3 @@ export const useLeadAtom = () => {
   const [lead, setLead] = useAtom(leadAtom);
   return { lead, setLead };
 };
-
-const statusNosisAtom = atomWithStorage("statusNosisAtom");
-export const useStatusNosisAtom = () => {
-  const [statusNosis, setStatusNosis] = useAtom(statusNosisAtom);
-  return { statusNosis, setStatusNosis };
-};

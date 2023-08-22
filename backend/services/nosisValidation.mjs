@@ -57,7 +57,7 @@ export const validarIdentidadNosis = async ({ nroDocumento,idPreaprobado, Callba
     
     await actualizarTicketSB(valorTicket, nroDocumento)
 
-    const statusNosis = data.status
+    const statusNosis = "pendiente"
     await actualizarStatusNosis(statusNosis, nroDocumento)
   
     return data

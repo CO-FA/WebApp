@@ -7,6 +7,7 @@ import validarCodigoEmail from "./routes/codigo-validar-email.mjs";
 import validarIdentidadNosis from "./routes/validar-identidad-nosis.mjs";
 import terminosYcondiciones from "./routes/aceptar-terminos-condiciones.mjs";
 import validarCBU from "./routes/validar-cbu.mjs"
+import actualizarStatusNosis from "./routes/actualizar-nosis-status.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -46,6 +47,7 @@ app.use(suscripcionMobbex)
 app.use(validarEmail)
 app.use(validarCodigoEmail)
 app.use(validarIdentidadNosis)
+app.use(actualizarStatusNosis)
 app.use(terminosYcondiciones)
 
 app.post("/find-cbu", async (request, res) => {
