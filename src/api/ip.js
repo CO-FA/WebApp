@@ -5,9 +5,10 @@ export const getIpAddress= async () =>{
         'Content-Type': 'application/json'
         
       },});
-      console.log("getIp response",response);
+        console.log("getIp response",response);
        const ip = await response.json()
-       console.log(ip);
+       console.log("ip cliente:", ip.ip);
+       return ip.ip;
     } catch (error) {
         console.log(error)
     }
