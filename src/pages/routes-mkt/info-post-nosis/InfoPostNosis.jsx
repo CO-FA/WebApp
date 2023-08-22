@@ -10,6 +10,7 @@ import { useStepAtom, usePrestamoAtom, useLeadAtom, useIdentidadAtom } from "../
 import { useCbuAtom } from "../atoms/Atoms";
 import { useFindBanco } from "../registro-cbu/hooks/useFindBanco";
 import { aceptacionDeTerminos } from "api/TerminosYCondiciones";
+import { getIpAddress } from "api/ip";
 
 export function InfoPostNosis() {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -29,13 +30,15 @@ export function InfoPostNosis() {
     if (!errors) {
       setShowLoader(true);
       try {
+        const ipCliente = await getIpAddress()
+ 
         const confirmacionSolicitud = await aceptacionDeTerminos(
           { 
           idPreaprobado: lead.id_preaprobado,
           nroDocumento:identidad.cuit,
-          IP:"181.46.137.97"
+          IP: ipCliente 
         })
-        console.log("satus confirmacion prestamo", confirmacionSolicitud) // "status": "OK"
+        console.log("status confirmacion prestamo", confirmacionSolicitud) 
 
         if (confirmacionSolicitud.status === "OK") {  
           history.push("/onboarding/prestamo-exitoso");
