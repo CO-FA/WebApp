@@ -21,7 +21,6 @@ import RegistroValidacionEmail from "./registro-validar-email/RegistroValidacion
 import { InfoPreNosis } from "./info-pre-nosis/InfoPreNosis";
 import { InfoPostNosis } from "./info-post-nosis/InfoPostNosis";
 import { PrestamoExitoso } from "./prestamo-exitoso/PrestamoExitoso";
-
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useToken } from "api/hooks/useToken";
@@ -34,6 +33,7 @@ import ModificarDireccion from "pages/perfil/PerfilModificarDireccion";
 import DetallePrestamo from "pages/estadofinanciero/DetallePrestamo";
 import { FinalizarMobbex } from "./mobbex/FinalizarMobbex";
 import { FinalizarNosis } from "./nosis/FinalizarNosis";
+import FirmaElectronica from "./firma-electronica/Firma-electronica";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -145,17 +145,27 @@ export function RoutesMkt() {
               </VerifyStep>
             </Route>
 
+            <Route path="/onboarding/firma-electronica">
+              <VerifyStep step={STEPS.STEP_12_FIRMA_ELECTRONICA}>
+                <FirmaElectronica />
+              </VerifyStep>
+            </Route>
+
             <Route path="/onboarding/prestamo-exitoso">
-              <VerifyStep step={STEPS.STEP_12_PRESTAMO_EXITOSO}>
+              <VerifyStep step={STEPS.STEP_13_PRESTAMO_EXITOSO}>
                 <PrestamoExitoso />
               </VerifyStep>
             </Route>
 
-            <Route path="/perfil">
+
+            {/* HASTA ACA!!! */}
+            
+
+            {/* <Route path="/perfil">
               <VerifyStep step={STEPS.STEP_13_PERFIL}>
                 <Perfil />
               </VerifyStep>
-            </Route>
+            </Route> */}
 
             <Route path="/notificaciones">
               <VerifyStep step={STEPS.STEP_14_NOTIFICACIONES}>

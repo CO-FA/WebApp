@@ -18,3 +18,24 @@ export const aceptacionDeTerminos = async ({nroDocumento, idPreaprobado, IP }) =
     
     return obj.json() || {};
 };
+
+export const firmaElectronica = async ({idPrestamo, accion }) => {
+    let url = "/back/firma-electronica";
+
+    const body = {
+        idPrestamo,
+        accion
+    };
+    
+    console.log("Firma electronica", body);
+
+    const obj = await fetch(url, {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+    });
+    
+    return obj.json() || {};
+};

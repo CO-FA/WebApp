@@ -9,7 +9,7 @@ import { LoaderContext } from "../../../components/loader/LoaderContext";
 import { useStepAtom, usePrestamoAtom, useLeadAtom, useIdentidadAtom } from "../atoms/Atoms";
 import { useCbuAtom } from "../atoms/Atoms";
 import { useFindBanco } from "../registro-cbu/hooks/useFindBanco";
-import { aceptacionDeTerminos } from "api/TerminosYCondiciones";
+import { aceptacionDeTerminos, firmaElectronica } from "api/TerminosYCondiciones";
 import { getIpAddress } from "api/ip";
 
 export function InfoPostNosis() {
@@ -40,10 +40,15 @@ export function InfoPostNosis() {
         })
         console.log("status confirmacion prestamo", confirmacionSolicitud) 
 
-        if (confirmacionSolicitud.status === "OK") {  
-          history.push("/onboarding/prestamo-exitoso");
-          setCurrentStep(STEPS.STEP_12_PRESTAMO_EXITOSO);
-        }
+        const infoFirmaElectronica = await firmaElectronica({
+          idPrestamo: "1000001",
+          accion: 1, //1: Generar y enviar documento para firma electrónica. Según el servicio contratado y la configuración en la plataforma SB, será enviado por mail, SMS o WhatsApp.
+        })
+        console.log("Firma Electronica", infoFirmaElectronica)
+
+        history.push("/onboarding/firma-electronica");
+        setCurrentStep(STEPS.STEP_12_FIRMA_ELECTRONICA);
+        
       } catch (error) {
         history.push("/onboarding/error");
         setCurrentStep(STEPS.STEP_99_ERROR);
@@ -102,7 +107,7 @@ export function InfoPostNosis() {
                     términos y condiciones</b>
                   </p>
                   <div className="form-group col-12">
-                    <Button>Detalles de la operación</Button>
+                    <Button>Detalles de la operación</Button> {/* detalles del prestamo */}
                     <Button>Solicitud de crédito</Button>
                   </div>
                 </div>

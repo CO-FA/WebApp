@@ -7,7 +7,8 @@ import validarCodigoEmail from "./routes/codigo-validar-email.mjs";
 import validarIdentidadNosis from "./routes/validar-identidad-nosis.mjs";
 import terminosYcondiciones from "./routes/aceptar-terminos-condiciones.mjs";
 import validarCBU from "./routes/validar-cbu.mjs"
-import actualizarStatusNosis from "./routes/actualizar-nosis-status.mjs"
+import actualizarStatusNosis from "./routes/update-nosis-status.mjs"
+import firmaElectronica from "./routes/firma-electronica.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -49,6 +50,7 @@ app.use(validarCodigoEmail)
 app.use(validarIdentidadNosis)
 app.use(actualizarStatusNosis)
 app.use(terminosYcondiciones)
+app.use(firmaElectronica)
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;
