@@ -1,15 +1,9 @@
 import { useEffect } from "react";
 import { useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-
 import "../../assets/css/main.css";
-
-//Export default
 import CalculadoraPrestamo from "./calculadora-prestamo/CalculadoraPrestamo";
-
-//export
 import { RegistroCelular } from "./registro-celular/RegistroCelular";
-
 import { RegistroDni } from "./registro-dni/RegistroDni";
 import RegistroElegirIdentidad from "./registro-elegir-identidad/RegistroElegirIdentidad";
 import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroValidacionCelular";
@@ -94,7 +88,6 @@ export function RoutesMkt() {
                 <CalculadoraPrestamo />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/password">
               <VerifyStep step={STEPS.STEP_5_CLAVE}>
                 <RegistroClave />
@@ -130,33 +123,26 @@ export function RoutesMkt() {
                 <InfoPreNosis />
               </VerifyStep>
             </Route>
-
-            {/* --> va a nosis */}
-            
             <Route path="/onboarding/finalizar-validacion-nosis/:cuit">
               <VerifyStep step={STEPS.STEP_10_VALIDAR_IDENTIDAD_NOSIS}>
                 <FinalizarNosis />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/info-post-nosis">
               <VerifyStep step={STEPS.STEP_11_CONFIRMAR_PREAPROBADO}>
                 <InfoPostNosis />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/firma-electronica">
               <VerifyStep step={STEPS.STEP_12_FIRMA_ELECTRONICA}>
                 <FirmaElectronica />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/prestamo-exitoso">
               <VerifyStep step={STEPS.STEP_13_PRESTAMO_EXITOSO}>
                 <PrestamoExitoso />
               </VerifyStep>
             </Route>
-
 
             {/* HASTA ACA!!! */}
             
