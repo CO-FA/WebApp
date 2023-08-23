@@ -1,26 +1,19 @@
-import React, { useState } from "react";
-import { EncabezadoVerde } from "components/commons/EncabezadoVerdeDos";
+import React from "react";
 import { Slider } from "@mui/material";
-import Button from "components/commons/Button";
+import { Formik } from "formik";
 import { useCalculadoraPrestamo } from "./hooks/useCalculadoraPrestamo";
-import { useIdentidadAtom, useLeadAtom} from "../atoms/Atoms";
+import { useIdentidadAtom } from "../atoms/Atoms";
+import { EncabezadoVerde } from "components/commons/EncabezadoVerdeDos";
+import Button from "components/commons/Button";
 import { TextoHeaderSecundario } from "./components/TextoHeaderSecundario";
 import { TextoHeaderPrimario } from "./components/TextoHeaderPrimario";
 import { InputWithDecorator } from "./components/InputWithDecorator";
 import { Message } from "./components/Message";
 import { Box } from "./components/Box";
 import Footer from "components/commons/Footer";
-import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
-import { LoaderContext } from "components/loader/LoaderContext";
-import { useStepAtom } from "../atoms/Atoms";
-import { STEPS } from "components/registro/STEPS-MKT";
-import { datosPrestamo } from "api/Prestamo";
 
 export default function CalculadoraPrestamo() {
-  let { setShowLoader } = React.useContext(LoaderContext);
   const { identidad } = useIdentidadAtom();
-  console.log("identidad",identidad)
   const {
     intereses,
     monto,
@@ -28,39 +21,9 @@ export default function CalculadoraPrestamo() {
     handleChangeCuota,
     cuota,
     montoCuota,
+    submitForm
   } = useCalculadoraPrestamo();
-  const [errors, setErrors] = useState(false);
-  const history = useHistory();
-  const { setCurrentStep } = useStepAtom();
-  const {setLead} = useLeadAtom();
-
-  const submitForm = async (values, setSubmitting) => {
-    if (errors) {
-      return;
-    }
-    if (!errors) {
-      setShowLoader(true);
-      try { 
-        const datosLead = await datosPrestamo({
-          intereses,
-          monto,
-          cuota,
-          montoCuota,
-          documento: identidad.dni
-        });
-        setLead(datosLead);
-        setShowLoader(false);
-        history.push("/onboarding/password");
-        setCurrentStep(STEPS.STEP_5_CLAVE);
-      } catch (error) {
-        history.push("/onboarding/error");
-        setCurrentStep(STEPS.STEP_99_ERROR);
-        console.error(error);
-      }
-      setShowLoader(false);
-    }
-  };
-
+  
   return (
     <>
       <Formik

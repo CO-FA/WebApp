@@ -3,69 +3,15 @@ import Input from "components/commons/Input";
 import Encabezado from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
 import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
 import Button from "components/commons/Button";
-import { formErrors } from "utils/constantsErrors";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useStepAtom, useIdentidadAtom} from "../atoms/Atoms";
-import { LoaderContext } from "components/loader/LoaderContext"; 
-import { crearPassword } from "api/Password";
+import { useRegistroClave } from "./hooks/useRegistroClave";
 
 export const RegistroClave = (props) => {
-  let { setShowLoader } = React.useContext(LoaderContext);
-  const history = useHistory();
-  const { setCurrentStep } = useStepAtom();
-  const [errors, setErrors] = useState(false);
-  const { identidad } = useIdentidadAtom();
-
-  const submitForm = async (values, setSubmitting) => {
-    if (errors) {
-      return;
-    }
-    if (!errors) {
-      setShowLoader(true);
-      try {
-        const datos = await crearPassword({
-          nroDocumento: identidad.dni,
-          password: values.clientePass,
-        })
-        history.push("/onboarding/cbu");
-        setCurrentStep(STEPS.STEP_6_VALIDAR_CBU);
-      } catch (error) {
-        history.push("/onboarding/error");
-        setCurrentStep(STEPS.STEP_99_ERROR);
-        console.error(error);
-      }
-      setShowLoader(false);
-    }
-  };
-
-  const validateForm = (values) => {
-    // Min 8, 1 letra mayus, 1 letra min, 1 num
-    let pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/g;
-
-    if (values.clientePass !== values.clientePassConfirm) {
-      setErrors({ clientePassConfirm: formErrors.PASSWORD_DOESNT_MATCH });
-    } else if (!values.clientePass) {
-      setErrors({
-        clientePass: formErrors.PASSWORD_EMPTY,
-        clientePassConfirm: formErrors.PASSWORD_DOESNT_MATCH,
-      });
-    } else if (!values.clientePass.match(pattern)) {
-      setErrors({
-        clientePass: formErrors.PATTERN_ERROR,
-      });
-      /*} else if (values.clientePass.length !== 8) {
-			setErrors({
-				clientePass: formErrors.PASSWORD_LENGTH,
-			});
-		} */
-    } else {
-      setErrors(false);
-    }
-  };
-
+  const [errors] = useState(false);
+  const {submitForm,validateForm} = useRegistroClave()
+  
   return (
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_5_CLAVE} />} />
@@ -79,7 +25,6 @@ export const RegistroClave = (props) => {
         {({
           values,
           handleSubmit,
-          /* and other goodies */
         }) => (
           <>
             <section>

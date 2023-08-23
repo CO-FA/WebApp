@@ -1,87 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import Input from "components/commons/Input";
 import Footer from "components/commons/Footer";
 import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
 import Button from "components/commons/Button";
-import { LoaderContext } from "components/loader/LoaderContext";
 import Encabezado from "components/commons/Encabezado";
 import { useModal } from "components/modal/ModalContext";
-import { useEffect } from "react";
-import Cbu from "pages/estadofinanciero/Cbu";
-import { STEPS } from "components/registro/STEPS-MKT";
-import { useCbuAtom, useIdentidadAtom, useLeadAtom, useStepAtom, useSubscriptionURLAtom } from "../atoms/Atoms";
+import { useCbuAtom } from "../atoms/Atoms";
 import { useFindBanco } from "./hooks/useFindBanco";
-import { suscripcionMobbex } from "api/SuscripcionMobbex";
-import { validarCBU } from "api/ValidarCBU";
+import { useRegistroCbu } from "./hooks/useRegistroCbu";
 
 export default function RegistroCbu() {
-  let { setShowLoader } = React.useContext(LoaderContext);
-  const [errors, setErrors] = useState(false);
-  const history = useHistory();
-  const { showModal, show, setElement } = useModal();
-  const { setCurrentStep } = useStepAtom();
-  const [cbu, setCbu] = useState();
+  const { showModal } = useModal();
+  const [cbu] = useState();
   const { banco } = useFindBanco({ cbu });
-  const {clienteCbu, setClienteCbu} = useCbuAtom();
-  const { identidad } = useIdentidadAtom();
-  const { setSubscriptionURL } = useSubscriptionURLAtom();
-  const { lead } = useLeadAtom();
-  const [isContinuarButtonEnabled, setIsContinuarButtonEnabled] = useState(false);
-  
-
-  useEffect(() => {
-    setElement(<Cbu />);
-    return () => setElement(null);
-  }, []);
-
-  const submitForm = async (values) => {
-    if (errors) {
-      return;
-    }
-    if (!errors) {
-      setShowLoader(true);
-      setClienteCbu(values.nroCbu)
-      try {
-        const datosMobbex = await suscripcionMobbex({
-          nroDocumento: identidad.cuit,
-          idPreaprobado: lead.id_preaprobado,
-          returnURL: "http://localhost:8888/#/onboarding/finalizar-suscripcion?nroDocumento=" + identidad.cuit ,
-        })
-        const subscriptionURLmobbex = Object.values(datosMobbex).join('');
-        setSubscriptionURL(subscriptionURLmobbex)
-        history.push("/onboarding/mobbex");
-        setCurrentStep(STEPS.STEP_7_MOBBEX);
-      } catch (error) {
-        history.push("/onboarding/error");
-        setCurrentStep(STEPS.STEP_99_ERROR);
-        console.error(error);
-      }
-      setShowLoader(false);
-    }
-  };
-
-  const validateForm = (values) => {
-    setCbu(values.nroCbu);
-  };
-
-  const validateCBU = async (values) => {
-    const validacionCBU = await validarCBU({
-      nroDocumento: identidad.cuit,
-      idPreaprobado: lead.id_preaprobado,
-      CBU: cbu,
-      guardarCBU: true,
-    });
-    console.log("Resp validacionCBU", validacionCBU)
-    if (validacionCBU.status === 'OK') {
-      //habilitar boton continuar
-      setIsContinuarButtonEnabled(true);
-    }else {
-      console.log("Error CBU", validacionCBU.status);
-      setIsContinuarButtonEnabled(false);
-    }
-    setCbu(values.nroCbu);
-  };
+  const {clienteCbu} = useCbuAtom();
+  const [isContinuarButtonEnabled] = useState(false);
+  const {submitForm, validateForm, validateCBU} = useRegistroCbu()
 
   return (
     <>
@@ -134,7 +68,7 @@ export default function RegistroCbu() {
                       name="nroCbu"
                       errors={[]}
                       values={values}
-                      /* falta icono editar */
+                      /*TO DO: falta icono editar */
                     />
                     {<p>{banco?.ds_banco}</p>}
                   </div>
@@ -142,18 +76,6 @@ export default function RegistroCbu() {
                 <div className="form-group col-12">
                   <Button
                     className="btn btn-warning cont mb-3"
-                    // no toma estos estilos, clase btn
-                   /* style={
-                        {
-                          height: "43px",
-                          borderRadius: "50px",
-                          border: "none",
-                          fontWeight: "700",
-                          fontSize: "14px",
-                          width: "100%",
-                        }
-                      } */
-
                     disabled={false}
                     type="button" 
                     onClick={validateCBU}

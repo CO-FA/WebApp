@@ -5,7 +5,7 @@ import { useStepAtom } from "../atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 
 export function FinalizarMobbex() {
-  const [errors, setErrors] = useState(false);
+  const [errors] = useState(false);
   const history = useHistory();
   const { setCurrentStep } = useStepAtom();
 
