@@ -33,7 +33,6 @@ export default function RegistroEmail() {
                 <h3>Validamos tu Email</h3>
                 <div className="row profile-container">
                   <div className="form-group col-12">
-                    {/* TO DO: guardar email en SupaBase */}
                     <Input
                       label="Ingresá tu Email"
                       placeholder="juan@gmail.com"

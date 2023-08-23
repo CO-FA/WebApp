@@ -24,7 +24,7 @@ export const useRegistroEmail = () => {
             const datosEmail = await validacionEmail({
               "nroDocumento": identidad.cuit,
               "idPreaprobado":lead.id_preaprobado,
-                "email":values.clienteEmail,
+              "email":values.clienteEmail,
               "enviarCodigo":true,
             })
             console.log("datos email", datosEmail);
