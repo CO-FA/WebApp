@@ -2,7 +2,7 @@ import { enviarSMSValidacion } from "api/PhoneValidation";
 import { useLoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useCelularAtom, useIdentidadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { formErrors } from "utils/constantsErrors";
 
@@ -14,19 +14,18 @@ export const useRegistroCelular = () => {
     const { setCodArea, setNumCelular } = useCelularAtom();
     const { identidad } = useIdentidadAtom();
 
-    const submitForm = async (values, setSubmitting) => {
+    const submitForm = async (values) => {
         if (!errors) {
           setShowLoader(true);
-    
           setCodArea(values.clienteCelCodigo);
           setNumCelular(values.clienteCelNumero);
-    
           await enviarSMSValidacion(
             values.clienteCelCodigo + "" + values.clienteCelNumero,
             identidad.cuit
           );
-    
           setShowLoader(false);
+          //TO DO: ir a pantala intermedia por unos segundos diciendo "te va a llegar un mensaje"
+
           history.push("/onboarding/validar-pin");
           setCurrentStep(STEPS.STEP_3_CELULAR);
         }
@@ -63,6 +62,6 @@ export const useRegistroCelular = () => {
         setErrors(errorsAUx);
     };
 
-    return{submitForm,validateForm}
+    return{submitForm,validateForm, errors}
 
 };

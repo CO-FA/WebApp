@@ -11,11 +11,9 @@ import { useRegistroCbu } from "./hooks/useRegistroCbu";
 
 export default function RegistroCbu() {
   const { showModal } = useModal();
-  const [cbu] = useState();
-  const { banco } = useFindBanco({ cbu });
   const {clienteCbu} = useCbuAtom();
-  const [isContinuarButtonEnabled] = useState(false);
-  const {submitForm, validateForm, validateCBU} = useRegistroCbu()
+  const {submitForm, validateForm, validateCBU, cbu, isContinuarButtonEnabled} = useRegistroCbu()
+  const { banco } = useFindBanco({ cbu });
 
   return (
     <>
@@ -70,7 +68,7 @@ export default function RegistroCbu() {
                       values={values}
                       /*TO DO: falta icono editar */
                     />
-                    {<p>{banco?.ds_banco}</p>}
+                    {<p>{banco?.ds_banco}</p>} {/* TO DO: Cambiar estilo nombre banco. negrita y mas chico */}
                   </div>
                 </div>
                 <div className="form-group col-12">
@@ -80,6 +78,7 @@ export default function RegistroCbu() {
                     type="button" 
                     onClick={validateCBU}
                   >
+                    {/* TO DO: centrar boton */}
                     ¿Es correcto el número?
                   </Button>
 

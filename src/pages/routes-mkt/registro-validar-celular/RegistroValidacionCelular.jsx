@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Encabezado from "components/commons/Encabezado";
 import Input from "components/commons/Input";
 import Footer from "components/commons/Footer";
@@ -11,9 +11,8 @@ import { useRegistroValidarCel } from "./hooks/useRegistroValidarCel";
 
 
 export function RegistroValidacionCelular() {
-  const [errors] = useState(false);
   const { codArea, numCelular } = useCelularAtom();
-  const {submitForm,validateForm} = useRegistroValidarCel()
+  const {submitForm,validateForm, errors} = useRegistroValidarCel()
   
   return (
     <>
@@ -90,6 +89,7 @@ export function RegistroValidacionCelular() {
                   </div>
                   <div className="col-12">
                     <p className="mt-5 text-center">
+                      {/* TO DO: reenviar mensaje */}
                       <a href="/" className="text-underline">
                         ¿No te llegó? Reenviarme el SMS
                       </a>

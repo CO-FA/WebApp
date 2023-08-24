@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
 import { Formik } from "formik";
@@ -10,9 +10,8 @@ import { useIdentidadAtom } from "../atoms/Atoms";
 import { useRegistroIdentidad } from "./hooks/useRegistroIdentidad";
 
 export default function RegistroElegirIdentidad() {
-  const [candidatos] = useState();
   const { identidad } = useIdentidadAtom();
-  const { submitForm } = useRegistroIdentidad()
+  const { submitForm, candidatos } = useRegistroIdentidad()
   
   return (
     <>

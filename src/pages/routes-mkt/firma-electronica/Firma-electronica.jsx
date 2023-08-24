@@ -33,6 +33,7 @@ export default function FirmaElectronica() {
 
     return(
         //pantalla intermedia que espera que el cliente firme. 
+        //igual que email y sms
         <>ESPERANDO TU FIRMA ELECTRONICA</>
     );
 }; 

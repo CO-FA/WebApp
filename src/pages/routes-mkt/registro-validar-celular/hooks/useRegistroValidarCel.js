@@ -79,5 +79,5 @@ export const useRegistroValidarCel = () => {
         setErrors(errorsAUx);
     };
 
-    return{submitForm,validateForm}
+    return{submitForm,validateForm, errors}
 };

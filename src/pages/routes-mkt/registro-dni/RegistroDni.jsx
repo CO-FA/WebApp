@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "components/commons/Input";
 import Encabezado from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
@@ -17,13 +17,11 @@ import { useRegistroDni } from "./hooks/useRegistroDni";
 
 
 export function RegistroDni() {
-  const [opciones] = useState();
-  const [errors] = useState(false);
   const { documento } = useIdentidadAtom();
   const { situacionLaboral } = useSituacionLaboralAtom();
   const { genero } = useGeneroAtom();
-  const {submitForm,validateForm} = useRegistroDni()
- 
+  const {submitForm,validateForm,opciones,errors} = useRegistroDni()
+
   return (
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_1_DNI} />} />

@@ -20,6 +20,7 @@ export const useRegistroIdentidad = () => {
     
         history.push("/onboarding/celular");
         setCurrentStep(STEPS.STEP_3_CELULAR);
+       
     };
     
 
@@ -32,5 +33,5 @@ export const useRegistroIdentidad = () => {
         })();
     }, []);
 
-    return{submitForm}
+    return{submitForm, candidatos}
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Encabezado from "components/commons/Encabezado";
 import Input from "components/commons/Input";
 import Footer from "components/commons/Footer";
@@ -6,12 +6,11 @@ import { Formik } from "formik";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import Button from "components/commons/Button";
-import { useRegistroCbu } from "../registro-cbu/hooks/useRegistroCbu";
+import { useRegistroCelular } from "./hooks/useRegistroCelular";
 
 export function RegistroCelular() {
-  const [errors] = useState(false);
-  const {submitForm,validateForm} = useRegistroCbu()
-  
+  const {submitForm,validateForm,errors} = useRegistroCelular()
+
   return (
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_3_CELULAR} />} />

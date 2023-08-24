@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export const useRegistroCbu = () => {
-    const [ setIsContinuarButtonEnabled] = useState(false);
+    const [isContinuarButtonEnabled, setIsContinuarButtonEnabled] = useState(false);
     let { setShowLoader } = React.useContext(LoaderContext);
     const [errors] = useState(false);
     const history = useHistory();
@@ -73,5 +73,5 @@ export const useRegistroCbu = () => {
         setCbu(values.nroCbu);
     };
 
-    return {submitForm, validateForm, validateCBU}
+    return {submitForm, validateForm, validateCBU, cbu, isContinuarButtonEnabled}
 };
