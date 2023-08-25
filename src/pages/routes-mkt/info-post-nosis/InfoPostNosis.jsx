@@ -11,7 +11,7 @@ export function InfoPostNosis() {
   const { monto, cuota, montoCuota } = usePrestamoAtom();
   const { clienteCbu } = useCbuAtom();
   const { banco } = useFindBanco({ cbu: clienteCbu });
-  const { submitForm } = useInfoPostNosis();
+  const { submitForm, handleButtonClick } = useInfoPostNosis();
 
   return (
     <>
@@ -60,11 +60,18 @@ export function InfoPostNosis() {
                     términos y condiciones</b>
                   </p>
                   <div className="form-group col-12">
-                    <Button>Detalles de la operación</Button> {/*TO DO: hacer pantalla detalles del prestamo */}
-                    <Button>Solicitud de crédito</Button> {/* TO DO: poner pdf */}
+                    <Button 
+                      onClick={() => {
+                        handleButtonClick("detalles");}}  
+                    >Detalles de la operación</Button> {/*TO DO: api prestamos/detalles de prestamo */}
+                    <Button
+                      onClick={() => {
+                        handleButtonClick("solicitud");
+                      }}
+                    >Solicitud de crédito</Button> {/* TO DO: api prestamo / descargar contrato*/}
                   </div>
                 </div>
-              </Footer>
+              </Footer> 
             </form>
           </>
         )}
