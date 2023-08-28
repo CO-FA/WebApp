@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export const useInfoPreNosis = () => {
+  //TO DO: muestra error en nuestra app al ir a nosis
     let { setShowLoader } = React.useContext(LoaderContext);
     const [errors] = useState(false);
     const history = useHistory();
@@ -13,7 +14,7 @@ export const useInfoPreNosis = () => {
     const { identidad } = useIdentidadAtom();
     const { lead } = useLeadAtom();
 
-    const submitForm = async (values, setSubmitting) => {
+    const submitForm = async () => {
         if (errors) {
           return;  
         }
@@ -25,8 +26,8 @@ export const useInfoPreNosis = () => {
               idPreaprobado: lead.id_preaprobado,
               CallbackURL: "http://localhost:8888/#/onboarding/finalizar-validacion-nosis/" + identidad.cuit ,
             })
-            console.log("URL para Nosis", datosNosis.URL)
-            console.log("status-nosis", datosNosis.status)
+            ("URL para Nosis", datosNosis.URL)
+            ("status-nosis", datosNosis.status)
         
             window.location.href = datosNosis.URL
     

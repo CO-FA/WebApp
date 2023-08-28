@@ -5,9 +5,6 @@ import { getIpAddress } from "api/ip";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
-import { useModal } from "components/modal/ModalContext";
-import DetallesOperacion from "../components/DetallesOperacion";
-import SolicitudCredito from "../components/SolicitudCredito";
 
 export const useInfoPostNosis = () => {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -16,26 +13,29 @@ export const useInfoPostNosis = () => {
   const { setCurrentStep } = useStepAtom();
   const { identidad } = useIdentidadAtom();
   const { lead } = useLeadAtom();
-  const { setElement } = useModal();
   const [selectedButton, setSelectedButton] = useState(null);
-  const { showModal  } = useModal();
 
+  //id prestamo se genera al dar alta prestamo
   const handleButtonClick = (buttonId) => {
-    //TO DO: corregir. limpiar set select buton?
-    showModal(true);
     setSelectedButton(buttonId);
-    console.log("boton: ", buttonId);
-  };
-
-  useEffect(() => {
     if (selectedButton === "detalles") {
-      setElement(<DetallesOperacion />);
-    } else if (selectedButton === "solicitud") {
-      setElement(<SolicitudCredito />);
-    } else {
-      setElement(null);
-    }
-  }, []);
+      /*TO DO: api prestamos/detalles de prestamo */
+      detallesPrestamo(
+        {
+          "idPrestamo" : "1000001" //TO DO: pasar id correcto
+        }
+      )
+      history.push("/onboarding/detalles-del-prestamo")
+    } else if(selectedButton === "solicitud") {
+      /* TO DO: api prestamo / descargar contrato*/
+      solicitudCredito(
+        {
+          "idPrestamo" : "1000001" //TO DO: pasar id correcto
+        }
+      )
+      history.push("/onboarding/pdf-solicitud-prestamo")
+    } 
+  };
 
   const submitForm = async () => {
       if (errors) {
@@ -52,13 +52,13 @@ export const useInfoPostNosis = () => {
             nroDocumento:identidad.cuit,
             IP: ipCliente 
           })
-          console.log("status confirmacion prestamo", confirmacionSolicitud) 
+          ("status confirmacion prestamo", confirmacionSolicitud) 
   
           const infoFirmaElectronica = await firmaElectronica({
             idPrestamo: "1000001", //TO DO: pasar idPrestamo correcto
             accion: 1, 
           })
-          console.log("Firma Electronica", infoFirmaElectronica)
+          ("Firma Electronica", infoFirmaElectronica)
   
           history.push("/onboarding/firma-electronica");
           setCurrentStep(STEPS.STEP_12_FIRMA_ELECTRONICA);

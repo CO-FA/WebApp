@@ -14,8 +14,8 @@ export function InfoPreNosis() {
     <>
       <Encabezado />
       <Formik
-        onSubmit={(values, { setSubmitting }) =>
-          submitForm(values, setSubmitting)
+        onSubmit={() =>
+          submitForm()
         }
       >
         {({
