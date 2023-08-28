@@ -1,4 +1,3 @@
-//back
 import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
@@ -27,12 +26,8 @@ export const suscripcionMobbex = async ({nroDocumento, idPreaprobado,returnURL})
     const resp = await fetch(URL + "/API/v1/lending/mobbexSubscription", requestOptions);
     const dataMobbexSuscription = await resp.json();
 
-    console.log("dataMobbexSuscription", dataMobbexSuscription)
     const subscriptionURL = dataMobbexSuscription.subscriptionURL   
-    console.log("subscriptionURL", subscriptionURL)
-
     return subscriptionURL
-    
   } catch (error) {
     console.log(error);
   }

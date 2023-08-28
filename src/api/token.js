@@ -13,7 +13,6 @@ export const getToken = async () => {
       redirect: "follow",
     };
     const resp = await fetch("/API/v1/login/authenticate", requestOptions);
-    console.log("getToken", resp);
     return resp.json();
   } catch (error) {
     console.log(error);

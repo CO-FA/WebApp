@@ -9,6 +9,5 @@ export const getNombreBanco = async ({ cbu }) => {
     body: JSON.stringify({ cbu }),
   });
 
-  console.log("getNombreBanco", obj);
   return await obj.json();
 };

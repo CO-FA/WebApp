@@ -7,7 +7,6 @@ export const validarCBU =  async ({nroDocumento, idPreaprobado, CBU, guardarCBU}
         CBU: CBU,
         guardarCBU: guardarCBU,
     };
-    console.log("Validar CBU", body);
 
     const obj = await fetch(url, {
         method: "POST",

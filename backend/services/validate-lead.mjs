@@ -11,7 +11,7 @@ const isValidSituacionLaboral = async (codigoSituacion) => {
     .from("situacion_laboral")
     .select()
     .eq("id", codigoSituacion);
-  console.log("situaciones Laborales", situacion, error);
+  console.log(error);
 
   return situacion.some((sit) => sit.categoria_riesgo > 0);
 };
@@ -20,17 +20,11 @@ const isInvalidBcra = async (nroDocumento) => {
   let { data: bcraValidationConfig, error } = await supabase
     .from("bcra_validation_config")
     .select();
-  console.log(bcraValidationConfig, error);
+  console.log(error);
 
   const bcraLead = await getCountSituaciones(nroDocumento);
-  console.log("bcraLead", bcraLead);
   const result = bcraValidationConfig.some((sit) => {
     const catidadLead = bcraLead[sit.situacion];
-    console.log({
-      sit: sit.situacion,
-      catidadLead,
-      isvalidBcra: catidadLead > parseInt(sit.max_cantidad_situacion),
-    });
     return catidadLead > parseInt(sit.max_cantidad_situacion);
   });
   return result;
@@ -41,11 +35,8 @@ const isInvalidBcra = async (nroDocumento) => {
   .from("buro_validation_config")
   .select();
 
-  console.log(variablesBuro);
-
   condiciones.forEach((condicion)=>{
     const variable = variablesBuro?.find((el) => el.Variable === condicion.variable);
-    console.log(variable.Valor,variable.Variable)
     // eslint-disable-next-line default-case
     switch(variable.condicion){
       case "=":
@@ -64,15 +55,12 @@ const guardarLead = async ({
   telefono,
   }) => {
 
-  // Verificar si el nroDocumento ya existe
   const { data: leadsExistente, error} = await supabase
   .from("leads")
   .select("*")
   .eq("documento", nroDocumento);
 
-  // Si ya existe un registro con el nroDocumento, no insertar
   if (leadsExistente.length > 0) {
-    console.log("El nroDocumento ya existe. No se insertará.");
     return { lead: null, error: null };
   } else {
     const { data, error } = await supabase.from("leads").insert([
@@ -85,7 +73,7 @@ const guardarLead = async ({
         cuit: cuit,
       },
     ]);
-    console.log(data, error);
+    console.log(error);
     return { lead: data, error };
   }
 };
@@ -127,7 +115,7 @@ const getIntereses = async (categoria) => {
     .from("config_intereses")
     .select("*")
     .eq("categoria", categoria);
-  console.log(config_intereses, error);
+  console.log(error);
 
   return config_intereses.length > 0 && config_intereses[0];
 };
@@ -145,12 +133,10 @@ const ERRORS = {
 };
 
 export const validateLead = async (body) => {
-  const { nroDocumento, cuit, sexo, situacion, codigo, nombre, telefono } = body;
-  console.log("This was a POST request.. CONTINUE");
+  const { nroDocumento, cuit, sexo, situacion, codigo } = body;
   try {
     await guardarLead(body);
     const responsePhone = await savePhone(codigo, cuit);
-    console.log("responsePhone", responsePhone);
 
     const isValidPinSMS = responsePhone.status === "OK";
     if (!isValidPinSMS) {
@@ -177,7 +163,6 @@ export const validateLead = async (body) => {
         let estado = "Rechazado";
         let mensaje = "Situacion laboral invalida";
         await updateEstadoLead({ documento: nroDocumento, estado, mensaje })
-        console.log("isValidSituacion","Situación INVALIDO");
         return ERRORS.error_sin_prestamo;
       }
 
@@ -186,7 +171,6 @@ export const validateLead = async (body) => {
         let estado = "Rechazado"
         let mensaje= `BCRA invalido`
         await updateEstadoLead({documento: nroDocumento, estado, mensaje})
-        console.log("BCRA INVALIDO");
         return ERRORS.error_sin_prestamo;
       }
 
@@ -200,16 +184,13 @@ export const validateLead = async (body) => {
         sexo: sexo,
         variables: variables,
       });
-      console.log("NSE", nse);
 
       const intereses = await getIntereses(nse);
       response.data = intereses;
 
-      console.log("Devuelvo todo bien", response);
       return response;
     }
-  } catch (error) {
-    console.error("Error VALIDATE LEAD", error);
+  } catch (error) {s
     return { error: error };
   }
 };

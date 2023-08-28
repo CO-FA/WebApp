@@ -5,7 +5,6 @@ export const updateStatusNosis = async ({cuit, nosis_status}) => {
         cuit: cuit,
         nosis_status: nosis_status,
     };
-    console.log("Datos StatusNosis", body);
 
     const obj = await fetch(url, {
         method: "POST",

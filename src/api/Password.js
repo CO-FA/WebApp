@@ -6,7 +6,6 @@ export const crearPassword = async ({nroDocumento, password}) => {
         nroDocumento,
         password
     };
-    console.log("crearPassword front", body);
 
     const obj = await fetch(url, {
         method: "POST",

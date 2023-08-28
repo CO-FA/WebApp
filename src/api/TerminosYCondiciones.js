@@ -5,8 +5,7 @@ export const aceptacionDeTerminos = async ({nroDocumento, idPreaprobado, IP }) =
         nroDocumento: nroDocumento,
         idPreaprobado,
         IP
-    };
-    console.log("datos terminos/condiciones", body);
+    };;
 
     const obj = await fetch(url, {
         method: "POST",
@@ -26,8 +25,6 @@ export const firmaElectronica = async ({idPrestamo, accion }) => {
         idPrestamo,
         accion
     };
-    
-    console.log("Firma electronica", body);
 
     const obj = await fetch(url, {
         method: "POST",

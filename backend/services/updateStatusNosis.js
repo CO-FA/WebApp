@@ -15,6 +15,4 @@ export const update = async ({cuit, nosis_status}) => {
 
   await actualizarStatusNosis(cuit, nosis_status)
 
-  console.log ("Actualicacion STATUS NOSIS exitosa.")
-
 }

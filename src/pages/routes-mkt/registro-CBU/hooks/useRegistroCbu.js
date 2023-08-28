@@ -63,11 +63,9 @@ export const useRegistroCbu = () => {
           CBU: cbu,
           guardarCBU: true,
         });
-        console.log("Resp validacionCBU", validacionCBU)
         if (validacionCBU.status === 'OK') {
           setIsContinuarButtonEnabled(true);
         }else {
-          console.log("Error CBU", validacionCBU.status);
           setIsContinuarButtonEnabled(false);
         }
         setCbu(values.nroCbu);

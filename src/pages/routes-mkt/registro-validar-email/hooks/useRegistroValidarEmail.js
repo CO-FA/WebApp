@@ -21,12 +21,11 @@ export const useRegistroValidarEmail = () => {
         if (!errors) {
           setShowLoader(true);
           try{
-            const validarCodigoEmail = await validacionCodigoEmail({
+            await validacionCodigoEmail({
               "nroDocumento": identidad.cuit,
               "idPreaprobado":lead.id_preaprobado,
               "enviarCodigo": values.clientePin,
             })
-            console.log("validarCodigoEmail", validarCodigoEmail);
     
             history.push("/onboarding/info-pre-nosis");
             setCurrentStep(STEPS.STEP_9_VERIFICAR_PREAPROBADO);

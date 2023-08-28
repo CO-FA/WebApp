@@ -5,7 +5,6 @@ export const enviarSMSValidacion = async (celular, cuit) => {
     nroDocumento: cuit,
     celular: celular,
   });
-  console.log("enviarSMSValidacion", obj);
   return obj || {};
 };
 
@@ -14,6 +13,5 @@ export const savePhone = async (codigo, cuit) => {
     nroDocumento: cuit,
     codigo: codigo,
   });
-  console.log("savePhone", obj);
   return obj || {};
 };

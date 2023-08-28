@@ -21,7 +21,6 @@ export const useToken = () => {
     }
   }, [data]);
 
-  console.log("useToken", token);
   return {
     token: token?.token,
     expires_in: token?.expires_in,

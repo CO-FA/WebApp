@@ -6,7 +6,6 @@ export const datosPrestamo = async ({ documento, monto, cuota}) => {
     monto,
     cuota
   };
-  console.log("datos calculadora prestamo", body);
 
   const obj = await fetch(url, {
     method: "POST",
@@ -16,6 +15,5 @@ export const datosPrestamo = async ({ documento, monto, cuota}) => {
     body: JSON.stringify(body),
   });
 
-  console.log("obj api/Prestamo/datosPrestamo", obj)
   return obj.json() || {};
 };

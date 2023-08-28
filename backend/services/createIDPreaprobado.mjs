@@ -3,7 +3,7 @@ import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
 export const createIdPreaprobado = async (leadRecuperado) => {
-  const {documento, nombre, genero, monto, cuota, importeCuota, categoria, situacion, telefono, fecha_nacimiento} = leadRecuperado;
+  const {documento, nombre, genero, monto, cuota, importeCuota, telefono, fecha_nacimiento} = leadRecuperado;
   try {
     const token = await getToken();
 
@@ -12,8 +12,6 @@ export const createIdPreaprobado = async (leadRecuperado) => {
     myHeaders.append("Content-type", "application/json");
 
     const body1 = {
-      /*categoria: categoria,
-      situacion: situacion,*/
       "nombre":nombre,
       "apellido": nombre,
       "genero":genero,

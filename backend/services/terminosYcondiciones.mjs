@@ -27,7 +27,6 @@ export const terminosYcondiciones = async ({nroDocumento, idPreaprobado,IP}) => 
     const resp = await fetch(URL + "/API/v1/lending/acceptTerms", requestOptions);
     const data = await resp.json();
 
-    console.log("data aceptar terminos y condiciones", data)
     return data
     
   } catch (error) {
@@ -60,7 +59,6 @@ export const firmaElectronica = async ({idPrestamo, accion}) => {
     const resp = await fetch(URL + "/API/v1/loans/firmaElectronica", requestOptions);
     const data = await resp.json();
 
-    console.log("data firma electronica", data)
     return data
     
   } catch (error) {

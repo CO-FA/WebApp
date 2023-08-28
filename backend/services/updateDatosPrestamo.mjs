@@ -53,7 +53,6 @@ export const updateDatosPrestamo = async (body) => {
 
   let leadRecuperado = await recuperarLead(documento);
   const categoriaLeadRecuperado = leadRecuperado.categoria;
-  console.log("Lead-recuperado: ", leadRecuperado)
 
   const interesXcategoria = await recuperarIntereses(categoriaLeadRecuperado);
   const interesRecuperado = interesXcategoria.interes;
@@ -71,8 +70,6 @@ export const updateDatosPrestamo = async (body) => {
   
 
   const resp = await createIdPreaprobado (leadRecuperado)
-  console.log("id-preaprobado", resp) 
-  //id-preaprobado { preaprobado: true, status: 'OK', idPreaprobado: 5002683, motivo: '' }
 
   await actualizarIDLead(
     documento,
@@ -80,6 +77,5 @@ export const updateDatosPrestamo = async (body) => {
   );
 
   await recuperarLead(documento);
-  console.log("leadRecuperado",leadRecuperado)
   return leadRecuperado;
 };

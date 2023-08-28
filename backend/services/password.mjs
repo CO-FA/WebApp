@@ -18,7 +18,6 @@ export const crearPassword = async ({nroDocumento, password}) => {
   
   const leadPassActualizada = await recuperarLead (nroDocumento)
 
-  console.log("Lead password actualizada", leadPassActualizada )
   return leadPassActualizada
 
 };

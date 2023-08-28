@@ -27,7 +27,6 @@ export const useRegistroEmail = () => {
               "email":values.clienteEmail,
               "enviarCodigo":true,
             })
-            console.log("datos email", datosEmail);
             /* TO DO: pantalla intermedia enviar pin al email (igual sms) */
             history.push("/onboarding/validar-pin-email");
             setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);

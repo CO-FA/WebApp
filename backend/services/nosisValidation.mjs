@@ -35,7 +35,6 @@ export const validarIdentidadNosis = async ({ nroDocumento,idPreaprobado, Callba
       idPreaprobado,
       CallbackURL
     };
-    console.log("datos validadIdentidadNosis", body);
 
     const requestOptions = {
       method: "POST",
@@ -46,17 +45,12 @@ export const validarIdentidadNosis = async ({ nroDocumento,idPreaprobado, Callba
 
     const resp = await fetch(URL + "/API/v1/lending/faceOnboadingNosis", requestOptions);
     const data = await resp.json();
-
-    console.log("data validarNOSIS", data)
     
     const querystring = data.URL.split("?")[1]
-    console.log(querystring)
     const paramsURL = new URLSearchParams(querystring)
     const valorTicket = paramsURL.get('ticket')
-    console.log("params/numticket", valorTicket)
-    
     await actualizarTicketSB(valorTicket, nroDocumento)
-
+    
     const statusNosis = "pendiente"
     await actualizarStatusNosis(statusNosis, nroDocumento)
   

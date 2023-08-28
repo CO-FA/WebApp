@@ -54,7 +54,6 @@ app.use(firmaElectronica)
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;
-  console.log("cbu", cbu);
   let { data: bancos_cbus, error } = await supabase
     .from("bancos_cbus")
     .select("*");

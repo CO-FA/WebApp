@@ -16,7 +16,6 @@ export const validandoCBU = async ({nroDocumento, idPreaprobado, CBU, guardarCBU
       CBU: CBU,
       guardarCBU: guardarCBU,
     };
-    console.log("body validandoCBU", body);
 
     const requestOptions = {
       method: "POST",
@@ -27,7 +26,6 @@ export const validandoCBU = async ({nroDocumento, idPreaprobado, CBU, guardarCBU
 
     const resp = await fetch(URL + "/API/v1/lending/validateCBU", requestOptions);
     const data = await resp.json();
-    console.log("Response data validarCBU", data);
     
     return data
     

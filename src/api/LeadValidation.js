@@ -9,7 +9,6 @@ export const validarLead = async ({ dni, cuit, sexo, situacion, codigo, nombre, 
     nombre,
     telefono,
   };
-  console.log("datos-Body", body);
   
   const obj = await fetch(url, {
     method: "POST",
@@ -18,6 +17,5 @@ export const validarLead = async ({ dni, cuit, sexo, situacion, codigo, nombre, 
     },
     body: JSON.stringify(body),
   });
-  console.log("validarLead", obj);
   return obj.json() || {};
 };

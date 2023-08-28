@@ -7,7 +7,6 @@ export const suscripcionMobbex = async ({nroDocumento, idPreaprobado, returnURL 
         idPreaprobado,
         returnURL: returnURL
     };
-    console.log("mobbex front", body);
 
     const obj = await fetch(url, {
         method: "POST",

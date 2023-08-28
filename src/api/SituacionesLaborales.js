@@ -8,6 +8,5 @@ export const getSituaciones = async () => {
     },
   });
 
-  console.log("getSituaciones", obj);
   return await obj.json();
 };
