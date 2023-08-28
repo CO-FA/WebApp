@@ -26,6 +26,11 @@ export default function CalculadoraPrestamo() {
   
   return (
     <>
+      <EncabezadoVerde>
+        <TextoHeaderSecundario text={identidad?.nombreCompleto} />
+        <TextoHeaderPrimario text={"Tenes un préstamo aprobado por"} />
+        <TextoHeaderSecundario text={"$" + intereses?.prestamo_preaprobado} />
+      </EncabezadoVerde>
       <Formik
         initialValues={{
         }}
@@ -35,11 +40,6 @@ export default function CalculadoraPrestamo() {
       >
          {({ handleSubmit }) => (
           <>
-            <EncabezadoVerde>
-              <TextoHeaderSecundario text={identidad?.nombreCompleto} />
-              <TextoHeaderPrimario text={"Tenes un préstamo aprobado por"} />
-              <TextoHeaderSecundario text={"$" + intereses?.prestamo_preaprobado} />
-            </EncabezadoVerde>
             <Box>
               <InputWithDecorator
                 decorator="$"

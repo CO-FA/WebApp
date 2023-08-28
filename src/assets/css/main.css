@@ -10806,3 +10806,10 @@ body main.prestamo footer {
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.10);
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: baseline;
+  cursor: pointer;
+}
+

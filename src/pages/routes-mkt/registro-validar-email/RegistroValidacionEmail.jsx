@@ -28,7 +28,7 @@ export default function RegistroValidacionEmail() {
         }) => (
           <>
             <section>
-              <form className="pt-3">
+              <form>
                 <h3>Ingresá el código</h3>
                 <div className="row">
                   <div className="form-group col-12">
