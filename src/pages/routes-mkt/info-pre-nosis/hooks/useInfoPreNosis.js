@@ -26,8 +26,6 @@ export const useInfoPreNosis = () => {
               idPreaprobado: lead.id_preaprobado,
               CallbackURL: "http://localhost:8888/#/onboarding/finalizar-validacion-nosis/" + identidad.cuit ,
             })
-            ("URL para Nosis", datosNosis.URL)
-            ("status-nosis", datosNosis.status)
         
             window.location.href = datosNosis.URL
     
@@ -42,5 +40,4 @@ export const useInfoPreNosis = () => {
     };
 
     return{submitForm}
-
 };
