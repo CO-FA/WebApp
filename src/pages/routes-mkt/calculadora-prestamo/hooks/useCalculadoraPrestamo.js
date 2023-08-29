@@ -6,6 +6,7 @@ import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { datosPrestamo } from "api/Prestamo";
 import React, { useState } from "react";
+import { getDiasVencimiento } from "api/DiasVencimientoCuota";
 
 export const calcularCuota = (capital, interes, plazo) => {
   const interest = (capital * (interes * 0.01)) / plazo;
@@ -27,8 +28,17 @@ export const useCalculadoraPrestamo = () => {
   const { setCurrentStep } = useStepAtom();
   const {setLead} = useLeadAtom();
   let { setShowLoader } = React.useContext(LoaderContext);
-  const [errors] = useState(false);
+  const [errors, setErrors] = useState(false);
   const history = useHistory();
+  const [opcionesDias, setOpcionesDias] = useState();
+
+  useEffect(() => {
+    /* TO DO: no me muestra las opciones. undefined */
+    getDiasVencimiento().then((response) => {
+      setOpcionesDias(response.data);
+    });
+  }, []);
+
 
   const submitForm = async (values, setSubmitting) => {
     if (errors) {
@@ -110,6 +120,8 @@ export const useCalculadoraPrestamo = () => {
     handleChangeCuota,
     cuota,
     montoCuota,
-    submitForm
+    submitForm, 
+    errors,
+    opcionesDias
   };
 };

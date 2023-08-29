@@ -9,6 +9,7 @@ import terminosYcondiciones from "./routes/aceptar-terminos-condiciones.mjs";
 import validandoCBU from "./routes/validar-cbu.mjs"
 import update from "./routes/update-nosis-status.mjs"
 import firmaElectronica from "./routes/firma-electronica.mjs"
+import altaPrestamo from "./routes/alta-prestamo.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -51,6 +52,7 @@ app.use(validarIdentidadNosis)
 app.use(update)
 app.use(terminosYcondiciones)
 app.use(firmaElectronica)
+app.use(altaPrestamo)
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;
@@ -78,6 +80,21 @@ app.get("/situaciones", async (req, res) => {
     .select("*");
 
   const data = situacion_laboral.map((sit) => {
+    return { id: sit.id, descripcion: sit.descripcion };
+  });
+  res.json({
+    data: data,
+    error: error,
+  });
+});
+
+/* TO DO: data: null */
+app.get("/dia-vencimiento", async (req, res) => {
+  let { data: dia_vencimiento_cuota, error } = await supabase
+    .from("dia_vencimiento_cuota")
+    .select("*");
+
+  const data = dia_vencimiento_cuota.map((sit) => {
     return { id: sit.id, descripcion: sit.descripcion };
   });
   res.json({

@@ -11,6 +11,7 @@ import { InputWithDecorator } from "./components/InputWithDecorator";
 import { Message } from "./components/Message";
 import { Box } from "./components/Box";
 import Footer from "components/commons/Footer";
+import { DiaVencimiento } from "./components/DiaVencimiento";
 
 export default function CalculadoraPrestamo() {
   const { identidad } = useIdentidadAtom();
@@ -21,7 +22,9 @@ export default function CalculadoraPrestamo() {
     handleChangeCuota,
     cuota,
     montoCuota,
-    submitForm
+    submitForm,
+    errors,
+    opcionesDias
   } = useCalculadoraPrestamo();
   
   return (
@@ -32,7 +35,8 @@ export default function CalculadoraPrestamo() {
         <TextoHeaderSecundario text={"$" + intereses?.prestamo_preaprobado} />
       </EncabezadoVerde>
       <Formik
-        initialValues={{
+         initialValues={{
+          clienteDiaVencimiento: "",
         }}
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)
@@ -75,6 +79,12 @@ export default function CalculadoraPrestamo() {
                 min={3}
                 max={intereses?.maximo_cantidad_cuotas}
                 />
+            </Box>
+            <Box>
+              <DiaVencimiento
+                opcionesDias={opcionesDias}
+                errors={errors}
+              />
             </Box>
             <Message text={`${cuota} Cuotas de $ ${montoCuota}`} />
             <Footer>
