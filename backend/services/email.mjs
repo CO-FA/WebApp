@@ -10,9 +10,9 @@ const actualizarEmailLead = async (nroDocumento, email) => {
   const { data, error } = await supabase
     .from('leads')
     .update({ email: email })
-    .eq("documento", nroDocumento)
+    .eq("cuit", nroDocumento)
+    .select()
 };
-
 
 export const validarEmail = async ({nroDocumento,idPreaprobado, email, enviarCodigo}) => {
   try {
@@ -39,7 +39,8 @@ export const validarEmail = async ({nroDocumento,idPreaprobado, email, enviarCod
     const resp = await fetch(URL + "/API/v1/lending/validateMail", requestOptions);
     const data = await resp.json();
 
-    await actualizarEmailLead(data.nroDocumento, data.email)
+    await actualizarEmailLead(nroDocumento, email)
+    
     return data
   } catch (error) {
     console.log(error);
