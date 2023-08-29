@@ -18,12 +18,11 @@ export function InfoPostNosis() {
     <>
       <Encabezado />
       <Formik
-        onSubmit={(values, { setSubmitting }) =>
-          submitForm(values, setSubmitting)
+        onSubmit={() =>
+          submitForm()
         }
       >
         {({
-          values,
           handleSubmit,
         }) => (
           <>
