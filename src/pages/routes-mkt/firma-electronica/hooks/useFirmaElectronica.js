@@ -1,12 +1,10 @@
-import React from "react";
-import "../../../assets/css/main.css";
-import { LoaderContext } from "components/loader/LoaderContext";
+/* import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useStepAtom } from "pages/routes-mkt/atoms/Atoms";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-export default function FirmaElectronica() {
+export const useFirmaElectronica = () => {
     let { setShowLoader } = React.useContext(LoaderContext);
     const { setCurrentStep } = useStepAtom();
     const [errors, setErrors] = useState(false);
@@ -19,10 +17,8 @@ export default function FirmaElectronica() {
         if (!errors) {
         setShowLoader(true);
         try {
-            //TO DO: esperar que el cliente firme, toma el estado ok 
-            //TO DO: genera alta cliente 
+            //TO DO: esperar que el cliente firme, toma el estado ok y va a la pantalla prestamo exitoso 
             //TO DO: dispara el envio del prestamo desde el back.
-            //TO DO: va a la pantalla prestamo exitoso
             history.push("/onboarding/prestamo-exitoso");
             setCurrentStep(STEPS.STEP_13_PRESTAMO_EXITOSO);
         } catch (error) {
@@ -35,9 +31,5 @@ export default function FirmaElectronica() {
     
     }, []);
 
-    return(
-        //TO DO: pantalla intermedia que espera que el cliente firme. 
-        <>ESPERANDO TU FIRMA ELECTRONICA</>
-    );
-}; 
-         
+    return
+}; */
