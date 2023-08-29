@@ -37,3 +37,34 @@ export default function FirmaElectronica() {
         <>ESPERANDO TU FIRMA ELECTRONICA</>
     );
 }; 
+
+/* // TO DO: previo a este paso hay que generar un alta cliente para obtener el idcliente
+
+const {
+      monto,
+      cuota,
+      montoCuota,
+    } = useCalculadoraPrestamo();
+    
+            const altaPrestamo = await generarAltaPrestamo({
+              idCliente: lead.id_preaprobado,
+              fechaAlta: new Date(),
+              comercializadora_Sucursal: 1,
+              monto: monto,
+              cuotas: cuota,
+              lineaCredito: 1,
+              destinoFondos: 1,
+              importeCuota: montoCuota,
+              primerVto: null,
+              formaPago: 2,
+              estado: 9,
+              referencia: "Préstamo de prueba"
+            })
+            console.log("alta prestamo", altaPrestamo)
+            /* {
+              "errorCode": 0,
+              "idPrestamo": 1000040,
+              "netoLiquidado": 0,
+              "status": "OK"
+            } */
+         

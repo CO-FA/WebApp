@@ -190,7 +190,7 @@ export const validateLead = async (body) => {
 
       return response;
     }
-  } catch (error) {s
+  } catch (error) {
     return { error: error };
   }
 };

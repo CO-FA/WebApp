@@ -20,19 +20,19 @@ export const useInfoPostNosis = () => {
     setSelectedButton(buttonId);
     if (selectedButton === "detalles") {
       /*TO DO: api prestamos/detalles de prestamo */
-      detallesPrestamo(
+      /* detallesPrestamo(
         {
           "idPrestamo" : "1000001" //TO DO: pasar id correcto
         }
-      )
+      ) */
       history.push("/onboarding/detalles-del-prestamo")
     } else if(selectedButton === "solicitud") {
       /* TO DO: api prestamo / descargar contrato*/
-      solicitudCredito(
+     /*  solicitudCredito(
         {
           "idPrestamo" : "1000001" //TO DO: pasar id correcto
         }
-      )
+      ) */
       history.push("/onboarding/pdf-solicitud-prestamo")
     } 
   };
