@@ -1,5 +1,5 @@
 import express from "express";
-import { altaPrestamo } from "../services/altaPrestamo";
+import { altaPrestamo } from "../services/altaPrestamo.js";
 const router = express.Router();
 
 router.post("/alta-prestamo", async function (req, res) {

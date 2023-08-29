@@ -28,6 +28,7 @@ import DetallePrestamo from "pages/estadofinanciero/DetallePrestamo";
 import { FinalizarMobbex } from "./mobbex/FinalizarMobbex";
 import { FinalizarNosis } from "./nosis/FinalizarNosis";
 import FirmaElectronica from "./firma-electronica/Firma-electronica";
+import LogoCofa from "components/logoCofa";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -143,6 +144,10 @@ export function RoutesMkt() {
                 <PrestamoExitoso />
               </VerifyStep>
             </Route>
+            <Route path="/onboarding/logo-cofa">
+                <LogoCofa />
+            </Route>
+
 
             {/* HASTA ACA!!! */}
             
