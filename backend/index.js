@@ -88,12 +88,10 @@ app.get("/situaciones", async (req, res) => {
   });
 });
 
-/* TO DO: data: null */
 app.get("/dia-vencimiento", async (req, res) => {
   let { data: dia_vencimiento_cuota, error } = await supabase
-    .from("dia_vencimiento_cuota")
-    .select("*");
-
+    .from('dia_vencimiento_cuota')
+    .select('*')
   const data = dia_vencimiento_cuota.map((sit) => {
     return { id: sit.id, descripcion: sit.descripcion };
   });

@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "components/commons/Button";
 import { Formik } from "formik";
-import { useCbuAtom, usePrestamoAtom } from "../atoms/Atoms";
+import { useCbuAtom, useDiaVencimientoAtom, usePrestamoAtom } from "../atoms/Atoms";
 import { useFindBanco } from "../registro-cbu/hooks/useFindBanco";
 import Encabezado from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
@@ -13,6 +13,7 @@ export function InfoPostNosis() {
   const { clienteCbu } = useCbuAtom();
   const { banco } = useFindBanco({ cbu: clienteCbu });
   const { submitForm } = useInfoPostNosis();
+  const { diaVencimiento } = useDiaVencimientoAtom();
 
   return (
     <>
@@ -34,7 +35,7 @@ export function InfoPostNosis() {
                     <p>Estas pidiendo un préstamo de ${monto}</p>
                     <p>
                       A devolver en {cuota} cuotas de ${montoCuota} <br />
-                      <b> con vencimiento primera cuota el DD/MM/AA </b> {/* TO DO: pasar dia de vencimiento */}
+                      <b> con vencimiento primera cuota el {diaVencimiento} </b> {/* TO DO: corregir. muestra id en lugar de descripcion */}
                     </p>
                     <p>
                       Te lo estaremos depositando en tu CBU/CVU <br />{" "}

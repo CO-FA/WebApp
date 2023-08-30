@@ -1,10 +1,10 @@
 import { Field } from "formik";
 
-export const DiaVencimiento = ({ opcionesDias, errors }) => {
+export const  DiaVencimiento = ({ opcionesDias, errors }) => {
     return (
       <>
         {" "}
-        <label htmlFor="diaVencimiento"></label>
+        <label htmlFor="diaVencimiento">Vencimiento cuota</label>
         <Field
           className="form-control"
           name="clienteDiaVencimiento"

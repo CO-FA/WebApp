@@ -2,7 +2,7 @@ import React from "react";
 import { Slider } from "@mui/material";
 import { Formik } from "formik";
 import { useCalculadoraPrestamo } from "./hooks/useCalculadoraPrestamo";
-import { useIdentidadAtom } from "../atoms/Atoms";
+import {  useIdentidadAtom } from "../atoms/Atoms";
 import { EncabezadoVerde } from "components/commons/EncabezadoVerdeDos";
 import Button from "components/commons/Button";
 import { TextoHeaderSecundario } from "./components/TextoHeaderSecundario";
@@ -26,7 +26,7 @@ export default function CalculadoraPrestamo() {
     errors,
     opcionesDias
   } = useCalculadoraPrestamo();
-  
+
   return (
     <>
       <EncabezadoVerde>
@@ -36,7 +36,6 @@ export default function CalculadoraPrestamo() {
       </EncabezadoVerde>
       <Formik
          initialValues={{
-          clienteDiaVencimiento: "",
         }}
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)

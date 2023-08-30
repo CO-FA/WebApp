@@ -1,4 +1,4 @@
-import { useIdentidadAtom, useLeadAtom, usePrestamoAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useDiaVencimientoAtom, useIdentidadAtom, useLeadAtom, usePrestamoAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
 import { useEffect} from "react";
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
@@ -31,9 +31,9 @@ export const useCalculadoraPrestamo = () => {
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const [opcionesDias, setOpcionesDias] = useState();
+  const { diaVencimiento, setDiaVencimiento  } = useDiaVencimientoAtom();
 
   useEffect(() => {
-    /* TO DO: no me muestra las opciones. undefined */
     getDiasVencimiento().then((response) => {
       setOpcionesDias(response.data);
     });
@@ -55,6 +55,7 @@ export const useCalculadoraPrestamo = () => {
           documento: identidad.dni
         });
         setLead(datosLead);
+        setDiaVencimiento(values.clienteDiaVencimiento);
         setShowLoader(false);
         history.push("/onboarding/password");
         setCurrentStep(STEPS.STEP_5_CLAVE);

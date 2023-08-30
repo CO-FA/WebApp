@@ -20,7 +20,6 @@ export const useRegistroDni = () => {
       getSituaciones().then((response) => {
         setOpciones(response.data);
       });
-      console.log(opciones)
     }, []);
 
     const submitForm = async (values, setSubmitting) => {

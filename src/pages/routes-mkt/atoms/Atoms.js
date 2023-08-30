@@ -84,3 +84,9 @@ export const useLeadAtom = () => {
   const [lead, setLead] = useAtom(leadAtom);
   return { lead, setLead };
 };
+
+const diaVencimientoAtom = atomWithStorage("diaVencimientoAtom");
+export const useDiaVencimientoAtom = () => {
+  const [diaVencimiento, setDiaVencimiento] = useAtom(diaVencimientoAtom);
+  return { diaVencimiento, setDiaVencimiento };
+};
