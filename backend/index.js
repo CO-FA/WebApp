@@ -11,6 +11,7 @@ import update from "./routes/update-nosis-status.mjs"
 import firmaElectronica from "./routes/firma-electronica.mjs"
 import altaPrestamo from "./routes/alta-prestamo.mjs"
 import altaCliente from "./routes/alta-cliente.mjs"
+import getIdCliente from "./routes/get-id-cliente.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -55,6 +56,7 @@ app.use(terminosYcondiciones)
 app.use(altaCliente)
 app.use(altaPrestamo)
 app.use(firmaElectronica)
+app.use(getIdCliente)
 
 
 app.post("/find-cbu", async (request, res) => {

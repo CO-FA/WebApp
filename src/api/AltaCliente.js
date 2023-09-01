@@ -22,7 +22,7 @@ export const altaNuevoCliente = async ({
     codActividad,
     gruCobro,
     situacionBCRA,
-    formaPagoPreferida2,
+    formaPagoPreferida,
     titularTarjeta,
     nroTarjeta,
     vtoTarjeta,
@@ -80,7 +80,7 @@ export const altaNuevoCliente = async ({
         codActividad : codActividad,
         gruCobro : gruCobro,
         situacionBCRA : situacionBCRA,
-        formaPagoPreferida : formaPagoPreferida2,
+        formaPagoPreferida : formaPagoPreferida,
         titularTarjeta : titularTarjeta,
         nroTarjeta : nroTarjeta,
         vtoTarjeta : vtoTarjeta,
@@ -111,6 +111,7 @@ export const altaNuevoCliente = async ({
         sueldoBruto : sueldoBruto,
         sueldoNeto : sueldoNeto
     };
+    console.log(body)
   
     const obj = await fetch(url, {
       method: "POST",

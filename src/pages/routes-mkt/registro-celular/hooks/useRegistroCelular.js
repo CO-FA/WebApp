@@ -19,11 +19,12 @@ export const useRegistroCelular = () => {
           setShowLoader(true);
           setCodArea(values.clienteCelCodigo);
           setNumCelular(values.clienteCelNumero);
-          await enviarSMSValidacion(
+          const pin = await enviarSMSValidacion(
             values.clienteCelCodigo + "" + values.clienteCelNumero,
             identidad.cuit
           );
           setShowLoader(false);
+          console.log(pin.codigo)
           //TO DO: ir a pantala intermedia por unos segundos diciendo "te va a llegar un mensaje"
 
           history.push("/onboarding/validar-pin");

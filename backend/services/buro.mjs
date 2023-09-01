@@ -12,6 +12,8 @@ export const getVariablesBuro = async ({cuit}) => {
     const resp = await fetch(`https://infoexperto-production.up.railway.app/api/${api_key}/datos/${cuit}`, requestOptions);
 
     const respText = await resp.text();
+    console.log("Resp getVariablesBuro", respText);
+    
     return JSON.parse(respText);
   } catch (error) {
     console.log(error);

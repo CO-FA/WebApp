@@ -19,8 +19,7 @@ export default function FirmaElectronica() {
         if (!errors) {
         setShowLoader(true);
         try {
-            //TO DO: esperar que el cliente firme, toma el estado ok 
-            //TO DO: genera alta cliente 
+            //TO DO: esperar que el cliente firme, toma el estado ok. 
             //TO DO: dispara el envio del prestamo desde el back.
             //TO DO: va a la pantalla prestamo exitoso
             history.push("/onboarding/prestamo-exitoso");
