@@ -4,9 +4,10 @@ import { aceptacionDeTerminos, firmaElectronica } from "api/TerminosYCondiciones
 import { getIpAddress } from "api/ip";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useCbuAtom, useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
 import { useCalculadoraPrestamo } from "pages/routes-mkt/calculadora-prestamo/hooks/useCalculadoraPrestamo";
 import { generarAltaPrestamo } from "api/AltaPrestamo";
+import { altaNuevoCliente } from "api/AltaCliente";
 
 export const useInfoPostNosis = () => {
   let { setShowLoader } = React.useContext(LoaderContext);
@@ -20,6 +21,7 @@ export const useInfoPostNosis = () => {
       cuota,
       montoCuota,
   } = useCalculadoraPrestamo();
+  const {clienteCbu} = useCbuAtom();
 
   const submitForm = async () => {
       if (errors) {
@@ -36,17 +38,18 @@ export const useInfoPostNosis = () => {
             nroDocumento:identidad.cuit,
             IP: ipCliente 
           })
-          //TO DO: segundo genero el cliente porqe ya acepto tener el prestamo. lending/saveProspect
-          /* const nuevoCliente = await altaNuevoCliente(
+          //segundo genero el cliente porqe ya acepto tener el prestamo. 
+          //TO DO: todos los datos que faltan los tomamos de infoexperto
+          const nuevoCliente = await altaNuevoCliente(
             {
-            "password": "1234",
+            "password": lead.password,
             "tipoDocumento" : 11,
             "nroDocumento" : identidad.documento,
-            "sexo" : genero,
+            "sexo" : lead.genero,
             "fecNacimiento" : "1980-01-01",
             "tipoPersona" : "F",
-            "apellido" : "PEREZ",
-            "nombre" : "JOSE",
+            "apellido" : "",
+            "nombre" : lead.nombre,
             "calle" : "AV ALICIA M. DE JUSTO",
             "entreCalles" : "",
             "numero" : "1150",
@@ -56,10 +59,10 @@ export const useInfoPostNosis = () => {
             "CP" : "1107",
             "provincia" : 1,
             "telefono" : "",
-            "Email" : "JPEREZ@SBSOFTWARE.COM.AR",
+            "Email" : lead.email,
             "limite" : 99999999,
-            "CBU" : "0170155120000001464863",
-            "codActividad" : 900,
+            "CBU" : clienteCbu,
+            "codActividad" : identidad.codActividad,
             "gruCobro" : 1,
             "situacionBCRA" : 1,
             "formaPagoPreferida" : 2,
@@ -67,7 +70,7 @@ export const useInfoPostNosis = () => {
             "nroTarjeta" : "",
             "vtoTarjeta" : "",
             "cvvTarjeta" : "",
-            "celular" : "11 6655-4433",
+            "celular" : lead.telefono,
             "empleador" : "SB SOFTWARE",
             "puesto" : "SOPORTE TECNICO",
             "antiguedadLaboral" : "5",
@@ -92,16 +95,15 @@ export const useInfoPostNosis = () => {
             "nroBeneficioLegajo" : "123456",
             "sueldoBruto" : 60000.00,
             "sueldoNeto" : 50000.00
-            
           }
-          ) */
-
-
+          )
+          const idCliente = nuevoCliente.idCliente
+          console.log("id cliente", idCliente)
 
           if(confirmacionSolicitud.status === "OK"){
-            //tercero genero el alta del prestamo con los datos para obtener el idPrestamo
-            /* const altaPrestamo = await generarAltaPrestamo({
-              idCliente: , //TO DO: ACA VA EL ID CLIENTE QUE ENREALIDAD TODAVIA NO ESTA CREADO!
+            //tercero genero el alta del prestamo para obtener el idPrestamo
+            const altaPrestamo = await generarAltaPrestamo({
+              idCliente: idCliente,
               fechaAlta: new Date(),
               comercializadora_Sucursal: 1,
               monto: monto,
@@ -113,18 +115,18 @@ export const useInfoPostNosis = () => {
               formaPago: 2,
               estado: 9,
               referencia: "Préstamo de prueba"
-            }) */
-            //console.log("alta prestamo", altaPrestamo)
-           
-            //const idPrestamo = altaPrestamo.idPrestamo
+            })
+            console.log("alta prestamo", altaPrestamo)
+            const idPrestamo = altaPrestamo.idPrestamo
             //TO DO: guardar idPrestamo cliente en SupaBase
-
+            console.log("idPrestamo", idPrestamo)
+            
             //cuarto paso idPrestamo para generar la firma electronica de ese prestamo
-            /* const infoFirmaElectronica = await firmaElectronica({
+            const infoFirmaElectronica = await firmaElectronica({
               idPrestamo: idPrestamo,
               accion: 1, 
-            }) */
-            //console.log("Electronica", infoFirmaElectronica)
+            })
+            console.log("Electronica", infoFirmaElectronica)
           }
           history.push("/onboarding/firma-electronica");
           setCurrentStep(STEPS.STEP_12_FIRMA_ELECTRONICA);

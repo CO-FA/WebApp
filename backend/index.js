@@ -10,6 +10,7 @@ import validandoCBU from "./routes/validar-cbu.mjs"
 import update from "./routes/update-nosis-status.mjs"
 import firmaElectronica from "./routes/firma-electronica.mjs"
 import altaPrestamo from "./routes/alta-prestamo.mjs"
+import altaCliente from "./routes/alta-cliente.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -51,8 +52,10 @@ app.use(validarCodigoEmail)
 app.use(validarIdentidadNosis)
 app.use(update)
 app.use(terminosYcondiciones)
-app.use(firmaElectronica)
+app.use(altaCliente)
 app.use(altaPrestamo)
+app.use(firmaElectronica)
+
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;
