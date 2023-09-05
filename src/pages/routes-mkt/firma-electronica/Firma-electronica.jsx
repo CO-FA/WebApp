@@ -19,9 +19,11 @@ export default function FirmaElectronica() {
         if (!errors) {
         setShowLoader(true);
         try {
-            //TO DO: esperar que el cliente firme, toma el estado ok. 
+            //TO DO: cambiar status pendiente de firma. cada 5  10 min ir a supa a buscar lead con status pendiente de firma. tomo el id prestamo y voy a sb a ver si firmo o no, si firmo hacemos la transacción.
+
+            
             //TO DO: dispara el envio del prestamo desde el back.
-            //TO DO: va a la pantalla prestamo exitoso
+            
             history.push("/onboarding/prestamo-exitoso");
             setCurrentStep(STEPS.STEP_13_PRESTAMO_EXITOSO);
         } catch (error) {

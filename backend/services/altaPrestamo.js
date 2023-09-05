@@ -2,7 +2,8 @@ import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
-export const altaPrestamo = async ({idCliente,fechaAlta,comercializadora_Sucursal, monto,cuotas,lineaCredito,destinoFondos,importeCuota, primerVto,formaPago,estado, referencia}) => {
+export const altaPrestamo = async ({idCliente, leadRecuperado}) => {
+  const {monto, cuotas, importeCuota} = leadRecuperado
   try {
     const token = await getToken();
 
@@ -12,17 +13,17 @@ export const altaPrestamo = async ({idCliente,fechaAlta,comercializadora_Sucursa
 
     const body = {
         idCliente: idCliente,
-        fechaAlta: fechaAlta,
-        comercializadora_Sucursal: comercializadora_Sucursal,
+        fechaAlta: new Date(),
+        comercializadora_Sucursal: 1,
         monto: monto,
         cuotas: cuotas,
-        lineaCredito: lineaCredito,
-        destinoFondos: destinoFondos,
+        lineaCredito: 1,
+        destinoFondos: 1,
         importeCuota: importeCuota,
-        primerVto: primerVto,
-        formaPago: formaPago,
-        estado: estado,
-        referencia: referencia
+        primerVto: null,
+        formaPago: 2,
+        estado: 9,
+        referencia: "Préstamo de prueba"
     };
 
     const requestOptions = {
@@ -33,11 +34,11 @@ export const altaPrestamo = async ({idCliente,fechaAlta,comercializadora_Sucursa
     };
 
     const resp = await fetch(URL + "/API/v1/loans/new", requestOptions);
-    const data = await resp.json();
+    const dataAltaPrestamo = await resp.json();
     
-    console.log("altaPrestamo", data)
+    console.log("altaPrestamo", dataAltaPrestamo)
 
-    return data
+    return dataAltaPrestamo
     
   } catch (error) {
     console.log(error);

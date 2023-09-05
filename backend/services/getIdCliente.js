@@ -1,46 +1,38 @@
 import { altaCliente } from "./altaCliente.js";
-import { createClient } from "@supabase/supabase-js";
 import { buscarCliente } from "./buscarClienteSB.js";
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
+export const getIdCliente = async ({leadRecuperado}) => {
+    const {cuit,password, genero, nombre, email, cbu, telefono, variables_buro } = leadRecuperado
 
-export const getIdCliente = async ({lead}) => {
-    const { data: leadsExistente, error} = await supabase
-    .from("leads")
-    .select("*")
-    .eq("cuit", lead.cuit);
-
-    if (leadsExistente.length > 0) {
-        const clienteExistente = await buscarCliente({cuit: lead.cuit})
-        const numIdCliente = clienteExistente[0].idCliente;
-        console.log("cliente existente id", numIdCliente)
-        return numIdCliente
+    if (leadRecuperado.length > 0) {
+        const clienteExistente = await buscarCliente({cuit: cuit})
+        //const numIdCliente = clienteExistente[0].idCliente;
+        return clienteExistente
     } else {
-        //doy alta cliente
-        const nuevoCliente = await altaCliente(
+        const nuevoCliente = await altaCliente
+        (
             {
-            "password": lead.password,
-            "tipoDocumento" : 11,
-            "nroDocumento" : lead.cuit,
-            "sexo" : lead.genero,
-            "fecNacimiento" : "1980-01-01",
-            "tipoPersona" : "F",
-            "apellido" : lead.nombre,
-            "nombre" : lead.nombre,
-            "calle" : "AV ALICIA M. DE JUSTO",
+            "password": password,
+            "tipoDocumento" : 11, //variables_buro.datos.identidad.tipo_documento
+            "nroDocumento" : cuit,
+            "sexo" : genero,
+            "fecNacimiento" : variables_buro.datos.identidad.fecha_nacimiento,
+            "tipoPersona" : variables_buro.datos.identidad.tipo_entidad,
+            "apellido" : nombre,
+            "nombre" : nombre,
+            "calle" : variables_buro.datos.domicilios.1.calle, //1 es el domicilio fiscal
             "entreCalles" : "",
-            "numero" : "1150",
-            "piso" : "3",
-            "depto" : "A306",
-            "localidad" : "CABA",
-            "CP" : "1107",
-            "provincia" : 1,
+            "numero" : variables_buro.datos.domicilios.1.altura,
+            "piso" : "",
+            "depto" : "",
+            "localidad" : variables_buro.datos.domicilios.1.localidad,
+            "CP" : variables_buro.datos.domicilios.1.cp,
+            "provincia" : 1, //variables_buro.datos.domicilios.1.provincia
             "telefono" : "",
-            "Email" : lead.email,
+            "Email" : email,
             "limite" : 99999999,
-            "CBU" : lead.cbu,
-            "codActividad" : "", //TO DO: traer de lead.variables...
+            "CBU" : cbu,
+            "codActividad" : variables_buro.datos.identidad.codigo_actividad,
             "gruCobro" : 1,
             "situacionBCRA" : 1,
             "formaPagoPreferida" : 2,
@@ -48,14 +40,14 @@ export const getIdCliente = async ({lead}) => {
             "nroTarjeta" : "",
             "vtoTarjeta" : "",
             "cvvTarjeta" : "",
-            "celular" : lead.telefono,
-            "empleador" : "SB SOFTWARE",
+            "celular" : telefono,
+            "empleador" : datos.empleador.razon_social,
             "puesto" : "SOPORTE TECNICO",
             "antiguedadLaboral" : "5",
-            "telLaboral" : "55554444",
-            "contacto" : "Arturo Perez",
-            "telContacto" : "1155443322",
-            "relacionContacto" : "Hermano",
+            "telLaboral" : variables_buro.datos.empleador.telefono.0.telefono,
+            "contacto" : variables_buro.datos.personasRelacionadas.0.nombre_completo,
+            "telContacto" : "1155443322", // no esta
+            "relacionContacto" : "Hermano", // no esta
             "contacto2" : "",
             "telContacto2" : "",
             "relacionContacto2" : "",
@@ -73,9 +65,7 @@ export const getIdCliente = async ({lead}) => {
             "nroBeneficioLegajo" : "123456",
             "sueldoBruto" : 60000.00,
             "sueldoNeto" : 50000.00
-        }) 
-        const idCliente = nuevoCliente.idCliente;
-        console.log("nuevo cliente id", idCliente)
-        return idCliente
+        })
+        return nuevoCliente
     }
 };

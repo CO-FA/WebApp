@@ -1,9 +1,9 @@
 
-export const idCliente = async ({ lead}) => {
-    let url = "/back/get-id-cliente";
+export const validateLoan = async ({ipCliente }) => {
+    let url = "/back/generate-loan";
 
     const body = {
-        lead: lead,
+        IP: ipCliente
     };
 
     const obj = await fetch(url, {
@@ -13,8 +13,6 @@ export const idCliente = async ({ lead}) => {
         },
         body: JSON.stringify(body),
     });
-
-    console.log(obj);
 
     return obj.json() || {};
 };
