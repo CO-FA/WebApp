@@ -1,5 +1,5 @@
 import express from "express";
-import { validateLoan } from "../services/validateLoan";
+import { validateLoan } from "../services/validateLoan.js";
 const router = express.Router();
 
 router.post("/generate-loan", async function (req, res) {

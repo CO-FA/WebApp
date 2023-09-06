@@ -46,6 +46,7 @@ export default function RegistroValidacionEmail() {
                     <p className="mt-3 text-center">
                       Si no te llegó el correo fijate en SPAM o correos no
                       deseados.
+                      {/* TO DO: reenviar email */}
                       <a className="mt-3 d-block text-underline" href="/">
                         Reenviarme Email
                       </a>

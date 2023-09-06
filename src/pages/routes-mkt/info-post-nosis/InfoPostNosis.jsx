@@ -35,7 +35,7 @@ export function InfoPostNosis() {
                     <p>Estas pidiendo un préstamo de ${monto}</p>
                     <p>
                       A devolver en {cuota} cuotas de ${montoCuota} <br />
-                      <b> con vencimiento primera cuota el {diaVencimiento} </b> {/* TO DO: corregir. muestra id en lugar de descripcion  busco en la tabla y muestro descripcion*/}
+                      <b> con vencimiento primera cuota el {diaVencimiento} </b>
                     </p>
                     <p>
                       Te lo estaremos depositando en tu CBU/CVU <br />{" "}

@@ -9,6 +9,7 @@ export const getIdCliente = async ({leadRecuperado}) => {
         //const numIdCliente = clienteExistente[0].idCliente;
         return clienteExistente
     } else {
+        // TO DO: chequear variables
         const nuevoCliente = await altaCliente
         (
             {
@@ -20,17 +21,17 @@ export const getIdCliente = async ({leadRecuperado}) => {
             "tipoPersona" : variables_buro.datos.identidad.tipo_entidad,
             "apellido" : nombre,
             "nombre" : nombre,
-            "calle" : variables_buro.datos.domicilios.1.calle, //1 es el domicilio fiscal
+            "calle" : variables_buro.datos.domicilios['1'].calle, //1 es el domicilio fiscal
             "entreCalles" : "",
-            "numero" : variables_buro.datos.domicilios.1.altura,
+            "numero" : variables_buro.datos.domicilios['1'].altura,
             "piso" : "",
             "depto" : "",
-            "localidad" : variables_buro.datos.domicilios.1.localidad,
-            "CP" : variables_buro.datos.domicilios.1.cp,
+            "localidad" : variables_buro.datos.domicilios['1'].localidad,
+            "CP" : variables_buro.datos.domicilios['1'].cp,
             "provincia" : 1, //variables_buro.datos.domicilios.1.provincia
-            "telefono" : "",
+            "telefono" : telefono,
             "Email" : email,
-            "limite" : 99999999,
+            "limite" : 99999999, //limite segun interes?
             "CBU" : cbu,
             "codActividad" : variables_buro.datos.identidad.codigo_actividad,
             "gruCobro" : 1,
@@ -41,21 +42,21 @@ export const getIdCliente = async ({leadRecuperado}) => {
             "vtoTarjeta" : "",
             "cvvTarjeta" : "",
             "celular" : telefono,
-            "empleador" : datos.empleador.razon_social,
-            "puesto" : "SOPORTE TECNICO",
-            "antiguedadLaboral" : "5",
-            "telLaboral" : variables_buro.datos.empleador.telefono.0.telefono,
-            "contacto" : variables_buro.datos.personasRelacionadas.0.nombre_completo,
-            "telContacto" : "1155443322", // no esta
+            "empleador" : variables_buro.datos.empleador.razon_social,
+            "puesto" : "",
+            "antiguedadLaboral" : "", //chequear
+            "telLaboral" : variables_buro.datos.empleador.telefono['0'].telefono,
+            "contacto" : variables_buro.datos.personasRelacionadas['0'].nombre_completo,
+            "telContacto" : "", 
             "relacionContacto" : "Hermano", // no esta
-            "contacto2" : "",
+            "contacto2" : variables_buro.datos.personasRelacionadas['1'].nombre_completo,
             "telContacto2" : "",
-            "relacionContacto2" : "",
-            "contacto3" : "",
+            "relacionContacto2" : "",// no esta
+            "contacto3" : variables_buro.datos.personasRelacionadas['2'].nombre_completo,
             "telContacto3" : "",
-            "relacionContacto3" : "",
-            "horarioContacto" : "9 a 18hs",
-            "bloquearDebitoAutomatico" : false,
+            "relacionContacto3" : "",// no esta
+            "horarioContacto" : "", 
+            "bloquearDebitoAutomatico" : false, 
             "proveedor" : false,
             "responsabilidadIVA" : 1,
             "observaciones" : "Prueba de alta",

@@ -5,20 +5,14 @@ import suscripcionMobbex from "./routes/mobbex.mjs"
 import validarEmail from "./routes/validar-email.mjs";
 import validarCodigoEmail from "./routes/codigo-validar-email.mjs";
 import validarIdentidadNosis from "./routes/validar-identidad-nosis.mjs";
-import terminosYcondiciones from "./routes/aceptar-terminos-condiciones.mjs";
 import validandoCBU from "./routes/validar-cbu.mjs"
 import update from "./routes/update-nosis-status.mjs"
-import firmaElectronica from "./routes/firma-electronica.mjs"
-import altaPrestamo from "./routes/alta-prestamo.mjs"
-import altaCliente from "./routes/alta-cliente.mjs"
-import getIdCliente from "./routes/get-id-cliente.mjs"
+import validateLoan from "./routes/generate-loan.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { createClient } from "@supabase/supabase-js";
 
-
-//import { validateLead } from "./services/validate-lead.mjs";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
@@ -52,11 +46,7 @@ app.use(validarEmail)
 app.use(validarCodigoEmail)
 app.use(validarIdentidadNosis)
 app.use(update)
-app.use(terminosYcondiciones)
-app.use(altaCliente)
-app.use(altaPrestamo)
-app.use(firmaElectronica)
-app.use(getIdCliente)
+app.use(validateLoan)
 
 
 app.post("/find-cbu", async (request, res) => {

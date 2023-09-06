@@ -16,7 +16,7 @@ export const  DiaVencimiento = ({ opcionesDias, errors }) => {
           </option>
           {opcionesDias?.map((opt) => {
             return (
-              <option value={opt.id} key={opt.id}>
+              <option value={opt.descripcion} key={opt.id}>
                 {opt.descripcion}
               </option>
             );

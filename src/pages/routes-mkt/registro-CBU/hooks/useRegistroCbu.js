@@ -21,6 +21,7 @@ export const useRegistroCbu = () => {
     const { setSubscriptionURL } = useSubscriptionURLAtom();
     const { lead } = useLeadAtom();
 
+
     useEffect(() => {
         setElement(<Cbu />);
         return () => setElement(null);
@@ -64,7 +65,7 @@ export const useRegistroCbu = () => {
           guardarCBU: true,
         });
         if (validacionCBU.status === 'OK') {
-          setIsContinuarButtonEnabled(true);
+            setIsContinuarButtonEnabled(true);
         }else {
           setIsContinuarButtonEnabled(false);
         }
