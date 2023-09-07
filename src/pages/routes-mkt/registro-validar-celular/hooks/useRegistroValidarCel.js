@@ -1,4 +1,5 @@
 import { validarLead } from "api/LeadValidation";
+import { enviarSMSValidacion } from "api/PhoneValidation";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useCelularAtom, useCodigoAtom, useGeneroAtom, useIdentidadAtom, usePrestamoAtom, useSituacionLaboralAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
@@ -79,5 +80,12 @@ export const useRegistroValidarCel = () => {
         setErrors(errorsAUx);
     };
 
-    return{submitForm,validateForm, errors}
+    const reenviarPinSms = async (values) => {
+      await enviarSMSValidacion(
+        values.clienteCelCodigo + "" + values.clienteCelNumero,
+        identidad.cuit
+      );
+    };
+
+    return{submitForm,validateForm, errors, reenviarPinSms}
 };

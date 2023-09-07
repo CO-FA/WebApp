@@ -12,7 +12,7 @@ import { useRegistroValidarCel } from "./hooks/useRegistroValidarCel";
 
 export function RegistroValidacionCelular() {
   const { codArea, numCelular } = useCelularAtom();
-  const {submitForm,validateForm, errors} = useRegistroValidarCel()
+  const {submitForm,validateForm, errors, reenviarPinSms} = useRegistroValidarCel()
   
   return (
     <>
@@ -89,10 +89,14 @@ export function RegistroValidacionCelular() {
                   </div>
                   <div className="col-12">
                     <p className="mt-5 text-center">
-                      {/* TO DO: reenviar mensaje */}
-                      <a href="/" className="text-underline">
-                        ¿No te llegó? Reenviarme el SMS
-                      </a>
+                      <button
+                        type="button"
+                        onClick={reenviarPinSms}
+                      >
+                        <a href="/" className="text-underline">
+                          ¿No te llegó? Reenviarme el SMS
+                        </a>
+                      </button>
                     </p>
                   </div>
                 </div>
