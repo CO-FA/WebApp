@@ -31,8 +31,7 @@ export const useRegistroEmail = () => {
             })
             console.log("enviar", pin.codigo)
             
-            /* TO DO: pantalla intermedia enviar pin al email (igual sms) */
-            history.push("/onboarding/validar-pin-email");
+            history.push("/onboarding/enviar-pin-email");
             setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);
           }catch (error) {
             history.push("/onboarding/error");

@@ -25,9 +25,7 @@ export const useRegistroCelular = () => {
           );
           setShowLoader(false);
           console.log("enviar",pin.codigo)
-          //TO DO: ir a pantala intermedia por unos segundos diciendo "te va a llegar un mensaje"
-
-          history.push("/onboarding/validar-pin");
+          history.push("/onboarding/enviar-pin-celular");
           setCurrentStep(STEPS.STEP_3_CELULAR);
         }
     };
