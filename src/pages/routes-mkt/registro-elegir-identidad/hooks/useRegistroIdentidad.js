@@ -23,8 +23,6 @@ export const useRegistroIdentidad = () => {
        
     };
     
-
-    //TO DO: esto se ejecuta de igual manera? porqe no esta importado en ningun lado
     useEffect(() => {
         (async () => {
           const identidades = await getPadronAfip(documento);
