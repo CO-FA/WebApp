@@ -20,7 +20,7 @@ const updateIdPrestamo = async (numIdPrestamo, leadRecuperado) => {
     .eq('cuit', leadRecuperado.cuit)
 };
 
-const updateStatusFirma = async (statusFirma, leadRecuperado) => {
+export const updateStatusFirma = async (statusFirma, leadRecuperado) => {
   const { data, error } = await supabase
   .from('leads')
   .update({ status_firma_electronica: statusFirma })

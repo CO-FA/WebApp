@@ -29,6 +29,8 @@ import { FinalizarMobbex } from "./mobbex/FinalizarMobbex";
 import { FinalizarNosis } from "./nosis/FinalizarNosis";
 import FirmaElectronica from "./firma-electronica/Firma-electronica";
 import LogoCofa from "components/logoCofa";
+import PinCelularScreen from "./enviar-pin/enviarPinCelular";
+import PinEmailScreen from "./enviar-pin/enviarPinEmail";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -78,6 +80,11 @@ export function RoutesMkt() {
                 <RegistroCelular />
               </VerifyStep>
             </Route>
+
+            <Route path="/onboarding/enviar-pin-celular">
+                <PinCelularScreen />
+            </Route>
+
             <Route path="/onboarding/validar-pin">
               {" "}
               <VerifyStep step={STEPS.STEP_3_CELULAR}>
@@ -114,6 +121,13 @@ export function RoutesMkt() {
                 <RegistroEmail />
               </VerifyStep>
             </Route>
+
+            <Route path="/onboarding/enviar-pin-email">
+              <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
+                <PinEmailScreen />
+              </VerifyStep>
+            </Route>
+
             <Route path="/onboarding/validar-pin-email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
                 <RegistroValidacionEmail />
