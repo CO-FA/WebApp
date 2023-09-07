@@ -89,14 +89,13 @@ export function RegistroValidacionCelular() {
                   </div>
                   <div className="col-12">
                     <p className="mt-5 text-center">
-                      <button
+                      <Button
                         type="button"
                         onClick={reenviarPinSms}
+                        className="text-underline"
                       >
-                        <a href="/" className="text-underline">
-                          ¿No te llegó? Reenviarme el SMS
-                        </a>
-                      </button>
+                        ¿No te llegó? Reenviarme el SMS
+                      </Button>
                     </p>
                   </div>
                 </div>

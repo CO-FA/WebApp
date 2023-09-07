@@ -81,10 +81,11 @@ export const useRegistroValidarCel = () => {
     };
 
     const reenviarPinSms = async (values) => {
-      await enviarSMSValidacion(
-        values.clienteCelCodigo + "" + values.clienteCelNumero,
+      const pin = await enviarSMSValidacion(
+        codArea + "" + numCelular,
         identidad.cuit
       );
+      console.log("reenviar", pin.codigo)
     };
 
     return{submitForm,validateForm, errors, reenviarPinSms}

@@ -90,3 +90,9 @@ export const useDiaVencimientoAtom = () => {
   const [diaVencimiento, setDiaVencimiento] = useAtom(diaVencimientoAtom);
   return { diaVencimiento, setDiaVencimiento };
 };
+
+const emailAtom = atomWithStorage("emailAtom");
+export const useEmailAtom = () => {
+  const [email, setEmail] = useAtom(emailAtom);
+  return { email, setEmail };
+};

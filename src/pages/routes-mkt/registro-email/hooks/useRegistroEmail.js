@@ -1,7 +1,7 @@
 import { validacionEmail } from "api/EmailValidation";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useEmailAtom, useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { formErrors } from "utils/constantsErrors";
@@ -13,6 +13,7 @@ export const useRegistroEmail = () => {
     const { setCurrentStep } = useStepAtom();
     const { identidad } = useIdentidadAtom();
     const {lead } = useLeadAtom();
+    const { email, setEmail } = useEmailAtom();
 
     const submitForm = async (values, setSubmitting) => {
         if (errors) {
@@ -21,12 +22,15 @@ export const useRegistroEmail = () => {
         if (!errors) {
           setShowLoader(true);
           try{
-            await validacionEmail({
+            setEmail(values.clienteEmail)
+            const pin = await validacionEmail({
               "nroDocumento": identidad.cuit,
               "idPreaprobado":lead.id_preaprobado,
               "email":values.clienteEmail,
               "enviarCodigo":true,
             })
+            console.log("enviar", pin.codigo)
+            
             /* TO DO: pantalla intermedia enviar pin al email (igual sms) */
             history.push("/onboarding/validar-pin-email");
             setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);

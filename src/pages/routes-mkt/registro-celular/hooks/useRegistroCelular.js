@@ -24,7 +24,7 @@ export const useRegistroCelular = () => {
             identidad.cuit
           );
           setShowLoader(false);
-          console.log(pin.codigo)
+          console.log("enviar",pin.codigo)
           //TO DO: ir a pantala intermedia por unos segundos diciendo "te va a llegar un mensaje"
 
           history.push("/onboarding/validar-pin");
