@@ -10,7 +10,7 @@ import { useRegistroValidarEmail } from "./hooks/useRegistroValidarEmail";
 
 export default function RegistroValidacionEmail() {
 	const [errors] = useState(false);
-  const {submitForm,validateForm} = useRegistroValidarEmail()
+  const {submitForm,validateForm, reenviarPinEmail} = useRegistroValidarEmail()
 
 	return (
     <>
@@ -46,10 +46,14 @@ export default function RegistroValidacionEmail() {
                     <p className="mt-3 text-center">
                       Si no te llegó el correo fijate en SPAM o correos no
                       deseados.
-                      {/* TO DO: reenviar email */}
-                      <a className="mt-3 d-block text-underline" href="/">
-                        Reenviarme Email
-                      </a>
+                      <button
+                        type="button"
+                        onClick={reenviarPinEmail}
+                      >
+                        <a className="mt-3 d-block text-underline" href="/">
+                          Reenviarme Email
+                        </a>
+                      </button>
                     </p>
                   </div>
                 </div>

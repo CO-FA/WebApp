@@ -1,4 +1,4 @@
-import { validacionCodigoEmail } from "api/EmailValidation";
+import { validacionCodigoEmail, validacionEmail } from "api/EmailValidation";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
@@ -8,8 +8,8 @@ import { formErrors } from "utils/constantsErrors";
 
 export const useRegistroValidarEmail = () => {
     let { setShowLoader } = React.useContext(LoaderContext);
-	const [errors, setErrors] = useState(false);
-	const history = useHistory();
+	  const [errors, setErrors] = useState(false);
+	  const history = useHistory();
     const { setCurrentStep } = useStepAtom();
     const { identidad } = useIdentidadAtom();
     const {lead } = useLeadAtom();
@@ -48,5 +48,14 @@ export const useRegistroValidarEmail = () => {
         }
     };
 
-    return{submitForm,validateForm}
+    const reenviarPinEmail = async (values) => {
+      await validacionEmail({
+        "nroDocumento": identidad.cuit,
+        "idPreaprobado":lead.id_preaprobado,
+        "email":values.clienteEmail,
+        "enviarCodigo":true,
+      })
+    };
+
+    return{submitForm,validateForm, reenviarPinEmail}
 };

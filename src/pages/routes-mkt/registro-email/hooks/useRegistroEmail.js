@@ -21,7 +21,7 @@ export const useRegistroEmail = () => {
         if (!errors) {
           setShowLoader(true);
           try{
-            const datosEmail = await validacionEmail({
+            await validacionEmail({
               "nroDocumento": identidad.cuit,
               "idPreaprobado":lead.id_preaprobado,
               "email":values.clienteEmail,
