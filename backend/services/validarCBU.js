@@ -11,6 +11,7 @@ const updateCbu = async (CBU, nroDocumento) => {
   .from('leads')
   .update({ cbu: CBU })
   .eq('cuit', nroDocumento)
+  console.log("guardado")
 }; 
 
 export const validandoCBU = async ({nroDocumento, idPreaprobado, CBU, guardarCBU,}) => {
@@ -27,6 +28,7 @@ export const validandoCBU = async ({nroDocumento, idPreaprobado, CBU, guardarCBU
       CBU: CBU,
       guardarCBU: guardarCBU,
     };
+    console.log("datos validateCbu")
 
     const requestOptions = {
       method: "POST",

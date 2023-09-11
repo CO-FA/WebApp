@@ -1,9 +1,10 @@
 
-export const validateLoan = async ({ipCliente }) => {
+export const validateLoan = async ({IP, nroDocumento }) => {
     let url = "/back/generate-loan";
 
     const body = {
-        IP: ipCliente
+        IP: IP,
+        nroDocumento: nroDocumento
     };
 
     const obj = await fetch(url, {

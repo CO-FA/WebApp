@@ -3,8 +3,10 @@ import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
-export const terminosYcondiciones = async ({ipCliente, leadRecuperado}) => {
+
+export const terminosYcondiciones = async ({IP, leadRecuperado}) => {
   const { id_preaprobado, cuit } = leadRecuperado
+
   try {
     const token = await getToken();
 
@@ -15,9 +17,8 @@ export const terminosYcondiciones = async ({ipCliente, leadRecuperado}) => {
     const body = {
       idPreaprobado: id_preaprobado,
 	    nroDocumento: cuit,
-      IP: ipCliente,
+      IP: IP,
     };
-    console.log("body terminos y condiciones", body);
 
     const requestOptions = {
       method: "POST",
@@ -28,7 +29,6 @@ export const terminosYcondiciones = async ({ipCliente, leadRecuperado}) => {
 
     const resp = await fetch(URL + "/API/v1/lending/acceptTerms", requestOptions);
     const dataAceptarTerminos = await resp.json();
-    console.log("Resp terminos y condiciones", dataAceptarTerminos);
 
     return dataAceptarTerminos
     
@@ -39,7 +39,7 @@ export const terminosYcondiciones = async ({ipCliente, leadRecuperado}) => {
 };
 
 
-export const firmaElectronica = async ({idPrestamo}) => {
+export const firmaElectronica = async ({numIdPrestamo}) => {
   try {
     const token = await getToken();
 
@@ -48,7 +48,7 @@ export const firmaElectronica = async ({idPrestamo}) => {
     myHeaders.append("Content-type", "application/json");
 
     const body = {
-      idPrestamo: idPrestamo,
+      idPrestamo: numIdPrestamo,
       accion: 1
     };
 

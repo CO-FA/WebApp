@@ -5,7 +5,7 @@ const router = express.Router();
 router.post("/generate-loan", async function (req, res) {
   const response = await validateLoan(req.body);
   res.json({
-    ...response,
+    response,
   });
 });
 

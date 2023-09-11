@@ -17,11 +17,9 @@ export const buscarCliente = async ({cuit}) => {
     };
 
     const resp = await fetch(URL + `/API/v1/customers/getByDoc?nroDocumento=${cuit}`, requestOptions);
-
-    const respText = await resp.text();
-    console.log("Resp buscarCliente", respText);
     
-    return JSON.parse(respText);
+    return await resp.json()
+
   } catch (error) {
     console.log(error);
   }

@@ -2,7 +2,7 @@ export const statusFirmaSupabase = async ({ lead }) => {
     let url = "/back/status-firma-electronica";
   
     const body = {
-      lead
+      lead: lead
     };
   
     const obj = await fetch(url, {

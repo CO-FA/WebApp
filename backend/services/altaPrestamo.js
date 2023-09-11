@@ -2,7 +2,7 @@ import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 
-export const altaPrestamo = async ({idCliente, leadRecuperado}) => {
+export const altaPrestamo = async ({numIdCliente, leadRecuperado}) => {
   const {monto, cuotas, importeCuota} = leadRecuperado
   try {
     const token = await getToken();
@@ -12,7 +12,7 @@ export const altaPrestamo = async ({idCliente, leadRecuperado}) => {
     myHeaders.append("Content-type", "application/json");
 
     const body = {
-        idCliente: idCliente,
+        idCliente: numIdCliente,
         fechaAlta: new Date(),
         comercializadora_Sucursal: 1,
         monto: monto,
@@ -35,8 +35,6 @@ export const altaPrestamo = async ({idCliente, leadRecuperado}) => {
 
     const resp = await fetch(URL + "/API/v1/loans/new", requestOptions);
     const dataAltaPrestamo = await resp.json();
-    
-    console.log("altaPrestamo", dataAltaPrestamo)
 
     return dataAltaPrestamo
     
