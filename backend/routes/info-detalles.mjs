@@ -5,7 +5,7 @@ const router = express.Router();
 router.post("/info-detalles", async function (req, res) {
   const response = await infoDetalles(req.body);
   res.json({
-    ...response,
+    response,
   });
 });
 

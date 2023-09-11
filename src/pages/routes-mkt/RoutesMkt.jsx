@@ -24,13 +24,14 @@ import ModificarCelular from "pages/perfil/PerfilModificarCelular";
 import ModificarEmail from "pages/perfil/PerfilModificarEmail";
 import OlvidePasswordStep2 from "pages/perfil/PerfilModificarPass";
 import ModificarDireccion from "pages/perfil/PerfilModificarDireccion";
-import DetallePrestamo from "pages/estadofinanciero/DetallePrestamo";
 import { FinalizarMobbex } from "./mobbex/FinalizarMobbex";
 import { FinalizarNosis } from "./nosis/FinalizarNosis";
 import FirmaElectronica from "./firma-electronica/Firma-electronica";
 import LogoCofa from "components/logoCofa";
 import PinCelularScreen from "./enviar-pin/enviarPinCelular";
 import PinEmailScreen from "./enviar-pin/enviarPinEmail";
+import { DetallesPrestamo } from "./prestamo-exitoso/DetallesPrestamo";
+import { SolicitudPrestamo } from "./prestamo-exitoso/SolicitudPrestamo";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -159,14 +160,10 @@ export function RoutesMkt() {
               </VerifyStep>
             </Route>
             <Route path="/onboarding/detalles-del-prestamo">
-              <VerifyStep step={STEPS.STEP_13_PRESTAMO_EXITOSO}>
-                <PrestamoExitoso />
-              </VerifyStep>
+                <DetallesPrestamo />
             </Route>
-            <Route path="//onboarding/pdf-solicitud-prestamo">
-              <VerifyStep step={STEPS.STEP_13_PRESTAMO_EXITOSO}>
-                <PrestamoExitoso />
-              </VerifyStep>
+            <Route path="/onboarding/pdf-solicitud-prestamo">
+                <SolicitudPrestamo />
             </Route>
             <Route path="/onboarding/logo-cofa">
                 <LogoCofa />
@@ -231,7 +228,7 @@ export function RoutesMkt() {
 
             <Route path="/detalle-prestamos">
               <VerifyStep step={STEPS.STEP_22_DETALLE_PRESTAMO}>
-                <DetallePrestamo />
+                <DetallesPrestamo />
               </VerifyStep>
             </Route>
 

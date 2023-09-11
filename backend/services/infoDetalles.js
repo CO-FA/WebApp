@@ -1,13 +1,15 @@
 import { getToken } from "./token.mjs";
 import { recuperarLead } from "./updateDatosPrestamo.mjs";
 import fetch, { Headers } from "node-fetch";
+import { URL } from "./url.mjs";
 
 export const infoDetalles = async ({nroDocumento}) => {
 
   const leadRecuperado = await recuperarLead(nroDocumento);
 
-  const {sb_id_prestamo} = leadRecuperado
-  
+
+  //const {sb_id_prestamo} = leadRecuperado
+
   try {
     const token = await getToken();
 
@@ -16,7 +18,7 @@ export const infoDetalles = async ({nroDocumento}) => {
     myHeaders.append("Content-type", "application/json");
 
     const body = {
-      idPrestamo: sb_id_prestamo
+      idPrestamo: "8247" ,//TO DO: pasar el idPrestamo que viene de supa
     };
 
     const requestOptions = {

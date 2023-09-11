@@ -96,3 +96,9 @@ export const useEmailAtom = () => {
   const [email, setEmail] = useAtom(emailAtom);
   return { email, setEmail };
 };
+
+const detallesAtom = atomWithStorage("detallesAtom");
+export const useDetallesAtom = () => {
+  const [detallesPrestamo, setDetallesPrestamo] = useAtom(detallesAtom);
+  return { detallesPrestamo, setDetallesPrestamo };
+};
