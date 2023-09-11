@@ -1,9 +1,9 @@
 
-export const infoPrestamo = async ({buttonId }) => {
-    let url = "/back/info-prestamo";
+export const infoSolicitud = async ({nroDocumento}) => {
+    let url = "/back/info-solicitud";
 
     const body = {
-        buttonId
+        nroDocumento: nroDocumento,
     };
 
     const obj = await fetch(url, {

@@ -1,17 +1,17 @@
-import { infoPrestamo } from "api/InfoPrestamo";
+import { infoDetalles } from "api/InfoDetalles";
+import { infoSolicitud } from "api/infoSolucitud";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useIdentidadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export const usePrestamoExitoso = () => {
-    const [selectedButton, setSelectedButton] = useState(null);
     let { setShowLoader } = React.useContext(LoaderContext);
     const [errors] = useState(false);
     const history = useHistory();
     const { setCurrentStep } = useStepAtom();
-    const { lead } = useLeadAtom();
+    const { identidad } = useIdentidadAtom();
     
     const submitForm = async () => {
         if (errors) {
@@ -32,12 +32,14 @@ export const usePrestamoExitoso = () => {
     };
 
     const handleButtonClick = async (buttonId) => {
-      console.log("buttonId", buttonId)
-      await infoPrestamo({buttonId});
-      //TO DO: corregir / ver como hago
+      
       if (buttonId === "detalles") {
+        await infoDetalles({nroDocumento: identidad.dni});
+        console.log("trae todo los detalles")
         history.push("/onboarding/detalles-del-prestamo")
       } else if(buttonId === "solicitud") {
+        await infoSolicitud({nroDocumento: identidad.dni});
+        console.log("pdf")
         history.push("/onboarding/pdf-solicitud-prestamo")
       } 
     };

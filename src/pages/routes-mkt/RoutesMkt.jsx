@@ -158,6 +158,16 @@ export function RoutesMkt() {
                 <PrestamoExitoso />
               </VerifyStep>
             </Route>
+            <Route path="/onboarding/detalles-del-prestamo">
+              <VerifyStep step={STEPS.STEP_13_PRESTAMO_EXITOSO}>
+                <PrestamoExitoso />
+              </VerifyStep>
+            </Route>
+            <Route path="//onboarding/pdf-solicitud-prestamo">
+              <VerifyStep step={STEPS.STEP_13_PRESTAMO_EXITOSO}>
+                <PrestamoExitoso />
+              </VerifyStep>
+            </Route>
             <Route path="/onboarding/logo-cofa">
                 <LogoCofa />
             </Route>
