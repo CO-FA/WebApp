@@ -31,9 +31,9 @@ export function RegistroDni() {
           clienteSituacionLaboral: situacionLaboral,
           clienteGenero: genero,
         }}
-        onSubmit={(values, { setSubmitting }) =>
-          submitForm(values, setSubmitting)
-        }
+        onSubmit={async (values, { setSubmitting }) => {
+          await submitForm(values, setSubmitting);
+        }}
         validate={(values) => validateForm(values)}
       >
         {({ values, handleSubmit }) => (
@@ -84,3 +84,4 @@ export function RegistroDni() {
     </>
   );
 }
+
