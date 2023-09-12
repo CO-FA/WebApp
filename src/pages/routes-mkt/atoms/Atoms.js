@@ -102,3 +102,9 @@ export const useDetallesAtom = () => {
   const [detallesPrestamo, setDetallesPrestamo] = useAtom(detallesAtom);
   return { detallesPrestamo, setDetallesPrestamo };
 };
+
+const solicitudAtom = atomWithStorage("solicitudAtom");
+export const useSolicitudAtom = () => {
+  const [pdfSolicitud, setPdfSolicitud] = useAtom(solicitudAtom);
+  return { pdfSolicitud, setPdfSolicitud };
+};

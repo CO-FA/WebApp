@@ -14,10 +14,7 @@ export const useInfoPreNosis = () => {
     const { identidad } = useIdentidadAtom();
     const { lead } = useLeadAtom();
 
-    const submitForm = async () => {
-        if (errors) {
-          return;  
-        }
+    const submitForm = async (values, setSubmitting) => {
         if (!errors) {
           setShowLoader(true);
           try {
@@ -33,9 +30,9 @@ export const useInfoPreNosis = () => {
           } catch (error) {
             history.push("/onboarding/error");
             setCurrentStep(STEPS.STEP_99_ERROR);
-            console.error(error);
+          } finally {
+            setShowLoader(false);
           }
-          setShowLoader(false);
         }
     };
 
