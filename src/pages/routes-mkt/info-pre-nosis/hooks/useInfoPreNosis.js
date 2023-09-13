@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export const useInfoPreNosis = () => {
-  //TO DO: muestra error en nuestra app al ir a nosis
     let { setShowLoader } = React.useContext(LoaderContext);
     const [errors] = useState(false);
     const history = useHistory();

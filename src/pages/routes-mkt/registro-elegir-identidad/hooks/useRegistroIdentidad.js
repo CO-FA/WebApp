@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export const useRegistroIdentidad = () => {
+  //TO DO: mostrar loader
     const history = useHistory();
     const [candidatos, setCandidatos] = useState();
     const { documento, setIdentidad } = useIdentidadAtom();
@@ -13,11 +14,12 @@ export const useRegistroIdentidad = () => {
     const { setShowLoader } = useLoaderContext();
     
     const submitForm = (values, setSubmitting) => {
+        setShowLoader(true);
         const identidad = (candidatos || []).find(
           (c) => "" + values.clienteNombres === c.dni + ""
         );
         setIdentidad(identidad);
-    
+        setShowLoader(false);
         history.push("/onboarding/celular");
         setCurrentStep(STEPS.STEP_3_CELULAR);
        

@@ -2,7 +2,7 @@ import React from "react";
 import Encabezado from "components/commons/Encabezado";
 import Input from "components/commons/Input";
 import Footer from "components/commons/Footer";
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import Button from "components/commons/Button";
@@ -26,7 +26,7 @@ export function RegistroCelular() {
           handleSubmit,
         }) => (
           <>
-            <form>
+            <Form>
               <section>
                 <h3>Vamos a validar el celular</h3>
                 <div className="row">
@@ -85,7 +85,7 @@ export function RegistroCelular() {
                   </Button>
                 </div>
               </Footer>
-            </form>
+            </Form>
           </>
         )}
       </Formik>

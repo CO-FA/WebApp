@@ -15,20 +15,12 @@ export function InfoPostNosis() {
   const { submitForm } = useInfoPostNosis();
   const { diaVencimiento } = useDiaVencimientoAtom();
 
-  const handleSubmit = async () => {
-    try {
-      await submitForm();
-    } catch (error) {
-      console.log(error)
-    }
-  };
-
   return (
     <>
       <Encabezado />
       <Formik
         initialValues={{}} 
-        onSubmit={handleSubmit}
+        onSubmit={submitForm}
       >
         {() => (
           <Form>

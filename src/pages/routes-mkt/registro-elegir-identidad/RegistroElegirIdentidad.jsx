@@ -11,21 +11,18 @@ import { useRegistroIdentidad } from "./hooks/useRegistroIdentidad";
 
 export default function RegistroElegirIdentidad() {
   const { identidad } = useIdentidadAtom();
-  const { submitForm, candidatos } = useRegistroIdentidad()
-  
+  const { submitForm, candidatos } = useRegistroIdentidad();
+
   return (
     <>
       <Header title={<RegistroSetps current={STEPS.STEP_1_DNI} />} />
       <Formik
         initialValues={{ clienteNombres: identidad?.dni }}
         onSubmit={(values, { setSubmitting }) =>
-          submitForm(values, setSubmitting)
+           submitForm(values, setSubmitting)
         }
       >
-        {({
-          values,
-          handleSubmit,
-        }) => (
+        {({ values, handleSubmit }) => (
           <>
             <form className="pt-3">
               <section>
@@ -42,7 +39,7 @@ export default function RegistroElegirIdentidad() {
                         label={c.nombreCompleto}
                         key={ix}
                         className={
-                          "" + values.clienteNombres === c.dni + "" && "active"
+                          values.clienteNombres === c.dni && "active"
                         }
                       />
                     );

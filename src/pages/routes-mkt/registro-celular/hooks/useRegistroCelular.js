@@ -2,7 +2,7 @@ import { enviarSMSValidacion } from "api/PhoneValidation";
 import { useLoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useCelularAtom, useIdentidadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { formErrors } from "utils/constantsErrors";
 

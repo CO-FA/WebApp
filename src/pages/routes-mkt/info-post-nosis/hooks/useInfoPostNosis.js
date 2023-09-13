@@ -21,7 +21,9 @@ export const useInfoPostNosis = () => {
         nroDocumento: identidad.dni,
       });
 
-      console.log("resp validate loan", respValidateLoan); //"Pendiente de firma"
+      console.log("resp validate loan", respValidateLoan); 
+      //deberia ser "Pendiente de firma"
+      //resp 'No es posible conectar con el servidor remoto'
 
       history.push("/onboarding/firma-electronica");
       setCurrentStep(STEPS.STEP_12_FIRMA_ELECTRONICA);
