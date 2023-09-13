@@ -1,7 +1,7 @@
-import { createClient } from "@supabase/supabase-js";
 import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
+import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
@@ -11,7 +11,7 @@ const updateCbu = async (CBU, nroDocumento) => {
   .from('leads')
   .update({ cbu: CBU })
   .eq('cuit', nroDocumento)
-  console.log("guardado")
+  .select()
 }; 
 
 export const validandoCBU = async ({nroDocumento, idPreaprobado, CBU, guardarCBU,}) => {
@@ -28,7 +28,7 @@ export const validandoCBU = async ({nroDocumento, idPreaprobado, CBU, guardarCBU
       CBU: CBU,
       guardarCBU: guardarCBU,
     };
-    console.log("datos validateCbu")
+    console.log("datos validateCbu", body)
 
     const requestOptions = {
       method: "POST",
@@ -39,7 +39,7 @@ export const validandoCBU = async ({nroDocumento, idPreaprobado, CBU, guardarCBU
 
     const resp = await fetch(URL + "/API/v1/lending/validateCBU", requestOptions);
     const data = await resp.json();
-    
+
     await updateCbu(CBU, nroDocumento)
 
     return data

@@ -16,7 +16,7 @@ export const useRegistroCbu = () => {
     const { setElement } = useModal();
     const { setCurrentStep } = useStepAtom();
     const [cbu, setCbu] = useState();
-    const { setClienteCbu} = useCbuAtom();
+    const { clienteCbu, setClienteCbu} = useCbuAtom();
     const { identidad } = useIdentidadAtom();
     const { setSubscriptionURL } = useSubscriptionURLAtom();
     const { lead } = useLeadAtom();
@@ -61,7 +61,7 @@ export const useRegistroCbu = () => {
         const validacionCBU = await validarCBU({
           nroDocumento: identidad.cuit,
           idPreaprobado: lead.id_preaprobado,
-          CBU: cbu,
+          CBU: clienteCbu,
           guardarCBU: true,
         });
         if (validacionCBU.status === 'OK') {
@@ -70,6 +70,7 @@ export const useRegistroCbu = () => {
           setIsContinuarButtonEnabled(false);
         }
         setCbu(values.nroCbu);
+
     };
 
     return {submitForm, validateForm, validateCBU, cbu, isContinuarButtonEnabled}
