@@ -10,7 +10,7 @@ function PinEmailScreen() {
       setShowMessage(false);
 
       history.push("/onboarding/validar-pin-email");
-    }, 10000);
+    }, 7000);
 
     return () => {
       clearTimeout(timer);

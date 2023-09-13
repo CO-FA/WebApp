@@ -10,7 +10,7 @@ function PinCelularScreen() {
       setShowMessage(false);
 
       history.push("/onboarding/validar-pin");
-    }, 10000);
+    }, 7000);
 
     return () => {
       clearTimeout(timer);
