@@ -55,6 +55,7 @@ export function InfoPostNosis() {
                     términos y condiciones
                   </b>
                 </p>
+                <p style={{color: "red"}}>*al presionar 'Continuar' se enviará un email al correo con el que te registraste*</p>
               </div>
             </Footer>
           </Form>
