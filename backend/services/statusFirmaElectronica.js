@@ -9,15 +9,6 @@ import { updateStatusFirma } from "./validateLoan";
 //va a SB a chequear si el status de la firma cambio cada 5 min '*/5 * * * *'
 const cron = require('node-cron');
 
-cron.schedule('* * * * *', async () => {
-  try {
-    await statusFirmaElectronica();
-  } catch (error) {
-    console.error("Error al ejecutar la tarea cron:", error);
-  }
-});
-
-
 export const statusFirmaElectronica = async ({ lead }) => {
   const { sb_id_prestamo, sb_id_cliente, monto, cuotas, importeCuota } = lead;
 
@@ -45,44 +36,51 @@ export const statusFirmaElectronica = async ({ lead }) => {
 
   console.log("estado firma SB", dataStatusFirmaSB); //esto devuelve el estado de la firma segun SB
 
-  /* si el estado de la firma cambio a FIRMA.... recien ahi voy a ejecutar el alta del prestamo con estado 0 que liquida */
+  if (dataStatusFirmaSB.estadoFirma === "Firmado") {
+    const statusFirma = "Firmado";
+    await updateStatusFirma(statusFirma, lead);
 
-    if (dataStatusFirmaSB.estadoFirma === "Firmado") {
-      const statusFirma = "Firmado";
-      await updateStatusFirma(statusFirma, lead);
+    const body1 = {
+      idCliente: sb_id_cliente,
+      fechaAlta: new Date(),
+      comercializadora_Sucursal: 1,
+      monto: monto,
+      cuotas: cuotas,
+      lineaCredito: 1,
+      destinoFondos: 1,
+      importeCuota: importeCuota,
+      primerVto: null,
+      formaPago: 2,
+      estado: 0,
+      referencia: "Préstamo de prueba"
+    };
 
-      const body1 = {
-        idCliente: sb_id_cliente,
-        fechaAlta: new Date(),
-        comercializadora_Sucursal: 1,
-        monto: monto,
-        cuotas: cuotas,
-        lineaCredito: 1,
-        destinoFondos: 1,
-        importeCuota: importeCuota,
-        primerVto: null,
-        formaPago: 2,
-        estado: 0,
-        referencia: "Préstamo de prueba"
-      };
+    const requestOptions1 = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(body1),
+      redirect: "follow",
+    };
 
-      const requestOptions1 = {
-        method: "POST",
-        headers: myHeaders,
-        body: JSON.stringify(body1),
-        redirect: "follow",
-      };
+    const resp1 = await fetch(URL + "/API/v1/loans/new", requestOptions1);
+    const dataAltaPrestamo = await resp1.json();
 
-      const resp1 = await fetch(URL + "/API/v1/loans/new", requestOptions1);
-      const dataAltaPrestamo = await resp1.json();
-
-      console.log("altaPrestamo", dataAltaPrestamo);
-      console.log("¡Prestamo enviado! :)");
-    } else {
-      console.error("No se pudo enviar el prestamo.");
-    }
+    console.log("altaPrestamo", dataAltaPrestamo);
+    console.log("¡Prestamo enviado! :)");
+  } else {
+    console.error("No se pudo enviar el prestamo.");
+  }
   } catch (error) {
     console.error("Error en statusFirmaElectronica:", error);
     throw error;
   }
 };
+
+cron.schedule('*/1 * * * *', async ({lead}) => {
+  console.log(lead)
+  try {
+    await statusFirmaElectronica({lead});
+  } catch (error) {
+    console.error("Error al ejecutar la tarea cron:", error);
+  }
+});
