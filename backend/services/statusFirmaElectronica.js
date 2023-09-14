@@ -1,66 +1,56 @@
-import { createClient } from "@supabase/supabase-js";
 import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
 import { updateStatusFirma } from "./validateLoan";
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
 
-const chequearStatusFirma = async (cuit) => {
+//TO DO: revisar con Lean
+
+//va a SB a chequear si el status de la firma cambio cada 5 min '*/5 * * * *'
+const cron = require('node-cron');
+
+cron.schedule('* * * * *', async () => {
   try {
-    // Corregir la condición y agregar await
-    let { data: leadRecuperado, error } = await supabase
-      .from('leads')
-      .select('status_firma_electronica') 
-      //.where('status_firma_electronica' == "Pendiente de firma") ??
-      .eq("cuit", cuit)
-      .single(); 
-
-    console.log("lead", leadRecuperado);
-    return leadRecuperado;
+    await statusFirmaElectronica();
   } catch (error) {
-    console.error("Error al recuperar el lead:", error);
-    throw error; 
+    console.error("Error al ejecutar la tarea cron:", error);
   }
-};
+});
+
 
 export const statusFirmaElectronica = async ({ lead }) => {
-  const { cuit, sb_id_prestamo, sb_id_cliente, monto, cuotas, importeCuota } = lead;
-
-  var cron = require('node-cron');
-  cron.schedule('*/5 * * * *', async () => { 
-    try {
-      await chequearStatusFirma(cuit);
-    } catch (error) {
-      console.error("Error al verificar el estado de firma:", error);
-    }
-  });
+  const { sb_id_prestamo, sb_id_cliente, monto, cuotas, importeCuota } = lead;
 
   try {
-    const token = await getToken();
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token?.token);
-    myHeaders.append("Content-type", "application/json");
+  const token = await getToken();
+  const myHeaders = new Headers();
 
-    const body = {
-      idPrestamo: sb_id_prestamo,
-      accion: 0
-    };
+  myHeaders.append("Authorization", "Bearer " + token?.token);
+  myHeaders.append("Content-type", "application/json");
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: JSON.stringify(body),
-      redirect: "follow",
-    };
+  const body = {
+    idPrestamo: sb_id_prestamo,
+    accion: 0
+  };
 
-    const resp = await fetch(URL + "/API/v1/loans/firmaElectronica", requestOptions);
-    const dataStatusFirmaSB = await resp.json();
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify(body),
+    redirect: "follow",
+  };
 
-    console.log("estado firma SB", dataStatusFirmaSB);
+  const resp = await fetch(URL + "/API/v1/loans/firmaElectronica", requestOptions);
+  const dataStatusFirmaSB = await resp.json();
+
+  console.log("estado firma SB", dataStatusFirmaSB); //esto devuelve el estado de la firma segun SB
+
+  /* si el estado de la firma cambio a FIRMA.... recien ahi voy a ejecutar el alta del prestamo con estado 0 que liquida */
 
     if (dataStatusFirmaSB.estadoFirma === "Firmado") {
+      const statusFirma = "Firmado";
+      await updateStatusFirma(statusFirma, lead);
+
       const body1 = {
         idCliente: sb_id_cliente,
         fechaAlta: new Date(),
@@ -87,16 +77,12 @@ export const statusFirmaElectronica = async ({ lead }) => {
       const dataAltaPrestamo = await resp1.json();
 
       console.log("altaPrestamo", dataAltaPrestamo);
-
-      const statusFirma = "Firmado";
-      await updateStatusFirma(statusFirma, lead);
+      console.log("¡Prestamo enviado! :)");
+    } else {
+      console.error("No se pudo enviar el prestamo.");
     }
-
-    console.log("¡Prestamo enviado! :)");
-
   } catch (error) {
-    console.error("Error general:", error);
+    console.error("Error en statusFirmaElectronica:", error);
     throw error;
   }
-  return Promise.resolve(null);
 };
