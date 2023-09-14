@@ -40,15 +40,15 @@ export const validateLoan = async ({IP, nroDocumento}) => {
 
     const getcliente = await getIdCliente({leadRecuperado})
     const numIdCliente = getcliente[0].idCliente
-    await updateIdCliente({numIdCliente, nroDocumento})
+    await updateIdCliente(numIdCliente, nroDocumento)
 
     const dataAltaPrestamo = await altaPrestamo({numIdCliente, leadRecuperado})
     const numIdPrestamo = dataAltaPrestamo.idPrestamo
-    await updateIdPrestamo({numIdPrestamo, nroDocumento})
+    await updateIdPrestamo(numIdPrestamo, nroDocumento)
     
     await firmaElectronica({numIdPrestamo})
-    const statusFirma = "Pendiente de firma"
-    await updateStatusFirma({statusFirma, nroDocumento})
+    const statusFirma = "Pendiente de firma" //enviado - pendiente de firma
+    await updateStatusFirma(statusFirma, nroDocumento)
 
     return statusFirma
     

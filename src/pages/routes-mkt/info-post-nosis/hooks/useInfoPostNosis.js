@@ -16,15 +16,12 @@ export const useInfoPostNosis = () => {
     setShowLoader(true);
     try {
       const ipCliente = await getIpAddress();
-      const respValidateLoan = await validateLoan({
+      await validateLoan({
         IP: ipCliente,
         nroDocumento: identidad.dni,
       });
-
-      console.log("resp validate loan", respValidateLoan); 
-      //deberia ser "Pendiente de firma"
-      //resp 'No es posible conectar con el servidor remoto'
-
+      
+      //'Enviado' - SUPA --> "Pendiente de firma"
       history.push("/onboarding/firma-electronica");
       setCurrentStep(STEPS.STEP_12_FIRMA_ELECTRONICA);
     } catch (error) {

@@ -28,7 +28,6 @@ export const validandoCBU = async ({nroDocumento, idPreaprobado, CBU, guardarCBU
       CBU: CBU,
       guardarCBU: guardarCBU,
     };
-    console.log("datos validateCbu", body)
 
     const requestOptions = {
       method: "POST",

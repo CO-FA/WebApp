@@ -6,9 +6,7 @@ import { URL } from "./url.mjs";
 export const infoDetalles = async ({nroDocumento}) => {
 
   const leadRecuperado = await recuperarLead(nroDocumento);
-
-
-  //const {sb_id_prestamo} = leadRecuperado
+  const {sb_id_prestamo} = leadRecuperado
 
   try {
     const token = await getToken();
@@ -18,7 +16,7 @@ export const infoDetalles = async ({nroDocumento}) => {
     myHeaders.append("Content-type", "application/json");
 
     const body = {
-      idPrestamo: "8247" ,//TO DO: pasar el idPrestamo que viene de supa
+      idPrestamo: sb_id_prestamo ,
     };
 
     const requestOptions = {

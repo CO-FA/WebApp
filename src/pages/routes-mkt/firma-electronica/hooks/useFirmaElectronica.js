@@ -1,6 +1,6 @@
 import { STEPS } from "components/registro/STEPS-MKT";
 import {  useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { statusFirmaSupabase } from "api/StatusFirmaElectronica";
 import { useLoaderContext } from "components/loader/LoaderContext";
