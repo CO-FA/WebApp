@@ -56,7 +56,6 @@ export const useRegistroValidarEmail = () => {
         "email": email,
         "enviarCodigo":true,
       })
-      console.log("reenviar", pin.codigo)
     };
 
     return{submitForm,validateForm, reenviarPinEmail}

@@ -85,7 +85,6 @@ export const useRegistroValidarCel = () => {
         codArea + "" + numCelular,
         identidad.cuit
       );
-      console.log("reenviar", pin.codigo)
     };
 
     return{submitForm,validateForm, errors, reenviarPinSms}

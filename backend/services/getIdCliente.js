@@ -6,7 +6,6 @@ export const getIdCliente = async ({leadRecuperado}) => {
 
     if (leadRecuperado.cuit.length > 0) {
         const clienteExistente = await buscarCliente({cuit})
-        console.log("El cliente ya existe")
         return clienteExistente
     } else {
         // TO DO: chequear variables
