@@ -6,33 +6,35 @@ export const getIdCliente = async ({leadRecuperado}) => {
 
     if (leadRecuperado.cuit.length > 0) {
         const clienteExistente = await buscarCliente({cuit})
+        console.log("El cliente ya existe")
         return clienteExistente
     } else {
         // TO DO: chequear variables
-       /*  const nuevoCliente = await altaCliente
+       const nuevoCliente = await altaCliente
         (
+            //`${}`
             {
             "password": password,
-            "tipoDocumento" : 11, //variables_buro.datos.identidad.tipo_documento
+            "tipoDocumento" : `${variables_buro.datos.identidad.tipo_documento}`, //11
             "nroDocumento" : cuit,
             "sexo" : genero,
-            "fecNacimiento" : "",//variables_buro.datos.identidad.fecha_nacimiento,
-            "tipoPersona" : "",// variables_buro.datos.identidad.tipo_entidad,
+            "fecNacimiento" : `${variables_buro.datos.identidad.fecha_nacimiento}`,
+            "tipoPersona" : `${variables_buro.datos.identidad.tipo_entidad}`,
             "apellido" : nombre,
             "nombre" : nombre,
-            "calle" : "",// variables_buro.datos.domicilios['1'].calle, //1 es el domicilio fiscal
+            "calle" : `${variables_buro.datos.domicilios['1'].calle}`, //1 es el domicilio fiscal
             "entreCalles" : "",
-            "numero" : "",// variables_buro.datos.domicilios['1'].altura,
+            "numero" : `${variables_buro.datos.domicilios['1'].altura}`,
             "piso" : "",
             "depto" : "",
-            "localidad" :  "",//variables_buro.datos.domicilios['1'].localidad,
-            "CP" :  "",//variables_buro.datos.domicilios['1'].cp,
-            "provincia" : 1, //variables_buro.datos.domicilios.1.provincia
+            "localidad" :  `${variables_buro.datos.domicilios['1'].localidad}`,
+            "CP" :  `${variables_buro.datos.domicilios['1'].cp}`,
+            "provincia" : 1, //variables_buro.datos.domicilios.1.provincia --- 1 debe ser buenos aires
             "telefono" : telefono,
             "Email" : email,
             "limite" : 99999999, //limite segun interes?
             "CBU" : cbu,
-            "codActividad" : "",// variables_buro.datos.identidad.codigo_actividad,
+            "codActividad" : `${variables_buro.datos.identidad.codigo_actividad}`,
             "gruCobro" : 1,
             "situacionBCRA" : 1,
             "formaPagoPreferida" : 2,
@@ -41,17 +43,17 @@ export const getIdCliente = async ({leadRecuperado}) => {
             "vtoTarjeta" : "",
             "cvvTarjeta" : "",
             "celular" : telefono,
-            "empleador" : "", // variables_buro.datos.empleador.razon_social,
+            "empleador" : `${variables_buro.datos.empleador.razon_social}`,
             "puesto" : "",
             "antiguedadLaboral" : "", //chequear
-            "telLaboral" : "", //variables_buro.datos.empleador.telefono['0'].telefono,
-            "contacto" : "", // variables_buro.datos.personasRelacionadas['0'].nombre_completo,
+            "telLaboral" : `${variables_buro.datos.empleador.telefono['0'].telefono}`,
+            "contacto" : `${variables_buro.datos.personasRelacionadas['0'].nombre_completo}`,
             "telContacto" : "", 
             "relacionContacto" : "Hermano", // no esta
-            "contacto2" : "" , //variables_buro.datos.personasRelacionadas['1'].nombre_completo,
+            "contacto2" : `${variables_buro.datos.personasRelacionadas['1'].nombre_completo}`,
             "telContacto2" : "",
             "relacionContacto2" : "",// no esta
-            "contacto3" : "", //variables_buro.datos.personasRelacionadas['2'].nombre_completo,
+            "contacto3" : `${variables_buro.datos.personasRelacionadas['2'].nombre_completo}`,
             "telContacto3" : "",
             "relacionContacto3" : "",// no esta
             "horarioContacto" : "", 
@@ -67,6 +69,6 @@ export const getIdCliente = async ({leadRecuperado}) => {
             "sueldoNeto" : 50000.00
         })
         console.log("Nuevo cliente")
-        return nuevoCliente */
+        return nuevoCliente
     }
 };
