@@ -4,7 +4,7 @@ export const statusFirmaSupabase = async ({ lead }) => {
     const body = {
       lead: lead
     };
-  
+
     const obj = await fetch(url, {
       method: "POST",
       headers: {

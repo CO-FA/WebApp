@@ -15,7 +15,7 @@ export const useFirmaElectronica = () => {
       const fetchData = async () => {
         setShowLoader(true);
         try {
-          await statusFirmaSupabase({ lead });
+          await statusFirmaSupabase({ lead: lead.cuit });
           history.push("/onboarding/prestamo-exitoso");
           setCurrentStep(STEPS.STEP_13_PRESTAMO_EXITOSO);
         } catch (error) {
@@ -26,7 +26,14 @@ export const useFirmaElectronica = () => {
           setShowLoader(false);
         }
       };
-    
-      fetchData();
+      
+      const timer = setInterval(function() 
+      {
+        fetchData();
+      }, 1000*30)
+
+      return function() {
+        clearInterval(timer);
+      };
     }, []);
 };

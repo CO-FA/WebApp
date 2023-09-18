@@ -10,6 +10,7 @@ import update from "./routes/update-nosis-status.mjs"
 import validateLoan from "./routes/generate-loan.mjs"
 import infoDetalles from "./routes/info-detalles.mjs"
 import infoSolicitud from "./routes/info-solicitud.mjs"
+import statusFirmaElectronica from "./routes/status-firma-electronica.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -51,6 +52,7 @@ app.use(update)
 app.use(validateLoan)
 app.use(infoDetalles)
 app.use(infoSolicitud)
+app.use(statusFirmaElectronica)
 
 
 app.post("/find-cbu", async (request, res) => {

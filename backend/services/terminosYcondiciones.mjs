@@ -61,7 +61,6 @@ export const firmaElectronica = async ({numIdPrestamo}) => {
 
     const resp = await fetch(URL + "/API/v1/loans/firmaElectronica", requestOptions);
     const dataFirmaElectronica = await resp.json();
-    console.log("firma electronica", dataFirmaElectronica);
     
     return dataFirmaElectronica
     

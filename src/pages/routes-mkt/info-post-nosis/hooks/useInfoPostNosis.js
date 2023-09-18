@@ -20,7 +20,6 @@ export const useInfoPostNosis = () => {
         IP: ipCliente,
         nroDocumento: identidad.dni,
       });
-      
       //'Enviado' - SUPA --> "Pendiente de firma"
       history.push("/onboarding/firma-electronica");
       setCurrentStep(STEPS.STEP_12_FIRMA_ELECTRONICA);
