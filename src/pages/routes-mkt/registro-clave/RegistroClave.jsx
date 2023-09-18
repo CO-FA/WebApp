@@ -11,7 +11,7 @@ import { useRegistroClave } from "./hooks/useRegistroClave";
 export const RegistroClave = (props) => {
   const [errors] = useState(false);
   const {submitForm,validateForm} = useRegistroClave()
-  
+  //TO DO: no valida errores en la clave
   return (
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_5_CLAVE} />} />
