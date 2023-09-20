@@ -8,9 +8,8 @@ import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useRegistroClave } from "./hooks/useRegistroClave";
 
-export const RegistroClave = (props) => {
-  const [errors] = useState(false);
-  const {submitForm,validateForm} = useRegistroClave()
+export const RegistroClave = () => {
+  const {submitForm,validateForm, errors} = useRegistroClave()
   //TO DO: no valida errores en la clave
   return (
     <>

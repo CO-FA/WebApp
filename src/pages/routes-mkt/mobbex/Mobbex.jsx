@@ -7,7 +7,7 @@ export function Mobbex() {
     
     return(
         <div className="iframe-container">
-            <iframe src={subscriptionURL} title="URL suscripcion Mobbex" allowFullScreen></iframe>
+            <iframe src={subscriptionURL} title="URL suscripcion Mobbex"></iframe>
         </div>
     );
 };

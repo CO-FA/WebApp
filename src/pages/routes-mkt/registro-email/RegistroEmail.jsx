@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Encabezado from "components/commons/Encabezado";
 import { Formik } from "formik";
 import Input from "components/commons/Input";
@@ -10,8 +10,7 @@ import { useRegistroEmail } from "./hooks/useRegistroEmail";
 
 
 export default function RegistroEmail() {
-  const [errors] = useState(false);
-  const {submitForm,validateForm} = useRegistroEmail()
+  const {submitForm,validateForm, errors} = useRegistroEmail()
   
   return (
     <>
@@ -39,19 +38,9 @@ export default function RegistroEmail() {
                       type="email"
                       className="form-control"
                       name="clienteEmail"
-                      errors={[]}
+                      errors={errors}
                       values={values}
                     />
-                  </div>
-                  <div className="form-group col-12">
-                    {errors["clienteEmail"] && (
-                      <span
-                        id="clienteEmail-errorMsg"
-                        className="form-text text-danger small"
-                      >
-                        *{errors["clienteEmail"]}
-                      </span>
-                    )}
                   </div>
                   <div className="col-12">
                     <p className="mt-5 text-center">

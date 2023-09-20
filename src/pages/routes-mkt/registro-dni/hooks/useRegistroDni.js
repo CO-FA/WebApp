@@ -59,7 +59,6 @@ export const useRegistroDni = () => {
     };
 
     setErrors(errorValidate);
-
     return errorValidate;
   };
 

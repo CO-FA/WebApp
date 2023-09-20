@@ -26,10 +26,10 @@ export function RegistroDni() {
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_1_DNI} />} />
       <Formik
-        initialValues={{
+        initialValues={{/* 
           clienteDocNumero: documento,
           clienteSituacionLaboral: situacionLaboral,
-          clienteGenero: genero,
+          clienteGenero: genero, */
         }}
         onSubmit={async (values, { setSubmitting }) => {
           await submitForm(values, setSubmitting);

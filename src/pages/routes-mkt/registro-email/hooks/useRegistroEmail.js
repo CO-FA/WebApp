@@ -44,22 +44,23 @@ export const useRegistroEmail = () => {
     
     
     const validateForm = (values) => {
-        const pattern =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        const regex = new RegExp(pattern);
+      const pattern =
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const regex = new RegExp(pattern);
 
-        if (!values.clienteEmail) {
-            setErrors({
-                clienteEmail: formErrors.EMAIL_EMPTY,
-            });
-        } else if (!regex.test(values.clienteEmail)) {
-            setErrors({
-                clienteEmail: formErrors.PATTERN_EMAIL_ERROR,
-            });
-        } else {
-            setErrors(false);
-        }
+      if (!values.clienteEmail) {
+          setErrors({
+              clienteEmail: formErrors.EMAIL_EMPTY,
+          });
+      } else if (!regex.test(values.clienteEmail)) {
+          setErrors({
+              clienteEmail: formErrors.PATTERN_EMAIL_ERROR,
+          });
+      } else {
+          setErrors(false);
+      }
+      return errors
     }
 
-    return {submitForm,validateForm}
+    return {submitForm,validateForm, errors}
 };

@@ -19,7 +19,7 @@ export const useRegistroValidarCel = () => {
     const { genero } = useGeneroAtom();
     const { setClientePin } = useCodigoAtom()
 
-    const submitForm = async (values, setSubmitting) => {
+    const submitForm = async (values) => {
         if (errors) {
           return;
         }
@@ -77,7 +77,22 @@ export const useRegistroValidarCel = () => {
         } else {
           errorsAUx = errorsAUx || false;
         }
+
+        if (!values.clientePin) {
+          errorsAUx = {
+            ...errorsAUx,
+            clientePin: formErrors.PIN_EMPTY,
+          };
+        } else if (String(values.clientePin).length < 4) {
+          errorsAUx = {
+            ...errorsAUx,
+            clientePin: formErrors.PIN_ERROR,
+          };
+        } else {
+          errorsAUx = errorsAUx || false;
+        }
         setErrors(errorsAUx);
+        return errorsAUx;
     };
 
     const reenviarPinSms = async (values) => {
@@ -85,6 +100,7 @@ export const useRegistroValidarCel = () => {
         codArea + "" + numCelular,
         identidad.cuit
       );
+      console.log("reenviar", pin);
     };
 
     return{submitForm,validateForm, errors, reenviarPinSms}

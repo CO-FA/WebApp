@@ -40,7 +40,7 @@ export function RegistroValidacionCelular() {
                       placeholder="000"
                       className="form-control"
                       name="clienteCelCodigo"
-                      errors={[]}
+                      errors={errors}
                       values={values}
                     />
                   </div>
@@ -51,27 +51,9 @@ export function RegistroValidacionCelular() {
                       type="number"
                       className="form-control"
                       name="clienteCelNumero"
-                      errors={[]}
+                      errors={errors}
                       values={values}
                     />
-                  </div>
-                  <div className="col-12">
-                    {errors["clienteCelCodigo"] && (
-                      <span
-                        id="clienteCelCodigo-errorMsg"
-                        className="form-text text-danger small"
-                      >
-                        *{errors["clienteCelCodigo"]}
-                      </span>
-                    )}
-                    {errors["clienteCelNumero"] && (
-                      <span
-                        id="clienteCelCodigo-errorMsg"
-                        className="form-text text-danger small"
-                      >
-                        *{errors["clienteCelNumero"]}
-                      </span>
-                    )}
                   </div>
                   <div className="col-12 mt-3">
                     <h3>Ingresá el PIN SMS</h3>

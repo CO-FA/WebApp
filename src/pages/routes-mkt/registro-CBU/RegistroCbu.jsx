@@ -13,7 +13,7 @@ import "../../../assets/css/main.css"
 export default function RegistroCbu() {
   const { showModal } = useModal();
   const {clienteCbu} = useCbuAtom();
-  const {submitForm, validateForm, validateCBU, cbu, isContinuarButtonEnabled} = useRegistroCbu()
+  const {submitForm, validateForm, validateCBU, cbu, isContinuarButtonEnabled, errors} = useRegistroCbu()
   const { banco } = useFindBanco({ cbu });
 
   return (
@@ -59,14 +59,15 @@ export default function RegistroCbu() {
 
                 <div className="row profile-container">
                   <div className="form-group col-12">
-                    <label htmlFor="nroCbu">CBU (22 números)</label>
+                    <label htmlFor="nroCbu">CBU</label>
                     <div className="input-with-icon">
+                      {/* TO DO: mensaje de error abajo el input */}
                       <Input
                         type="text"
                         placeholder="007XXXXXXXXXXXXXXXXXXX"
                         className="form-control"
                         name="nroCbu"
-                        errors={[]}
+                        errors={errors}
                         values={values}
                       />
                       <svg 

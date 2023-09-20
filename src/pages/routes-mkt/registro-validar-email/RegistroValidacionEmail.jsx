@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "../../../components/commons/Input";
 import Button from "../../../components/commons/Button";
 import Encabezado from "../../../components/commons/Encabezado";
@@ -9,8 +9,7 @@ import { STEPS } from "../../../components/registro/STEPS-MKT";
 import { useRegistroValidarEmail } from "./hooks/useRegistroValidarEmail";
 
 export default function RegistroValidacionEmail() {
-	const [errors] = useState(false);
-  const {submitForm,validateForm, reenviarPinEmail} = useRegistroValidarEmail()
+  const {submitForm,validateForm, reenviarPinEmail, errors} = useRegistroValidarEmail()
 
 	return (
     <>

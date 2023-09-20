@@ -14,30 +14,38 @@ export default function FirmaElectronica() {
     const { lead } = useLeadAtom();
 
     useEffect(() => {
-      const fetchData = async () => {
-        setShowLoader(true);
-        try {
-          await statusFirmaSupabase({ lead: lead.cuit });
-          history.push("/onboarding/prestamo-exitoso");
-          setCurrentStep(STEPS.STEP_13_PRESTAMO_EXITOSO);
-        } catch (error) {
-          history.push("/onboarding/error");
-          setCurrentStep(STEPS.STEP_99_ERROR);
-          console.error(error);
-        } finally {
-          setShowLoader(false);
-        }
-      };
+        let isMounted = true; 
       
-      const timer = setInterval(function() 
-      {
-        fetchData();
-      }, 1000*30)
-
-      return function() {
-        clearInterval(timer);
-      };
-    }, []);
+        const fetchData = async () => {
+          setShowLoader(true);
+          try {
+            const respStatusFirma = await statusFirmaSupabase({ lead: lead.cuit });
+            if (respStatusFirma.response === "SUCCESS") { 
+              history.push("/onboarding/prestamo-exitoso");
+              setCurrentStep(STEPS.STEP_13_PRESTAMO_EXITOSO);
+            } else {
+              history.push("/onboarding/error");
+              setCurrentStep(STEPS.STEP_99_ERROR);
+            }
+          } catch (error) {
+            console.error(error);
+          } finally {
+            setShowLoader(false);
+          }
+        };
+      
+        const timer = setInterval(() => {
+          if (isMounted) {
+            fetchData();
+          }
+        }, 1000 * 30);
+      
+        return () => {
+          isMounted = false; 
+          clearInterval(timer); 
+        };
+      }, []);
+      
 
     return(
         <div className="bg-gradient d-flex justify-content-center align-items-center" 

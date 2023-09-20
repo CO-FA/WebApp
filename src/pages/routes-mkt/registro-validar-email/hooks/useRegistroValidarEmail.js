@@ -47,6 +47,7 @@ export const useRegistroValidarEmail = () => {
         } else {
             setErrors(false);
         }
+      return errors
     };
 
     const reenviarPinEmail = async (values) => {
@@ -56,7 +57,8 @@ export const useRegistroValidarEmail = () => {
         "email": email,
         "enviarCodigo":true,
       })
+      console.log("reenviar email", pin)
     };
 
-    return{submitForm,validateForm, reenviarPinEmail}
+    return{submitForm,validateForm, reenviarPinEmail, errors}
 };

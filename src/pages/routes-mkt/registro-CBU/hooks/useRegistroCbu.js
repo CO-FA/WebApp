@@ -7,11 +7,11 @@ import Cbu from "pages/estadofinanciero/Cbu";
 import { useCbuAtom, useIdentidadAtom, useLeadAtom, useStepAtom, useSubscriptionURLAtom } from "pages/routes-mkt/atoms/Atoms";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { formErrors } from "utils/constantsErrors";
 
 export const useRegistroCbu = () => {
     const [isContinuarButtonEnabled, setIsContinuarButtonEnabled] = useState(false);
     let { setShowLoader } = React.useContext(LoaderContext);
-    const [errors] = useState(false);
     const history = useHistory();
     const { setElement } = useModal();
     const { setCurrentStep } = useStepAtom();
@@ -20,6 +20,7 @@ export const useRegistroCbu = () => {
     const { identidad } = useIdentidadAtom();
     const { setSubscriptionURL } = useSubscriptionURLAtom();
     const { lead } = useLeadAtom();
+    const [errors, setErrors] = useState(false);
 
 
     useEffect(() => {
@@ -55,6 +56,23 @@ export const useRegistroCbu = () => {
 
     const validateForm = (values) => {
         setCbu(values.nroCbu);
+        var errorsAUx = {};
+        if (!values.nroCbu) {
+          errorsAUx = {
+            ...errorsAUx,
+            nroCbu: formErrors.CBU_EMPTY,
+          };
+        } else if (String(values.nroCbu).length < 22) {
+          errorsAUx = {
+            ...errorsAUx,
+            nroCbu: formErrors.CBU_ERROR,
+          };
+        } else {
+          errorsAUx = false;
+        }
+        setErrors(errorsAUx);
+        return errorsAUx;
+        
     };
 
     const validateCBU = async (values) => {
@@ -73,5 +91,5 @@ export const useRegistroCbu = () => {
 
     };
 
-    return {submitForm, validateForm, validateCBU, cbu, isContinuarButtonEnabled}
+    return {submitForm, validateForm, validateCBU, cbu, isContinuarButtonEnabled, errors}
 };

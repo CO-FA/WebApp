@@ -1,4 +1,4 @@
-import { STEPS } from "components/registro/STEPS-MKT";
+/* import { STEPS } from "components/registro/STEPS-MKT";
 import {  useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
@@ -36,4 +36,4 @@ export const useFirmaElectronica = () => {
         clearInterval(timer);
       };
     }, []);
-};
+}; */

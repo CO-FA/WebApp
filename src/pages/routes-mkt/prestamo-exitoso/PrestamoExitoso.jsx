@@ -1,6 +1,6 @@
 import React from "react";
 import Encabezado from "components/commons/Encabezado";
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import Footer from "components/commons/Footer";
 import Button from "components/commons/Button";
 import { usePrestamoExitoso } from "./hooks/usePrestamoExitoso";
@@ -21,17 +21,17 @@ export function PrestamoExitoso() {
           handleSubmit,
           }) => (
           <>
-              <form>
+              <Form>
                   <section>
                       <div className="row profile-container" style={{textAlign: "center"}}>
                           
                           <div className="form-group col-12" >
                               <h4>FELICITACIONES</h4>
                               <p>{identidad.nombreCompleto} <br/>Ya tenés el préstamo!!!</p>
-                              <p>En segundos vas a tener depositado el préstamo en tu cuenta.</p>
+                              <p>En segundos vas a tener depositado el dinero en tu cuenta.</p>
                           </div>
                           <div className="col-12" style={{marginTop:"60px"}}>
-                              <h5 >Gracias por confiar en nosotros.</h5>
+                              <h5 >Gracias por confiar en COFA</h5>
                           </div>
                       </div>
                   </section>
@@ -73,7 +73,7 @@ export function PrestamoExitoso() {
                       <hr></hr>
                     </div>
                   </Footer>
-              </form>
+              </Form>
           </>
           )}
       </Formik>

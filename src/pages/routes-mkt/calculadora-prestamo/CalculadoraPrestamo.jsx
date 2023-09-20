@@ -24,7 +24,8 @@ export default function CalculadoraPrestamo() {
     montoCuota,
     submitForm,
     errors,
-    opcionesDias
+    opcionesDias,
+    validateForm
   } = useCalculadoraPrestamo();
 
   return (
@@ -40,6 +41,7 @@ export default function CalculadoraPrestamo() {
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)
         }
+        validate={(values) => validateForm(values)}
       >
          {({ handleSubmit }) => (
           <>

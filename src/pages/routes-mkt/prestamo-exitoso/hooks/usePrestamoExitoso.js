@@ -19,7 +19,6 @@ export const usePrestamoExitoso = () => {
       if (errors) {
         return;
       }
-    
       setShowLoader(true);
       try {
         await history.push("/onboarding/logo-cofa");

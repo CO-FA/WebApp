@@ -7,6 +7,7 @@ import { STEPS } from "components/registro/STEPS-MKT";
 import { datosPrestamo } from "api/Prestamo";
 import React, { useState } from "react";
 import { getDiasVencimiento } from "api/DiasVencimientoCuota";
+import { formErrors } from "utils/constantsErrors";
 
 export const calcularCuota = (capital, interes, plazo) => {
   const interest = (capital * (interes * 0.01)) / plazo;
@@ -31,7 +32,7 @@ export const useCalculadoraPrestamo = () => {
   const [errors, setErrors] = useState(false);
   const history = useHistory();
   const [opcionesDias, setOpcionesDias] = useState();
-  const { diaVencimiento, setDiaVencimiento  } = useDiaVencimientoAtom();
+  const { setDiaVencimiento  } = useDiaVencimientoAtom();
 
   useEffect(() => {
     getDiasVencimiento().then((response) => {
@@ -66,6 +67,20 @@ export const useCalculadoraPrestamo = () => {
       }
       setShowLoader(false);
     }
+  };
+
+  const validateForm = (values) => {
+    var errorsAUx = {};
+      if (!values.clienteDiaVencimiento) {
+        errorsAUx = {
+          ...errorsAUx,
+          clienteDiaVencimiento: formErrors.VENCIMIENTO_CUOTA,
+        };
+      } else {
+        errorsAUx = false;
+      }
+    setErrors(errorsAUx);
+    return errorsAUx;
   };
 
   useEffect(() => {
@@ -121,8 +136,10 @@ export const useCalculadoraPrestamo = () => {
     handleChangeCuota,
     cuota,
     montoCuota,
+    validateForm,
     submitForm, 
     errors,
-    opcionesDias
+    opcionesDias,
+    
   };
 };

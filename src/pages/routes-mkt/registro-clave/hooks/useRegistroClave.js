@@ -53,7 +53,9 @@ export const useRegistroClave = () => {
         } else {
             setErrors(false);
         }
+
+        return errors
     };
     
-    return{submitForm,validateForm}
+    return{submitForm,validateForm, errors}
 };
