@@ -13,10 +13,10 @@ export const statusFirmaElectronica = async ({lead}) => {
   .from('leads')
   .select('cuit , sb_id_prestamo , status_firma_electronica')
   .eq('cuit', lead)
+  return "SUCCESS"
 };
 
-//va a SB a chequear si el status de la firma cambio cada x min '*/5 * * * *'
-cron.schedule('*/2 * * * *', async () => {
+cron.schedule('*/1 * * * *', async () => {
   try {
     const leadsPendienteFirma = await buscarLeadsPendientesDeFirma() 
     for (let index = 0; index < leadsPendienteFirma.length; index++) {
@@ -32,13 +32,12 @@ const buscarLeadsPendientesDeFirma = async () => {
   let { data: leads, error } = await supabase
   .from('leads')
   .select('*')
-  console.log("Leads pendientes de firma: ", leads)
   return leads
 };
 
 
 const consultaSB = async ({ elementLead }) => {
-  const { sb_id_prestamo, sb_id_cliente, monto, cuotas, importeCuota } = elementLead;
+  const { documento, sb_id_prestamo, sb_id_cliente, monto, cuotas, importeCuota } = elementLead;
 
   try {
   const token = await getToken();
@@ -64,11 +63,16 @@ const consultaSB = async ({ elementLead }) => {
 
   console.log("estado firma SB", dataStatusFirmaSB);
 
-  //TO DO: concatenar fecha actual -- 18/09/2023
-  //toLocaleDateString() te entrega 7/2/2021
-  if (dataStatusFirmaSB.estadoFirma === "Completado - Firmado el 18/09/2023") {
+  const fechaActual = new Date();
+  const dia = fechaActual.getDate();
+  const mes = fechaActual.getMonth() + 1; 
+  const año = fechaActual.getFullYear();
+  const fechaFormateada = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${año}`;
+
+  //TO DO: reclamar error fecha en SB
+  if (dataStatusFirmaSB.estadoFirma === "Completado - Firmado el 20/09/2023" /* + fechaFormateada */) {
     const statusFirma = "Firmado";
-    await updateStatusFirma(statusFirma, elementLead);
+    await updateStatusFirma(statusFirma, documento);
 
     const body1 = {
       idCliente: sb_id_cliente,
@@ -96,7 +100,6 @@ const consultaSB = async ({ elementLead }) => {
     await resp1.json();
 
     console.log("¡Prestamo enviado! :)");
-
   } else {
     console.error("No se pudo enviar el prestamo.");
   }
