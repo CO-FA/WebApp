@@ -30,14 +30,15 @@ export function RegistroCelular() {
               <section>
                 <h3>Vamos a validar el celular</h3>
                 <div className="row">
+                  {/* TO DO: mostrar prefijo pais */}
                   <div className="form-group col-3">
                     <Input
-                      label="Cód"
+                      label="Código"
                       type="number"
                       placeholder="011"
                       className="form-control"
                       name="clienteCelCodigo"
-                      errors={[]}
+                      errors={errors}
                       values={values}
                     />
                   </div>
@@ -48,11 +49,12 @@ export function RegistroCelular() {
                       type="number"
                       className="form-control"
                       name="clienteCelNumero"
-                      errors={[]}
+                      errors={errors}
                       values={values}
                     />
                   </div>
-                  <div className="col-12">
+                  <p style={{marginLeft:"20px"}}>**Ingresa tu numero sin 0 y sin 15**</p>
+                  {/* <div className="col-12">
                     {errors["clienteCelCodigo"] && (
                       <span
                         id="clienteCelCodigo-errorMsg"
@@ -69,7 +71,7 @@ export function RegistroCelular() {
                         *{errors["clienteCelNumero"]}
                       </span>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </section>
 

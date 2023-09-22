@@ -59,6 +59,7 @@ export const useRegistroCelular = () => {
             errorsAUx = errorsAUx || false;
         }
         setErrors(errorsAUx);
+        return errorsAUx;
     };
 
     return{submitForm,validateForm, errors}

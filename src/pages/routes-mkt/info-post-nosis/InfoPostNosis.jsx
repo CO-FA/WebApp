@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "components/commons/Button";
 import { Formik, Form } from "formik";
-import { useCbuAtom, useDiaVencimientoAtom, usePrestamoAtom } from "../atoms/Atoms";
+import { useCbuAtom, useDiaVencimientoAtom, useEmailAtom, usePrestamoAtom } from "../atoms/Atoms";
 import { useFindBanco } from "../registro-cbu/hooks/useFindBanco";
 import Encabezado from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
@@ -14,6 +14,7 @@ export function InfoPostNosis() {
   const { banco } = useFindBanco({ cbu: clienteCbu });
   const { submitForm } = useInfoPostNosis();
   const { diaVencimiento } = useDiaVencimientoAtom();
+  const { email } = useEmailAtom();
 
   return (
     <>
@@ -25,6 +26,8 @@ export function InfoPostNosis() {
         {() => (
           <Form>
             <section>
+              <h2>¡Tu prestamo está aprobado!</h2>
+              <br></br>
               <h3>Revisá y confirmá</h3>
               <div className="row profile-container">
                 <div className="form-group col-12">
@@ -55,7 +58,7 @@ export function InfoPostNosis() {
                     términos y condiciones
                   </b>
                 </p>
-                <p style={{color: "red"}}>*al 'Continuar' se enviará un email al correo con el que te registraste para que hagas tu firma electrónica*</p>
+                <p style={{color: "red"}}>*Al continuar se enviará un mail a {email} desde cofa@cofa.com.ar para que revises tu contrato*</p>
               </div>
             </Footer>
           </Form>

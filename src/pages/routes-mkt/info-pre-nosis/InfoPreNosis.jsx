@@ -33,7 +33,7 @@ export function InfoPreNosis() {
                 </div>
                 <div className="form-group col-12">
                   <h4 style={{ fontWeight: "bold" }}>
-                    Vamos a validar tu identidad con Nosis
+                    Vamos a validar tu identidad
                   </h4>
                   <p>
                     Necesitamos:

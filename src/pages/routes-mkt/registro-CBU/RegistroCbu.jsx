@@ -34,7 +34,7 @@ export default function RegistroCbu() {
               </h2>
               <form>
                 <h4>
-                  Ingresá el CBU de tu cuenta
+                  Ingresá el CBU/CVU de tu cuenta
                   <Button
                     onClick={() => {
                       showModal(true);
@@ -59,7 +59,7 @@ export default function RegistroCbu() {
 
                 <div className="row profile-container">
                   <div className="form-group col-12">
-                    <label htmlFor="nroCbu">CBU</label>
+                    <label htmlFor="nroCbu">CBU/CVU</label>
                     <div className="input-with-icon">
                       {/* TO DO: mensaje de error abajo el input */}
                       <Input
@@ -95,7 +95,7 @@ export default function RegistroCbu() {
                   </Button>
 
                   <span className="span-cbu">
-                    Por favor no olvides tener tu cbu actualizado
+                    Por favor no olvides tener tu CBU/CVU actualizado
                   </span>
                 </div>
               </form>
