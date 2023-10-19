@@ -2,7 +2,7 @@ import React from "react";
 import Button from "components/commons/Button";
 import { Formik, Form } from "formik";
 import { useCbuAtom, useDiaVencimientoAtom, useEmailAtom, usePrestamoAtom } from "../atoms/Atoms";
-import { useFindBanco } from "../registro-CBU/hooks/useFindBanco";
+import { useFindBanco } from "../registro-cbu/hooks/useFindBanco";
 import Encabezado from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
 import { useInfoPostNosis } from "./hooks/useInfoPostNosis";
