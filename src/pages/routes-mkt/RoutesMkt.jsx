@@ -8,7 +8,7 @@ import { RegistroDni } from "./registro-dni/RegistroDni";
 import RegistroElegirIdentidad from "./registro-elegir-identidad/RegistroElegirIdentidad";
 import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroValidacionCelular";
 import { RegistroClave } from "./registro-clave/RegistroClave";
-import RegistroCbu from "./registro-cbu/RegistroCbu";
+import RegistroCbu from "./registro-CBU/RegistroCbu";
 import { Mobbex } from "./mobbex/Mobbex";
 import RegistroEmail from "./registro-email/RegistroEmail";
 import RegistroValidacionEmail from "./registro-validar-email/RegistroValidacionEmail";
