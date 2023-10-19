@@ -3,7 +3,6 @@ import { getToken } from "./token";
 export const getAuth = async () => {
   const item = window.sessionStorage.getItem("token");
   const tokenObj = item ? JSON.parse(item) : null;
-  console.log("getAuth token ", tokenObj, tokenObj?.token);
   return tokenObj?.token || "";
 };
 
@@ -16,7 +15,6 @@ const HttpApi = async function (url, request) {
     "Content-Type": "application/json",
   };
 
-  console.log("Request => ", url, request);
   return fetch(url, request);
 };
 
@@ -31,7 +29,6 @@ export const post = async (url, body) => {
       body: JSON.stringify(body),
     });
     if (response.status === 401) {
-      console.log("Se debe revalidar el token");
       await revalidateToken();
       response = await HttpApi(url, {
         method: "POST",
@@ -41,9 +38,7 @@ export const post = async (url, body) => {
         body: JSON.stringify(body),
       });
     }
-    console.log("response", response);
     const res = await response.text();
-    console.log("respText", res);
     return JSON.parse(res);
   } catch (error) {
     console.error(error);

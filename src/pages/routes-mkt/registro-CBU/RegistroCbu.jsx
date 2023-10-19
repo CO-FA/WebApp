@@ -1,87 +1,20 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import Input from "components/commons/Input";
 import Footer from "components/commons/Footer";
 import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
 import Button from "components/commons/Button";
-import { LoaderContext } from "components/loader/LoaderContext";
 import Encabezado from "components/commons/Encabezado";
 import { useModal } from "components/modal/ModalContext";
-import { useEffect } from "react";
-import Cbu from "pages/estadofinanciero/Cbu";
-import { STEPS } from "components/registro/STEPS-MKT";
-import { useCbuAtom, useIdentidadAtom, useLeadAtom, useStepAtom, useSubscriptionURLAtom } from "../atoms/Atoms";
+import { useCbuAtom } from "../atoms/Atoms";
 import { useFindBanco } from "./hooks/useFindBanco";
-import { suscripcionMobbex } from "api/SuscripcionMobbex";
-import { validarCBU } from "api/ValidarCBU";
+import { useRegistroCbu } from "./hooks/useRegistroCbu";
+import "../../../assets/css/main.css"
 
 export default function RegistroCbu() {
-  let { setShowLoader } = React.useContext(LoaderContext);
-  const [errors, setErrors] = useState(false);
-  const history = useHistory();
-  const { showModal, show, setElement } = useModal();
-  const { setCurrentStep } = useStepAtom();
-  const [cbu, setCbu] = useState();
+  const { showModal } = useModal();
+  const {clienteCbu} = useCbuAtom();
+  const {submitForm, validateForm, validateCBU, cbu, isContinuarButtonEnabled, errors} = useRegistroCbu()
   const { banco } = useFindBanco({ cbu });
-  const {clienteCbu, setClienteCbu} = useCbuAtom();
-  const { identidad } = useIdentidadAtom();
-  const { setSubscriptionURL } = useSubscriptionURLAtom();
-  const { lead } = useLeadAtom();
-  const [isContinuarButtonEnabled, setIsContinuarButtonEnabled] = useState(false);
-  
-
-  useEffect(() => {
-    setElement(<Cbu />);
-    return () => setElement(null);
-  }, []);
-
-  const submitForm = async (values) => {
-    if (errors) {
-      return;
-    }
-    if (!errors) {
-      setShowLoader(true);
-      setClienteCbu(values.nroCbu)
-      try {
-        const datosMobbex = await suscripcionMobbex({
-          nroDocumento: identidad.cuit,
-          idPreaprobado: lead.id_preaprobado,
-          returnURL: "http://localhost:8888/#/onboarding/finalizar-suscripcion?nroDocumento=" + identidad.cuit ,
-        })
-        const subscriptionURLmobbex = Object.values(datosMobbex).join('');
-        setSubscriptionURL(subscriptionURLmobbex)
-        history.push("/onboarding/mobbex");
-        setCurrentStep(STEPS.STEP_7_MOBBEX);
-      } catch (error) {
-        history.push("/onboarding/error");
-        setCurrentStep(STEPS.STEP_99_ERROR);
-        console.error(error);
-      }
-      setShowLoader(false);
-    }
-  };
-
-  const validateForm = (values) => {
-    setCbu(values.nroCbu);
-  };
-
-  const validateCBU = async (values) => {
-    const validacionCBU = await validarCBU({
-      nroDocumento: identidad.cuit,
-      idPreaprobado: lead.id_preaprobado,
-      CBU: cbu,
-      guardarCBU: true,
-    });
-    console.log("Resp validacionCBU", validacionCBU)
-    if (validacionCBU.status === 'OK') {
-      //habilitar boton continuar
-      setIsContinuarButtonEnabled(true);
-    }else {
-      console.log("Error CBU", validacionCBU.status);
-      setIsContinuarButtonEnabled(false);
-    }
-    setCbu(values.nroCbu);
-  };
 
   return (
     <>
@@ -101,7 +34,7 @@ export default function RegistroCbu() {
               </h2>
               <form>
                 <h4>
-                  Ingresá el CBU de tu cuenta
+                  Ingresá el CBU/CVU de tu cuenta
                   <Button
                     onClick={() => {
                       showModal(true);
@@ -126,34 +59,34 @@ export default function RegistroCbu() {
 
                 <div className="row profile-container">
                   <div className="form-group col-12">
-                    <Input
-                      label="CBU (22 números)"
-                      type="text"
-                      placeholder="007XXXXXXXXXXXXXXXXXXX"
-                      className="form-control"
-                      name="nroCbu"
-                      errors={[]}
-                      values={values}
-                      /* falta icono editar */
-                    />
-                    {<p>{banco?.ds_banco}</p>}
+                    <label htmlFor="nroCbu">CBU/CVU</label>
+                    <div className="input-with-icon">
+                      {/* TO DO: mensaje de error abajo el input */}
+                      <Input
+                        type="text"
+                        placeholder="007XXXXXXXXXXXXXXXXXXX"
+                        className="form-control"
+                        name="nroCbu"
+                        errors={errors}
+                        values={values}
+                      />
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="19" 
+                        height="18" 
+                        viewBox="0 0 19 18" 
+                        fill="none"
+                      >
+                        <path d="M16.6972 11.2958C16.4483 11.2958 16.2467 11.4975 16.2467 11.7463V15.7468C16.2458 16.493 15.6412 17.0978 14.895 17.0985H2.25279C1.50655 17.0978 0.901995 16.493 0.901115 15.7468V4.00572C0.901995 3.25966 1.50655 2.65492 2.25279 2.65404H6.25325C6.50211 2.65404 6.70381 2.45235 6.70381 2.20349C6.70381 1.9548 6.50211 1.75293 6.25325 1.75293H2.25279C1.00918 1.75434 0.00140799 2.76211 0 4.00572V15.747C0.00140799 16.9906 1.00918 17.9984 2.25279 17.9998H14.895C16.1386 17.9984 17.1464 16.9906 17.1478 15.747V11.7463C17.1478 11.4975 16.9461 11.2958 16.6972 11.2958Z" fill="#53BA38"/>
+                        <path d="M16.9697 0.593865C16.1779 -0.197955 14.8942 -0.197955 14.1024 0.593865L6.06412 8.6321C6.00904 8.68718 5.96926 8.75547 5.94849 8.83045L4.89144 12.6466C4.84797 12.8031 4.89215 12.9706 5.0069 13.0856C5.12182 13.2003 5.28938 13.2445 5.44584 13.2012L9.26203 12.144C9.337 12.1232 9.40529 12.0834 9.46038 12.0284L17.4984 3.98994C18.289 3.1976 18.289 1.91491 17.4984 1.12257L16.9697 0.593865ZM7.04585 8.92496L13.6245 2.34611L15.7462 4.46778L9.16734 11.0466L7.04585 8.92496ZM6.62204 9.77539L8.31709 11.4706L5.97243 12.1202L6.62204 9.77539ZM16.8613 3.35283L16.3835 3.83066L14.2616 1.70882L14.7396 1.23098C15.1795 0.79116 15.8926 0.79116 16.3324 1.23098L16.8613 1.75968C17.3004 2.20003 17.3004 2.91265 16.8613 3.35283Z" fill="#53BA38"/>
+                      </svg>
+                    </div>  
+                    {<p style={{ fontWeight: "bold", fontSize: "12px", marginLeft:"20px" }}>{banco?.ds_banco}</p>}
                   </div>
                 </div>
-                <div className="form-group col-12">
+                <div className="form-group col-12 text-center">
                   <Button
                     className="btn btn-warning cont mb-3"
-                    // no toma estos estilos, clase btn
-                   /* style={
-                        {
-                          height: "43px",
-                          borderRadius: "50px",
-                          border: "none",
-                          fontWeight: "700",
-                          fontSize: "14px",
-                          width: "100%",
-                        }
-                      } */
-
                     disabled={false}
                     type="button" 
                     onClick={validateCBU}
@@ -162,7 +95,7 @@ export default function RegistroCbu() {
                   </Button>
 
                   <span className="span-cbu">
-                    Por favor no olvides tener tu cbu actualizado
+                    Por favor no olvides tener tu CBU/CVU actualizado
                   </span>
                 </div>
               </form>

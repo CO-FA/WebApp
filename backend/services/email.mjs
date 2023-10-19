@@ -1,7 +1,18 @@
-//back
+import { createClient } from "@supabase/supabase-js";
 import { getToken } from "./token.mjs";
 import { URL } from "./url.mjs";
 import fetch, { Headers } from "node-fetch";
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
+
+const actualizarEmailLead = async (nroDocumento, email) => {
+  const { data, error } = await supabase
+    .from('leads')
+    .update({ email: email })
+    .eq("cuit", nroDocumento)
+    .select()
+};
 
 export const validarEmail = async ({nroDocumento,idPreaprobado, email, enviarCodigo}) => {
   try {
@@ -17,7 +28,6 @@ export const validarEmail = async ({nroDocumento,idPreaprobado, email, enviarCod
       email,
       enviarCodigo
     };
-    console.log("datos validarEmail", body);
 
     const requestOptions = {
       method: "POST",
@@ -29,10 +39,9 @@ export const validarEmail = async ({nroDocumento,idPreaprobado, email, enviarCod
     const resp = await fetch(URL + "/API/v1/lending/validateMail", requestOptions);
     const data = await resp.json();
 
-    console.log("data validarEmail", data)
-
-    return data
+    await actualizarEmailLead(nroDocumento, email)
     
+    return data
   } catch (error) {
     console.log(error);
   }
@@ -50,7 +59,6 @@ export const validarCodigoEmail = async ({nroDocumento, idPreaprobado, enviarCod
     const body = {
       nroDocumento, idPreaprobado, enviarCodigo
     };
-    console.log("datos validarCodigoEmail", body);
 
     const requestOptions = {
       method: "POST",
@@ -61,11 +69,7 @@ export const validarCodigoEmail = async ({nroDocumento, idPreaprobado, enviarCod
 
     const resp = await fetch(URL + "/API/v1/lending/saveMail", requestOptions);
     const data = await resp.json();
-
-    console.log("data validarCodigoEmail", data)
-
     return data
-    
   } catch (error) {
     console.log(error);
   }

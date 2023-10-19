@@ -1,103 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import Encabezado from "components/commons/Encabezado";
 import Input from "components/commons/Input";
 import Footer from "components/commons/Footer";
 import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
 import Button from "components/commons/Button";
-import { formErrors } from "utils/constantsErrors";
-
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { LoaderContext } from "components/loader/LoaderContext";
-import {
-  useStepAtom,
-  useIdentidadAtom,
-  useCelularAtom,
-  usePrestamoAtom,
-  useSituacionLaboralAtom,
-  useGeneroAtom,
-  useCodigoAtom
-} from "../atoms/Atoms";
-import { validarLead } from "api/LeadValidation";
+import {useCelularAtom} from "../atoms/Atoms";
+import { useRegistroValidarCel } from "./hooks/useRegistroValidarCel";
+
 
 export function RegistroValidacionCelular() {
-  let { setShowLoader } = React.useContext(LoaderContext);
-  const [errors, setErrors] = useState(false);
-  const history = useHistory();
-  const { setCurrentStep } = useStepAtom();
-  const { identidad } = useIdentidadAtom();
-  const { situacionLaboral } = useSituacionLaboralAtom();
   const { codArea, numCelular } = useCelularAtom();
-  const { setIntereses } = usePrestamoAtom();
-  const { genero } = useGeneroAtom();
-  const { setClientePin } = useCodigoAtom()
-
-  const submitForm = async (values, setSubmitting) => {
-    if (errors) {
-      return;
-    }
-    if (!errors) {
-      setShowLoader(true);
-      setClientePin(values.clientePin)
-      try {
-        //TODO: Generar preaprobado
-
-        console.log("identidad", identidad);
-
-        const valid = await validarLead({
-          nombre: identidad.nombreCompleto,
-          telefono: codArea + " " + numCelular,
-          dni: identidad.dni,
-          cuit: identidad.cuit,
-          sexo: genero,
-          situacion: situacionLaboral,
-          codigo: values.clientePin,
-        });
-        //TODO: validar datos antes de navegar
-        setIntereses(valid.data);
-
-        history.push("/onboarding/calculadora-prestamo");
-        setCurrentStep(STEPS.STEP_4_PRESTAMO);
-      } catch (error) {
-        history.push("/onboarding/error");
-        setCurrentStep(STEPS.STEP_99_ERROR);
-        console.error(error);
-      }
-      setShowLoader(false);
-    }
-  };
-
-  const validateForm = (values) => {
-    var errorsAUx = {};
-    if (!values.clienteCelCodigo) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelCodigo: formErrors.CODE_EMPTY,
-      };
-    } else if (String(values.clienteCelCodigo).length < 2) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelCodigo: formErrors.CODE_PHONE_ERROR,
-      };
-    } else {
-      errorsAUx = false;
-    }
-    if (!values.clienteCelNumero) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelNumero: formErrors.PHONE_EMPTY,
-      };
-    } else if (String(values.clienteCelNumero).length < 6) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelNumero: formErrors.PHONE_ERROR,
-      };
-    } else {
-      errorsAUx = errorsAUx || false;
-    }
-    setErrors(errorsAUx);
-  };
+  const {submitForm,validateForm, errors, reenviarPinSms} = useRegistroValidarCel()
+  
   return (
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_3_CELULAR} />} />
@@ -124,7 +40,7 @@ export function RegistroValidacionCelular() {
                       placeholder="000"
                       className="form-control"
                       name="clienteCelCodigo"
-                      errors={[]}
+                      errors={errors}
                       values={values}
                     />
                   </div>
@@ -135,27 +51,9 @@ export function RegistroValidacionCelular() {
                       type="number"
                       className="form-control"
                       name="clienteCelNumero"
-                      errors={[]}
+                      errors={errors}
                       values={values}
                     />
-                  </div>
-                  <div className="col-12">
-                    {errors["clienteCelCodigo"] && (
-                      <span
-                        id="clienteCelCodigo-errorMsg"
-                        className="form-text text-danger small"
-                      >
-                        *{errors["clienteCelCodigo"]}
-                      </span>
-                    )}
-                    {errors["clienteCelNumero"] && (
-                      <span
-                        id="clienteCelCodigo-errorMsg"
-                        className="form-text text-danger small"
-                      >
-                        *{errors["clienteCelNumero"]}
-                      </span>
-                    )}
                   </div>
                   <div className="col-12 mt-3">
                     <h3>Ingresá el PIN SMS</h3>
@@ -173,9 +71,13 @@ export function RegistroValidacionCelular() {
                   </div>
                   <div className="col-12">
                     <p className="mt-5 text-center">
-                      <a href="/" className="text-underline">
+                      <Button
+                        type="button"
+                        onClick={reenviarPinSms}
+                        className="text-underline"
+                      >
                         ¿No te llegó? Reenviarme el SMS
-                      </a>
+                      </Button>
                     </p>
                   </div>
                 </div>

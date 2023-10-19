@@ -5,17 +5,17 @@ import suscripcionMobbex from "./routes/mobbex.mjs"
 import validarEmail from "./routes/validar-email.mjs";
 import validarCodigoEmail from "./routes/codigo-validar-email.mjs";
 import validarIdentidadNosis from "./routes/validar-identidad-nosis.mjs";
-import terminosYcondiciones from "./routes/aceptar-terminos-condiciones.mjs";
 import validandoCBU from "./routes/validar-cbu.mjs"
 import update from "./routes/update-nosis-status.mjs"
-import firmaElectronica from "./routes/firma-electronica.mjs"
+import validateLoan from "./routes/generate-loan.mjs"
+import infoDetalles from "./routes/info-detalles.mjs"
+import infoSolicitud from "./routes/info-solicitud.mjs"
+import statusFirmaElectronica from "./routes/status-firma-electronica.mjs"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { createClient } from "@supabase/supabase-js";
 
-
-//import { validateLead } from "./services/validate-lead.mjs";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY);
@@ -49,12 +49,14 @@ app.use(validarEmail)
 app.use(validarCodigoEmail)
 app.use(validarIdentidadNosis)
 app.use(update)
-app.use(terminosYcondiciones)
-app.use(firmaElectronica)
+app.use(validateLoan)
+app.use(infoDetalles)
+app.use(infoSolicitud)
+app.use(statusFirmaElectronica)
+
 
 app.post("/find-cbu", async (request, res) => {
   const cbu = request.body.cbu;
-  console.log("cbu", cbu);
   let { data: bancos_cbus, error } = await supabase
     .from("bancos_cbus")
     .select("*");
@@ -79,6 +81,19 @@ app.get("/situaciones", async (req, res) => {
     .select("*");
 
   const data = situacion_laboral.map((sit) => {
+    return { id: sit.id, descripcion: sit.descripcion };
+  });
+  res.json({
+    data: data,
+    error: error,
+  });
+});
+
+app.get("/dia-vencimiento", async (req, res) => {
+  let { data: dia_vencimiento_cuota, error } = await supabase
+    .from('dia_vencimiento_cuota')
+    .select('*')
+  const data = dia_vencimiento_cuota.map((sit) => {
     return { id: sit.id, descripcion: sit.descripcion };
   });
   res.json({

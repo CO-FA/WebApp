@@ -1,40 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
 import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
 import Button from "components/commons/Button";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import OptionNombre from "components/registro/OptionNombre";
-import { useStepAtom, useIdentidadAtom } from "../atoms/Atoms";
-import { useLoaderContext } from "components/loader/LoaderContext";
-import { getPadronAfip } from "api/PadronAfip";
+import { useIdentidadAtom } from "../atoms/Atoms";
+import { useRegistroIdentidad } from "./hooks/useRegistroIdentidad";
 
 export default function RegistroElegirIdentidad() {
-  const history = useHistory();
-  const [candidatos, setCandidatos] = useState();
-  const { documento, identidad, setIdentidad } = useIdentidadAtom();
-  const { setCurrentStep } = useStepAtom();
-  const { setShowLoader } = useLoaderContext();
-  const submitForm = (values, setSubmitting) => {
-    // "" + values.clienteNombres === c.dni + ""
-    const identidad = (candidatos || []).find(
-      (c) => "" + values.clienteNombres === c.dni + ""
-    );
-    setIdentidad(identidad);
-
-    history.push("/onboarding/celular");
-    setCurrentStep(STEPS.STEP_3_CELULAR);
-  };
-
-  useEffect(() => {
-    (async () => {
-      const identidades = await getPadronAfip(documento);
-      setCandidatos(identidades);
-      setShowLoader(false);
-    })();
-  }, []);
+  const { identidad } = useIdentidadAtom();
+  const { submitForm, candidatos } = useRegistroIdentidad();
 
   return (
     <>
@@ -42,14 +19,10 @@ export default function RegistroElegirIdentidad() {
       <Formik
         initialValues={{ clienteNombres: identidad?.dni }}
         onSubmit={(values, { setSubmitting }) =>
-          submitForm(values, setSubmitting)
+           submitForm(values, setSubmitting)
         }
       >
-        {({
-          values,
-          handleSubmit,
-          /* and other goodies */
-        }) => (
+        {({ values, handleSubmit }) => (
           <>
             <form className="pt-3">
               <section>
@@ -66,7 +39,7 @@ export default function RegistroElegirIdentidad() {
                         label={c.nombreCompleto}
                         key={ix}
                         className={
-                          "" + values.clienteNombres === c.dni + "" && "active"
+                          values.clienteNombres === c.dni && "active"
                         }
                       />
                     );

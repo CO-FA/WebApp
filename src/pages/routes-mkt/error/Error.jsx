@@ -1,40 +1,28 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-
-import { STEPS } from "components/registro/STEPS-MKT";
-import { LoaderContext } from "components/loader/LoaderContext";
-import { useStepAtom } from "../atoms/Atoms";
+import { useError } from "./hooks/useError";
 import Button from "components/commons/Button";
 import Footer from "components/commons/Footer";
+import "../../../assets/css/main.css"
 
 export function Error() {
-  let { setShowLoader } = React.useContext(LoaderContext);
-
-  const history = useHistory();
-  const { setCurrentStep } = useStepAtom();
-
-  const volver = async (values, setSubmitting) => {
-    setShowLoader(true);
-    //Limpiar atoms
-    setShowLoader(false);
-    history.push("/onboarding/registro-dni");
-    setCurrentStep(STEPS.STEP_1_DNI);
-  };
+  const { volver } = useError();
 
   return (
     <>
-      <div className="text-center" style={{
+      <div className="d-flex flex-column justify-content-center align-items-center"
+      style={{
         background: "#FFD233",
         width: "100vw !important",
-        height: "inherit",
+        height: "100vh",
         padding: "40px",
         marginLeft: "-15px",
         marginRight: "-15px",
       }}
       >
-        <h3>En estos momentos no tenemos un préstamo para ofrecerte. </h3>
+        <h3 className="text-center" style={{marginTop:"30vh" }}>En estos momentos no tenemos un préstamo para ofrecerte. </h3>
+        <div style={{ flex: 1 }}></div>
         <Footer>
-          <Button onClick={volver} className="btn btn-light cont">
+          <Button onClick={volver} className="btn btn-light cont shadow">
             VOLVER
           </Button>
         </Footer>

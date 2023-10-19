@@ -7,7 +7,6 @@ export const validacionEmail = async ({ nroDocumento,idPreaprobado, email, envia
       email: email,
       enviarCodigo: enviarCodigo,
   };
-  console.log("datos validacion email", body);
 
   const obj = await fetch(url, {
     method: "POST",
@@ -28,7 +27,6 @@ export const validacionCodigoEmail = async ({nroDocumento, idPreaprobado, enviar
     idPreaprobado: idPreaprobado,
     enviarCodigo:  enviarCodigo,
   };
-  console.log("codigo validacion email", body);
 
   const obj = await fetch(url, {
     method: "POST",

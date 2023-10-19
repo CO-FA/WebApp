@@ -24,12 +24,10 @@ export function FinalizarNosis() {
       setShowLoader(true);
 
       try {
-        const statusFinalizado = await updateStatusNosis({
+        await updateStatusNosis({
           cuit: cuit,
           nosis_status: "finalizado",
         });
-  
-        console.log("Status nosis actualizado: ", statusFinalizado);
   
         history.push("/onboarding/info-post-nosis");
         setCurrentStep(STEPS.STEP_11_CONFIRMAR_PREAPROBADO);

@@ -1,38 +1,65 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../../assets/css/main.css";
-import { useStepAtom } from "../atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
+import {  useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { LoaderContext } from "components/loader/LoaderContext";
+import { statusFirmaSupabase } from "api/StatusFirmaElectronica";
+import { useLoaderContext } from "components/loader/LoaderContext";
 
 export default function FirmaElectronica() {
-    /* let { setShowLoader } = React.useContext(LoaderContext);
+    const { setShowLoader } = useLoaderContext();
     const { setCurrentStep } = useStepAtom();
-    const [errors, setErrors] = useState(false);
     const history = useHistory();
+    const { lead } = useLeadAtom();
 
-    if (errors) {
-        return;
-    }
-    if (!errors) {
-    setShowLoader(true);
-    try {
-        //TO DO: esperar que el cliente firme, toma el estado ok y va a la pantalla exitoso prestamo 
-        // y a su vez dispara el envio del prestamo desde el back.
-        //alta prestado: https://sandbox.sbsoftware.net/API/v1/loans/new
-        
-        history.push("/onboarding/prestamo-exitoso");
-        setCurrentStep(STEPS.STEP_13_PRESTAMO_EXITOSO);
-    } catch (error) {
-        history.push("/onboarding/error");
-        setCurrentStep(STEPS.STEP_99_ERROR);
-        console.error(error);
-    }
-    setShowLoader(false);
-    } */
+    useEffect(() => {
+        let isMounted = true; 
+      
+        const fetchData = async () => {
+          setShowLoader(true);
+          try {
+            const respStatusFirma = await statusFirmaSupabase({ lead: lead.cuit });
+            if (respStatusFirma.response === "SUCCESS") { 
+              history.push("/onboarding/prestamo-exitoso");
+              setCurrentStep(STEPS.STEP_13_PRESTAMO_EXITOSO);
+            } else {
+              history.push("/onboarding/error");
+              setCurrentStep(STEPS.STEP_99_ERROR);
+            }
+          } catch (error) {
+            console.error(error);
+          } finally {
+            setShowLoader(false);
+          }
+        };
+      
+        const timer = setInterval(() => {
+          if (isMounted) {
+            fetchData();
+          }
+        }, 1000 * 30);
+      
+        return () => {
+          isMounted = false; 
+          clearInterval(timer); 
+        };
+      }, []);
+      
 
     return(
-        //pantalla intermedia que espera que el cliente firme. 
-        <>ESPERANDO TU FIRMA ELECTRONICA</>
+        <div className="bg-gradient d-flex justify-content-center align-items-center" 
+            style={{
+                width: "100vw !important",
+                height: "100vh",
+                padding: "40px",
+                marginLeft: "-15px",
+                marginRight: "-15px",
+            }} >
+                <div className="col-12 text-center">
+                    <h3>Esperando tu firma electronica...</h3>
+                </div>
+        </div>
     );
 }; 
+         

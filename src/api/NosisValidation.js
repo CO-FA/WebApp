@@ -6,7 +6,6 @@ export const validacionNosis = async ({ nroDocumento,idPreaprobado, CallbackURL}
         idPreaprobado: idPreaprobado,
         CallbackURL: CallbackURL
     };
-    console.log("datos validacion nosis", body);
   
     const obj = await fetch(url, {
       method: "POST",

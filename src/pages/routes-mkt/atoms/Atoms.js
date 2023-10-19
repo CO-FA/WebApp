@@ -84,3 +84,27 @@ export const useLeadAtom = () => {
   const [lead, setLead] = useAtom(leadAtom);
   return { lead, setLead };
 };
+
+const diaVencimientoAtom = atomWithStorage("diaVencimientoAtom");
+export const useDiaVencimientoAtom = () => {
+  const [diaVencimiento, setDiaVencimiento] = useAtom(diaVencimientoAtom);
+  return { diaVencimiento, setDiaVencimiento };
+};
+
+const emailAtom = atomWithStorage("emailAtom");
+export const useEmailAtom = () => {
+  const [email, setEmail] = useAtom(emailAtom);
+  return { email, setEmail };
+};
+
+const detallesAtom = atomWithStorage("detallesAtom");
+export const useDetallesAtom = () => {
+  const [detallesPrestamo, setDetallesPrestamo] = useAtom(detallesAtom);
+  return { detallesPrestamo, setDetallesPrestamo };
+};
+
+const solicitudAtom = atomWithStorage("solicitudAtom");
+export const useSolicitudAtom = () => {
+  const [pdfSolicitud, setPdfSolicitud] = useAtom(solicitudAtom);
+  return { pdfSolicitud, setPdfSolicitud };
+};

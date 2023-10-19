@@ -1,15 +1,9 @@
 import { useEffect } from "react";
 import { useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-
 import "../../assets/css/main.css";
-
-//Export default
 import CalculadoraPrestamo from "./calculadora-prestamo/CalculadoraPrestamo";
-
-//export
 import { RegistroCelular } from "./registro-celular/RegistroCelular";
-
 import { RegistroDni } from "./registro-dni/RegistroDni";
 import RegistroElegirIdentidad from "./registro-elegir-identidad/RegistroElegirIdentidad";
 import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroValidacionCelular";
@@ -30,10 +24,14 @@ import ModificarCelular from "pages/perfil/PerfilModificarCelular";
 import ModificarEmail from "pages/perfil/PerfilModificarEmail";
 import OlvidePasswordStep2 from "pages/perfil/PerfilModificarPass";
 import ModificarDireccion from "pages/perfil/PerfilModificarDireccion";
-import DetallePrestamo from "pages/estadofinanciero/DetallePrestamo";
 import { FinalizarMobbex } from "./mobbex/FinalizarMobbex";
 import { FinalizarNosis } from "./nosis/FinalizarNosis";
 import FirmaElectronica from "./firma-electronica/Firma-electronica";
+import LogoCofa from "components/logoCofa";
+import PinCelularScreen from "./enviar-pin/enviarPinCelular";
+import PinEmailScreen from "./enviar-pin/enviarPinEmail";
+import { DetallesPrestamo } from "./prestamo-exitoso/DetallesPrestamo";
+import { SolicitudPrestamo } from "./prestamo-exitoso/SolicitudPrestamo";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -83,6 +81,11 @@ export function RoutesMkt() {
                 <RegistroCelular />
               </VerifyStep>
             </Route>
+
+            <Route path="/onboarding/enviar-pin-celular">
+                <PinCelularScreen />
+            </Route>
+
             <Route path="/onboarding/validar-pin">
               {" "}
               <VerifyStep step={STEPS.STEP_3_CELULAR}>
@@ -94,7 +97,6 @@ export function RoutesMkt() {
                 <CalculadoraPrestamo />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/password">
               <VerifyStep step={STEPS.STEP_5_CLAVE}>
                 <RegistroClave />
@@ -120,6 +122,13 @@ export function RoutesMkt() {
                 <RegistroEmail />
               </VerifyStep>
             </Route>
+
+            <Route path="/onboarding/enviar-pin-email">
+              <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
+                <PinEmailScreen />
+              </VerifyStep>
+            </Route>
+
             <Route path="/onboarding/validar-pin-email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
                 <RegistroValidacionEmail />
@@ -130,31 +139,34 @@ export function RoutesMkt() {
                 <InfoPreNosis />
               </VerifyStep>
             </Route>
-
-            {/* --> va a nosis */}
-            
             <Route path="/onboarding/finalizar-validacion-nosis/:cuit">
               <VerifyStep step={STEPS.STEP_10_VALIDAR_IDENTIDAD_NOSIS}>
                 <FinalizarNosis />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/info-post-nosis">
               <VerifyStep step={STEPS.STEP_11_CONFIRMAR_PREAPROBADO}>
                 <InfoPostNosis />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/firma-electronica">
               <VerifyStep step={STEPS.STEP_12_FIRMA_ELECTRONICA}>
                 <FirmaElectronica />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/prestamo-exitoso">
               <VerifyStep step={STEPS.STEP_13_PRESTAMO_EXITOSO}>
                 <PrestamoExitoso />
               </VerifyStep>
+            </Route>
+            <Route path="/onboarding/detalles-del-prestamo">
+                <DetallesPrestamo />
+            </Route>
+            <Route path="/onboarding/pdf-solicitud-prestamo">
+                <SolicitudPrestamo />
+            </Route>
+            <Route path="/onboarding/logo-cofa">
+                <LogoCofa />
             </Route>
 
 
@@ -216,7 +228,7 @@ export function RoutesMkt() {
 
             <Route path="/detalle-prestamos">
               <VerifyStep step={STEPS.STEP_22_DETALLE_PRESTAMO}>
-                <DetallePrestamo />
+                <DetallesPrestamo />
               </VerifyStep>
             </Route>
 

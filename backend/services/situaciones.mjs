@@ -28,7 +28,6 @@ export const getSituacionesBcra = async (nroDocumento) => {
 
 export const getCountSituaciones = async (nroDocumento) => {
   const situaciones = await getSituacionesBcra(nroDocumento);
-  console.log("SITUACIONES BRCA", situaciones);
   const result = {
     sit_1: 0,
     sit_2: 0,

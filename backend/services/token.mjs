@@ -1,5 +1,4 @@
 import { URL } from "./url.mjs";
-//const { URL } = require("./url");
 import fetch, { Headers } from "node-fetch";
 
 export const getToken = async () => {
@@ -16,19 +15,12 @@ export const getToken = async () => {
       body: JSON.stringify(req),
       redirect: "follow",
     };
-    console.log(
-      "Req token",
-      URL + "/API/v1/login/authenticate",
-      requestOptions
-    );
     const resp = await fetch(
       URL + "/API/v1/login/authenticate",
       requestOptions
     );
     const respText = await resp.text();
-    console.log("Response get token", respText);
     const token = JSON.parse(respText);
-    console.log("getToken", token);
     return token;
   } catch (error) {
     console.log(error);

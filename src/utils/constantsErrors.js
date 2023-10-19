@@ -15,5 +15,10 @@ export const formErrors = {
 	CODE_PHONE_ERROR:"El código de área ingresado es incorrecto",
 	PHONE_EMPTY:"Por favor ingrese su celular",
 	PHONE_ERROR:"El número ingresado es incorrecto",
+	PIN_EMPTY:"Por favor ingrese un PIN",
+	PIN_ERROR:"El PIN ingresado es incorrecto",
+	VENCIMIENTO_CUOTA:"Debe seleccionar el vencimiento de la cuota",
+	CBU_EMPTY:"El CBU no puede estar vacio",
+	CBU_ERROR:"El CBU debe tener 22 digitos",
 
 };
