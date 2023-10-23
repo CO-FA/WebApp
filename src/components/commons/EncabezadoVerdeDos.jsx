@@ -31,7 +31,8 @@ export function EncabezadoVerde({ children }) {
           <a
             className="btn btn-link px-0 position-relative d-block notif"
             href="http://www.wa.me/54911xxxxxx"
-          ></a>
+          >
+          </a>
         </div>
       </div>
     </div>

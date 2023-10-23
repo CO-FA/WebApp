@@ -81,11 +81,11 @@ export function RoutesMkt() {
                 <RegistroCelular />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/enviar-pin-celular">
+              <VerifyStep step={STEPS.STEP_3_CELULAR}>
                 <PinCelularScreen />
+              </VerifyStep>
             </Route>
-
             <Route path="/onboarding/validar-pin">
               {" "}
               <VerifyStep step={STEPS.STEP_3_CELULAR}>
@@ -122,13 +122,11 @@ export function RoutesMkt() {
                 <RegistroEmail />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/enviar-pin-email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
                 <PinEmailScreen />
               </VerifyStep>
             </Route>
-
             <Route path="/onboarding/validar-pin-email">
               <VerifyStep step={STEPS.STEP_8_VALIDAR_EMAIL}>
                 <RegistroValidacionEmail />
@@ -160,24 +158,27 @@ export function RoutesMkt() {
               </VerifyStep>
             </Route>
             <Route path="/onboarding/detalles-del-prestamo">
+              <VerifyStep step={STEPS.STEP_13_PRESTAMO_EXITOSO}>
                 <DetallesPrestamo />
+              </VerifyStep>
             </Route>
             <Route path="/onboarding/pdf-solicitud-prestamo">
+              <VerifyStep step={STEPS.STEP_13_PRESTAMO_EXITOSO}>
                 <SolicitudPrestamo />
+              </VerifyStep>
             </Route>
             <Route path="/onboarding/logo-cofa">
                 <LogoCofa />
             </Route>
-
-
-            {/* HASTA ACA!!! */}
             
+            
+            {/* INICIA SEGUNDA PARTE DEL DESARROLLO DE CofApp */}
 
-            {/* <Route path="/perfil">
+            <Route path="/perfil">
               <VerifyStep step={STEPS.STEP_13_PERFIL}>
                 <Perfil />
               </VerifyStep>
-            </Route> */}
+            </Route>
 
             <Route path="/notificaciones">
               <VerifyStep step={STEPS.STEP_14_NOTIFICACIONES}>

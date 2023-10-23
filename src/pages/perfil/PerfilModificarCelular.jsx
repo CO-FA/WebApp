@@ -159,9 +159,13 @@ export default function ModificarCelular({ celCodigo, cellNumero }) {
                   </div>
                   <div className="col-12">
                     <p className="mt-5 text-center">
-                      <a href="/" className="text-underline">
+                      <Button
+                        type="button"
+                        onClick={reenviarPinSms}
+                        className="text-underline"
+                      >
                         ¿No te llegó? Reenviarme el SMS
-                      </a>
+                      </Button>
                     </p>
                   </div>
                 </div>
