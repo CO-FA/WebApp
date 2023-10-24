@@ -3,8 +3,8 @@ export const getToken = async () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const req = {
-      Username: "Coder",
-      Password: "Programador",
+      Username: "desarollo",
+      Password: "Admin123**",
     };
     const requestOptions = {
       method: "POST",
