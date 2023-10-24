@@ -14,7 +14,7 @@ export default function CbuList() {
 
   return (
     <>
-      <EncabezadoVerde />
+      <EncabezadoVerde /> {/* TO DO: titulo Mis CBU/CVU */}
       <ul className="list-group list-group-flush">
         {(cbuList || []).map((cbu) => {
           return (

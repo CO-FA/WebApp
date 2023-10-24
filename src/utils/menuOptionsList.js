@@ -128,7 +128,10 @@ export const optionsToShow2 = [
   },
 
   {
-    menu: "Ver mis seguros",
+    /* TO DO: debe aparecer disabled */
+    /* style: { color: "#888", pointerEvents: "none" },
+    disabled: true, */
+    menu: "Ver mis asistencias",
     icon: seguroIcon,
     submenu: [
       { menu: "Seguro de Auto", submenu: [], icon: autoIcon, href: "/" },

@@ -161,7 +161,7 @@ export default function ModificarCelular({ celCodigo, cellNumero }) {
                     <p className="mt-5 text-center">
                       <Button
                         type="button"
-                        onClick={reenviarPinSms}
+                        /* onClick={reenviarPinSms} */
                         className="text-underline"
                       >
                         ¿No te llegó? Reenviarme el SMS

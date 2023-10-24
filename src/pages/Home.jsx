@@ -6,11 +6,11 @@ export default function Home(){
     return <>
              <Carousel/>
              <Link to="/registro">
-                <Button className="btn-primary mt-5">REGISTRARME</Button>
+                <Button className="btn-primary mt-5">QUIERO UN PRESTAMO</Button>
              </Link>
 
              <Link to="/login">
-             <Button className="btn-link mt-3 w-100">Ya tengo cuenta</Button>
+             <Button className="btn-link mt-3 w-100">Ya tengo un prestamo</Button>
              </Link>
     </>
 }

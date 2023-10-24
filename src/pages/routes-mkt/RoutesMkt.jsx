@@ -32,6 +32,20 @@ import PinCelularScreen from "./enviar-pin/enviarPinCelular";
 import PinEmailScreen from "./enviar-pin/enviarPinEmail";
 import { DetallesPrestamo } from "./prestamo-exitoso/DetallesPrestamo";
 import { SolicitudPrestamo } from "./prestamo-exitoso/SolicitudPrestamo";
+import DetallePrestamo from "pages/estadofinanciero/DetallePrestamo";
+import CbuList from "pages/estadofinanciero/CbuList";
+import SinPrestamo from "pages/estadofinanciero/SinPrestamo";
+import PagarCuota from "pages/estadofinanciero/PagarCuota";
+import MediosDePagoCuotas from "pages/estadofinanciero/PagarCuotaMediodePago";
+import InformePago from "pages/estadofinanciero/InformePago";
+import Notificaciones from "pages/perfil/Notificaciones";
+import Soporte from "pages/perfil/Soporte";
+import Home from "pages/Home";
+import Login from "pages/Login";
+import RegistroStep1 from "pages/RegistroStep1";
+import RegistroStep2 from "pages/RegistroStep2";
+import OlvidePasswordStep1 from "pages/OlvidePasswordStep1";
+import OlvidePasswordStep3 from "pages/OlvidePasswordStep3";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -66,6 +80,34 @@ export function RoutesMkt() {
       >
         <div className="animation-item" ref={nodeRef}>
           <Switch>
+            {/* INICIO */}
+            <Route path="/home">
+              <VerifyStep step={STEPS.STEP_1_DNI}>
+                <Home />
+              </VerifyStep>
+            </Route>
+
+            {/* HOME / YA TENGO UN PRESTAMO */}
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/registro1">
+              <RegistroStep1 />
+            </Route>
+            <Route path="/registro2">
+              <RegistroStep2 />
+            </Route>
+            <Route path="/olvide-pass1">
+              <OlvidePasswordStep1 />
+            </Route>
+            <Route path="/olvide-pass2">
+              <OlvidePasswordStep2 />
+            </Route>
+            <Route path="/olvide-pass3">
+              <OlvidePasswordStep3 />
+            </Route>
+            
+            {/* HOME / QUIERO UN PRESTAMO */}
             <Route path="/onboarding/registro-dni">
               <VerifyStep step={STEPS.STEP_1_DNI}>
                 <RegistroDni />
@@ -170,28 +212,26 @@ export function RoutesMkt() {
             <Route path="/onboarding/logo-cofa">
                 <LogoCofa />
             </Route>
-            
-            
-            {/* INICIA SEGUNDA PARTE DEL DESARROLLO DE CofApp */}
+          
 
+            {/* INICIA SEGUNDA PARTE DEL DESARROLLO DE CofApp */}
             <Route path="/perfil">
               <VerifyStep step={STEPS.STEP_13_PERFIL}>
                 <Perfil />
               </VerifyStep>
             </Route>
-
             <Route path="/notificaciones">
               <VerifyStep step={STEPS.STEP_14_NOTIFICACIONES}>
-                {/* falta pantalla */}
+                <Notificaciones/>
+              </VerifyStep>
+            </Route>
+            <Route path="/soporte">
+              <VerifyStep step={STEPS.STEP_13_PERFIL}>
+                <Soporte/>
               </VerifyStep>
             </Route>
 
-            <Route path="/editar-perfil">
-              <VerifyStep step={STEPS.STEP_15_EDITAR_PERFIL}>
-                {/* falta pantalla */}
-              </VerifyStep>
-            </Route>
-
+            {/* LINEA MODIFICAR DATOS */}
             <Route path="/perfil-modificar-celular">
               <VerifyStep step={STEPS.STEP_16_MODIFICAR_CELULAR}>
                 <ModificarCelular />
@@ -202,68 +242,72 @@ export function RoutesMkt() {
                 <ModificarEmail />
               </VerifyStep>
             </Route>
-            <Route path="/perfil-modificar-contraseña">
+            <Route path="/perfil-modificar-pass">
               <VerifyStep step={STEPS.STEP_18_MODIFICAR_CONTRASEÑA}>
                 <OlvidePasswordStep2 />
               </VerifyStep>
             </Route>
-
             <Route path="/perfil-modificar-direccion">
               <VerifyStep step={STEPS.STEP_19_MODIFICAR_DIRECCION}>
                 <ModificarDireccion />
               </VerifyStep>
             </Route>
 
-            <Route path="/estado-financiero">
-              <VerifyStep step={STEPS.STEP_20_ESTADO_FINANCIERO}>
-                {/* falta pantalla */}
-              </VerifyStep>
-            </Route>
 
-            <Route path="/mis-prestamos">
-              <VerifyStep step={STEPS.STEP_21_MIS_PRESTAMOS}>
-                {/* aparecen los numeros de todos los prestamos en pantalla */}
-                {/* seleccionando uno va a detalle prestamo */}
-              </VerifyStep>
-            </Route>
-
-            <Route path="/detalle-prestamos">
+            {/* LINEA ESTADO FINANCIERO / MIS PRESTAMOS */}
+            <Route path="/detalle-prestamo">
               <VerifyStep step={STEPS.STEP_22_DETALLE_PRESTAMO}>
-                <DetallesPrestamo />
+                <DetallePrestamo/>
               </VerifyStep>
             </Route>
+            <Route path="/instancia-judicial">
+              <VerifyStep step={STEPS.STEP_22_DETALLE_PRESTAMO}>
+                <SinPrestamo/>
+              </VerifyStep>
+            </Route>
+            <Route path="/pagar-cuota">
+              <VerifyStep step={STEPS.STEP_22_DETALLE_PRESTAMO}>
+                <PagarCuota/>
+              </VerifyStep>
+            </Route>
+            <Route path="/pagar-cuota-medios-de-pago">
+              <VerifyStep step={STEPS.STEP_22_DETALLE_PRESTAMO}>
+                <MediosDePagoCuotas/>
+              </VerifyStep>
+            </Route>
+            <Route path="/informe-pago">
+              <VerifyStep step={STEPS.STEP_22_DETALLE_PRESTAMO}>
+                <InformePago/>
+              </VerifyStep>
+            </Route>
+            {/* cancelar prestamo */}
+            {/* refinanciar prestamo */}
 
+
+            {/* LINEA ESTADO FINANCIERO / CARGAR CBU-CVU */}
+            <Route path="/mis-cbu-cvu">
+              <VerifyStep step={STEPS.STEP_23_CARGAR_CBU}>
+                <CbuList/>
+              </VerifyStep>
+            </Route>
             <Route path="/cargar-otro-cbu">
               <VerifyStep step={STEPS.STEP_23_CARGAR_CBU}>
-                {/* carga cbu */}
-                {/* pequeños cambios con respecto a la pantalla de onboarding */}
+                <RegistroCbu/>
               </VerifyStep>
             </Route>
 
+            {/* LINEA ESTADO FINANCIERO / CARGAR MIS TARJETAS */}
+            {/* listado de mis tarjetas cargadas */}
             <Route path="/cargar-tarjeta">
               <VerifyStep step={STEPS.STEP_24_CARGAR_TARJETA}>
-                {/* cargar mi tarjta --> va a mobbex */}
+                <Mobbex />
               </VerifyStep>
             </Route>
 
-            <Route path="/seguros">
-              <VerifyStep step={STEPS.STEP_25_SEGUROS}>
-                {/* perfil --> seguros */}
-              </VerifyStep>
+            {/* LINEA VER ASISTENCIAS */}
+            <Route path="/asistencias">
+              {/* disabled */}
             </Route>
-
-            {/* <Route path="/">
-              <VerifyStep step={STEPS.}>
-
-              </VerifyStep>
-            </Route> */}
-
-
-
-
-
-
-
 
             <Route path="/onboarding/error">
               <VerifyStep step={STEPS.STEP_99_ERROR}>

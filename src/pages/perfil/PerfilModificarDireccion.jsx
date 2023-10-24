@@ -132,7 +132,7 @@ export default function ModificarDireccion() {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    CONTINUAR
+                    GUARDAR
                   </Button>
                 </div>
               </Footer>

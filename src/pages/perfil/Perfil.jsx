@@ -13,13 +13,13 @@ export default function Perfil() {
 
       <div className="row profile-container">
         <div className="col-12 mt-3">
-          <OfertaPrestamoPerfil
+          {/* <OfertaPrestamoPerfil
             textHeader="Tenés un Préstamo "
             text="Aprobado de"
             importe="100.000"
             buttonText="QUIERO MI PRÉSTAMO"
             buttonLink="#"
-          />
+          /> */}
         </div>
         <div className="col-12 mt-3">
           <Menu />

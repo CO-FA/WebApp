@@ -115,6 +115,7 @@ export default function OlvidePasswordStep2() {
                   </ul>
                 </div>
               </form>
+              {/* TO DO: agregar link olvide mi contraseña */}
             </section>
             <Footer>
               <div className="col-12">

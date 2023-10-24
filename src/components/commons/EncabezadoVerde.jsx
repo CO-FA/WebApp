@@ -24,6 +24,7 @@ export default function EncabezadoVerde() {
             />
           </svg>
         </Button>
+        {/* TO DO: pasar como parametro */}
         <h5 className="text-white flex-grow-1 text-center align-self-end">Modificar mis Datos</h5>
         <div className="p-1 text-center">
           <a

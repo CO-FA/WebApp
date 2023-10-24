@@ -1,13 +1,13 @@
 import React from "react";
-import Encabezado from "../components/commons/Encabezado";
-import NavigationHeader from "../components/commons/NavigationHeader";
-import SoporteOpciones from "../components/commons/SoporteOpciones";
+import Encabezado from "../../components/commons/Encabezado";
+import NavigationHeader from "../../components/commons/NavigationHeader";
+import SoporteOpciones from "../../components/commons/SoporteOpciones";
 import {
   legalesIcon,
   reclamosIcon,
   whatsappIcon,
   preguntasIcon,
-} from "../utils/iconsSvg";
+} from "../../utils/iconsSvg";
 
 export default function Soporte() {
   return (

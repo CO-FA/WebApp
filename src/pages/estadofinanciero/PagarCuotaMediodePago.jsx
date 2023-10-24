@@ -3,7 +3,7 @@ import EncabezadoVerde from "components/commons/EncabezadoVerde";
 import Footer from "components/commons/Footer";
 import { Link } from "react-router-dom";
 
-export default function DetallePrestamo() {
+export default function MediosDePagoCuotas() {
   return (
     <>
       <EncabezadoVerde />

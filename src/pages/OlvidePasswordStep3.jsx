@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import Button from "../components/commons/Button";
 import { formErrors } from "../utils/constantsErrors";
 
-export default function OlvidePasswordStep2() {
+export default function OlvidePasswordStep3() {
 	const [errors, setErrors] = useState(false);
 	const history = useHistory();
 

@@ -1,6 +1,6 @@
 import React from "react";
-import HeaderNavigation from "../components/commons/HeaderNavigation";
-import NotificationCard from "../components/commons/NotificationCard";
+import HeaderNavigation from "../../components/commons/HeaderNavigation";
+import NotificationCard from "../../components/commons/NotificationCard";
 
 export default function Notificaciones() {
   const HeaderNavitationTitle = () => (
