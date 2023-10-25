@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Button from "../components/commons/Button";
-import Input from "../components/commons/Input";
-import Encabezado from "../components/commons/Encabezado";
-import Footer from "../components/commons/Footer";
+import Button from "../../components/commons/Button";
+import Input from "../../components/commons/Input";
+import Encabezado from "../../components/commons/Encabezado";
+import Footer from "../../components/commons/Footer";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
-import { formErrors } from "../utils/constantsErrors";
+import { formErrors } from "../../utils/constantsErrors";
 import { Link } from "react-router-dom";
 
 export default function Login() {

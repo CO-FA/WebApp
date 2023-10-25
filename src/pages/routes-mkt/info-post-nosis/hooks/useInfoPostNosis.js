@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { getIpAddress } from "api/ip";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import {useIdentidadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import {useIdentidadAtom, useStepAtom } from "pages/atoms/Atoms";
 import { validateLoan } from "api/GenerateLoan";
 
 export const useInfoPostNosis = () => {

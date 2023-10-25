@@ -5,7 +5,7 @@ import {
   useSituacionLaboralAtom,
   useGeneroAtom,
   useStepAtom,
-} from "pages/routes-mkt/atoms/Atoms";
+} from "pages/atoms/Atoms";
 import { useHistory } from "react-router-dom";
 import { formErrors } from "utils/constantsErrors";
 import { getSituaciones } from "api/SituacionesLaborales";

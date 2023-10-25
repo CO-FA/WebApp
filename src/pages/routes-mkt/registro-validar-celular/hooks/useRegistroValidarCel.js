@@ -2,7 +2,7 @@ import { validarLead } from "api/LeadValidation";
 import { enviarSMSValidacion } from "api/PhoneValidation";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useCelularAtom, useCodigoAtom, useGeneroAtom, useIdentidadAtom, usePrestamoAtom, useSituacionLaboralAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useCelularAtom, useCodigoAtom, useGeneroAtom, useIdentidadAtom, usePrestamoAtom, useSituacionLaboralAtom, useStepAtom } from "pages/atoms/Atoms";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { formErrors } from "utils/constantsErrors";

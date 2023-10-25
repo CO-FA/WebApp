@@ -1,7 +1,7 @@
 import { getPadronAfip } from "api/PadronAfip";
 import { useLoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useIdentidadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useIdentidadAtom, useStepAtom } from "pages/atoms/Atoms";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 

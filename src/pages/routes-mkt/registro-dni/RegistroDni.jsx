@@ -10,7 +10,7 @@ import {
   useIdentidadAtom,
   useSituacionLaboralAtom,
   useGeneroAtom,
-} from "../atoms/Atoms";
+} from "../../atoms/Atoms";
 import { SelectGenero } from "./components/SelectGenero";
 import { SelectSituacionLaboral } from "./components/SelectSituacionLaboral";
 import { useRegistroDni } from "./hooks/useRegistroDni";

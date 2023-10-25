@@ -1,5 +1,5 @@
 import Encabezado from "components/commons/Encabezado";
-import { useSolicitudAtom } from "../atoms/Atoms";
+import { useSolicitudAtom } from "../../atoms/Atoms";
 
 export function SolicitudPrestamo () {
     const {pdfSolicitud} = useSolicitudAtom();

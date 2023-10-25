@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import Button from "components/commons/Button";
 import Encabezado from "components/commons/Encabezado";
 import { useModal } from "components/modal/ModalContext";
-import { useCbuAtom } from "../atoms/Atoms";
+import { useCbuAtom } from "../../atoms/Atoms";
 import { useFindBanco } from "./hooks/useFindBanco";
 import { useRegistroCbu } from "./hooks/useRegistroCbu";
 import "../../../assets/css/main.css"

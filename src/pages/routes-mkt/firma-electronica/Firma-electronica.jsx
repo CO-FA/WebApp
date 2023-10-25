@@ -1,7 +1,7 @@
 import React from "react";
 import "../../../assets/css/main.css";
 import { STEPS } from "components/registro/STEPS-MKT";
-import {  useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import {  useLeadAtom, useStepAtom } from "pages/atoms/Atoms";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { statusFirmaSupabase } from "api/StatusFirmaElectronica";

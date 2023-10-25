@@ -1,8 +1,8 @@
 
-import Button from "../components/commons/Button"
+import Button from "../../components/commons/Button"
 import {Link} from "react-router-dom"
-import Encabezado from "../components/commons/Encabezado";
-import Terminos from "../components/registro/Terminos";
+import Encabezado from "../../components/commons/Encabezado";
+import Terminos from "../../components/registro/Terminos";
 
 export default function RegistroStep2(){
     return (

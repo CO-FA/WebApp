@@ -4,7 +4,7 @@ import "./assets/css/main.css";
 
 import { LoaderProvider } from "./components/loader/LoaderContext";
 import { ModalProvider } from "components/modal/ModalContext";
-import { RoutesMkt } from "./pages/routes-mkt/RoutesMkt";
+import { RoutesMkt } from "./pages/RoutesMkt";
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import { validacionNosis } from "api/NosisValidation";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/atoms/Atoms";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 

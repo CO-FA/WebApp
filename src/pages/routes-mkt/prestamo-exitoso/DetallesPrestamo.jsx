@@ -1,6 +1,6 @@
 import Encabezado from "components/commons/Encabezado";
 import React, { useEffect, useState } from 'react';
-import { useDetallesAtom } from "../atoms/Atoms";
+import { useDetallesAtom } from "../../atoms/Atoms";
 
 function LoanDetails({ prestamo }) {
     console.log(prestamo)

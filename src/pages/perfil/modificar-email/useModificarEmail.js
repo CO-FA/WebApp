@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { formErrors } from "utils/constantsErrors";
 
-export const useRegistroEmail = () => {
+export const useModificarEmail = () => {
     let { setShowLoader } = React.useContext(LoaderContext);
     const [errors, setErrors] = useState(false);
     const history = useHistory();
@@ -31,7 +31,7 @@ export const useRegistroEmail = () => {
             })
             console.log("enviar", pin.codigo)
             
-            history.push("/onboarding/enviar-pin-email");
+            history.push("/perfil-validar-email");
             setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);
           }catch (error) {
             history.push("/onboarding/error");
@@ -48,19 +48,33 @@ export const useRegistroEmail = () => {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       const regex = new RegExp(pattern);
 
-      if (!values.clienteEmail) {
+      if (!values.clienteEmailNuevo) {
           setErrors({
               clienteEmail: formErrors.EMAIL_EMPTY,
           });
-      } else if (!regex.test(values.clienteEmail)) {
+      } else if (!regex.test(values.clienteEmailNuevo)) {
           setErrors({
-              clienteEmail: formErrors.PATTERN_EMAIL_ERROR,
+            clienteEmailNuevo: formErrors.PATTERN_EMAIL_ERROR,
           });
       } else {
-          setErrors(false);
+        setErrors(false);
+      }
+      if (!values.clientePin) {
+        setErrors({ clientePin: formErrors.CODE_EMPTY });
+      } else if (String(values.clientePin).length !== 4) {
+        setErrors({ clientePin: formErrors.CODE_LENGTH });
+      } else {
+        setErrors(false);
       }
       return errors
     }
 
-    return {submitForm,validateForm, errors}
+    const submitFormValidar = (values, setSubmitting) => {
+        if (!errors) {
+          setShowLoader(false);
+          history.push("/perfil");
+        }
+      };
+
+    return {submitForm,validateForm, errors, submitFormValidar}
 };

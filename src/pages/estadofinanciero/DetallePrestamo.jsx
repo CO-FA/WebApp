@@ -4,7 +4,7 @@ import Footer from "components/commons/Footer";
 import React from "react";
 import { ReactComponent as FlechaIcon } from "assets/images/flecha-arriba.svg";
 import { Link } from "react-router-dom";
-import { usePrestamoAtom } from "pages/routes-mkt/atoms/Atoms";
+import { usePrestamoAtom } from "pages/atoms/Atoms";
 
 const convertToDate = (dateString) => {
   //  Convert a "dd/MM/yyyy" string into a Date object

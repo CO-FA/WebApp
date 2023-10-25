@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import { usePrestamoAtom } from "../atoms/Atoms";
+import { usePrestamoAtom } from "../../atoms/Atoms";
 import { useInfoPreNosis } from "./hooks/useInfoPreNosis";
 import Encabezado from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";

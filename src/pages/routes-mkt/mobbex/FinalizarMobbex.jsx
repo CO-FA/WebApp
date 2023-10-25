@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../../assets/css/main.css";
 import { useHistory } from "react-router-dom";
-import { useStepAtom } from "../atoms/Atoms";
+import { useStepAtom } from "../../atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 
 export function FinalizarMobbex() {

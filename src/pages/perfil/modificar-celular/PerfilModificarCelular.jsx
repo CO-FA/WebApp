@@ -1,10 +1,10 @@
 import React from "react";
-import Input from "../../components/commons/Input";
-import Footer from "../../components/commons/Footer";
-import { Formik } from "formik";
-import Button from "../../components/commons/Button";
-import Encabezadoverde from "../../components/commons/EncabezadoVerde";
-import { useCelularAtom } from "pages/routes-mkt/atoms/Atoms";
+import Input from "../../../components/commons/Input";
+import Footer from "../../../components/commons/Footer";
+import { Formik, Form } from "formik";
+import Button from "../../../components/commons/Button";
+import Encabezadoverde from "../../../components/commons/EncabezadoVerde";
+import { useCelularAtom } from "pages/atoms/Atoms";
 import { usePerfilModificarCelular } from "./usePerfilModificarCelular";
 
 export default function ModificarCelular() {
@@ -29,9 +29,9 @@ export default function ModificarCelular() {
       >
         {({ values, handleSubmit }) => (
           <>
-            <form>
+            <Form>
               <section>
-                <h3 className="mt-5">Mi celular registrado es:</h3>
+                <h3 className="mt-5">Mi celular registrado es</h3>
                 <div className="row">
                   <div className="form-group col-3">
                     <Input
@@ -55,10 +55,8 @@ export default function ModificarCelular() {
                       values={values}
                     />
                   </div>
-
-                  <div />
                 </div>
-                <h3 className="mt-3">Mi nuevo celular es:</h3>
+                <h3 className="mt-3">Mi nuevo celular es</h3>
                 <div className="row">
                   <div className="form-group col-3">
                     <Input
@@ -82,50 +80,6 @@ export default function ModificarCelular() {
                       values={values}
                     />
                   </div>
-                  {/* <div className="col-12">
-                    {errors["clienteCelCodigo"] && (
-                      <span
-                        id="clienteCelCodigo-errorMsg"
-                        className="form-text text-danger small"
-                      >
-                        *{errors["clienteCelCodigo"]}
-                      </span>
-                    )}
-                    {errors["clienteCelNumero"] && (
-                      <span
-                        id="clienteCelCodigo-errorMsg"
-                        className="form-text text-danger small"
-                      >
-                        *{errors["clienteCelNumero"]}
-                      </span>
-                    )}
-                  </div> */}
-                </div>
-
-                <h3 className="mt-3">Ingresá el PIN SMS</h3>
-                <div className="row">
-                  <div className="form-group col-12">
-                    <Input
-                      label="PIN"
-                      placeholder="PIN"
-                      type="number"
-                      className="form-control"
-                      name="clientePin"
-                      errors={errors}
-                      values={values}
-                    />
-                  </div>
-                  <div className="col-12">
-                    <p className="mt-5 text-center">
-                      <Button
-                        type="button"
-                        /* onClick={reenviarPinSms} */
-                        className="text-underline"
-                      >
-                        ¿No te llegó? Reenviarme el SMS
-                      </Button>
-                    </p>
-                  </div>
                 </div>
               </section>
               <Footer>
@@ -136,11 +90,11 @@ export default function ModificarCelular() {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    CONTINUAR
+                    VALIDAR CELULAR
                   </Button>
                 </div>
               </Footer>
-            </form>
+            </Form>
           </>
         )}
       </Formik>

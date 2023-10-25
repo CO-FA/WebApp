@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import Footer from "components/commons/Footer";
 import Button from "components/commons/Button";
 import { usePrestamoExitoso } from "./hooks/usePrestamoExitoso";
-import { useIdentidadAtom } from "../atoms/Atoms";
+import { useIdentidadAtom } from "../../atoms/Atoms";
 
 export function PrestamoExitoso() {
   const { submitForm, handleButtonClick } = usePrestamoExitoso();

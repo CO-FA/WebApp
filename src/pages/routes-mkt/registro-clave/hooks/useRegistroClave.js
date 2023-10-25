@@ -1,7 +1,7 @@
 import { crearPassword } from "api/Password";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useIdentidadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useIdentidadAtom, useStepAtom } from "pages/atoms/Atoms";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { formErrors } from "utils/constantsErrors";

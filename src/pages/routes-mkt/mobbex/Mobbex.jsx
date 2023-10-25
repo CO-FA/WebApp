@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../assets/css/main.css";
-import { useSubscriptionURLAtom } from "../atoms/Atoms";
+import { useSubscriptionURLAtom } from "../../atoms/Atoms";
 
 export function Mobbex() {
     const {subscriptionURL} = useSubscriptionURLAtom();

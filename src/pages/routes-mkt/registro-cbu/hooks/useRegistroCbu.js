@@ -4,7 +4,7 @@ import { LoaderContext } from "components/loader/LoaderContext";
 import { useModal } from "components/modal/ModalContext";
 import { STEPS } from "components/registro/STEPS-MKT";
 import Cbu from "pages/estadofinanciero/Cbu";
-import { useCbuAtom, useIdentidadAtom, useLeadAtom, useStepAtom, useSubscriptionURLAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useCbuAtom, useIdentidadAtom, useLeadAtom, useStepAtom, useSubscriptionURLAtom } from "pages/atoms/Atoms";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { formErrors } from "utils/constantsErrors";

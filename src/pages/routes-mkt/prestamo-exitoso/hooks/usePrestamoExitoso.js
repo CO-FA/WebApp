@@ -2,7 +2,7 @@ import { infoDetalles } from "api/InfoDetalles";
 import { infoSolicitud } from "api/infoSolucitud";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useDetallesAtom, useIdentidadAtom, useSolicitudAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useDetallesAtom, useIdentidadAtom, useSolicitudAtom, useStepAtom } from "pages/atoms/Atoms";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 

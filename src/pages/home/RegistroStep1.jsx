@@ -1,8 +1,8 @@
 import {useState} from "react"
-import Button from "../components/commons/Button"
+import Button from "../../components/commons/Button"
 import {Link} from "react-router-dom"
 
-import Encabezado from "../components/commons/Encabezado";
+import Encabezado from "../../components/commons/Encabezado";
 
 
 export default function RegistroStep1(){

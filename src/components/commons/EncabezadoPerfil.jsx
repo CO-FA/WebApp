@@ -2,7 +2,7 @@ import React from "react";
 import userImage from "../../assets/images/user-img.png";
 import Button from "./Button";
 import { Link } from "react-router-dom";
-import { useIdentidadAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useIdentidadAtom } from "pages/atoms/Atoms";
 
 export default function EncabezadoPerfil() {
   const {identidad, documento} = useIdentidadAtom();

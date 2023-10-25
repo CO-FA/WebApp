@@ -6,7 +6,7 @@ import Button from "components/commons/Button";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
 import OptionNombre from "components/registro/OptionNombre";
-import { useIdentidadAtom } from "../atoms/Atoms";
+import { useIdentidadAtom } from "../../atoms/Atoms";
 import { useRegistroIdentidad } from "./hooks/useRegistroIdentidad";
 
 export default function RegistroElegirIdentidad() {

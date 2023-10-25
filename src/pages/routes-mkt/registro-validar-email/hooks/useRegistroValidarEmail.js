@@ -1,7 +1,7 @@
 import { validacionCodigoEmail, validacionEmail } from "api/EmailValidation";
 import { LoaderContext } from "components/loader/LoaderContext";
 import { STEPS } from "components/registro/STEPS-MKT";
-import { useEmailAtom, useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useEmailAtom, useIdentidadAtom, useLeadAtom, useStepAtom } from "pages/atoms/Atoms";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { formErrors } from "utils/constantsErrors";

@@ -2,36 +2,36 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import "../../assets/css/main.css";
-import CalculadoraPrestamo from "./calculadora-prestamo/CalculadoraPrestamo";
-import { RegistroCelular } from "./registro-celular/RegistroCelular";
-import { RegistroDni } from "./registro-dni/RegistroDni";
-import RegistroElegirIdentidad from "./registro-elegir-identidad/RegistroElegirIdentidad";
-import { RegistroValidacionCelular } from "./registro-validar-celular/RegistroValidacionCelular";
-import { RegistroClave } from "./registro-clave/RegistroClave";
-import RegistroCbu from "./registro-cbu/RegistroCbu";
-import { Mobbex } from "./mobbex/Mobbex";
-import RegistroEmail from "./registro-email/RegistroEmail";
-import RegistroValidacionEmail from "./registro-validar-email/RegistroValidacionEmail";
-import { InfoPreNosis } from "./info-pre-nosis/InfoPreNosis";
-import { InfoPostNosis } from "./info-post-nosis/InfoPostNosis";
-import { PrestamoExitoso } from "./prestamo-exitoso/PrestamoExitoso";
+import CalculadoraPrestamo from "./routes-mkt/calculadora-prestamo/CalculadoraPrestamo";
+import { RegistroCelular } from "./routes-mkt/registro-celular/RegistroCelular";
+import { RegistroDni } from "./routes-mkt/registro-dni/RegistroDni";
+import RegistroElegirIdentidad from "./routes-mkt/registro-elegir-identidad/RegistroElegirIdentidad";
+import { RegistroValidacionCelular } from "./routes-mkt/registro-validar-celular/RegistroValidacionCelular";
+import { RegistroClave } from "./routes-mkt/registro-clave/RegistroClave";
+import RegistroCbu from "./routes-mkt/registro-cbu/RegistroCbu";
+import { Mobbex } from "./routes-mkt/mobbex/Mobbex";
+import RegistroEmail from "./routes-mkt/registro-email/RegistroEmail";
+import RegistroValidacionEmail from "./routes-mkt/registro-validar-email/RegistroValidacionEmail";
+import { InfoPreNosis } from "./routes-mkt/info-pre-nosis/InfoPreNosis";
+import { InfoPostNosis } from "./routes-mkt/info-post-nosis/InfoPostNosis";
+import { PrestamoExitoso } from "./routes-mkt/prestamo-exitoso/PrestamoExitoso";
 import { useStepAtom } from "./atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useToken } from "api/hooks/useToken";
-import { Error } from "./error/Error";
+import { Error } from "./routes-mkt/error/Error";
 import Perfil from "pages/perfil/Perfil";
-import ModificarCelular from "pages/perfil/PerfilModificarCelular";
-import ModificarEmail from "pages/perfil/PerfilModificarEmail";
-import OlvidePasswordStep2 from "pages/perfil/PerfilModificarPass";
-import ModificarDireccion from "pages/perfil/PerfilModificarDireccion";
-import { FinalizarMobbex } from "./mobbex/FinalizarMobbex";
-import { FinalizarNosis } from "./nosis/FinalizarNosis";
-import FirmaElectronica from "./firma-electronica/Firma-electronica";
+import ModificarCelular from "pages/perfil/modificar-celular/PerfilModificarCelular";
+import ModificarEmail from "pages/perfil/modificar-email/PerfilModificarEmail";
+import OlvidePasswordStep2 from "pages/perfil/modificar-pass/PerfilModificarPass";
+import ModificarDireccion from "pages/perfil/modificar-direccion/PerfilModificarDireccion";
+import { FinalizarMobbex } from "./routes-mkt/mobbex/FinalizarMobbex";
+import { FinalizarNosis } from "./routes-mkt/nosis/FinalizarNosis";
+import FirmaElectronica from "./routes-mkt/firma-electronica/Firma-electronica";
 import LogoCofa from "components/logoCofa";
-import PinCelularScreen from "./enviar-pin/enviarPinCelular";
-import PinEmailScreen from "./enviar-pin/enviarPinEmail";
-import { DetallesPrestamo } from "./prestamo-exitoso/DetallesPrestamo";
-import { SolicitudPrestamo } from "./prestamo-exitoso/SolicitudPrestamo";
+import PinCelularScreen from "./routes-mkt/enviar-pin/enviarPinCelular";
+import PinEmailScreen from "./routes-mkt/enviar-pin/enviarPinEmail";
+import { DetallesPrestamo } from "./routes-mkt/prestamo-exitoso/DetallesPrestamo";
+import { SolicitudPrestamo } from "./routes-mkt/prestamo-exitoso/SolicitudPrestamo";
 import DetallePrestamo from "pages/estadofinanciero/DetallePrestamo";
 import CbuList from "pages/estadofinanciero/CbuList";
 import SinPrestamo from "pages/estadofinanciero/SinPrestamo";
@@ -40,13 +40,15 @@ import MediosDePagoCuotas from "pages/estadofinanciero/PagarCuotaMediodePago";
 import InformePago from "pages/estadofinanciero/InformePago";
 import Notificaciones from "pages/perfil/Notificaciones";
 import Soporte from "pages/perfil/Soporte";
-import Home from "pages/Home";
-import Login from "pages/Login";
-import RegistroStep1 from "pages/RegistroStep1";
-import RegistroStep2 from "pages/RegistroStep2";
-import OlvidePasswordStep1 from "pages/OlvidePasswordStep1";
-import OlvidePasswordStep3 from "pages/OlvidePasswordStep3";
-import Terminos from "components/registro/Terminos";
+import Home from "pages/home/Home";
+import Login from "pages/home/Login";
+import RegistroStep1 from "pages/home/RegistroStep1";
+import RegistroStep2 from "pages/home/RegistroStep2";
+import OlvidePasswordStep1 from "pages/home/OlvidePasswordStep1";
+import ValidarCelular from "pages/perfil/modificar-celular/ValidacionCelular";
+import ValidarEmail from "pages/perfil/modificar-email/PerfilModificarEmailValidicion";
+import NuevaClave from "pages/home/OlvidePasswordStep3";
+import ModificarContrasena from "pages/perfil/modificar-pass/PerfilModificarPass";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
@@ -94,10 +96,7 @@ export function RoutesMkt() {
               <OlvidePasswordStep1 />
             </Route>
             <Route path="/recuperar-pass2">
-              <OlvidePasswordStep2 />
-            </Route>
-            <Route path="/recuperar-pass3">
-              <OlvidePasswordStep3 />
+              <NuevaClave />
             </Route>
             
             
@@ -232,16 +231,29 @@ export function RoutesMkt() {
                 <ModificarCelular />
               </VerifyStep>
             </Route>
+            <Route path="/perfil-validar-celular">
+              <VerifyStep>
+                <ValidarCelular />
+              </VerifyStep>
+            </Route>
+
             <Route path="/perfil-modificar-email">
               <VerifyStep step={STEPS.STEP_17_MODIFICAR_EMAIL}>
                 <ModificarEmail />
               </VerifyStep>
             </Route>
-            <Route path="/perfil-modificar-pass">
-              <VerifyStep step={STEPS.STEP_18_MODIFICAR_CONTRASEÑA}>
-                <OlvidePasswordStep2 />
+            <Route path="/perfil-validar-email">
+              <VerifyStep>
+                <ValidarEmail /> 
               </VerifyStep>
             </Route>
+
+            <Route path="/perfil-modificar-pass">
+              <VerifyStep step={STEPS.STEP_18_MODIFICAR_CONTRASEÑA}>
+                <ModificarContrasena />
+              </VerifyStep>
+            </Route>
+
             <Route path="/perfil-modificar-direccion">
               <VerifyStep step={STEPS.STEP_19_MODIFICAR_DIRECCION}>
                 <ModificarDireccion />

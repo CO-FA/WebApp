@@ -6,7 +6,7 @@ import { Formik } from "formik";
 import Button from "components/commons/Button";
 import RegistroSetps from "components/registro/RegistroSteps";
 import { STEPS } from "components/registro/STEPS-MKT";
-import {useCelularAtom} from "../atoms/Atoms";
+import {useCelularAtom} from "../../atoms/Atoms";
 import { useRegistroValidarCel } from "./hooks/useRegistroValidarCel";
 
 

@@ -1,4 +1,4 @@
-import { useDiaVencimientoAtom, useIdentidadAtom, useLeadAtom, usePrestamoAtom, useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useDiaVencimientoAtom, useIdentidadAtom, useLeadAtom, usePrestamoAtom, useStepAtom } from "pages/atoms/Atoms";
 import { useEffect} from "react";
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";

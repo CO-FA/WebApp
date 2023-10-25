@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Input from "../../components/commons/Input";
-import Footer from "../../components/commons/Footer";
+import Input from "../../../components/commons/Input";
+import Footer from "../../../components/commons/Footer";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
-import Button from "../../components/commons/Button";
-import { formErrors } from "../../utils/constantsErrors";
-import EncabezadoVerde from "../../components/commons/EncabezadoVerde";
+import Button from "../../../components/commons/Button";
+import { formErrors } from "../../../utils/constantsErrors";
+import EncabezadoVerde from "../../../components/commons/EncabezadoVerde";
 
-export default function OlvidePasswordStep2() {
+export default function ModificarContrasena() {
   const [errors, setErrors] = useState(false);
   const history = useHistory();
 

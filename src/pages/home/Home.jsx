@@ -1,6 +1,6 @@
 
-import Button from "../components/commons/Button"
-import Carousel from "../components/home/CarouselSlider"
+import Button from "../../components/commons/Button"
+import Carousel from "../../components/home/CarouselSlider"
 import {Link} from "react-router-dom"
 export default function Home(){
     return <>

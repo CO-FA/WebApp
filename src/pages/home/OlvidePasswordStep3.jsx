@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Input from "../components/commons/Input";
-import Encabezado from "../components/commons/Encabezado";
-import Footer from "../components/commons/Footer";
+import Input from "../../components/commons/Input";
+import Encabezado from "../../components/commons/Encabezado";
+import Footer from "../../components/commons/Footer";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
-import Button from "../components/commons/Button";
-import { formErrors } from "../utils/constantsErrors";
+import Button from "../../components/commons/Button";
+import { formErrors } from "../../utils/constantsErrors";
 
-export default function OlvidePasswordStep3() {
+export default function NuevaClave() {
 	const [errors, setErrors] = useState(false);
 	const history = useHistory();
 
@@ -61,7 +61,7 @@ export default function OlvidePasswordStep3() {
           <>
             <section>
               <form className="pt-3">
-                <h3>¡Último paso!</h3>
+                <h3>¡Crea tu nueva clave!</h3>
                 <div className="row">
                   <div className="form-group col-12">
                     <Input
@@ -109,7 +109,7 @@ export default function OlvidePasswordStep3() {
                   type="submit"
                   onClick={handleSubmit}
                 >
-                  CONTINUAR
+                  GUARDAR
                 </Button>
               </div>
             </Footer>

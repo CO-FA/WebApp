@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { LoaderContext } from "components/loader/LoaderContext";
-import { useStepAtom } from "pages/routes-mkt/atoms/Atoms";
+import { useStepAtom } from "pages/atoms/Atoms";
 
 export const useError = () => {
     let { setShowLoader } = React.useContext(LoaderContext);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../../assets/css/main.css";
 import { useHistory } from "react-router-dom";
 import { LoaderContext } from "../../../components/loader/LoaderContext";
-import { useStepAtom } from "../atoms/Atoms";
+import { useStepAtom } from "../../atoms/Atoms";
 import { STEPS } from "components/registro/STEPS-MKT";
 import { useParams } from "react-router-dom";
 import { updateStatusNosis } from "api/StatusNosis";

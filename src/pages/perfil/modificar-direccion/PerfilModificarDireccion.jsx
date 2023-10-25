@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
-import { formErrors } from "../../utils/constantsErrors";
-import Input from "../../components/commons/Input";
-import Footer from "../../components/commons/Footer";
-import Button from "../../components/commons/Button";
-import { LoaderContext } from "../../components/loader/LoaderContext";
-import EncabezadoVerde from "../../components/commons/EncabezadoVerde";
+import { formErrors } from "../../../utils/constantsErrors";
+import Input from "../../../components/commons/Input";
+import Footer from "../../../components/commons/Footer";
+import Button from "../../../components/commons/Button";
+import { LoaderContext } from "../../../components/loader/LoaderContext";
+import EncabezadoVerde from "../../../components/commons/EncabezadoVerde";
 
 export default function ModificarDireccion() {
   let { setShowLoader } = React.useContext(LoaderContext);

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Input from "../components/commons/Input";
-import Encabezado from "../components/commons/Encabezado";
-import Footer from "../components/commons/Footer";
+import Input from "../../components/commons/Input";
+import Encabezado from "../../components/commons/Encabezado";
+import Footer from "../../components/commons/Footer";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
-import Button from "../components/commons/Button";
-import { formErrors } from "../utils/constantsErrors";
+import Button from "../../components/commons/Button";
+import { formErrors } from "../../utils/constantsErrors";
 
 export default function OlvidePasswordStep1() {
 	const [errors, setErrors] = useState(false);

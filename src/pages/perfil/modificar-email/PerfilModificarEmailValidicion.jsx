@@ -1,38 +1,23 @@
-import React, { useState } from "react";
-import Input from "../components/commons/Input";
-import Button from "../components/commons/Button";
-import Encabezado from "../components/commons/Encabezado";
-import Footer from "../components/commons/Footer";
-import { useHistory } from "react-router-dom";
-import { Formik } from "formik";
-import {  formErrors  } from "../utils/constantsErrors";
+import React from "react";
+import Input from "../../../components/commons/Input";
+import Button from "../../../components/commons/Button";
+import Encabezado from "../../../components/commons/Encabezado";
+import Footer from "../../../components/commons/Footer";
+import { Formik, Form } from "formik";
+import RegistroSetps from "../../../components/registro/RegistroSteps";
+import { STEPS } from "../../../components/registro/constantsSteps";
+import { useModificarEmail } from "./useModificarEmail";
 
-export default function OlvidePasswordStep2() {
-	const [errors, setErrors] = useState(false);
-	const history = useHistory();
+export default function ValidarEmail() {
+  const {validateForm, errors, submitFormValidar} = useModificarEmail()
 
-	const submitForm = (values, setSubmitting) => {
-		if (!errors) {
-			history.push("/newPassword");
-		}
-	};
-	const validateForm = values => {
-		if (!values.clientePin) {
-			setErrors({ clientePin: formErrors.CODE_EMPTY });
-		} else if (String(values.clientePin).length !== 4) {
-			setErrors({ clientePin: formErrors.CODE_LENGTH });
-		} else {
-			setErrors(false);
-		}
-	};
-
-	return (
+  return (
     <>
-      <Encabezado />
+      <Encabezado title={<RegistroSetps current={STEPS.STEP_3_EMAIL} />} />
       <Formik
         initialValues={{ clientePin: "" }}
         onSubmit={(values, { setSubmitting }) =>
-          submitForm(values, setSubmitting)
+        submitFormValidar(values, setSubmitting)
         }
         validate={(values) => validateForm(values)}
       >
@@ -44,7 +29,7 @@ export default function OlvidePasswordStep2() {
         }) => (
           <>
             <section>
-              <form className="pt-3">
+              <Form className="pt-3">
                 <h3>Ingresá el código</h3>
                 <div className="row">
                   <div className="form-group col-12">
@@ -68,7 +53,7 @@ export default function OlvidePasswordStep2() {
                     </p>
                   </div>
                 </div>
-              </form>
+              </Form>
             </section>
 
             <Footer>
@@ -79,7 +64,7 @@ export default function OlvidePasswordStep2() {
                   type="submit"
                   onClick={handleSubmit}
                 >
-                  CONTINUAR
+                  GUARDAR
                 </Button>
               </div>
             </Footer>
