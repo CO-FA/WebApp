@@ -30,7 +30,6 @@
   "proxy": "https://cofatest.sbfintech.net/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "netlify build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
