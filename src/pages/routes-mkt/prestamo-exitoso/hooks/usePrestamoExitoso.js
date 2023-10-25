@@ -21,7 +21,7 @@ export const usePrestamoExitoso = () => {
       }
       setShowLoader(true);
       try {
-        await history.push("/onboarding/logo-cofa");
+        await history.push("/perfil");
       } catch (error) {
         history.push("/onboarding/error");
         setCurrentStep(STEPS.STEP_99_ERROR);

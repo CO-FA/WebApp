@@ -4,6 +4,7 @@ import Footer from "components/commons/Footer";
 import React from "react";
 import { ReactComponent as FlechaIcon } from "assets/images/flecha-arriba.svg";
 import { Link } from "react-router-dom";
+import { usePrestamoAtom } from "pages/routes-mkt/atoms/Atoms";
 
 const convertToDate = (dateString) => {
   //  Convert a "dd/MM/yyyy" string into a Date object
@@ -54,23 +55,25 @@ const getStyleCuota = (cuota) => {
 
 const ItemCuota = ({ cuota }) => {
   const style = getStyleCuota(cuota);
+  const { montoCuota } = usePrestamoAtom()
 
   return (
     <p className={style}>
-      Cuota #{cuota.Cuota} | ${cuota.Importe} | {cuota.Vto}
+      Cuota #{cuota.Cuota} | ${montoCuota} | {cuota.Vto}
     </p>
   );
 };
 
 export default function DetallePrestamo() {
+  const {monto, cuota} = usePrestamoAtom()
   return (
     <>
       <EncabezadoVerde />
       <div className="row">
         <div className="col mt-3">
-          <p className="text-black">Capital: $999.999,99</p>
+          <p className="text-black">Capital: ${monto}</p>
           <p className="text-black"> Fecha de Otorgamiento: 99/99/9999 </p>
-          <p className="text-black"> Plan de Cuotas: 12 </p>
+          <p className="text-black"> Plan de Cuotas: {cuota} </p>
 
           <Button
             className={
@@ -79,7 +82,7 @@ export default function DetallePrestamo() {
           >
             <FlechaIcon />
             <span className="ml-3 text-underline">
-              Detalle ( Buscar wording)
+              Detalle (Buscar wording)
             </span>
           </Button>
 
@@ -90,7 +93,7 @@ export default function DetallePrestamo() {
           </div>
 
           <Footer>
-            <Link to= "/prestamo-pagarcuotas">
+            <Link to= "/pagar-cuota">
               <Button className="btn btn-primary cont mt-2">PAGAR CUOTA</Button>
             </Link>
             <Button className="btn btn-primary cont mt-4">

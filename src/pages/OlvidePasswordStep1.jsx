@@ -13,7 +13,7 @@ export default function OlvidePasswordStep1() {
 
 	const submitForm = (values, setSubmitting) => {
 		if (!errors) {
-			history.push("/emailCode");
+			history.push("/recuperar-pass2");
 		}
 	};
 	const validateForm = values => {

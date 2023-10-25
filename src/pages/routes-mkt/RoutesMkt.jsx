@@ -46,15 +46,15 @@ import RegistroStep1 from "pages/RegistroStep1";
 import RegistroStep2 from "pages/RegistroStep2";
 import OlvidePasswordStep1 from "pages/OlvidePasswordStep1";
 import OlvidePasswordStep3 from "pages/OlvidePasswordStep3";
+import Terminos from "components/registro/Terminos";
 
 const RedirectOnboardign = () => {
   const history = useHistory();
-  const { setCurrentStep } = useStepAtom();
+  //const { setCurrentStep } = useStepAtom();
   useEffect(() => {
-    history.push("/onboarding/registro-dni");
-    setCurrentStep(STEPS.STEP_1_DNI);
+    history.push("/home");
+    //setCurrentStep(STEPS.STEP_1_DNI);
   }, []);
-
   return null;
 };
 
@@ -80,34 +80,35 @@ export function RoutesMkt() {
       >
         <div className="animation-item" ref={nodeRef}>
           <Switch>
-            {/* INICIO */}
+            {/* HOME */}
             <Route path="/home">
-              <VerifyStep step={STEPS.STEP_1_DNI}>
                 <Home />
-              </VerifyStep>
             </Route>
 
             {/* HOME / YA TENGO UN PRESTAMO */}
+            {/* esto va directo al perfil. tanto si recupera como si entra con login */}
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/registro1">
-              <RegistroStep1 />
-            </Route>
-            <Route path="/registro2">
-              <RegistroStep2 />
-            </Route>
-            <Route path="/olvide-pass1">
+            <Route path="/recuperar-pass1">
               <OlvidePasswordStep1 />
             </Route>
-            <Route path="/olvide-pass2">
+            <Route path="/recuperar-pass2">
               <OlvidePasswordStep2 />
             </Route>
-            <Route path="/olvide-pass3">
+            <Route path="/recuperar-pass3">
               <OlvidePasswordStep3 />
             </Route>
             
+            
             {/* HOME / QUIERO UN PRESTAMO */}
+            {/* arranca el proceso de onboarding */}
+            <Route path="/registro">
+              <RegistroStep1 />
+            </Route>
+            <Route path="/terminosycondiciones">
+              <RegistroStep2/>
+            </Route>
             <Route path="/onboarding/registro-dni">
               <VerifyStep step={STEPS.STEP_1_DNI}>
                 <RegistroDni />
@@ -209,16 +210,10 @@ export function RoutesMkt() {
                 <SolicitudPrestamo />
               </VerifyStep>
             </Route>
-            <Route path="/onboarding/logo-cofa">
-                <LogoCofa />
-            </Route>
-          
 
             {/* INICIA SEGUNDA PARTE DEL DESARROLLO DE CofApp */}
             <Route path="/perfil">
-              <VerifyStep step={STEPS.STEP_13_PERFIL}>
                 <Perfil />
-              </VerifyStep>
             </Route>
             <Route path="/notificaciones">
               <VerifyStep step={STEPS.STEP_14_NOTIFICACIONES}>
@@ -304,10 +299,7 @@ export function RoutesMkt() {
               </VerifyStep>
             </Route>
 
-            {/* LINEA VER ASISTENCIAS */}
-            <Route path="/asistencias">
-              {/* disabled */}
-            </Route>
+            {/* LINEA VER ASISTENCIAS - disabled */}
 
             <Route path="/onboarding/error">
               <VerifyStep step={STEPS.STEP_99_ERROR}>

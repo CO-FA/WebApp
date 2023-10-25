@@ -1,67 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "../../components/commons/Input";
 import Footer from "../../components/commons/Footer";
 import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
 import Button from "../../components/commons/Button";
-import { formErrors } from "../../utils/constantsErrors";
-import { LoaderContext } from "../../components/loader/LoaderContext";
 import Encabezadoverde from "../../components/commons/EncabezadoVerde";
+import { useCelularAtom } from "pages/routes-mkt/atoms/Atoms";
+import { usePerfilModificarCelular } from "./usePerfilModificarCelular";
 
-export default function ModificarCelular({ celCodigo, cellNumero }) {
-  let { setShowLoader } = React.useContext(LoaderContext);
-  const [errors, setErrors] = useState(false);
-  const history = useHistory();
-
-  const submitForm = (values, setSubmitting) => {
-    if (errors) {
-      return;
-    }
-    setShowLoader(true);
-    setTimeout(() => {
-      if (!errors) {
-        setShowLoader(false);
-        history.push("/validateEmail");
-      }
-    }, 2000);
-  };
-  const validateForm = (values) => {
-    var errorsAUx = {};
-    if (!values.clienteCelCodigo) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelCodigo: formErrors.CODE_EMPTY,
-      };
-    } else if (String(values.clienteCelCodigo).length < 2) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelCodigo: formErrors.CODE_PHONE_ERROR,
-      };
-    } else {
-      errorsAUx = false;
-    }
-    if (!values.clienteCelNumero) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelNumero: formErrors.PHONE_EMPTY,
-      };
-    } else if (String(values.clienteCelNumero).length < 6) {
-      errorsAUx = {
-        ...errorsAUx,
-        clienteCelNumero: formErrors.PHONE_ERROR,
-      };
-    } else {
-      errorsAUx = errorsAUx || false;
-    }
-    setErrors(errorsAUx);
-  };
+export default function ModificarCelular() {
+  const { codArea, numCelular } = useCelularAtom();
+  const {submitForm,validateForm, errors} = usePerfilModificarCelular()
+ 
   return (
     <>
       <Encabezadoverde />
       <Formik
         initialValues={{
-          clienteCelCodigo: celCodigo,
-          clienteCelNumero: cellNumero,
+          codigoAntiguo: codArea,
+          celAntiguo: numCelular,
+          clienteCelCodigo: "",
+          clienteCelNumero: "",
           clientePin: "",
         }}
         onSubmit={(values, { setSubmitting }) =>
@@ -79,21 +37,21 @@ export default function ModificarCelular({ celCodigo, cellNumero }) {
                     <Input
                       label="Cód"
                       type="number"
-                      placeholder="011"
+                      placeholder={codArea}
                       className="form-control"
-                      name="clienteCelCodigo"
-                      errors={[]}
+                      name="codigoAntiguo"
+                      errors={errors}
                       values={values}
                     />
                   </div>
                   <div className="form-group col">
                     <Input
                       label="Celular"
-                      placeholder="38913312"
+                      placeholder={numCelular}
                       type="number"
                       className="form-control"
-                      name="clienteCelNumero"
-                      errors={[]}
+                      name="celAntiguo"
+                      errors={errors}
                       values={values}
                     />
                   </div>
@@ -106,25 +64,25 @@ export default function ModificarCelular({ celCodigo, cellNumero }) {
                     <Input
                       label="Cód"
                       type="number"
-                      placeholder="011"
+                      placeholder=""
                       className="form-control"
                       name="clienteCelCodigo"
-                      errors={[]}
+                      errors={errors}
                       values={values}
                     />
                   </div>
                   <div className="form-group col">
                     <Input
                       label="Celular"
-                      placeholder="38913312"
+                      placeholder=""
                       type="number"
                       className="form-control"
                       name="clienteCelNumero"
-                      errors={[]}
+                      errors={errors}
                       values={values}
                     />
                   </div>
-                  <div className="col-12">
+                  {/* <div className="col-12">
                     {errors["clienteCelCodigo"] && (
                       <span
                         id="clienteCelCodigo-errorMsg"
@@ -141,7 +99,7 @@ export default function ModificarCelular({ celCodigo, cellNumero }) {
                         *{errors["clienteCelNumero"]}
                       </span>
                     )}
-                  </div>
+                  </div> */}
                 </div>
 
                 <h3 className="mt-3">Ingresá el PIN SMS</h3>
@@ -171,7 +129,7 @@ export default function ModificarCelular({ celCodigo, cellNumero }) {
                 </div>
               </section>
               <Footer>
-                <div className="col-12">
+                <div className="col-12" style= {{marginTop: "40%"}}>
                   <Button
                     className="btn btn-primary cont"
                     disabled={false}

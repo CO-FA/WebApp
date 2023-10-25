@@ -2,8 +2,6 @@ import React from "react";
 import EncabezadoPerfil from "../../components/commons/EncabezadoPerfil";
 import Encabezado from "../../components/commons/Encabezado";
 import AvisoPerfil from "../../components/commons/AvisoPerfil";
-import SolicitarPrestamo from "../../components/commons/SolicitarPrestamo";
-import OfertaPrestamoPerfil from "../../components/commons/OfertaPrestamoPerfil";
 import Menu from "../../components/commons/Acordeon";
 
 export default function Perfil() {

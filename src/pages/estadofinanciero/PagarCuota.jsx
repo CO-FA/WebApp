@@ -107,7 +107,7 @@ export default function PagarCuota() {
       <EncabezadoVerde />
       <div className="row">
         <div className="col mt-3">
-          <h4 className="d-flex justify-content-center"> Prestamo 2345</h4>
+          <h4 className="d-flex justify-content-center"> Prestamo #2345</h4>
           <p className="w-100 border-top border-bottom d-flex justify-content-center p-3">
             Selecciona la/s cuota/s que quieras pagar o hacé un pago parcial
             editando el monto
@@ -119,25 +119,23 @@ export default function PagarCuota() {
             ))}
           </div>
           <p>
-            Monto a pagar: {!edit && valorCuota} 
+            Monto a pagar: ${!edit && valorCuota} 
             {edit && <input type= "number" value={valorCuota} onChange = {(event) => {
               setValorCuotas (event.currentTarget.value)  
             }} />  
             }
             </p>
-            <Button onClick= {()=>{
-              setEdit(!edit)
-            }}className="btn btn-primary cont mt-2">
-              Editar 
-            </Button>
+            
           
           <Footer>
-            <Link to= "/prestamo-pagarcuotas-mediodepago">
-            <Button className="btn btn-primary cont mt-2">
-              GENERAR LINK DE PAGO
-            </Button>
+            <Link to= "/pagar-cuota-medios-de-pago">
+              <Button className="btn btn-primary cont mt-2">
+                SELECCIONAR MEDIO DE PAGO
+              </Button>
             </Link>
-            <Button className="btn cont mt-4">VOLVER</Button>
+            <Link to= "/detalle-prestamo">
+              <Button className="btn cont mt-4">VOLVER</Button>
+            </Link>
           </Footer>
         </div>
       </div>

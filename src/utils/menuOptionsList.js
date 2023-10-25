@@ -78,25 +78,25 @@ export const optionsToShow2 = [
       {
         menu: "Cambiar mi celular",
         submenu: [],
-        href: "/perfilModificarCelular",
+        href: "/perfil-modificar-celular",
         icon: celularIcon,
       },
       {
         menu: "Cambiar mi email",
         submenu: [],
-        href: "/perfilModificarEmail",
+        href: "/perfil-modificar-email",
         icon: emailIcon,
       },
       {
         menu: "Cambiar mi contraseña",
         submenu: [],
-        href: "/perfilModificarPass",
+        href: "/perfil-modificar-pass",
         icon: passwordIcon,
       },
       {
         menu: "Cambiar mi domicilio",
         submenu: [],
-        href: "/perfilModificarDireccion",
+        href: "/perfil-modificar-direccion",
         icon: domicilioIcon,
       },
     ],
@@ -121,20 +121,21 @@ export const optionsToShow2 = [
         menu: "Cargar mi CBU/CVU",
         submenu: [],
         icon: cbuIcon,
-        href: "/cargarmiCbu",
+        href: "/mis-cbu-cvu",
       },
-      { menu: "Cargar mi Tarjeta", submenu: [], icon: tarjetaIcon, href: "/" },
+      { menu: "Cargar mi Tarjeta", 
+      submenu: [], 
+      icon: tarjetaIcon, 
+      href: "/" },
     ],
   },
 
   {
-    /* TO DO: debe aparecer disabled */
-    /* style: { color: "#888", pointerEvents: "none" },
-    disabled: true, */
+    /* TO DO: debe aparecer disabled */    
     menu: "Ver mis asistencias",
     icon: seguroIcon,
     submenu: [
-      { menu: "Seguro de Auto", submenu: [], icon: autoIcon, href: "/" },
+      /* { menu: "Seguro de Auto", submenu: [], icon: autoIcon, href: "/" },
       { menu: "Seguro de Moto", submenu: [], icon: motoIcon, href: "/" },
       { menu: "Seguro de Casa", submenu: [], icon: casaIcon, href: "/" },
       {
@@ -143,7 +144,7 @@ export const optionsToShow2 = [
         icon: alquilerIcon,
         href: "/",
       },
-      { menu: "Seguro de Celular", submenu: [], icon: celuIcon, href: "/" },
+      { menu: "Seguro de Celular", submenu: [], icon: celuIcon, href: "/" }, */
     ],
   },
 ];

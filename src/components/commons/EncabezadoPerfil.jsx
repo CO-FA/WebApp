@@ -2,8 +2,11 @@ import React from "react";
 import userImage from "../../assets/images/user-img.png";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { useIdentidadAtom } from "pages/routes-mkt/atoms/Atoms";
 
 export default function EncabezadoPerfil() {
+  const {identidad, documento} = useIdentidadAtom();
+
   return (
     <div className="row">
       <div className="bg-gradient d-flex justify-content-end flex-grow-1 py-2 w-100">
@@ -116,10 +119,10 @@ export default function EncabezadoPerfil() {
       </div>
       <div className="col-12">
         <h4 className="text-center text-black mt-3">
-          Ronaldo de Assis Moreira
+          {identidad.nombreCompleto}
         </h4>
         <p className="extra-small text-center text-black mt-2">
-          MASC | 24.235.647{" "}
+          {documento}{" "}
         </p>
       </div>
     </div>

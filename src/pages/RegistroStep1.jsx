@@ -7,9 +7,6 @@ import Encabezado from "../components/commons/Encabezado";
 
 export default function RegistroStep1(){
     const [acepto,setAcepto] = useState(false)
-
-    
-
     return (
       <>
         <Encabezado />
@@ -47,7 +44,7 @@ export default function RegistroStep1(){
                     Al aceptar declaro ser mayo de 18 años
                   </small>
                 </div>
-                <Link to="/documento">
+                <Link to="/onboarding/registro-dni">
                   <Button
                     className="btn btn-primary mt-3"
                     disabled={!acepto}

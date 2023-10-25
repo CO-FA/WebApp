@@ -15,8 +15,8 @@ export default function RegistroStep2(){
           <div className="row text-center">
             <div className="col-12">
               <form className="form-signin mt-2">
-                <Link to="/documento">
-                  <Button className="btn btn-primary">Acepto</Button>
+                <Link to="/onboarding/registro-dni">
+                  <Button className="btn btn-primary">ACEPTO</Button>
                 </Link>
               </form>
             </div>

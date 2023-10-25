@@ -90,18 +90,6 @@ export default function InformePago() {
                     className="form-control"
                     id="exampleFormControlSelect1"
                   >
-                    <option>Detalle de Pago</option>
-                    <option>Cuota Atrasada</option>
-                    <option>Adelanto de cuota</option>
-                    <option>Cancelacion de Préstamo</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label for="exampleFormControlSelect1"></label>
-                  <select
-                    className="form-control"
-                    id="exampleFormControlSelect1"
-                  >
                     <option>Medio de Pago</option>
                     <option>Mercado de Pago</option>
                     <option>RapiPago</option>
@@ -114,16 +102,30 @@ export default function InformePago() {
                   </select>
                 </div>
               </section>
+              <div className="row">
+                  <div className="form-group col-12">
+                    <Input
+                      label=""
+                      placeholder="Adjuntar comprobante de pago"
+                      type="number"
+                      className="form-control"
+                      name="clienteComprobante"
+                      errors={[]}
+                      values={values}
+                    />
+                  </div>
+                </div>
 
               <Footer>
                 <div className="col-12">
+                  {/* TO DO: enviar a cobranzas@cofa.com.ar y volver al perfil*/}
                   <Button
                     className="btn btn-primary cont"
                     disabled={false}
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    CONTINUAR
+                    ENVIAR
                   </Button>
                 </div>
               </Footer>
