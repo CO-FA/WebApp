@@ -3,12 +3,12 @@ import React from "react";
 export default function SolicitarPrestamo({ text }) {
   return (
     <button
-      class="btn bg-gradient py-3 w-100 border-0 d-flex justify-content-between align-items-center"
+      className="btn bg-gradient py-3 w-100 border-0 d-flex justify-content-between align-items-center"
       type="button"
     >
-      <span class="text-white">
+      <span className="text-white">
         <svg
-          class="mr-2"
+          className="mr-2"
           width="28"
           height="17"
           viewBox="0 0 28 17"

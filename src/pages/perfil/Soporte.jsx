@@ -17,17 +17,17 @@ export default function Soporte() {
         title={<NavigationHeader title="Ayuda" />}
       />
       <section>
-        <div class="row">
-          <div class="col-6">
+        <div className="row">
+          <div className="col-6">
             <SoporteOpciones text="Soporte" icon={whatsappIcon} />
           </div>
-          <div class="col-6">
+          <div className="col-6">
             <SoporteOpciones text="Preguntas" icon={preguntasIcon} />
           </div>
-          <div class="col-6">
+          <div className="col-6">
             <SoporteOpciones text="Reclamos" icon={reclamosIcon} />
           </div>
-          <div class="col-6">
+          <div className="col-6">
             <SoporteOpciones text="Legales" icon={legalesIcon} />
           </div>
         </div>

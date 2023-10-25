@@ -4,10 +4,10 @@ import Button from "./Button";
 export default function NavigationHeader({ title, extraContent }) {
   return (
     <>
-      <div class="row bg-gradient align-items-center border-radius-top">
-        <div class="col-2 text-center">
+      <div className="row bg-gradient align-items-center border-radius-top">
+        <div className="col-2 text-center">
           <Button
-            className="btn btn-link px-0"
+            classNameName="btn btn-link px-0"
             onClick={() => {
               window.history.back();
             }}
@@ -25,8 +25,8 @@ export default function NavigationHeader({ title, extraContent }) {
             </svg>
           </Button>
         </div>
-        <div class="col-10">
-          <h4 class="text-white my-3 center-header">{title}</h4>
+        <div className="col-10">
+          <h4 className="text-white my-3 center-header">{title}</h4>
         </div>
       </div>
       {extraContent}

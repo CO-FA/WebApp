@@ -3,12 +3,12 @@ import React from "react";
 export default function AvisoPerfil({ text }) {
   return (
     <button
-      class="btn border py-3 w-100 d-flex justify-content-between align-items-center"
+      className="btn border py-3 w-100 d-flex justify-content-between align-items-center"
       type="submit"
     >
       <span>
         <svg
-          class="mr-2"
+          className="mr-2"
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -30,7 +30,7 @@ export default function AvisoPerfil({ text }) {
         {text}
       </span>
       <svg
-        class="float-right"
+        className="float-right"
         width="6"
         height="11"
         viewBox="0 0 6 11"

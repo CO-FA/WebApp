@@ -2,17 +2,17 @@ import React from "react";
 
 export default function MenuOption({ text, icon, href }) {
   return (
-    <div class="list-group">
+    <div className="list-group">
       <a
         href={href}
-        class="list-group-item list-group-item-action p-2 w-100 border-right-0 border-left-0 d-flex justify-content-between align-items-center rounded-0"
+        className="list-group-item list-group-item-action p-2 w-100 border-right-0 border-left-0 d-flex justify-content-between align-items-center rounded-0"
       >
         <span>
           {icon}
           {text}
         </span>
         <svg
-          class="float-right"
+          className="float-right"
           width="6"
           height="11"
           viewBox="0 0 6 11"

@@ -10,21 +10,21 @@ export default function OfertaPrestamoPerfil({
   textHeader,
 }) {
   return (
-    <div class="align-items-center justify-content-between py-3 w-100 d-flex border borderRadius-1 greenBackground text-center">
-      <div class="row">
-        <div class="col-12">
-          <h4 class="text-white bold">{textHeader}</h4>
+    <div className="align-items-center justify-content-between py-3 w-100 d-flex border borderRadius-1 greenBackground text-center">
+      <div className="row">
+        <div className="col-12">
+          <h4 className="text-white bold">{textHeader}</h4>
         </div>
-        <div class="col-12">
-          <h4 class="text-white bold">{text}</h4>
+        <div className="col-12">
+          <h4 className="text-white bold">{text}</h4>
         </div>
-        <div class="col-12 mt-3">
-          <h2 class="text-white bold">[[ $ {importe} ]]</h2>
+        <div className="col-12 mt-3">
+          <h2 className="text-white bold">[[ $ {importe} ]]</h2>
         </div>
-        <div class="col-12 mt-3">
+        <div className="col-12 mt-3">
           <Link to={buttonLink}>
             <Button
-              className="btn btn-light button-rounded p-3 shadow"
+              classNameName="btn btn-light button-rounded p-3 shadow"
               disabled={false}
               type="button"
             >

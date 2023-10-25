@@ -62,8 +62,8 @@ export default function OlvidePasswordStep2() {
             <section>
               <form>
                 <h3>Cambiar mi contraseña</h3>
-                <div class="row">
-                  <div class="form-group col-12">
+                <div className="row">
+                  <div className="form-group col-12">
                     <Input
                       label="Ingresá tu contraseña actual"
                       name="clientePass"
@@ -76,8 +76,8 @@ export default function OlvidePasswordStep2() {
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="form-group col-12">
+                <div className="row">
+                  <div className="form-group col-12">
                     <Input
                       label="Ingresá tu contraseña nueva"
                       name="clientePassNew"
@@ -91,7 +91,7 @@ export default function OlvidePasswordStep2() {
                   </div>
                 </div>
                 <div className="row">
-                  <div class="form-group col-12">
+                  <div className="form-group col-12">
                     <Input
                       label="Repetí tu contraseña nueva"
                       name="clientePassConfirm"
@@ -105,22 +105,22 @@ export default function OlvidePasswordStep2() {
                   </div>
                 </div>
 
-                <div className="row">
+                <div classNameName="row">
                   <ul>
-                    <li className="mt-3">
+                    <li classNameName="mt-3">
                       Tu contraseña debe tener minimo 8 caracteres que contengan
                       al menos una minuscula, una mayuscula y un número.{" "}
                     </li>
-                    <li className="mt-3 pt-3">Ejemplo: Mica2010</li>
+                    <li classNameName="mt-3 pt-3">Ejemplo: Mica2010</li>
                   </ul>
                 </div>
               </form>
               {/* TO DO: agregar link olvide mi contraseña */}
             </section>
             <Footer>
-              <div className="col-12">
+              <div classNameName="col-12">
                 <Button
-                  className="btn btn-primary cont"
+                  classNameName="btn btn-primary cont"
                   disabled={false}
                   type="submit"
                   onClick={handleSubmit}
