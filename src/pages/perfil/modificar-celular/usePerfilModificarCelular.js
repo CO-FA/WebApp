@@ -22,8 +22,8 @@ export const usePerfilModificarCelular = () => {
             values.clienteCelCodigo + "" + values.clienteCelNumero,
             identidad.cuit
           );
-          setShowLoader(false);
           console.log("enviar",pin.codigo)
+          setShowLoader(false);
           history.push("/perfil-validar-celular");
           //setCurrentStep(STEPS.STEP_3_CELULAR);
         }
