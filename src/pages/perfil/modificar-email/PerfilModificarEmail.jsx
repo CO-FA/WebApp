@@ -34,8 +34,8 @@ export default function ModificarEmail() {
             <Form>
               <section>
                 <h3 className="mt-5">Mi mail registrado es</h3>
-                <div className="row">
-                  <div className="form-group col">
+                <div className="row profile-container">
+                  <div className="form-group col-12">
                     <Input
                       label="Ingresá tu Email"
                       placeholder=""
@@ -61,17 +61,6 @@ export default function ModificarEmail() {
                     />
                   </div>
                 </div>
-                <div className="col-12">
-                  {errors["clienteEmail"] && (
-                    <span
-                      id="clienteEmail-errorMsg"
-                      className="form-text text-danger small"
-                    >
-                      *{errors["clienteEmail"]}
-                    </span>
-                  )}
-                </div>
-
                 <div className="col-12">
                   <p className="mt-5 text-center">
                     <a href="/" className="text-underline">

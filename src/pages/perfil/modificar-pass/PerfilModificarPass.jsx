@@ -1,47 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "../../../components/commons/Input";
 import Footer from "../../../components/commons/Footer";
 import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
 import Button from "../../../components/commons/Button";
-import { formErrors } from "../../../utils/constantsErrors";
 import EncabezadoVerde from "../../../components/commons/EncabezadoVerde";
+import { useModificarPass } from "./useModificarPass";
 
 export default function ModificarContrasena() {
-  const [errors, setErrors] = useState(false);
-  const history = useHistory();
-
-  const submitForm = (values, setSubmitting) => {
-    if (!errors) {
-      history.push("/login");
-    }
-  };
-  const validateForm = (values) => {
-    debugger;
-    // Min 8, 1 letra mayus, 1 letra min, 1 num
-    let pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/g;
-
-    if (values.clientePass !== values.clientePassConfirm) {
-      setErrors({ clientePassConfirm: formErrors.PASSWORD_DOESNT_MATCH });
-    } else if (!values.clientePass) {
-      setErrors({
-        clientePass: formErrors.PASSWORD_EMPTY,
-        clientePassConfirm: formErrors.PASSWORD_DOESNT_MATCH,
-      });
-    } else if (!values.clientePass.match(pattern)) {
-      setErrors({
-        clientePass: formErrors.PATTERN_ERROR,
-      });
-      /*} else if (values.clientePass.length !== 8) {
-			setErrors({
-				clientePass: formErrors.PASSWORD_LENGTH,
-			});
-		} */
-    } else {
-      setErrors(false);
-    }
-  };
-
+  const {submitForm,validateForm, errors} = useModificarPass()
+ 
   return (
     <>
       <EncabezadoVerde />
@@ -105,17 +72,17 @@ export default function ModificarContrasena() {
                   </div>
                 </div>
 
-                <div classNameName="row">
-                  <ul>
-                    <li classNameName="mt-3">
-                      Tu contraseña debe tener minimo 8 caracteres que contengan
-                      al menos una minuscula, una mayuscula y un número.{" "}
-                    </li>
-                    <li classNameName="mt-3 pt-3">Ejemplo: Mica2010</li>
-                  </ul>
-                </div>
+                <div className="col-12">
+                    <ul>
+                      <li>
+                        Tu contraseña debe tener mínimo 8 caracteres que
+                        contengan al menos una minúscula, una mayúscula y un
+                        número.
+                      </li>
+                      <li>Ejemplo: Mica2010</li>
+                    </ul>
+                  </div>
               </form>
-              {/* TO DO: agregar link olvide mi contraseña */}
             </section>
             <Footer>
               <div classNameName="col-12">

@@ -59,7 +59,7 @@ export default function ValidarCelular() {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    GUARDAR
+                    GUARDAR {/* TO DO:  guardar los datos en la base de datos */}
                   </Button>
                 </div>
               </Footer>

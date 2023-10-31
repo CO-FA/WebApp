@@ -20,5 +20,6 @@ export const formErrors = {
 	VENCIMIENTO_CUOTA:"Debe seleccionar el vencimiento de la cuota",
 	CBU_EMPTY:"El CBU no puede estar vacio",
 	CBU_ERROR:"El CBU debe tener 22 digitos",
+	DATO_EMPTY:"El campo no puede estar vacio",
 
 };

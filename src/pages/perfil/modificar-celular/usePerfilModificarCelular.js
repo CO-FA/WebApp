@@ -57,6 +57,7 @@ export const usePerfilModificarCelular = () => {
         } else {
             errorsAUx = errorsAUx || false;
         }
+        /* TO DO: mensaje error mismo num registro */
 
         if (!values.clientePin) {
           errorsAUx = {
@@ -89,6 +90,7 @@ export const usePerfilModificarCelular = () => {
     const reenviarPinSms = async (values) => {
         const pin = await enviarSMSValidacion(
           codArea + "" + numCelular, /* el nuevo numero que Ingresa el usuario */
+          console.log(codArea, numCelular),
           identidad.cuit
         );
         console.log("reenviar", pin);

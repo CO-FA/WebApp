@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "components/commons/Input";
 import Encabezado from "components/commons/Encabezado";
 import Footer from "components/commons/Footer";
@@ -10,12 +10,16 @@ import { useRegistroClave } from "./hooks/useRegistroClave";
 
 export const RegistroClave = () => {
   const {submitForm,validateForm, errors} = useRegistroClave()
-  //TO DO: no valida errores en la clave
+  
   return (
     <>
       <Encabezado title={<RegistroSetps current={STEPS.STEP_5_CLAVE} />} />
       <Formik
-        initialValues={{ clientePass: "", clientePassConfirm: "" }}
+        initialValues=
+        {{ 
+          clientePass: "", 
+          clientePassConfirm: "" 
+        }}
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)
         }

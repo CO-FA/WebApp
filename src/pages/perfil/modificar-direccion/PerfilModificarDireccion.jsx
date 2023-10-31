@@ -1,49 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik } from "formik";
-import { useHistory } from "react-router-dom";
-import { formErrors } from "../../../utils/constantsErrors";
 import Input from "../../../components/commons/Input";
 import Footer from "../../../components/commons/Footer";
 import Button from "../../../components/commons/Button";
-import { LoaderContext } from "../../../components/loader/LoaderContext";
 import EncabezadoVerde from "../../../components/commons/EncabezadoVerde";
+import { useModificarDireccion } from "./useModificarDireccion";
 
 export default function ModificarDireccion() {
-  let { setShowLoader } = React.useContext(LoaderContext);
-  const [errors, setErrors] = useState(false);
-  const history = useHistory();
-
-  const submitForm = (values, setSubmitting) => {
-    setShowLoader(true);
-    setTimeout(() => {
-      if (!errors) {
-        setShowLoader(false);
-        history.push("/emailCode");
-      }
-    }, 2000);
-  };
-  const validateForm = (values) => {
-    const pattern =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const regex = new RegExp(pattern);
-
-    if (!values.clienteEmail) {
-      setErrors({
-        clienteEmail: formErrors.EMAIL_EMPTY,
-      });
-    } else if (!regex.test(values.clienteEmail)) {
-      setErrors({
-        clienteEmail: formErrors.PATTERN_EMAIL_ERROR,
-      });
-    } else {
-      setErrors(false);
-    }
-  };
+  const {submitForm,validateForm, errors} = useModificarDireccion()
+  
   return (
     <>
       <EncabezadoVerde />
       <Formik
-        initialValues={{ clienteEmail: "" }}
+        initialValues={{ clienteDireccion: " " }}
         onSubmit={(values, { setSubmitting }) =>
           submitForm(values, setSubmitting)
         }
@@ -62,11 +32,11 @@ export default function ModificarDireccion() {
                   <div className="form-group col-9">
                     <Input
                       label="Calle"
-                      placeholder="Av. Santa Fe 1200,CABA"
+                      placeholder="Av. Santa Fe"
                       type="text"
                       className="form-control"
-                      name="clienteEmail"
-                      errors={[]}
+                      name="clienteDireccionCalle"
+                      errors={errors}
                       values={values}
                     />
                   </div>
@@ -78,8 +48,8 @@ export default function ModificarDireccion() {
                       placeholder=""
                       type="number"
                       className="form-control"
-                      name="clienteEmail"
-                      errors={[]}
+                      name="clienteDireccionNum"
+                      errors={errors}
                       values={values}
                     />
                   </div>
@@ -91,8 +61,8 @@ export default function ModificarDireccion() {
                       placeholder=""
                       type="number"
                       className="form-control"
-                      name="clienteEmail"
-                      errors={[]}
+                      name="clienteDireccionPiso"
+                      errors={errors}
                       values={values}
                     />
                   </div>
@@ -102,8 +72,8 @@ export default function ModificarDireccion() {
                       placeholder=""
                       type="number"
                       className="form-control"
-                      name="clienteEmail"
-                      errors={[]}
+                      name="clienteDireccionDpto"
+                      errors={errors}
                       values={values}
                     />
                   </div>
@@ -116,8 +86,8 @@ export default function ModificarDireccion() {
                       placeholder=""
                       type="number"
                       className="form-control"
-                      name="clienteEmail"
-                      errors={[]}
+                      name="clienteDireccionCP"
+                      errors={errors}
                       values={values}
                     />
                   </div>
@@ -132,7 +102,7 @@ export default function ModificarDireccion() {
                     type="submit"
                     onClick={handleSubmit}
                   >
-                    GUARDAR
+                    GUARDAR {/* TO DO: guardar info en supabase */}
                   </Button>
                 </div>
               </Footer>

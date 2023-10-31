@@ -22,14 +22,14 @@ export const useModificarEmail = () => {
         if (!errors) {
           setShowLoader(true);
           try{
-            setEmail(values.clienteEmail)
             const pin = await validacionEmail({
               "nroDocumento": identidad.cuit,
               "idPreaprobado":lead.id_preaprobado,
-              "email":values.clienteEmail,
+              "email":values.clienteEmailNuevo,
               "enviarCodigo":true,
             })
             console.log("enviar", pin.codigo)
+            setEmail(values.clienteEmailNuevo)
             
             history.push("/perfil-validar-email");
             setCurrentStep(STEPS.STEP_8_VALIDAR_EMAIL);
@@ -44,13 +44,14 @@ export const useModificarEmail = () => {
     
     
     const validateForm = (values) => {
+      console.log(values.clienteEmailNuevo)
       const pattern =
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       const regex = new RegExp(pattern);
 
       if (!values.clienteEmailNuevo) {
           setErrors({
-              clienteEmail: formErrors.EMAIL_EMPTY,
+            clienteEmailNuevo: formErrors.EMAIL_EMPTY,
           });
       } else if (!regex.test(values.clienteEmailNuevo)) {
           setErrors({
@@ -59,13 +60,14 @@ export const useModificarEmail = () => {
       } else {
         setErrors(false);
       }
-      if (!values.clientePin) {
+
+     /*  if (!values.clientePin) {
         setErrors({ clientePin: formErrors.CODE_EMPTY });
       } else if (String(values.clientePin).length !== 4) {
         setErrors({ clientePin: formErrors.CODE_LENGTH });
       } else {
         setErrors(false);
-      }
+      } */
       return errors
     }
 
@@ -75,6 +77,8 @@ export const useModificarEmail = () => {
           history.push("/perfil");
         }
       };
+
+      /* TO DO: agregar link para reenviar codigo email */
 
     return {submitForm,validateForm, errors, submitFormValidar}
 };
